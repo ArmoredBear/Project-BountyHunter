@@ -1,0 +1,19 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project Bounty Hunter", "Project Bounty Hunter.csproj", "{A451AF3A-9FC3-4AB0-97C8-BCDCCA4E2B7E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	Debug|Any CPU = Debug|Any CPU
+	ExportDebug|Any CPU = ExportDebug|Any CPU
+	ExportRelease|Any CPU = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A451AF3A-9FC3-4AB0-97C8-BCDCCA4E2B7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A451AF3A-9FC3-4AB0-97C8-BCDCCA4E2B7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A451AF3A-9FC3-4AB0-97C8-BCDCCA4E2B7E}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{A451AF3A-9FC3-4AB0-97C8-BCDCCA4E2B7E}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{A451AF3A-9FC3-4AB0-97C8-BCDCCA4E2B7E}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{A451AF3A-9FC3-4AB0-97C8-BCDCCA4E2B7E}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+	EndGlobalSection
+EndGlobal

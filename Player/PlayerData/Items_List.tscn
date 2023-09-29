@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cstb8svv5da71"]
+
+[ext_resource type="Script" path="res://Common/Items/Pill.cs" id="1_ec4rd"]
+[ext_resource type="Script" path="res://Common/Items/Elixir.cs" id="2_mikm1"]
+
+[node name="Player_Items" type="Node"]
+
+[node name="Pill" type="Node" parent="."]
+script = ExtResource("1_ec4rd")
+
+[node name="health_regen_timer" type="Timer" parent="Pill"]
+
+[node name="cooldown_timer" type="Timer" parent="Pill"]
+wait_time = 5.0
+one_shot = true
+
+[node name="Elixir" type="Node" parent="."]
+script = ExtResource("2_mikm1")
