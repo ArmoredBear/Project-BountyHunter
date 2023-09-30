@@ -3,16 +3,21 @@ using System;
 
 public partial class Player_Movement : CharacterBody2D
 {	
+	//!---------------------------------------------------------------------------------------------------------
 	#region Variables
+	//!---------------------------------------------------------------------------------------------------------
 
 	private Vector2 _directional_input_vector;
 	private float _speed;
 	private float _run_speed_modifier;
 	private bool _is_running;
 
+	
 	#endregion
 
+	//!---------------------------------------------------------------------------------------------------------
 	#region Properties
+	//!---------------------------------------------------------------------------------------------------------
 
 	[Export] public Vector2 Directional_Input_Vector
 	{
@@ -66,9 +71,12 @@ public partial class Player_Movement : CharacterBody2D
 		}
 	}
 
+
     #endregion
 
-	#region Initialization
+	//!---------------------------------------------------------------------------------------------------------
+	#region Initialization and Processes
+	//!---------------------------------------------------------------------------------------------------------
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -78,19 +86,18 @@ public partial class Player_Movement : CharacterBody2D
 		Is_Running = false;
     }
 
-	#endregion
-
-	#region PhysicsCalculation
-
     public override void _PhysicsProcess(double delta)
     {
 	   Movement_Input();
 	   Move();
     }
 
+
 	#endregion
 
-	#region Methods
+	//!---------------------------------------------------------------------------------------------------------
+	#region Methods and Interfaces
+	//!---------------------------------------------------------------------------------------------------------
 
 	public void Movement_Input()
 	{

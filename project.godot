@@ -19,6 +19,7 @@ boot_splash/minimum_display_time=2000
 [autoload]
 
 PlayerDataAutoload="*res://Player/PlayerScripts/Player_Data_Autoload.cs"
+Messenger="*res://Common/General Scritps/Messenger.cs"
 
 [dotnet]
 

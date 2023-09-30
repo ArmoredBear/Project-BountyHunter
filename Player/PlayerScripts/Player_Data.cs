@@ -17,7 +17,9 @@ using System;
 [Tool]
 public partial class Player_Data : Resource, IStatus
 {
+	//!---------------------------------------------------------------------------------------------------------
 	#region Variables
+	//!---------------------------------------------------------------------------------------------------------
 
 	private int _max_health;
 	private int _max_stamina;
@@ -26,9 +28,12 @@ public partial class Player_Data : Resource, IStatus
 	private int _current_stamina;
 	private int _current_energy;
 
+	
 	#endregion
 
+	//!---------------------------------------------------------------------------------------------------------
 	#region Properties
+	//!---------------------------------------------------------------------------------------------------------
 
 	[ExportCategory ("Properties")]
 
@@ -113,9 +118,13 @@ public partial class Player_Data : Resource, IStatus
 		}
 	}
 
+	
 	#endregion
 
+	//!---------------------------------------------------------------------------------------------------------
 	#region Constructors
+	//!---------------------------------------------------------------------------------------------------------
+	
 	public Player_Data()
 	{
 		
@@ -132,9 +141,12 @@ public partial class Player_Data : Resource, IStatus
 		CURRENT_Energy = MAX_Energy;
 	}
 
+	
 	#endregion
 
+	//!---------------------------------------------------------------------------------------------------------
 	#region Methods and Interfaces
+	//!---------------------------------------------------------------------------------------------------------
 
 	public void Restore_Health(int _health)
 	{
