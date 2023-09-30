@@ -11,7 +11,7 @@ using System;
  	**  1 - This class is a resource, so it does not stay in a Node in scene directly, it stays on the project files.
  	**  2 - The class Player_Data_Autoload reference this data.
  	*  
- *-----------------------------------------------------------------------------------------------------------------------**/
+*-----------------------------------------------------------------------------------------------------------------------**/
  
 [GlobalClass]
 [Tool]
