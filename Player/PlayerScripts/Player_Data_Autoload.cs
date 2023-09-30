@@ -1,6 +1,6 @@
 using Godot;
 using System;
-
+[Tool]
 public partial class Player_Data_Autoload : Node
 {
 	private Player_Data _player_data;

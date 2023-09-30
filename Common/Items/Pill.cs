@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-
+[Tool]
 public partial class Pill : Item
 {
 	#region Variables

@@ -11,15 +11,15 @@ position = Vector2(550, 300)
 
 [node name="Player_Items" parent="." instance=ExtResource("1_v8mnl")]
 
-[node name="Player_CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="Player_Body" type="CharacterBody2D" parent="."]
 script = ExtResource("1_edbva")
 
-[node name="Animation" type="AnimatedSprite2D" parent="Player_CharacterBody2D"]
+[node name="Animation" type="AnimatedSprite2D" parent="Player_Body"]
 sprite_frames = ExtResource("3_2toys")
 animation = &"Idle"
 autoplay = "Idle"
 frame_progress = 0.58504
 
-[node name="Main_Collider" parent="Player_CharacterBody2D" instance=ExtResource("2_imxp1")]
+[node name="Main_Collider" parent="Player_Body" instance=ExtResource("2_imxp1")]
 
 [node name="Player_UI" parent="." instance=ExtResource("4_8mums")]
