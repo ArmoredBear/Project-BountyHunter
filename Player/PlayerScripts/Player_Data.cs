@@ -12,6 +12,7 @@ using System;
  	**  2 - The class Player_Data_Autoload reference this data.
  	*  
  *-----------------------------------------------------------------------------------------------------------------------**/
+ 
 [GlobalClass]
 [Tool]
 public partial class Player_Data : Resource, IStatus
