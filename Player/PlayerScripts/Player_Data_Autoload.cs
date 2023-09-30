@@ -1,5 +1,22 @@
 using Godot;
 using System;
+
+/**-----------------------------------------------------------------------------------------------------------------------
+ *!                                               PLAYER DATA AUTOLOAD CLASS
+*-----------------------------------------------------------------------------------------------------------------------**/
+
+/**-----------------------------------------------------------------------------------------------------------------------
+  	**                                                     PURPOSE
+  	*
+	**  1 - This class is a singleton, it inherits Node but it does not need to be on scene, that is why is called AUTOLOAD,
+	**  when the scene starts the object is created automaticaly with this script functions and properties before any other
+	** 	object.
+
+  	**  2 - This only holds the player data in the scene for now.
+  	**  3 - This also has a constructor to initiate default data.
+  	*  
+*-----------------------------------------------------------------------------------------------------------------------**/
+
 [Tool]
 public partial class Player_Data_Autoload : Node
 {
