@@ -45,9 +45,6 @@ public partial class TestUseSignal : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if(Input.IsActionPressed("Evade"))
-		{
-			EmitSignal(SignalName.Use_Item_Signal_, true );
-		}
+		
 	}
 }

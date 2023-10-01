@@ -2,14 +2,14 @@ using Godot;
 using System;
 
 /**-----------------------------------------------------------------------------------------------------------------------
-*!                                                    	 PILL CLASS
+*!                                                    	PILL CLASS
 *-----------------------------------------------------------------------------------------------------------------------**/
 
 /**-----------------------------------------------------------------------------------------------------------------------
-	**                                                     PURPOSE
+	**                                                   PURPOSE
 	 *  
 	 **  1 - Hold the Pill information and methods that will influence player.
-	 **  2 - Hold the Pill information to be reused / repurposed on the items on scenario
+	 **  2 - Hold the Pill information to be reused / repurposed on the items on scenario.
 	 *  
 *-----------------------------------------------------------------------------------------------------------------------**/
 
