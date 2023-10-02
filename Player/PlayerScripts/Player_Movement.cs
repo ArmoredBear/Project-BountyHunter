@@ -119,6 +119,7 @@ public partial class Player_Movement : CharacterBody2D
 		{
 			Is_Running = true;
 		}
+
 		else
 		{
 			Is_Running = false;
@@ -143,6 +144,7 @@ public partial class Player_Movement : CharacterBody2D
 		{
 			Run();
 		}
+		
 		else
 		{
 			Walk();

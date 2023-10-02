@@ -119,6 +119,7 @@ public partial class Pill : Item
 	{
 		Health_Regen_Timer = GetNode<Timer>("health_regen_timer");
 		Cooldown_Timer = GetNode<Timer>("cooldown_timer");
+		Item_Name = "Pill";
 		Usable = true;
 		Equipable = false;
 		HealingTime = 20;

@@ -8,13 +8,13 @@ using System.Collections.Generic;
 
 /**-----------------------------------------------------------------------------------------------------------------------
 	**                                                   PURPOSE
-	 *  
-	 **  1 - This class is a singleton, it inherits Node but it does not need to be on scene, that is why is called AUTOLOAD,
-	**  when the scene starts the object is created automaticaly with this script functions and properties before any other
-	** 	object.
-	 **  2 - This is a Messenger, it will hold most if not all CUSTOM SIGNALS for handling game events and connections
-	 **  to objects in the scene.
-	 *
+	*  
+	**  1 - This class is a singleton, it inherits Node but it does not need to be on scene EDITOR,
+	** 	that is why is called AUTOLOAD, when the scene starts the object is created automaticaly with this script
+	** 	functions and properties before any other object.
+	**  2 - This is a Messenger, it will hold most if not all CUSTOM SIGNALS for handling game events and connections
+	**  to objects in the scene.
+	*
 *-----------------------------------------------------------------------------------------------------------------------**/
 
 public partial class Messenger : Node
@@ -81,10 +81,10 @@ public partial class Messenger : Node
 	//!---------------------------------------------------------------------------------------------------------
 
 	[Signal]
-	public delegate void UseItemEventHandler(bool _usable);
+	public delegate void Use_ItemEventHandler(bool _usable);
 	
 	[Signal]
-	public delegate void PickUpItemEventHandler();
+	public delegate void Pickup_ItemEventHandler();
 	
 	
 	#endregion
@@ -126,8 +126,8 @@ public partial class Messenger : Node
 		 **               This connects the signals to the proper method using references
 		 *------------------------------------------------------------------------------------------------**/
 
-		UseItem += Item_List_Parent_Node.GetNode<Pill>(_item_list_paths[0]).Use;
-		UseItem += Item_List_Parent_Node.GetNode<Elixir>(_item_list_paths[1]).Use;
+		Use_Item += Item_List_Parent_Node.GetNode<Pill>(_item_list_paths[0]).Use;
+		Use_Item += Item_List_Parent_Node.GetNode<Elixir>(_item_list_paths[1]).Use;
 
 	}
 
@@ -136,7 +136,7 @@ public partial class Messenger : Node
 		//! THIS IS FOR TESTING ONLY, IT WILL CHANGE.
 		if(Input.IsActionPressed("Evade"))
 		{
-			EmitSignal(SignalName.UseItem, true );
+			EmitSignal(SignalName.Use_Item, true );
 		}
 	}
 
