@@ -5,8 +5,14 @@
 
 [node name="Player_Items" type="Node"]
 
-[node name="Pill" type="Node" parent="."]
+[node name="Pill" type="Node" parent="." node_paths=PackedStringArray("PlayerDataReference", "Health_Regen_Timer", "Cooldown_Timer")]
 script = ExtResource("1_ec4rd")
+PlayerDataReference = NodePath("../../../../../../../../../../../../../../../../../../../../../../PlayerDataAutoload")
+Health_Regen_Timer = NodePath("health_regen_timer")
+Cooldown_Timer = NodePath("cooldown_timer")
+HealingTime = 20
+Item_Name = "Pill"
+Usable = true
 
 [node name="health_regen_timer" type="Timer" parent="Pill"]
 

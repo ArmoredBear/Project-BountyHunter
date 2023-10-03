@@ -7,10 +7,10 @@ using System;
 
 /**-----------------------------------------------------------------------------------------------------------------------
 	**                                                   PURPOSE
-	 *  
-	 **  1 - Hold items information and methods that will influence player.
-	 **  2 - Hold items information to be reused / repurposed on the items on scenario.
-	 *  
+	*  
+	**  1 - Hold items information and methods that will influence player.
+	**  2 - Hold items information to be reused / repurposed on the items on scenario.
+	*  
 *-----------------------------------------------------------------------------------------------------------------------**/
 	
 [Tool]
