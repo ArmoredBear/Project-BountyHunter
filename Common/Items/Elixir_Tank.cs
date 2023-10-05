@@ -20,10 +20,15 @@ public partial class Elixir_Tank : Item
     #region Variables
     //!---------------------------------------------------------------------------------------------------------
     private Player_Data_Autoload _player_data_reference;
-    private int _elixir_amount;
+    private int _max_elixir_amount;
+    private int _current_elixir_amount;
     private int _amount_to_heal;
+    private int _tank_upgrade;
+    private int _heal_upgrade;
     private bool _damaged;
     
+    private const int MAX_Heal_Upgrade = 3;
+    private const int MAX_Tank_Upgrade = 5;
 
     
 
@@ -46,16 +51,29 @@ public partial class Elixir_Tank : Item
 		}
 	}
 
-    [Export] public int Elixir_Amount
+    [Export] public int MAX_Elixir_Amount
     {
         get
         {
-            return _elixir_amount;
+            return _max_elixir_amount;
         }
 
         set
         {
-            _elixir_amount = value;
+            _max_elixir_amount = value;
+        }
+    }
+    
+    [Export] public int Current_Elixir_Amount
+    {
+        get
+        {
+            return _current_elixir_amount;
+        }
+
+        set
+        {
+            _current_elixir_amount = value;
         }
     }
     
@@ -72,6 +90,32 @@ public partial class Elixir_Tank : Item
         }
     }
 
+    [Export] public int Heal_Upgrade
+    {
+        get
+        {
+            return _heal_upgrade;
+        }
+
+        set
+        {
+            _heal_upgrade = value;
+        }
+    }
+
+    [Export] public int Tank_Upgrade
+    {
+        get
+        {
+            return _tank_upgrade;
+        }
+
+        set
+        {
+            _tank_upgrade = value;
+        }
+    }
+    
     [Export] public bool Damaged
     {
         get
@@ -96,10 +140,13 @@ public partial class Elixir_Tank : Item
     public override void _Ready()
     {   
         Item_Name = "Elixir Tank";
-        Elixir_Amount = 100;
+        MAX_Elixir_Amount = 2;
+        Current_Elixir_Amount = MAX_Elixir_Amount;
         Damaged = false;
         Equipable = true;
         Amount_to_Heal = 25;
+        Heal_Upgrade = 0;
+        Tank_Upgrade = 0;
 
         Player_Data_Reference = GetNode<Player_Data_Autoload>("/root/PlayerDataAutoload");
     }
@@ -110,8 +157,16 @@ public partial class Elixir_Tank : Item
 
     public void Refill_Tank(int _amount_to_refill)
 	{
-		Elixir_Amount += _amount_to_refill;
-        GD.Print("Elixir Tank amount: " + Elixir_Amount);
+        if(_amount_to_refill < MAX_Elixir_Amount && Current_Elixir_Amount <= MAX_Elixir_Amount)
+        {
+            Current_Elixir_Amount += _amount_to_refill;
+            GD.Print("Elixir Tank amount: " + Current_Elixir_Amount);
+        }
+
+        else
+        {
+            GD.Print("Tank is full...");
+        }
 	}
 
     public void Heal()
@@ -121,12 +176,31 @@ public partial class Elixir_Tank : Item
 
     public void Upgrade_Tank_Healing()
     {
+        if(Heal_Upgrade < MAX_Heal_Upgrade)
+        {
+            Amount_to_Heal += 25;
+            Heal_Upgrade++;
+        }
+
+        else
+        {
+            GD.Print("MAX HEAL UPGRADE REACHED....");
+        }
         
     }
 
     public void Upgrade_Tank_Capacity()
     {
+        if(Tank_Upgrade < MAX_Tank_Upgrade)
+        {
+            MAX_Elixir_Amount += 1;
+            Tank_Upgrade++;
+        }
 
+        else
+        {
+            GD.Print("MAX TANK UPGRADE REACHED....");
+        }
     }
 
     #endregion

@@ -10,7 +10,6 @@
 
 [node name="Elixir_Tank" type="Node" parent="Fixed_Items"]
 script = ExtResource("1_aoms7")
-Elixir_Amount = 100
 Item_Name = "Elixir Tank"
 Equipable = true
 

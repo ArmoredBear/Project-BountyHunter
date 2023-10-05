@@ -87,7 +87,7 @@ public partial class Elixir_Capsule : Item
 		Item_Name = "Elixir Capsule";
 		Usable = true;
 		Equipable = true;
-		Amount = 25;
+		Amount = 1;
 		
 	}
 
@@ -100,7 +100,7 @@ public partial class Elixir_Capsule : Item
 
     public override void Use(bool _usable)
     {
-       //Messenger_P.Fixed_Items_List_Parent_Node.GetNode<Elixir_Tank>(Elixir_Tank_Path).Refill_Tank(Amount);
+       GetNode<Elixir_Tank>(Elixir_Tank_Path).Refill_Tank(Amount);
     }
 
 	#endregion

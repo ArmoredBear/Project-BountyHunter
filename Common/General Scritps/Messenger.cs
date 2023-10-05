@@ -148,14 +148,19 @@ public partial class Messenger : Node
 	//!---------------------------------------------------------------------------------------------------------
 	#region Signals
 	//!---------------------------------------------------------------------------------------------------------
-
+	/**------------------------------------------------------------------------
+	 **                          Usable Items Signals
+	 *------------------------------------------------------------------------**/
 	[Signal]
-	public delegate void Use_Item_EventHandler(bool _usable);
+	public delegate void Use_Pill_EventHandler(bool _usable);
+	[Signal]
+	public delegate void Use_Elixir_Capsule_EventHandler(bool _usable);
 	
 	[Signal]
 	public delegate void Pickup_ItemEventHandler();
 	
 	
+
 	#endregion
 
 	//!---------------------------------------------------------------------------------------------------------
@@ -195,13 +200,13 @@ public partial class Messenger : Node
 			GetNode<Item>(Fixed_Items_List_Paths[0])
 		};
 		
-		Signal_Setter();
+		Signals_Setter();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		//Items_Use_Emitter();
+		Items_Use_Emitter();
 	}
 
 	
@@ -211,20 +216,23 @@ public partial class Messenger : Node
 	#region Methods and Interfaces
 	//!---------------------------------------------------------------------------------------------------------
 
-	public void Signal_Setter()
+	public void Signals_Setter()
 	{
 		/**------------------------------------------------------------------------------------------------
 		 **               This connects the signals to the proper method using references
 		 *------------------------------------------------------------------------------------------------**/
-
-		Use_Item_ += Items[0].Use;
-		Use_Item_ += Items[1].Use;
+		
+		Use_Pill_ += Items[0].Use;
+		Use_Elixir_Capsule_ += Items[1].Use;
 
 	}
 
 	public void Items_Use_Emitter()
 	{
-		EmitSignal(SignalName.Use_Item_);
+		if(Input.IsActionJustReleased("Evade"))
+		{
+			EmitSignal(SignalName.Use_Pill_, Items[0].Usable);
+		}
 	}
 
 
