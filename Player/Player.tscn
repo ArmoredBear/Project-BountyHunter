@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bswa5xld6wyiu"]
+[gd_scene load_steps=5 format=3 uid="uid://bswa5xld6wyiu"]
 
 [ext_resource type="Script" path="res://Player/PlayerScripts/Player_Movement.cs" id="1_edbva"]
 [ext_resource type="PackedScene" uid="uid://cstb8svv5da71" path="res://Player/PlayerData/Items_List.tscn" id="1_v8mnl"]
 [ext_resource type="PackedScene" uid="uid://ltev86bv3ovj" path="res://Player/Collision/main_collider.tscn" id="2_imxp1"]
 [ext_resource type="SpriteFrames" uid="uid://bfbr0grb8mg27" path="res://Player/Animation/IdleFrames.tres" id="3_2toys"]
-[ext_resource type="PackedScene" uid="uid://bqojx1gwnybpn" path="res://Player/User Interface/player_ui.tscn" id="4_8mums"]
 
 [node name="Player" type="Node2D"]
 position = Vector2(550, 300)
@@ -21,5 +20,3 @@ autoplay = "Idle"
 frame_progress = 0.58504
 
 [node name="Main_Collider" parent="Player_Body" instance=ExtResource("2_imxp1")]
-
-[node name="Player_UI" parent="." instance=ExtResource("4_8mums")]

@@ -1,24 +1,37 @@
-[gd_scene load_steps=3 format=3 uid="uid://cstb8svv5da71"]
+[gd_scene load_steps=4 format=3 uid="uid://cstb8svv5da71"]
 
+[ext_resource type="Script" path="res://Common/Items/Elixir_Tank.cs" id="1_aoms7"]
 [ext_resource type="Script" path="res://Common/Items/Pill.cs" id="1_ec4rd"]
-[ext_resource type="Script" path="res://Common/Items/Elixir.cs" id="2_mikm1"]
+[ext_resource type="Script" path="res://Common/Items/Elixir_Capsule.cs" id="2_8loog"]
 
 [node name="Player_Items" type="Node"]
 
-[node name="Pill" type="Node" parent="." node_paths=PackedStringArray("PlayerDataReference", "Health_Regen_Timer", "Cooldown_Timer")]
+[node name="Fixed_Items" type="Node" parent="."]
+
+[node name="Elixir_Tank" type="Node" parent="Fixed_Items"]
+script = ExtResource("1_aoms7")
+Elixir_Amount = 100
+Item_Name = "Elixir Tank"
+Equipable = true
+
+[node name="Energy_Tank" type="Node" parent="Fixed_Items"]
+
+[node name="Other_Items" type="Node" parent="."]
+
+[node name="Pill" type="Node" parent="Other_Items" node_paths=PackedStringArray("Player_Data_Reference", "Health_Regen_Timer", "Cooldown_Timer")]
 script = ExtResource("1_ec4rd")
-PlayerDataReference = NodePath("../../../../../../../../../../../../../../../../../../../../../../PlayerDataAutoload")
+Player_Data_Reference = NodePath("../../../../../../../../../../../../../../../../../../../../../../../PlayerDataAutoload")
 Health_Regen_Timer = NodePath("health_regen_timer")
 Cooldown_Timer = NodePath("cooldown_timer")
 HealingTime = 20
 Item_Name = "Pill"
 Usable = true
 
-[node name="health_regen_timer" type="Timer" parent="Pill"]
+[node name="health_regen_timer" type="Timer" parent="Other_Items/Pill"]
 
-[node name="cooldown_timer" type="Timer" parent="Pill"]
+[node name="cooldown_timer" type="Timer" parent="Other_Items/Pill"]
 wait_time = 5.0
 one_shot = true
 
-[node name="Elixir" type="Node" parent="."]
-script = ExtResource("2_mikm1")
+[node name="Elixir_Capsule" type="Node" parent="Other_Items"]
+script = ExtResource("2_8loog")

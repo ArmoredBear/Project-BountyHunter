@@ -33,7 +33,7 @@ public partial class Pill : Item
 	#region Properties
 	//!---------------------------------------------------------------------------------------------------------
 
-	[Export] public Player_Data_Autoload PlayerDataReference
+	[Export] public Player_Data_Autoload Player_Data_Reference
 	{
 		get
 		{
@@ -117,6 +117,8 @@ public partial class Pill : Item
 
 	public override void _Ready()
 	{
+		GD.Print("Pill testing...");
+
 		Health_Regen_Timer = GetNode<Timer>("health_regen_timer");
 		Cooldown_Timer = GetNode<Timer>("cooldown_timer");
 		Item_Name = "Pill";
@@ -127,7 +129,7 @@ public partial class Pill : Item
 		Health_Regen_Timer.Timeout += Regeneration;
 		Cooldown_Timer.Timeout += () => GD.Print("Cooldown done.");
 
-		PlayerDataReference = GetNode<Player_Data_Autoload>("/root/PlayerDataAutoload");
+		Player_Data_Reference = GetNode<Player_Data_Autoload>("/root/PlayerDataAutoload");
 	}
 
 	 public override void _Process(double delta)
@@ -163,8 +165,8 @@ public partial class Pill : Item
 		if(HealingCounter < HealingTime)
 		{
 			HealingCounter++;
-			PlayerDataReference.Data.Restore_Health(5);
-			GD.Print("Pill information: " + " Healing Counter: " + HealingCounter + " Player Health: " + PlayerDataReference.Data.CURRENT_Health);
+			Player_Data_Reference.Data.Restore_Health(5);
+			GD.Print("Pill information: " + " Healing Counter: " + HealingCounter + " Player Health: " + Player_Data_Reference.Data.CURRENT_Health);
 			Using = true;
 		}
 

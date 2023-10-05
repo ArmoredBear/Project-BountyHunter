@@ -1,9 +1,25 @@
-[gd_scene format=3 uid="uid://bqojx1gwnybpn"]
+[gd_scene load_steps=4 format=3 uid="uid://bqojx1gwnybpn"]
 
-[node name="Player_UI" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
+[ext_resource type="Texture2D" uid="uid://d6jsab3252y7" path="res://Player/PlayerArt/TempHealthBar_Background.png" id="1_22v0v"]
+[ext_resource type="Texture2D" uid="uid://diwxlr0sgerca" path="res://Player/PlayerArt/TempHealthBar_Container.png" id="2_hsw1r"]
+[ext_resource type="Texture2D" uid="uid://btygfolgeuhul" path="res://Player/PlayerArt/TempHealthBar_Health.png" id="3_3cuit"]
+
+[node name="Player_UI" type="CanvasLayer"]
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+anchors_preset = -1
+anchor_left = 0.022
+anchor_top = 0.056
+anchor_right = 0.022
+anchor_bottom = 0.056
+offset_left = -0.344002
+offset_top = -15.288
+offset_right = 207.656
+offset_bottom = 14.712
 grow_vertical = 2
+value = 100.0
+texture_under = ExtResource("1_22v0v")
+texture_over = ExtResource("2_hsw1r")
+texture_progress = ExtResource("3_3cuit")
+tint_under = Color(0.466667, 0.517647, 0, 1)
+tint_over = Color(0, 0, 0, 1)
