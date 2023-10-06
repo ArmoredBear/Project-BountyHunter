@@ -116,7 +116,6 @@ public partial class Pill : Item
 
 	public override void _Ready()
 	{
-		GD.Print("Pill testing...");
 
 		Health_Regen_Timer = GetNode<Timer>("health_regen_timer");
 		Cooldown_Timer = GetNode<Timer>("cooldown_timer");

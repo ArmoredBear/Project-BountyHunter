@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bqojx1gwnybpn"]
+[gd_scene load_steps=9 format=3 uid="uid://bqojx1gwnybpn"]
 
 [ext_resource type="Texture2D" uid="uid://buc06mly2agyn" path="res://Player/PlayerArt/TempHealthBar_Over.png" id="2_n82xc"]
 [ext_resource type="Texture2D" uid="uid://oqunob542p13" path="res://Player/PlayerArt/TempHealthBar_Health.png" id="3_3cuit"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://df2gp2ru4b1dx" path="res://Player/PlayerArt/HealthSignal_Over.png" id="4_gjh5a"]
 [ext_resource type="Script" path="res://Player/User Interface/UI_Scripts/Health_UI.cs" id="5_aviqj"]
 [ext_resource type="Texture2D" uid="uid://onnudjmjl81v" path="res://Player/PlayerArt/HealthSignal_Over_Background.png" id="6_bd7k7"]
+[ext_resource type="Script" path="res://Player/User Interface/UI_Scripts/Stamina_UI.cs" id="8_8jq05"]
 
 [node name="Player_UI" type="CanvasLayer"]
 
@@ -97,3 +98,4 @@ texture_progress = ExtResource("3_3cuit")
 tint_under = Color(0.14902, 0.14902, 0.14902, 1)
 tint_over = Color(0.164706, 0.164706, 0.164706, 1)
 tint_progress = Color(0, 0.960784, 0.329412, 1)
+script = ExtResource("8_8jq05")

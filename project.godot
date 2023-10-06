@@ -21,6 +21,11 @@ boot_splash/minimum_display_time=2000
 PlayerDataAutoload="*res://Player/PlayerScripts/Player_Data_Autoload.cs"
 Messenger="*res://Common/General Scritps/Messenger.cs"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+
 [dotnet]
 
 project/assembly_name="Project Bounty Hunter"
