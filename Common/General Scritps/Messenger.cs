@@ -231,7 +231,7 @@ public partial class Messenger : Node
 	{
 		if(Input.IsActionJustReleased("Evade"))
 		{
-			EmitSignal(SignalName.Use_Pill_, Items[0].Usable);
+			EmitSignal(SignalName.Use_Elixir_Capsule_, Items[1].Usable);
 		}
 	}
 

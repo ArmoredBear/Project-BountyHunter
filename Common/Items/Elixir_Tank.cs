@@ -13,7 +13,6 @@ using System;
 	*  
 *-----------------------------------------------------------------------------------------------------------------------**/
 
-[Tool]
 public partial class Elixir_Tank : Item
 {
     //!---------------------------------------------------------------------------------------------------------
@@ -25,6 +24,7 @@ public partial class Elixir_Tank : Item
     private int _amount_to_heal;
     private int _tank_upgrade;
     private int _heal_upgrade;
+    private bool _equiped;
     private bool _damaged;
     
     private const int MAX_Heal_Upgrade = 3;
@@ -116,6 +116,19 @@ public partial class Elixir_Tank : Item
         }
     }
     
+    [Export] public bool Equiped
+    {
+        get
+        {
+            return _equiped;
+        }
+
+        set
+        {
+            _equiped = value;
+        }
+    }
+    
     [Export] public bool Damaged
     {
         get
@@ -141,9 +154,10 @@ public partial class Elixir_Tank : Item
     {   
         Item_Name = "Elixir Tank";
         MAX_Elixir_Amount = 2;
-        Current_Elixir_Amount = MAX_Elixir_Amount;
+        Current_Elixir_Amount = 1;
         Damaged = false;
         Equipable = true;
+        Equiped = false;
         Amount_to_Heal = 25;
         Heal_Upgrade = 0;
         Tank_Upgrade = 0;
@@ -154,6 +168,11 @@ public partial class Elixir_Tank : Item
     //!---------------------------------------------------------------------------------------------------------
     #region Methods and Interfaces
     //!---------------------------------------------------------------------------------------------------------
+
+    public void Equip()
+    {
+        Equiped = true;
+    }
 
     public void Refill_Tank(int _amount_to_refill)
 	{

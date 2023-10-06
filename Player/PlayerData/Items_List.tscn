@@ -10,21 +10,13 @@
 
 [node name="Elixir_Tank" type="Node" parent="Fixed_Items"]
 script = ExtResource("1_aoms7")
-Item_Name = "Elixir Tank"
-Equipable = true
 
 [node name="Energy_Tank" type="Node" parent="Fixed_Items"]
 
 [node name="Other_Items" type="Node" parent="."]
 
-[node name="Pill" type="Node" parent="Other_Items" node_paths=PackedStringArray("Player_Data_Reference", "Health_Regen_Timer", "Cooldown_Timer")]
+[node name="Pill" type="Node" parent="Other_Items"]
 script = ExtResource("1_ec4rd")
-Player_Data_Reference = NodePath("../../../../../../../../../../../../../../../../../../../../../../../PlayerDataAutoload")
-Health_Regen_Timer = NodePath("health_regen_timer")
-Cooldown_Timer = NodePath("cooldown_timer")
-HealingTime = 20
-Item_Name = "Pill"
-Usable = true
 
 [node name="health_regen_timer" type="Timer" parent="Other_Items/Pill"]
 

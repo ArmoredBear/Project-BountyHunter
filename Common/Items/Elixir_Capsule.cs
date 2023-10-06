@@ -9,7 +9,7 @@ public partial class Elixir_Capsule : Item
 
 	private Messenger _messenger;
 	private string _messenger_path;
-	private string _elixir_tank_path;
+	private Elixir_Tank _tank_reference;
 	private int _amount;
 
 	#endregion
@@ -44,16 +44,16 @@ public partial class Elixir_Capsule : Item
 		}
 	}
 
-	[Export] public string Elixir_Tank_Path
+	[Export] public Elixir_Tank Tank_Reference
 	{
 		get
 		{
-			return _elixir_tank_path;
+			return _tank_reference;
 		}
 
 		set
 		{
-			_elixir_tank_path = value;
+			_tank_reference = value;
 		}
 	}
 
@@ -82,7 +82,7 @@ public partial class Elixir_Capsule : Item
 		Messenger_Path = "/root/Messenger";
 		Messenger_P = GetNode<Messenger>(Messenger_Path);
 		
-		Elixir_Tank_Path = Messenger_P.Fixed_Items_List_Parent_Path + "/Elixir_Tank";
+		Tank_Reference = Messenger_P.Fixed_Items[0] as Elixir_Tank;
 
 		Item_Name = "Elixir Capsule";
 		Usable = true;
@@ -99,8 +99,8 @@ public partial class Elixir_Capsule : Item
     //!---------------------------------------------------------------------------------------------------------
 
     public override void Use(bool _usable)
-    {
-       GetNode<Elixir_Tank>(Elixir_Tank_Path).Refill_Tank(Amount);
+    {	
+		Tank_Reference.Refill_Tank(Amount);
     }
 
 	#endregion
