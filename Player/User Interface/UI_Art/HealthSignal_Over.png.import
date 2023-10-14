@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://onnudjmjl81v"
-path="res://.godot/imported/HealthSignal_Over_Background.png-ece3e6b4ee1622d5feade1927238c77a.ctex"
+uid="uid://df2gp2ru4b1dx"
+path="res://.godot/imported/HealthSignal_Over.png-9a4277eda3d43bfb61d8e7ca050f2273.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/PlayerArt/HealthSignal_Over_Background.png"
-dest_files=["res://.godot/imported/HealthSignal_Over_Background.png-ece3e6b4ee1622d5feade1927238c77a.ctex"]
+source_file="res://Player/User Interface/UI_Art/HealthSignal_Over.png"
+dest_files=["res://.godot/imported/HealthSignal_Over.png-9a4277eda3d43bfb61d8e7ca050f2273.ctex"]
 
 [params]
 

@@ -24,6 +24,7 @@ public partial class Player_Data_Autoload : Node
 	#region Variables
 	//!---------------------------------------------------------------------------------------------------------
 
+	private Player_Movement _player_movement;
 	private Player_Data _player_data;
 	private Timer _poison_timer;
 	
@@ -36,6 +37,19 @@ public partial class Player_Data_Autoload : Node
 
 
 	[ExportCategory ("Data")]
+	[Export] public Player_Movement Player_Movement_P
+	{
+		get
+		{
+			return _player_movement;
+		}
+
+		set
+		{
+			_player_movement = value;
+		}
+	}
+	
 	[Export] public Player_Data Data
 	{
 		get
@@ -48,6 +62,7 @@ public partial class Player_Data_Autoload : Node
 			_player_data = value;
 		}
 	}
+	
 	[Export] public Timer Poison_Timer;
 	
 	#endregion
@@ -61,6 +76,7 @@ public partial class Player_Data_Autoload : Node
 	public override void _Ready()
 	{	
 		Data = new Player_Data(100, 100, 100, true, false, false);
+		Player_Movement_P = GetNode<Player_Movement>("/root/Main/Player/Player_Body");
 		Poison_Behavior();
         
 	}

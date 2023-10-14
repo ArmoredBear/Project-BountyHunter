@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://oqunob542p13"
-path="res://.godot/imported/TempHealthBar_Health.png-c0949ec1d65f03743f96bf15a70be77c.ctex"
+uid="uid://onnudjmjl81v"
+path="res://.godot/imported/HealthSignal_Over_Background.png-a098fdbcc205ef78644490004ac98229.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/PlayerArt/TempHealthBar_Health.png"
-dest_files=["res://.godot/imported/TempHealthBar_Health.png-c0949ec1d65f03743f96bf15a70be77c.ctex"]
+source_file="res://Player/User Interface/UI_Art/HealthSignal_Over_Background.png"
+dest_files=["res://.godot/imported/HealthSignal_Over_Background.png-a098fdbcc205ef78644490004ac98229.ctex"]
 
 [params]
 

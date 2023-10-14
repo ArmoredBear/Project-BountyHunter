@@ -20,3 +20,12 @@ autoplay = "Idle"
 frame_progress = 0.58504
 
 [node name="Main_Collider" parent="Player_Body" instance=ExtResource("2_imxp1")]
+
+[node name="Camera2D" type="Camera2D" parent="Player_Body"]
+zoom = Vector2(1.5, 1.5)
+limit_smoothed = true
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+editor_draw_limits = true
+editor_draw_drag_margin = true

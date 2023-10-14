@@ -229,7 +229,12 @@ public partial class Messenger : Node
 
 	public void Items_Use_Emitter()
 	{
-		if(Input.IsActionJustReleased("Evade"))
+		if(Input.IsActionJustReleased("Game_Pad_Evade"))
+		{
+			EmitSignal(SignalName.Use_Elixir_Capsule_, Items[1].Usable);
+		}
+
+		if(Input.IsActionJustReleased("Keyboard_Evade"))
 		{
 			EmitSignal(SignalName.Use_Elixir_Capsule_, Items[1].Usable);
 		}
