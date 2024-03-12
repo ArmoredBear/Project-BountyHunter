@@ -26,6 +26,8 @@ public partial class Pill : Item
 	private int _healing_counter;
 	private bool _using;
 
+	private const Item_Type Type = Item_Type.Consumable;
+
 	#endregion
 
 	//!---------------------------------------------------------------------------------------------------------

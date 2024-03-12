@@ -73,28 +73,25 @@ public partial class Stamina_UI : TextureProgressBar
 		{
 			Stamina_Bar.Value -= Stamina_Regen;
 			Player_Data_Reference.Data.CURRENT_Stamina = (int)Stamina_Bar.Value;
-			GD.Print("Stamina: " + Stamina_Bar.Value);
 		}
 
 		else if (Input.IsActionPressed("Keyboard_Run") && Check_Running())
 		{
 			Stamina_Bar.Value -= Stamina_Regen;
 			Player_Data_Reference.Data.CURRENT_Stamina = (int)Stamina_Bar.Value;
-			GD.Print("Stamina: " + Stamina_Bar.Value);
 		}
 
 		else
 		{
 			Stamina_Bar.Value += Stamina_Regen;
 			Player_Data_Reference.Data.CURRENT_Stamina = (int)Stamina_Bar.Value;
-			GD.Print("Stamina: " + Stamina_Bar.Value);
 		}
 	}
 
 
 	public bool Check_Running()
 	{
-		if (Player_Data_Reference.Player_Movement_P.Player_State == Move_State.Running)
+		if (Player_Data_Reference.Player_P.Player_State_P == State.Running)
 		{
 			return true;
 		}

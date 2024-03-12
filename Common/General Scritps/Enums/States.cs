@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public enum Move_State
+public enum State
 {
     Idle,
     Walking,

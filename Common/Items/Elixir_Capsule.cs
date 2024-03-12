@@ -12,6 +12,8 @@ public partial class Elixir_Capsule : Item
 	private Elixir_Tank _tank_reference;
 	private int _amount;
 
+	private const Item_Type Type = Item_Type.Consumable;
+
 	#endregion
 
 	//!---------------------------------------------------------------------------------------------------------

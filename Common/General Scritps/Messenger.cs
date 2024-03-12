@@ -12,7 +12,7 @@ using System.Collections.Generic;
 	**  1 - This class is a singleton, it inherits Node but it does not need to be on scene EDITOR,
 	** 	that is why is called AUTOLOAD, when the scene starts the object is created automaticaly with this script
 	** 	functions and properties before any other object.
-	**  2 - This is a Messenger, it will hold most if not all CUSTOM SIGNALS for handling game events and connections
+	**  2 - This is a Messenger, it will hold the main PLAYER CUSTOM SIGNALS for handling game events and connections
 	**  to objects in the scene.
 	*
 *-----------------------------------------------------------------------------------------------------------------------**/
@@ -151,10 +151,15 @@ public partial class Messenger : Node
 	/**------------------------------------------------------------------------
 	 **                          Usable Items Signals
 	 *------------------------------------------------------------------------**/
+
 	[Signal]
 	public delegate void Use_Pill_EventHandler(bool _usable);
 	[Signal]
 	public delegate void Use_Elixir_Capsule_EventHandler(bool _usable);
+
+	/**------------------------------------------------------------------------
+	 **                         Item Pickup Signals
+	 *------------------------------------------------------------------------**/
 	
 	[Signal]
 	public delegate void Pickup_ItemEventHandler();

@@ -27,9 +27,9 @@ public partial class Elixir_Tank : Item
     private bool _equiped;
     private bool _damaged;
     
-    private const int MAX_Heal_Upgrade = 3;
-    private const int MAX_Tank_Upgrade = 5;
-
+    private const int _max_heal_upgrade = 3;
+    private const int _max_tank_upgrade = 5;
+    private const Item_Type _type = Item_Type.Tool;
     
 
     #endregion
@@ -142,7 +142,29 @@ public partial class Elixir_Tank : Item
         }
     }
     
-    
+    public int MAX_Heal_Upgrade
+    {
+        get
+        {
+            return _max_heal_upgrade;
+        }
+    }
+
+    public int MAX_Tank_Upgrade
+    {
+        get
+        {
+            return _max_tank_upgrade;
+        }
+    }
+
+    public Item_Type Type
+    {
+        get
+        {
+            return _type;
+        }
+    }
     
     #endregion
 
@@ -180,6 +202,11 @@ public partial class Elixir_Tank : Item
         {
             Current_Elixir_Amount += _amount_to_refill;
             GD.Print("Elixir Tank amount: " + Current_Elixir_Amount);
+        }
+
+        else if (_amount_to_refill == MAX_Elixir_Amount)
+        {
+            Current_Elixir_Amount = MAX_Elixir_Amount;
         }
 
         else

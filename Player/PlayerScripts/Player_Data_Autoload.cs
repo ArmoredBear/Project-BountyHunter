@@ -17,14 +17,13 @@ using System;
   	*  
 *-----------------------------------------------------------------------------------------------------------------------**/
 
-[Tool]
 public partial class Player_Data_Autoload : Node
 {
 	//!---------------------------------------------------------------------------------------------------------
 	#region Variables
 	//!---------------------------------------------------------------------------------------------------------
 
-	private Player_Movement _player_movement;
+	private Player _player;
 	private Player_Data _player_data;
 	private Timer _poison_timer;
 	
@@ -37,16 +36,16 @@ public partial class Player_Data_Autoload : Node
 
 
 	[ExportCategory ("Data")]
-	[Export] public Player_Movement Player_Movement_P
+	[Export] public Player Player_P
 	{
 		get
 		{
-			return _player_movement;
+			return _player;
 		}
 
 		set
 		{
-			_player_movement = value;
+			_player = value;
 		}
 	}
 	
@@ -76,7 +75,7 @@ public partial class Player_Data_Autoload : Node
 	public override void _Ready()
 	{	
 		Data = new Player_Data(100, 100, 100, true, false, false);
-		Player_Movement_P = GetNode<Player_Movement>("/root/Main/Player/Player_Body");
+		Player_P = GetNode<Player>("/root/Main/Player/Player_Body");
 		Poison_Behavior();
         
 	}
