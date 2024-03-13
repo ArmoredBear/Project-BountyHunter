@@ -1,9 +1,8 @@
 using Godot;
 using System;
-using System.Transactions;
 
-public partial class Idle_State : Player_State
-{
+public partial class Walking_State : Player_State
+{   
     private NodePath player_animation;
 
     public override void _Ready()
@@ -13,8 +12,8 @@ public partial class Idle_State : Player_State
 
     public override void Enter()
     {
-        GetNode<AnimatedSprite2D>(player_animation).Play("Idle");
-        GD.Print(Name + ": Idle State was entered") ;
+        GetNode<AnimatedSprite2D>(player_animation).Play("Walking");
+        GD.Print(Name + ": Walking state was entered");
     }
 
     public override void Exit()
@@ -22,17 +21,31 @@ public partial class Idle_State : Player_State
        
     }
 
-    public override void HandleInput(InputEvent @event) 
+    public override void Update(double delta)
     {
         Input_Collector();
-        Stop_Calculation();
+		Stop_Calculation();
 		Movement_Calculation();
     }
+
+    public override void PhysicsUpdate(double delta)
+    {
+        Walk(Game_Pad_Directional_Input_Vector);
+        Walk(Keyboard_Directional_Input_Vector);
+    }
+
+    public override void HandleInput(InputEvent @event) {}
 
     public void Input_Collector()
 	{
 		Game_Pad_Directional_Input_Vector = Input.GetVector("Game_Pad_Left", "Game_Pad_Right", "Game_Pad_Up", "Game_Pad_Down");
 		Keyboard_Directional_Input_Vector = Input.GetVector("Keyboard_Left", "Keyboard_Right", "Keyboard_Up", "Keyboard_Down");
+	}
+
+	public void Walk(Vector2 _movement_input)
+    {
+        Player_body_P.Velocity = _movement_input.Normalized() * Player.Speed;
+		Player_body_P.MoveAndSlide();
 	}
 
     public void Movement_Calculation()

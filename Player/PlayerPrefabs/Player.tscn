@@ -1,13 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://bswa5xld6wyiu"]
+[gd_scene load_steps=10 format=3 uid="uid://bswa5xld6wyiu"]
 
-[ext_resource type="PackedScene" uid="uid://cstb8svv5da71" path="res://Player/PlayerData/Items_List.tscn" id="1_v8mnl"]
+[ext_resource type="PackedScene" uid="uid://cstb8svv5da71" path="res://Player/PlayerPrefabs/Items_List.tscn" id="1_v8mnl"]
 [ext_resource type="Script" path="res://Player/PlayerScripts/Player.cs" id="2_gnjcu"]
 [ext_resource type="PackedScene" uid="uid://ltev86bv3ovj" path="res://Player/Collision/main_collider.tscn" id="2_imxp1"]
-[ext_resource type="SpriteFrames" uid="uid://d3a4bq5tqbvt5" path="res://Player/Animation/PlayerAnimation.tres" id="3_sgia1"]
+[ext_resource type="SpriteFrames" uid="uid://dbe3fb0k5yr8q" path="res://Player/Animation/Player_PlaceHolder_Animation.tres" id="3_to4cw"]
 [ext_resource type="Script" path="res://Player/PlayerScripts/Player_FSM.cs" id="4_1x6g7"]
-[ext_resource type="Script" path="res://Player/PlayerScripts/Idle_State.cs" id="6_tg8xh"]
-[ext_resource type="Script" path="res://Player/PlayerScripts/Walking_State.cs" id="7_jx1q2"]
-[ext_resource type="Script" path="res://Player/PlayerScripts/Running_State.cs" id="8_bgkcm"]
+[ext_resource type="Script" path="res://Player/PlayerScripts/PlayerStates/Idle_State.cs" id="6_aasnl"]
+[ext_resource type="Script" path="res://Player/PlayerScripts/PlayerStates/Walking_State.cs" id="7_wntvl"]
+[ext_resource type="Script" path="res://Player/PlayerScripts/PlayerStates/Running_State.cs" id="8_xs526"]
+[ext_resource type="Script" path="res://Player/PlayerScripts/PlayerStates/Attacking_State.cs" id="9_tafg2"]
 
 [node name="Player" type="Node2D"]
 position = Vector2(550, 300)
@@ -18,8 +19,8 @@ position = Vector2(550, 300)
 script = ExtResource("2_gnjcu")
 
 [node name="Player_Animation" type="AnimatedSprite2D" parent="Player_Body"]
-sprite_frames = ExtResource("3_sgia1")
-animation = &"Walking"
+sprite_frames = ExtResource("3_to4cw")
+animation = &"Idle"
 
 [node name="Main_Collider" parent="Player_Body" instance=ExtResource("2_imxp1")]
 
@@ -38,12 +39,15 @@ script = ExtResource("4_1x6g7")
 _initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="Player_Body/Player_FSM" node_paths=PackedStringArray("Player_FSM_P", "Player_body_P")]
-script = ExtResource("6_tg8xh")
+script = ExtResource("6_aasnl")
 Player_FSM_P = NodePath("..")
 Player_body_P = NodePath("../..")
 
 [node name="Walking" type="Node" parent="Player_Body/Player_FSM"]
-script = ExtResource("7_jx1q2")
+script = ExtResource("7_wntvl")
 
 [node name="Running" type="Node" parent="Player_Body/Player_FSM"]
-script = ExtResource("8_bgkcm")
+script = ExtResource("8_xs526")
+
+[node name="Attacking" type="Node" parent="Player_Body/Player_FSM"]
+script = ExtResource("9_tafg2")

@@ -1,19 +1,33 @@
 using Godot;
 using System;
+using System.Transactions;
 
-public partial class Walking_State : Player_State
-{   
-    private NodePath player_animation;
+public partial class Idle_State : Player_State
+{
+    private NodePath _player_animation;
+
+	 public NodePath Player_Animation
+    {
+        get
+        {
+            return _player_animation;
+        }
+
+        set
+        {
+            _player_animation = value;
+        }
+    }
 
     public override void _Ready()
     {
-        player_animation = "/root/Main/Player/Player_Body/Player_Animation";
+        Player_Animation = "/root/Main/Player/Player_Body/Player_Animation";
     }
 
     public override void Enter()
     {
-        GetNode<AnimatedSprite2D>(player_animation).Play("Walking");
-        GD.Print(Name + ": Walking state was entered");
+        GetNode<AnimatedSprite2D>(Player_Animation).Play("Idle");
+        GD.Print(Name + ": Idle State was entered") ;
     }
 
     public override void Exit()
@@ -24,26 +38,13 @@ public partial class Walking_State : Player_State
     public override void Update(double delta)
     {
         Input_Collector();
-    }
-
-    public override void PhysicsUpdate(double delta)
-    {
-        Walk(Game_Pad_Directional_Input_Vector);
-        Walk(Keyboard_Directional_Input_Vector);
-    }
-
-    public void Walk(Vector2 _movement_input)
-    {
-        Player_body_P.Velocity = _movement_input.Normalized() * Player.Speed;
-		Player_body_P.MoveAndSlide();
-	}
-
-    public override void HandleInput(InputEvent @event) 
-    {
-        //Input_Collector();
-        Stop_Calculation();
+		Stop_Calculation();
 		Movement_Calculation();
     }
+
+    public override void PhysicsUpdate(double delta) {}
+
+    public override void HandleInput(InputEvent @event) {}
 
     public void Input_Collector()
 	{

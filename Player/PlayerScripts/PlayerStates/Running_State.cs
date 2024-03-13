@@ -25,6 +25,8 @@ public partial class Running_State : Player_State
     public override void Update(double delta)
     {
         Input_Collector();
+		Stop_Calculation();
+		Movement_Calculation();
     }
 
     public override void PhysicsUpdate(double delta)
@@ -33,7 +35,15 @@ public partial class Running_State : Player_State
         Run(Keyboard_Directional_Input_Vector);
     }
 
-    private void Run(Vector2 _movement_input)
+    public override void HandleInput(InputEvent @event) {}
+
+    public void Input_Collector()
+	{
+		Game_Pad_Directional_Input_Vector = Input.GetVector("Game_Pad_Left", "Game_Pad_Right", "Game_Pad_Up", "Game_Pad_Down");
+		Keyboard_Directional_Input_Vector = Input.GetVector("Keyboard_Left", "Keyboard_Right", "Keyboard_Up", "Keyboard_Down");
+	}
+
+	  private void Run(Vector2 _movement_input)
     {
         if (Player.Player_Data_Reference.Data.CURRENT_Stamina > 0)
 		{
@@ -41,18 +51,6 @@ public partial class Running_State : Player_State
 		    Player_body_P.MoveAndSlide();
 		}
     }
-
-    public override void HandleInput(InputEvent @event) 
-    {
-        Stop_Calculation();
-		Movement_Calculation();
-    }
-
-    public void Input_Collector()
-	{
-		Game_Pad_Directional_Input_Vector = Input.GetVector("Game_Pad_Left", "Game_Pad_Right", "Game_Pad_Up", "Game_Pad_Down");
-		Keyboard_Directional_Input_Vector = Input.GetVector("Keyboard_Left", "Keyboard_Right", "Keyboard_Up", "Keyboard_Down");
-	}
 
     public void Movement_Calculation()
 	{

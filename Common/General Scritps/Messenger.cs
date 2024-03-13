@@ -232,14 +232,18 @@ public partial class Messenger : Node
 
 	}
 
+	/**------------------------------------------------------------------------------------------------
+		 *!               Temporary use of emitters to use some items for testing...
+	*------------------------------------------------------------------------------------------------**/
+
 	public void Items_Use_Emitter()
 	{
-		if(Input.IsActionJustReleased("Game_Pad_Evade"))
+		if(Input.IsActionJustReleased("Game_Pad_UseItem"))
 		{
 			EmitSignal(SignalName.Use_Elixir_Capsule_, Items[1].Usable);
 		}
 
-		if(Input.IsActionJustReleased("Keyboard_Evade"))
+		if(Input.IsActionJustReleased("Keyboard_UseItem"))
 		{
 			EmitSignal(SignalName.Use_Elixir_Capsule_, Items[1].Usable);
 		}
