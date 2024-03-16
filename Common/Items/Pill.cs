@@ -1,10 +1,23 @@
 using Godot;
 using System;
 
+/**-----------------------------------------------------------------------------------------------------------------------
+*!                                                    	PILL CLASS
+*-----------------------------------------------------------------------------------------------------------------------**/
+
+/**-----------------------------------------------------------------------------------------------------------------------
+	**                                                   PURPOSE
+	 *  
+	 **  1 - Hold the Pill information and methods that will influence player.
+	 **  2 - Hold the Pill information to be reused / repurposed on the items on scenario.
+	 *  
+*-----------------------------------------------------------------------------------------------------------------------**/
 
 public partial class Pill : Item
-{
+{	
+	//!---------------------------------------------------------------------------------------------------------
 	#region Variables
+	//!---------------------------------------------------------------------------------------------------------
 
 	private Player_Data_Autoload _player_data_reference;
 	private Timer _health_regen_timer;
@@ -13,11 +26,15 @@ public partial class Pill : Item
 	private int _healing_counter;
 	private bool _using;
 
+	private const Item_Type Type = Item_Type.Consumable;
+
 	#endregion
 
+	//!---------------------------------------------------------------------------------------------------------
 	#region Properties
+	//!---------------------------------------------------------------------------------------------------------
 
-	[Export] public Player_Data_Autoload PlayerDataReference
+	[Export] public Player_Data_Autoload Player_Data_Reference
 	{
 		get
 		{
@@ -95,12 +112,16 @@ public partial class Pill : Item
 
 	#endregion
 
+	//!---------------------------------------------------------------------------------------------------------
 	#region Initialization and Processes
+	//!---------------------------------------------------------------------------------------------------------
 
 	public override void _Ready()
 	{
+
 		Health_Regen_Timer = GetNode<Timer>("health_regen_timer");
 		Cooldown_Timer = GetNode<Timer>("cooldown_timer");
+		Item_Name = "Pill";
 		Usable = true;
 		Equipable = false;
 		HealingTime = 20;
@@ -108,7 +129,7 @@ public partial class Pill : Item
 		Health_Regen_Timer.Timeout += Regeneration;
 		Cooldown_Timer.Timeout += () => GD.Print("Cooldown done.");
 
-		PlayerDataReference = GetNode<Player_Data_Autoload>("/root/PlayerDataAutoload");
+		Player_Data_Reference = GetNode<Player_Data_Autoload>("/root/PlayerDataAutoload");
 	}
 
 	 public override void _Process(double delta)
@@ -121,7 +142,9 @@ public partial class Pill : Item
 
 	#endregion
 
+	//!---------------------------------------------------------------------------------------------------------
 	#region Methods and Interfaces
+	//!---------------------------------------------------------------------------------------------------------
 
 	public override void Use(bool _usable)
 	{
@@ -142,8 +165,8 @@ public partial class Pill : Item
 		if(HealingCounter < HealingTime)
 		{
 			HealingCounter++;
-			PlayerDataReference.Data.Restore_Health(5);
-			GD.Print("Pill information: " + " Healing Counter: " + HealingCounter + " Player Health: " + PlayerDataReference.Data.CURRENT_Health);
+			Player_Data_Reference.Data.Restore_Health(5);
+			GD.Print("Pill information: " + " Healing Counter: " + HealingCounter + " Player Health: " + Player_Data_Reference.Data.CURRENT_Health);
 			Using = true;
 		}
 
