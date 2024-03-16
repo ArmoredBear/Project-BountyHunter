@@ -25,7 +25,7 @@ public partial class Evade_State : Player_State
 
     public override void Enter()
     {
-        GetNode<AnimatedSprite2D>(Player_Animation).Play("Evading");
+        //GetNode<AnimationPlayer>(Player_Animation).Play("Evading");
         GD.Print(Name + ": Evading State was entered") ;
     }
 
@@ -38,6 +38,8 @@ public partial class Evade_State : Player_State
     {
         Input_Collector();
     }
+    
+    public override void HandleInput(InputEvent @event) {}
 
     public void Input_Collector()
 	{

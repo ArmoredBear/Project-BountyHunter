@@ -26,8 +26,7 @@ public partial class Idle_State : Player_State
 
     public override void Enter()
     {
-        GetNode<AnimatedSprite2D>(Player_Animation).Play("Idle");
-        GD.Print(Name + ": Idle State was entered") ;
+        //GetNode<AnimationPlayer>(Player_Animation).Play("Idle");
     }
 
     public override void Exit()
@@ -40,11 +39,22 @@ public partial class Idle_State : Player_State
         Input_Collector();
 		Stop_Calculation();
 		Movement_Calculation();
+		
     }
 
-    public override void PhysicsUpdate(double delta) {}
+    public override void PhysicsUpdate(double delta) 
+	{
+		
+	}
 
-    public override void HandleInput(InputEvent @event) {}
+    public override void HandleInput(InputEvent @event) 
+	{
+		if(Input.IsActionJustPressed("Game_Pad_Light_Attack", false))
+		{
+			Player_FSM_P.TransitionToState("Attacking");
+			GD.Print("Trigger");
+		}
+	}
 
     public void Input_Collector()
 	{

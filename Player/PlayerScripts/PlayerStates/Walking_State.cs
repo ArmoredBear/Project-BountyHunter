@@ -12,8 +12,7 @@ public partial class Walking_State : Player_State
 
     public override void Enter()
     {
-        GetNode<AnimatedSprite2D>(player_animation).Play("Walking");
-        GD.Print(Name + ": Walking state was entered");
+        //GetNode<AnimationPlayer>(player_animation).Play("Walking");
     }
 
     public override void Exit()
@@ -26,6 +25,7 @@ public partial class Walking_State : Player_State
         Input_Collector();
 		Stop_Calculation();
 		Movement_Calculation();
+		
     }
 
     public override void PhysicsUpdate(double delta)
@@ -34,7 +34,10 @@ public partial class Walking_State : Player_State
         Walk(Keyboard_Directional_Input_Vector);
     }
 
-    public override void HandleInput(InputEvent @event) {}
+    public override void HandleInput(InputEvent @event) 
+	{
+
+	}
 
     public void Input_Collector()
 	{
