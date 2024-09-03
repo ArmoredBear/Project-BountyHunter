@@ -13,7 +13,7 @@ using System;
 	*  
 *-----------------------------------------------------------------------------------------------------------------------**/
 
-public partial class Item : Node, IUse
+public partial class Item : Resource, IUse
 {	
 	//!---------------------------------------------------------------------------------------------------------
 	#region Variables
@@ -22,7 +22,7 @@ public partial class Item : Node, IUse
 	protected string _item_name;
 	protected string _description;
 	protected bool _usable;
-	protected bool _equipable;
+	protected bool _is_equipment;
 	protected int _money_value;
 	
 	#endregion
@@ -83,16 +83,16 @@ public partial class Item : Node, IUse
 		}
 	}
 
-	[Export] public bool Equipable
+	[Export] public bool Is_Equipment
 	{
 		get
 		{
-			return _equipable;
+			return _is_equipment;
 		}
 
 		set
 		{
-			_equipable = value;
+			_is_equipment = value;
 		}
 	}
 
@@ -102,19 +102,14 @@ public partial class Item : Node, IUse
 	#region Constructors
 	//!---------------------------------------------------------------------------------------------------------
 
-	public  override void _Ready()
+	public Item()
 	{
 		Item_Name = "default";
 		Description = "default";
 		Usable = false;
-		Equipable = false;
+		Is_Equipment = false;
 		Value = 0;
 	}
-
-    public override void _Process(double delta)
-    {
-        
-    }
 
     #endregion
 

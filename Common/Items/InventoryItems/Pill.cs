@@ -13,14 +13,13 @@ using System;
 	 *  
 *-----------------------------------------------------------------------------------------------------------------------**/
 
+[GlobalClass]
 public partial class Pill : Item
 {	
 	//!---------------------------------------------------------------------------------------------------------
 	#region Variables
 	//!---------------------------------------------------------------------------------------------------------
 
-	private Timer _health_regen_timer;
-	private Timer _cooldown_timer;
 	private int _healing_time;
 	private int _healing_counter;
 	private bool _using;
@@ -33,30 +32,6 @@ public partial class Pill : Item
 	#region Properties
 	//!---------------------------------------------------------------------------------------------------------
 
-	[Export] public Timer Health_Regen_Timer
-	{
-		get
-		{
-			return _health_regen_timer;
-		}
-
-		set
-		{
-			_health_regen_timer = value;
-		}
-	}
-
-	[Export] public Timer Cooldown_Timer
-	{
-		get
-		{
-			return _cooldown_timer;
-		}
-		set
-		{
-			_cooldown_timer = value;
-		}
-	}
 
 	[Export] public int HealingTime
 	{
@@ -102,27 +77,15 @@ public partial class Pill : Item
 	#region Initialization and Processes
 	//!---------------------------------------------------------------------------------------------------------
 
-	public override void _Ready()
+	public Pill()
 	{
-
-		Health_Regen_Timer = GetNode<Timer>("health_regen_timer");
-		Cooldown_Timer = GetNode<Timer>("cooldown_timer");
 		Item_Name = "Pill";
 		Usable = true;
-		Equipable = false;
+		Is_Equipment = false;
 		HealingTime = 20;
 		HealingCounter = 0;
-		Health_Regen_Timer.Timeout += Regeneration;
-		Cooldown_Timer.Timeout += () => GD.Print("Cooldown done.");
-	}
 
-	 public override void _Process(double delta)
-    {
-        if(Cooldown_Timer.TimeLeft > 0)
-		{
-			GD.Print("Cooldown timer - Time left: " + Cooldown_Timer.TimeLeft);
-		}
-    }
+	}
 
 	#endregion
 
@@ -140,7 +103,7 @@ public partial class Pill : Item
 
 		else if(!Using && _usable)
 		{
-			Health_Regen_Timer.Start();
+
 		}
 	}
 
@@ -156,7 +119,6 @@ public partial class Pill : Item
 
 		else
 		{
-			Health_Regen_Timer.Stop();
 			Cooldown();
 			Using = false;
 		}
@@ -165,7 +127,6 @@ public partial class Pill : Item
 
 	public void Cooldown()
 	{
-		Cooldown_Timer.Start();
 		GD.Print("Cooldown now in effect... (5s)");
 	}
 

@@ -26,7 +26,6 @@ public partial class Player_Data_Autoload : Node
 	private static Player _player;
 	private static Player_Data _player_data;
 	private Timer _poison_timer;
-
 	private int _counter;
 	
 	

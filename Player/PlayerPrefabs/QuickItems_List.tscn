@@ -1,18 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://cstb8svv5da71"]
-
-[ext_resource type="Script" path="res://Common/Items/EquipedItems/Elixir_Tank.cs" id="1_qcthl"]
-[ext_resource type="Script" path="res://Common/Items/QuickItems/Quick_Item.cs" id="2_hdlre"]
+[gd_scene format=3 uid="uid://cstb8svv5da71"]
 
 [node name="Player_Items" type="Node"]
 
 [node name="Fixed_Items" type="Node" parent="."]
 
 [node name="Elixir_Tank" type="Node" parent="Fixed_Items"]
-script = ExtResource("1_qcthl")
 
 [node name="Energy_Tank" type="Node" parent="Fixed_Items"]
 
 [node name="Quick_Items" type="Node" parent="."]
 
 [node name="Usable_Item" type="Node" parent="Quick_Items"]
-script = ExtResource("2_hdlre")

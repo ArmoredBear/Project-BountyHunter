@@ -160,13 +160,13 @@ public partial class Elixir_Tank : Item
     #region Initialization and Processes
     //!---------------------------------------------------------------------------------------------------------
 
-    public override void _Ready()
+    public Elixir_Tank()
     {   
         Item_Name = "Elixir Tank";
         MAX_Elixir_Amount = 2;
         Current_Elixir_Amount = 1;
         Damaged = false;
-        Equipable = true;
+        Is_Equipment = true;
         Equiped = false;
         Amount_to_Heal = 25;
         Heal_Upgrade = 0;

@@ -9,8 +9,6 @@ public partial class Quick_Item : Item
 	#region Variables
 	//!---------------------------------------------------------------------------------------------------------
 
-	private Messenger _messenger;
-	private string _messenger_path;
 	private Elixir_Tank _tank_reference;
 	private int _amount;
 
@@ -21,32 +19,6 @@ public partial class Quick_Item : Item
 	//!---------------------------------------------------------------------------------------------------------
 	#region Properties
 	//!---------------------------------------------------------------------------------------------------------
-
-	[Export] public Messenger Messenger_P
-	{
-		get
-		{
-			return _messenger;
-		}
-
-		set
-		{
-			_messenger = value;
-		}
-	}
-	
-	[Export] public string Messenger_Path
-	{
-		get
-		{
-			return _messenger_path;
-		}
-
-		set
-		{
-			_messenger_path = value;
-		}
-	}
 
 	[Export] public int Amount
 	{
@@ -67,13 +39,6 @@ public partial class Quick_Item : Item
 	//!---------------------------------------------------------------------------------------------------------
 	#region Initialization and Processes
 	//!---------------------------------------------------------------------------------------------------------
-
-	public override void _Ready()
-	{
-		Messenger_Path = "/root/Messenger";
-		Messenger_P = GetNode<Messenger>(Messenger_Path);
-		
-	}
 
     #endregion
 
