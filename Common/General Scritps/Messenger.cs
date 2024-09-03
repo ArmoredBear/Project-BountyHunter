@@ -23,14 +23,14 @@ public partial class Messenger : Node
 	#region Variables
 	//!---------------------------------------------------------------------------------------------------------
 
-	private Node _item_list_parent_node;
-	private Node _fixed_items_list_parent_node;
-	private string _item_list_parent_path;
-	private string _fixed_items_list_parent_path;
-	private List<string> _item_list_paths;
-	private List<string> _fixed_items_list_paths;
-	private List<Item> _items;
-	private List<Item> _fixed_items;
+	private Node _quick_items_array_parent_node;
+	private Node _fixed_items_array_parent_node;
+	private string _quick_items_array_parent_path;
+	private string _fixed_items_array_parent_path;
+	private string[] _quick_items_array_path;
+	private string[] _fixed_items_array_paths;
+	private Item[] _quick_items;
+	private Item[] _fixed_items;
 
 	#endregion
 
@@ -38,99 +38,99 @@ public partial class Messenger : Node
 	#region Properties
 	//!---------------------------------------------------------------------------------------------------------
 
-	[Export] public Node Item_List_Parent_Node
+	[Export] public Node Quick_Items_Array_Parent_Node
 	{
 		get
 		{
-			return _item_list_parent_node;
+			return _quick_items_array_parent_node;
 		}
 
 		set
 		{
-			_item_list_parent_node = value;
+			_quick_items_array_parent_node = value;
 		}
 	}
 
-	[Export] public Node Fixed_Items_List_Parent_Node
+	[Export] public Node Fixed_Items_Array_Parent_Node
 	{
 		get
 		{
-			return _fixed_items_list_parent_node;
+			return _fixed_items_array_parent_node;
 		}
 
 		set
 		{
-			_fixed_items_list_parent_node = value;
-		}
-	}
-	
-	[Export] public string Item_List_Parent_Path
-	{
-		get
-		{
-			return _item_list_parent_path;
-		}
-
-		set
-		{
-			_item_list_parent_path = value;
-		}
-	}
-
-	[Export] public string Fixed_Items_List_Parent_Path
-	{
-		get
-		{
-			return _fixed_items_list_parent_path;
-		}
-
-		set
-		{
-			_fixed_items_list_parent_path = value;
+			_fixed_items_array_parent_node = value;
 		}
 	}
 	
-	public List<string> Item_List_Paths
+	[Export] public string Quick_Items_Array_Parent_Path
 	{
 		get
 		{
-			return _item_list_paths;
+			return _quick_items_array_parent_path;
 		}
 
 		set
 		{
-			_item_list_paths = value;
+			_quick_items_array_parent_path = value;
 		}
-
 	}
 
-	public List<string> Fixed_Items_List_Paths
+	[Export] public string Fixed_Items_Array_Parent_Path
 	{
 		get
 		{
-			return _fixed_items_list_paths;
+			return _fixed_items_array_parent_path;
 		}
 
 		set
 		{
-			_fixed_items_list_paths = value;
-		}
-	}
-	
-	public List<Item> Items
-	{
-		get
-		{
-			return _items;
-		}
-
-		set
-		{
-			_items = value;
+			_fixed_items_array_parent_path = value;
 		}
 	}
 	
-	public List<Item> Fixed_Items
+	public string[] Quick_Items_Array_Path
+	{
+		get
+		{
+			return _quick_items_array_path;
+		}
+
+		set
+		{
+			_quick_items_array_path = value;
+		}
+
+	}
+
+	public string[] Fixed_Items_Array_Paths
+	{
+		get
+		{
+			return _fixed_items_array_paths;
+		}
+
+		set
+		{
+			_fixed_items_array_paths = value;
+		}
+	}
+	
+	public Item[] Quick_Items
+	{
+		get
+		{
+			return _quick_items;
+		}
+
+		set
+		{
+			_quick_items = value;
+		}
+	}
+	
+	public Item[] Fixed_Items
 	{
 		get
 		{
@@ -152,10 +152,9 @@ public partial class Messenger : Node
 	 **                          Usable Items Signals
 	 *------------------------------------------------------------------------**/
 
+	
 	[Signal]
-	public delegate void Use_Pill_EventHandler(bool _usable);
-	[Signal]
-	public delegate void Use_Elixir_Capsule_EventHandler(bool _usable);
+	public delegate void Usable_Item_EventHandler(bool _usable);
 
 	/**------------------------------------------------------------------------
 	 **                         Item Pickup Signals
@@ -175,37 +174,26 @@ public partial class Messenger : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		Item_List_Parent_Path = "/root/Main/Player/Player_Items/";
-		Item_List_Parent_Node = GetNode<Node>(Item_List_Parent_Path);
-
-		Fixed_Items_List_Parent_Path = "/root/Main/Player/Player_Items/Fixed_Items/";
-		Fixed_Items_List_Parent_Node = GetNode<Node>(Fixed_Items_List_Parent_Path);
-		
-
-		Item_List_Paths = new List<string>
-        {
-            Item_List_Parent_Path + "/Other_Items/Pill/",
-			Item_List_Parent_Path + "/Other_Items/Elixir_Capsule/"
-        };
-
-		Items = new List<Item>
+		if(GetTree().CurrentScene.Name == "Main")
 		{
-			GetNode<Item>(Item_List_Paths[0]),
-			GetNode<Item>(Item_List_Paths[1])
+			Quick_Items_Array_Parent_Path = "/root/Main/Player/Player_Items/Quick_Items/";
+			Fixed_Items_Array_Parent_Path = "/root/Main/Player/Player_Items/Fixed_Items/";
 
-		};
-		
-		Fixed_Items_List_Paths = new List<string>
-		{
-			Fixed_Items_List_Parent_Path + "/Elixir_Tank/"
-		};
+			Quick_Items_Array_Parent_Node = GetNode(Quick_Items_Array_Parent_Path);
+			Fixed_Items_Array_Parent_Node = GetNode(Fixed_Items_Array_Parent_Path);
 
-		Fixed_Items = new List<Item>
-		{
-			GetNode<Item>(Fixed_Items_List_Paths[0])
-		};
-		
-		Signals_Setter();
+			Quick_Items_Array_Path = new string[1]
+			{
+				Quick_Items_Array_Parent_Path + "Usable_Item"
+			};
+
+			Quick_Items = new Item[1]
+			{
+				GetNode<Item>(Quick_Items_Array_Path[0])
+			};
+
+			Signals_Setter();
+		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -227,8 +215,7 @@ public partial class Messenger : Node
 		 **               This connects the signals to the proper method using references
 		 *------------------------------------------------------------------------------------------------**/
 		
-		Use_Pill_ += Items[0].Use;
-		Use_Elixir_Capsule_ += Items[1].Use;
+		Usable_Item_ += Quick_Items[0].Use;
 
 	}
 
@@ -240,12 +227,12 @@ public partial class Messenger : Node
 	{
 		if(Input.IsActionJustReleased("Game_Pad_UseItem"))
 		{
-			EmitSignal(SignalName.Use_Elixir_Capsule_, Items[1].Usable);
+			EmitSignal(SignalName.Usable_Item_, Quick_Items[0].Usable);
 		}
 
 		if(Input.IsActionJustReleased("Keyboard_UseItem"))
 		{
-			EmitSignal(SignalName.Use_Elixir_Capsule_, Items[1].Usable);
+			EmitSignal(SignalName.Usable_Item_, Quick_Items[0].Usable);
 		}
 	}
 

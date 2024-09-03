@@ -3,16 +3,29 @@ using System;
 
 public partial class Walking_State : Player_State
 {   
-    private NodePath player_animation;
+    private AnimationPlayer _player_animation;
+
+	public AnimationPlayer Player_Animation
+	{
+		get
+		{
+			return _player_animation;
+		}
+
+		set
+		{
+			_player_animation = value;
+		}
+	}
 
     public override void _Ready()
     {
-        player_animation = "/root/Main/Player/Player_Body/Player_Animation";
+        Player_Animation = GetNode<AnimationPlayer>("%Player_Animation");
     }
 
     public override void Enter()
     {
-        //GetNode<AnimationPlayer>(player_animation).Play("Walking");
+        //GetNode<AnimationPlayer>(_player_animation).Play("Walking");
     }
 
     public override void Exit()

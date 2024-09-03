@@ -91,9 +91,9 @@ public partial class Player_State : Node
     
     public virtual void Start() 
     {
-        Player = GetNode<Player>("/root/Main/Player/Player_Body");
-        Player_body_P = GetNode<CharacterBody2D>("/root/Main/Player/Player_Body");
-        Player_FSM_P = GetNode<Player_FSM>("/root/Main/Player/Player_Body/Player_FSM");
+        Player = GetNode<Player>("/root/Player/%Player_Body");
+        Player_body_P = GetNode<CharacterBody2D>("/root/Player/%Player_Body");
+        Player_FSM_P = GetNode<Player_FSM>("/root/Player/Player_Body/%Player_FSM");
     }
 
     public virtual void Update(double delta) {}

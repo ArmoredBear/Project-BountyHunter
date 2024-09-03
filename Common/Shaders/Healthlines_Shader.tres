@@ -1,0 +1,24 @@
+[gd_resource type="VisualShader" load_steps=3 format=3 uid="uid://bgry4vid31342"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_mhclm"]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_f8s8x"]
+parameter_name = "FullHealth"
+default_value_enabled = true
+default_value = Color(0.136719, 1, 0.251373, 1)
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+
+
+"
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2(1660, 200)
+nodes/fragment/3/node = SubResource("VisualShaderNodeInput_mhclm")
+nodes/fragment/3/position = Vector2(1300, 1660)
+nodes/fragment/4/node = SubResource("VisualShaderNodeColorParameter_f8s8x")
+nodes/fragment/4/position = Vector2(920, 260)

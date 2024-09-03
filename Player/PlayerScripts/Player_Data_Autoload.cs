@@ -23,9 +23,11 @@ public partial class Player_Data_Autoload : Node
 	#region Variables
 	//!---------------------------------------------------------------------------------------------------------
 
-	private Player _player;
-	private Player_Data _player_data;
+	private static Player _player;
+	private static Player_Data _player_data;
 	private Timer _poison_timer;
+
+	private int _counter;
 	
 	
 	#endregion
@@ -34,22 +36,9 @@ public partial class Player_Data_Autoload : Node
 	#region Properties
 	//!---------------------------------------------------------------------------------------------------------
 
-
-	[ExportCategory ("Data")]
-	[Export] public Player Player_P
-	{
-		get
-		{
-			return _player;
-		}
-
-		set
-		{
-			_player = value;
-		}
-	}
+	public static Player_Data_Autoload Instance;
 	
-	[Export] public Player_Data Data
+	public static Player_Data Data
 	{
 		get
 		{
@@ -74,17 +63,27 @@ public partial class Player_Data_Autoload : Node
 
 	public override void _Ready()
 	{	
+		if(Instance == null)
+		{
+			Instance = this;
+		}
+
+		else if (Instance != null && Instance != this)
+		{
+			GD.PrintErr("ERROR!! Instance of Player_Data_Autoload already exist!!");
+		}
+
 		Data = new Player_Data(100, 100, 100, true, false, false);
-		Player_P = GetNode<Player>("/root/Main/Player/Player_Body");
-		Poison_Behavior();
-        
+			
+		
+		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		
 
+        
 	}
 
 
@@ -118,6 +117,7 @@ public partial class Player_Data_Autoload : Node
 	/**------------------------------------------------------------------------------------------------
 		 **               Simple functions to enable connection to Signals
 	*------------------------------------------------------------------------------------------------**/
+
 
 	public void Poison_Caller()
 	{

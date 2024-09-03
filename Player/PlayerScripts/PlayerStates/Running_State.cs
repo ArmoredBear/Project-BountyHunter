@@ -3,11 +3,24 @@ using System;
 
 public partial class Running_State : Player_State
 {
-    private NodePath player_animation;
+    private AnimationPlayer _player_animation;
+
+	public AnimationPlayer Player_Animation
+	{
+		get
+		{
+			return _player_animation;
+		}
+
+		set
+		{
+			_player_animation =	 value;
+		}
+	}
 
     public override void _Ready()
     {
-        player_animation = "/root/Main/Player/Player_Body/Player_Animation";
+        Player_Animation = GetNode<AnimationPlayer>("%Player_Animation");
     }
 
     public override void Enter()
@@ -47,7 +60,7 @@ public partial class Running_State : Player_State
 
 	  private void Run(Vector2 _movement_input)
     {
-        if (Player.Player_Data_Reference.Data.CURRENT_Stamina > 0)
+        if (Player_Data_Autoload.Data.CURRENT_Stamina > 0)
 		{
 			Player_body_P.Velocity = _movement_input.Normalized() * Player.Speed * Player.Run_Modifier;
 		    Player_body_P.MoveAndSlide();
@@ -176,11 +189,14 @@ public partial class Running_State : Player_State
 	{
 		if (Input.IsActionPressed("Game_Pad_Run") || Input.IsActionPressed("Keyboard_Run"))
 		{
+			Player.Instance.Player_State_P = State.Running;
 			Player_FSM_P.TransitionToState("Running");
+			
 		}
 
 		else if(!Input.IsActionJustReleased("Game_Pad_Run") || !Input.IsActionJustReleased("Keyboard_Run"))
 		{
+			Player.Instance.Player_State_P = State.Walking;
             Player_FSM_P.TransitionToState("Walking");
 		}
 

@@ -18,7 +18,6 @@ public partial class Player : CharacterBody2D
 	#region Variables
 	//!---------------------------------------------------------------------------------------------------------
 
-	private Player_Data_Autoload _player_data_reference;
 	private AnimatedSprite2D _animations;
 	private Vector2 game_pad_directional_input_vector;
 	private Vector2 _keyboard_directional_input_vector;
@@ -32,20 +31,7 @@ public partial class Player : CharacterBody2D
 	//!---------------------------------------------------------------------------------------------------------
 	#region Properties
 	//!---------------------------------------------------------------------------------------------------------
-
-	[Export]
-	public Player_Data_Autoload Player_Data_Reference
-	{
-		get
-		{
-			return _player_data_reference;
-		}
-
-		set
-		{
-			_player_data_reference = value;
-		}
-	}
+	public static Player Instance;
 
 	[Export]
 	public Vector2 Game_Pad_Directional_Input_Vector
@@ -124,8 +110,8 @@ public partial class Player : CharacterBody2D
 	#region Signals
 	//!---------------------------------------------------------------------------------------------------------
 
-	[Signal]
-	public delegate void Player_State_Changer_EventHandler();
+	//[Signal]
+	//public delegate void Player_State_Changer_EventHandler();
 	
 	#endregion
 
@@ -136,14 +122,33 @@ public partial class Player : CharacterBody2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		Player_Data_Reference = GetNode<Player_Data_Autoload>("/root/PlayerDataAutoload");
+		if(Instance == null)
+		{
+			Instance = this;
+		}
 
-		Speed = 200;
+		else if (Instance != null && Instance != this)
+		{
+			GD.PrintErr("ERROR!! Instance of Player already exist!!");
+		}
+		
+		Speed = 300;
 		Run_Modifier = 2;
 		Player_State_P = State.Idle;
+
+		if(GetTree().CurrentScene.Name != "Main")
+		{
+			this.Visible = false;
+		}
 	}
 
-	public override void _PhysicsProcess(double delta)
+    public override void _Process(double delta)
+    {
+        
+
+    }
+
+    public override void _PhysicsProcess(double delta)
 	{
 		//Movement_Calculation();
 		//Stop_Calculation();

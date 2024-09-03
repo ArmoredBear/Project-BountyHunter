@@ -25,7 +25,7 @@ public partial class Player_FSM : Node
 
     public override void _Ready()
     {
-        _initial_state = "/root/Main/Player/Player_Body/Player_FSM/Idle";
+        _initial_state = "%Idle";
 
         _current_state = new();
 
@@ -39,9 +39,6 @@ public partial class Player_FSM : Node
                 temp_state.Start();
                 temp_state.Exit();
             }
-
-            GD.Print(_states[node.Name].Name);
-            
         }
 
         
