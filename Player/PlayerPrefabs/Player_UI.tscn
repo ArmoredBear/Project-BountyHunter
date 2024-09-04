@@ -26,11 +26,12 @@ shader_parameter/Basic_Texture = ExtResource("2_sfdbi")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xrbfx"]
 shader = ExtResource("8_p2cva")
-shader_parameter/FloatParameter = 3.5
+shader_parameter/FloatParameter = 5.0
 shader_parameter/Move_Speed = Vector2(0.2, 0)
 shader_parameter/Texture2D = ExtResource("9_e6ycs")
 
 [node name="Player_UI" type="CanvasLayer"]
+visible = false
 
 [node name="Status" type="Control" parent="."]
 layout_mode = 3
@@ -117,7 +118,7 @@ texture_under = ExtResource("9_e6ycs")
 texture_progress = ExtResource("9_e6ycs")
 tint_under = Color(0.292969, 0.292969, 0.292969, 1)
 tint_over = Color(0.164706, 0.164706, 0.164706, 1)
-tint_progress = Color(0.996887, 1, 0.601562, 1)
+tint_progress = Color(0.945312, 1, 0, 1)
 script = ExtResource("8_8jq05")
 Stamina_Bar = NodePath(".")
 

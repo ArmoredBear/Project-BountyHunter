@@ -94,8 +94,8 @@ public partial class Player_Healthbar_UI : Control
         var tween_lines = CreateTween();
         var tween_healthbar = CreateTween();
 
-        double _line_time = 1.0;
-        double _healthbar_time = 0.3;
+        double _line_time = 1.5;
+        double _healthbar_time = 0.5;
 
         tween_lines.TweenProperty(Lines, "value", value_to_change - change_value, _line_time);
         tween_healthbar.TweenProperty(Health_Monitor, "value", value_to_change - change_value,_healthbar_time);
@@ -124,21 +124,25 @@ public partial class Player_Healthbar_UI : Control
         else if(Health_Monitor.Value >= 75 && Health_Monitor.Value < 100)
         {
             Shader_P.SetShaderParameter("Fade_Speed", -2);
+            Shader_P.SetShaderParameter("Move_Speed", new Vector2(-0.3f,0));
         }
 
         else if(Health_Monitor.Value >= 50 && Health_Monitor.Value < 75)
         {
             Shader_P.SetShaderParameter("Fade_Speed", -4);
+            Shader_P.SetShaderParameter("Move_Speed", new Vector2(-0.4f,0));
         }
 
         else if(Health_Monitor.Value >= 25 && Health_Monitor.Value < 50)
         {
             Shader_P.SetShaderParameter("Fade_Speed", -6);
+            Shader_P.SetShaderParameter("Move_Speed", new Vector2(-0.6f,0));
         }
 
         else if(Health_Monitor.Value < 25)
         {
             Shader_P.SetShaderParameter("Fade_Speed", -8);
+            Shader_P.SetShaderParameter("Move_Speed", new Vector2(-0.8f,0));
         }
     }
 
