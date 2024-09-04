@@ -59,43 +59,11 @@ public partial class Player_Healthbar_UI : Control
         }
     }
     
-    public override async void _Ready()
+    public override void _Ready()
     {
         Health_Monitor = GetNode<TextureProgressBar>("Health_Monitor");
         Lines = GetNode<TextureProgressBar>("Lines");
         Shader_P = (ShaderMaterial)Health_Monitor.Material;
-       
-
-        await ToSignal(GetTree().CreateTimer(2f), SceneTreeTimer.SignalName.Timeout);
-        Change_Health(10);
-
-        await ToSignal(GetTree().CreateTimer(4f), SceneTreeTimer.SignalName.Timeout);
-        Change_Health(10);
-
-        await ToSignal(GetTree().CreateTimer(3f), SceneTreeTimer.SignalName.Timeout);
-        Change_Health(10);
-
-        await ToSignal(GetTree().CreateTimer(3f), SceneTreeTimer.SignalName.Timeout);
-        Change_Health(10);
-
-        await ToSignal(GetTree().CreateTimer(3f), SceneTreeTimer.SignalName.Timeout);
-        Change_Health(10);
-
-        await ToSignal(GetTree().CreateTimer(3f), SceneTreeTimer.SignalName.Timeout);
-        Change_Health(10);
-
-        await ToSignal(GetTree().CreateTimer(3f), SceneTreeTimer.SignalName.Timeout);
-        Change_Health(10);
-
-        await ToSignal(GetTree().CreateTimer(3f), SceneTreeTimer.SignalName.Timeout);
-        Change_Health(10);
-
-        await ToSignal(GetTree().CreateTimer(10f), SceneTreeTimer.SignalName.Timeout);
-        Change_Health(-90);
-
-
-        
-
     }
 
     public override async void _Process(double delta)
@@ -206,4 +174,22 @@ public partial class Player_Healthbar_UI : Control
             Lines.TintProgress = new Color("ff0000");
         }
     }
+
+    /**------------------------------------------------------------------------------------------------
+     *!                                        TEMPORARY
+     *------------------------------------------------------------------------------------------------**/
+
+    public override void _PhysicsProcess(double delta)
+    {
+        if(Input.IsActionJustReleased("Damage"))
+        {
+            Change_Health(30);
+        }
+
+        if(Input.IsActionJustReleased("Heal"))
+        {
+            Change_Health(-50);
+        }
+    }
+
 }
