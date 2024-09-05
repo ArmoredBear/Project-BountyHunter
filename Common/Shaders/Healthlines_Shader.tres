@@ -16,7 +16,6 @@ render_mode blend_mix;
 
 
 "
-graph_offset = Vector2(316.885, 0.662598)
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2(1660, 200)

@@ -17,9 +17,8 @@ shader = ExtResource("3_hcd7x")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cp1x7"]
 shader = ExtResource("10_rrm7i")
-shader_parameter/Vanishing_Value = 0.0
 shader_parameter/Move_Speed = Vector2(-0.2, 0)
-shader_parameter/Fade_Speed = -2.0
+shader_parameter/Fade_Speed = -1.0
 shader_parameter/Basic_Texture = ExtResource("2_sfdbi")
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_ggy1h"]
@@ -77,6 +76,7 @@ offset_right = -140.0
 offset_bottom = -85.0
 grow_horizontal = 2
 grow_vertical = 2
+step = 0.0
 value = 100.0
 nine_patch_stretch = true
 texture_progress = ExtResource("4_7hy6p")
@@ -91,6 +91,7 @@ offset_left = 10.0
 offset_top = -15.0
 offset_right = 410.0
 offset_bottom = 60.0
+step = 0.0
 value = 100.0
 nine_patch_stretch = true
 texture_progress = SubResource("CanvasTexture_ggy1h")

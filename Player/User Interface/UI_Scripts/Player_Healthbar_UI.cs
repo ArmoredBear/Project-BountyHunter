@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Linq;
 
+
 public partial class Player_Healthbar_UI : Control
 {
     private TextureProgressBar _health_monitor;
@@ -64,11 +65,14 @@ public partial class Player_Healthbar_UI : Control
         Health_Monitor = GetNode<TextureProgressBar>("Health_Monitor");
         Lines = GetNode<TextureProgressBar>("Lines");
         Shader_P = (ShaderMaterial)Health_Monitor.Material;
+        Health_Monitor.Value = Player_Data_Autoload.Data.CURRENT_Health;
+
+    
     }
 
-    public override async void _Process(double delta)
+    public override void _Process(double delta)
     {
-        await ToSignal(GetTree().CreateTimer(0.5f), SceneTreeTimer.SignalName.Timeout);
+        //await ToSignal(GetTree().CreateTimer(0.5f), SceneTreeTimer.SignalName.Timeout);
         Change_Fade_Shader();
         Change_Color();
     }
