@@ -11,7 +11,7 @@ using System;
 	**  1 - This class is a singleton, it inherits Node but it does not need to be on scene EDITOR,
 	** 	that is why is called AUTOLOAD, when the scene starts the object is created automaticaly with this script
 	** 	functions and properties before any other object.
-  	**  2 - This only holds the player data in the scene and provides easy acess to the data properties on other scripts
+  	**  2 - This holds the player data in the scene using RESOURCE and provides easy acess to the data properties on other scripts
 	** 	and interaction with scene nodes on editor.
   	**  3 - This also has a constructor to initiate default data.
   	*  
@@ -25,6 +25,7 @@ public partial class Player_Data_Autoload : Node
 
 	private static Player _player;
 	private static Player_Data _player_data;
+	private Player_Healthbar_UI _player_heathbar;
 	private Timer _poison_timer;
 	private int _counter;
 	
@@ -52,6 +53,19 @@ public partial class Player_Data_Autoload : Node
 	
 	[Export] public Timer Poison_Timer;
 	
+	public Player_Healthbar_UI Player_Healthbar
+	{
+		get
+		{
+			return _player_heathbar;
+		}
+
+		set
+		{
+			_player_heathbar = value;
+		}
+	}
+
 	#endregion
 
 	//!---------------------------------------------------------------------------------------------------------
@@ -73,6 +87,7 @@ public partial class Player_Data_Autoload : Node
 		}
 
 		Data = new Player_Data(100, 100, 100, true, false, false);
+		Player_Healthbar = GetNode<Player_Healthbar_UI>("/root/Player/Player_UI/Status/Health_Bar");
 			
 		
 		
@@ -111,6 +126,17 @@ public partial class Player_Data_Autoload : Node
 		Poison_Timer.Timeout += Check_Alive_Caller;
 		Poison_Timer.Timeout += Poison_Caller;
 
+	}
+
+	public void Update_Loaded_Data()
+	{
+		Player_Healthbar.Health_Monitor.Value = Data.CURRENT_Health;
+		Player_Healthbar.Lines.Value = Data.CURRENT_Health;
+	}
+
+	public void Update_Data_To_Save()
+	{
+		Data.CURRENT_Health = (int)Player_Healthbar.Health_Monitor.Value;
 	}
 
 	/**------------------------------------------------------------------------------------------------
