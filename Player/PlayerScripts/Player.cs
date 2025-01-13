@@ -132,7 +132,7 @@ public partial class Player : CharacterBody2D
 			GD.PrintErr("ERROR!! Instance of Player already exist!!");
 		}
 		
-		Speed = 300;
+		Speed = 1000;
 		Run_Modifier = 2;
 		Player_State_P = State.Idle;
 

@@ -28,9 +28,9 @@ op_type = 0
 operator = 1
 
 [sub_resource type="VisualShaderNodeVectorFunc" id="VisualShaderNodeVectorFunc_7lywd"]
-default_input_values = [0, Vector2(0, 0)]
+default_input_values = [0, Quaternion(0, 0, 0, 0)]
 expanded_output_ports = [0]
-op_type = 0
+op_type = 2
 function = 29
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_u3jth"]
@@ -132,7 +132,7 @@ void fragment() {
 
 
 // VectorFunc:16
-	vec2 n_out16p0 = tan(n_out15p0);
+	vec4 n_out16p0 = tan(vec4(n_out15p0, 0.0, 0.0));
 	float n_out16p1 = n_out16p0.r;
 	float n_out16p2 = n_out16p0.g;
 

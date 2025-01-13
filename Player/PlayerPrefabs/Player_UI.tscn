@@ -30,7 +30,6 @@ shader_parameter/Move_Speed = Vector2(0.2, 0)
 shader_parameter/Texture2D = ExtResource("9_e6ycs")
 
 [node name="Player_UI" type="CanvasLayer"]
-visible = false
 
 [node name="Status" type="Control" parent="."]
 layout_mode = 3

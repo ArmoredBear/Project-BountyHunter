@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1hufijurnyr3"
-path="res://.godot/imported/TileTest.png-c98a276c779208a5f64ee371a34ccc3f.ctex"
+uid="uid://ceqgcwsrcqkwh"
+path="res://.godot/imported/CenarioTestSpriteSheet.png-107b9bb64bdfab1c923baccd79272def.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Cenarios/TileTest.png"
-dest_files=["res://.godot/imported/TileTest.png-c98a276c779208a5f64ee371a34ccc3f.ctex"]
+source_file="res://Cenarios/CenarioArt/CenarioTestSpriteSheet.png"
+dest_files=["res://.godot/imported/CenarioTestSpriteSheet.png-107b9bb64bdfab1c923baccd79272def.ctex"]
 
 [params]
 

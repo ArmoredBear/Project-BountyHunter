@@ -24,7 +24,9 @@ _data = {
 size = Vector2(150, 200)
 
 [node name="Player" type="Node2D"]
+z_index = 2
 position = Vector2(550, 300)
+scale = Vector2(3, 3)
 
 [node name="Player_Body" type="CharacterBody2D" parent="."]
 unique_name_in_owner = true
@@ -35,7 +37,7 @@ script = ExtResource("2_gnjcu")
 [node name="Main_Collider" parent="Player_Body" instance=ExtResource("2_imxp1")]
 
 [node name="Camera2D" type="Camera2D" parent="Player_Body"]
-zoom = Vector2(1.5, 1.5)
+zoom = Vector2(0.35, 0.35)
 limit_smoothed = true
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true

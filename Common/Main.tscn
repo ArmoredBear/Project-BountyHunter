@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dmvy8mi8nw3d3"]
+[gd_scene load_steps=3 format=3 uid="uid://dmvy8mi8nw3d3"]
 
+[ext_resource type="PackedScene" uid="uid://dx8c8pj78l6qd" path="res://Cenarios/Tilemap/World.tscn" id="2_mpsge"]
 [ext_resource type="Texture2D" uid="uid://8vvd0kj377du" path="res://icon.svg" id="3_c6wa2"]
 
 [node name="Main" type="Node"]
+
+[node name="World" parent="." instance=ExtResource("2_mpsge")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(853, 461)
