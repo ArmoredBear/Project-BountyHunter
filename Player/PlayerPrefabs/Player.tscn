@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bswa5xld6wyiu"]
+[gd_scene load_steps=15 format=3 uid="uid://bswa5xld6wyiu"]
 
 [ext_resource type="PackedScene" uid="uid://cstb8svv5da71" path="res://Player/PlayerPrefabs/QuickItems_List.tscn" id="1_v8mnl"]
 [ext_resource type="Script" path="res://Player/PlayerScripts/Player.cs" id="2_gnjcu"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Player/PlayerScripts/PlayerStates/Attacking_State.cs" id="9_tafg2"]
 [ext_resource type="PackedScene" uid="uid://bqojx1gwnybpn" path="res://Player/PlayerPrefabs/Player_UI.tscn" id="9_xt5uy"]
 [ext_resource type="Script" path="res://Player/PlayerScripts/PlayerStates/Evade_State.cs" id="10_ydvyn"]
+[ext_resource type="Texture2D" uid="uid://cs0ba1lbk54cf" path="res://Lighting/LightmapTextures/lightmaptexture.png" id="11_7v43v"]
 
 [sub_resource type="Animation" id="Animation_y7ux2"]
 resource_name = "Idle"
@@ -90,6 +91,13 @@ shape = SubResource("RectangleShape2D_hqqtb")
 [node name="Evading" type="Node2D" parent="Player_Body/Player_FSM"]
 unique_name_in_owner = true
 script = ExtResource("10_ydvyn")
+
+[node name="PointLight2D" type="PointLight2D" parent="Player_Body"]
+color = Color(0.944458, 1, 0.453125, 1)
+energy = 3.0
+shadow_enabled = true
+texture = ExtResource("11_7v43v")
+texture_scale = 2.0
 
 [node name="Player_UI" parent="." instance=ExtResource("9_xt5uy")]
 unique_name_in_owner = true
