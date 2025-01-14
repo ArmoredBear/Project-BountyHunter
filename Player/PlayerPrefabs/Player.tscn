@@ -1,0 +1,97 @@
+[gd_scene load_steps=14 format=3 uid="uid://bswa5xld6wyiu"]
+
+[ext_resource type="PackedScene" uid="uid://cstb8svv5da71" path="res://Player/PlayerPrefabs/QuickItems_List.tscn" id="1_v8mnl"]
+[ext_resource type="Script" path="res://Player/PlayerScripts/Player.cs" id="2_gnjcu"]
+[ext_resource type="PackedScene" uid="uid://ltev86bv3ovj" path="res://Player/Collision/main_collider.tscn" id="2_imxp1"]
+[ext_resource type="Script" path="res://Player/PlayerScripts/Player_FSM.cs" id="4_1x6g7"]
+[ext_resource type="Script" path="res://Player/PlayerScripts/PlayerStates/Idle_State.cs" id="6_aasnl"]
+[ext_resource type="Script" path="res://Player/PlayerScripts/PlayerStates/Walking_State.cs" id="7_wntvl"]
+[ext_resource type="Script" path="res://Player/PlayerScripts/PlayerStates/Running_State.cs" id="8_xs526"]
+[ext_resource type="Script" path="res://Player/PlayerScripts/PlayerStates/Attacking_State.cs" id="9_tafg2"]
+[ext_resource type="PackedScene" uid="uid://bqojx1gwnybpn" path="res://Player/PlayerPrefabs/Player_UI.tscn" id="9_xt5uy"]
+[ext_resource type="Script" path="res://Player/PlayerScripts/PlayerStates/Evade_State.cs" id="10_ydvyn"]
+
+[sub_resource type="Animation" id="Animation_y7ux2"]
+resource_name = "Idle"
+length = 3.0
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jnmad"]
+_data = {
+"Idle": SubResource("Animation_y7ux2")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqqtb"]
+size = Vector2(150, 200)
+
+[node name="Player" type="Node2D"]
+z_index = 2
+position = Vector2(550, 300)
+scale = Vector2(3, 3)
+
+[node name="Player_Body" type="CharacterBody2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_gnjcu")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player_Body"]
+
+[node name="Main_Collider" parent="Player_Body" instance=ExtResource("2_imxp1")]
+
+[node name="Camera2D" type="Camera2D" parent="Player_Body"]
+zoom = Vector2(0.35, 0.35)
+limit_smoothed = true
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="Player_FSM" type="Node2D" parent="Player_Body"]
+unique_name_in_owner = true
+script = ExtResource("4_1x6g7")
+_initial_state = NodePath("Idle")
+
+[node name="Player_Animation" type="AnimationPlayer" parent="Player_Body/Player_FSM"]
+unique_name_in_owner = true
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_jnmad")
+}
+
+[node name="Idle" type="Node2D" parent="Player_Body/Player_FSM" node_paths=PackedStringArray("Player_FSM_P", "Player_body_P")]
+unique_name_in_owner = true
+script = ExtResource("6_aasnl")
+Player_FSM_P = NodePath("..")
+Player_body_P = NodePath("../..")
+
+[node name="Walking" type="Node2D" parent="Player_Body/Player_FSM"]
+unique_name_in_owner = true
+script = ExtResource("7_wntvl")
+
+[node name="Running" type="Node2D" parent="Player_Body/Player_FSM"]
+unique_name_in_owner = true
+script = ExtResource("8_xs526")
+
+[node name="Attacking" type="Node2D" parent="Player_Body/Player_FSM" node_paths=PackedStringArray("Attack_Collider", "Player", "Player_FSM_P", "Player_body_P")]
+unique_name_in_owner = true
+script = ExtResource("9_tafg2")
+Attack_Collider = NodePath("Area2D/Attack_Collider")
+Player = NodePath("../..")
+Player_FSM_P = NodePath("..")
+Player_body_P = NodePath("../..")
+
+[node name="Area2D" type="Area2D" parent="Player_Body/Player_FSM/Attacking"]
+
+[node name="Attack_Collider" type="CollisionShape2D" parent="Player_Body/Player_FSM/Attacking/Area2D"]
+unique_name_in_owner = true
+position = Vector2(147, 0)
+shape = SubResource("RectangleShape2D_hqqtb")
+
+[node name="Evading" type="Node2D" parent="Player_Body/Player_FSM"]
+unique_name_in_owner = true
+script = ExtResource("10_ydvyn")
+
+[node name="Player_UI" parent="." instance=ExtResource("9_xt5uy")]
+unique_name_in_owner = true
+
+[node name="Player_Items" parent="." instance=ExtResource("1_v8mnl")]

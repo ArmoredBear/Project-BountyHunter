@@ -1,0 +1,121 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7x1o5b14fsu1"]
+
+[ext_resource type="Script" path="res://Common/General Scritps/Continue.cs" id="1_7vemg"]
+
+[node name="Main_Menu" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_top = 55.0
+offset_right = 13.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -582.0
+offset_top = -150.0
+offset_bottom = 150.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_stretch_ratio = 2.0
+alignment = 1
+
+[node name="Continue" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 30
+text = "Continue"
+alignment = 0
+text_overrun_behavior = 1
+autowrap_mode = 3
+icon_alignment = 1
+language = "en"
+script = ExtResource("1_7vemg")
+
+[node name="New_Game" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 30
+text = "New Game"
+alignment = 0
+text_overrun_behavior = 1
+autowrap_mode = 3
+icon_alignment = 1
+language = "en"
+
+[node name="Load_Game" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 30
+text = "Load Game"
+alignment = 0
+text_overrun_behavior = 1
+autowrap_mode = 3
+icon_alignment = 1
+language = "en"
+
+[node name="Options" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 30
+text = "Options"
+alignment = 0
+text_overrun_behavior = 1
+autowrap_mode = 3
+icon_alignment = 1
+language = "en"
+
+[node name="Credits" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 30
+text = "Credits
+"
+alignment = 0
+text_overrun_behavior = 1
+autowrap_mode = 3
+icon_alignment = 1
+language = "en"
+
+[node name="Quit" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 30
+text = "Quit"
+alignment = 0
+text_overrun_behavior = 1
+autowrap_mode = 3
+icon_alignment = 1
+language = "en"
+
+[connection signal="pressed" from="Control/MarginContainer/VBoxContainer/Continue" to="Control/MarginContainer/VBoxContainer/Continue" method="OnButtonPressed"]

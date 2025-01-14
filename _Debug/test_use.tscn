@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://denhyw8oystrg"]
-
-[ext_resource type="Script" path="res://_Debug/TestUseSignal.cs" id="1_ojwib"]
-
-[node name="TestUse" type="Node"]
-script = ExtResource("1_ojwib")
