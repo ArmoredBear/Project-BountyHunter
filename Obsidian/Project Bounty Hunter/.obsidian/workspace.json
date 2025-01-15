@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Welcome.md",
+                "file": "Engine e Programação/To Do/Navmesh.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Welcome"
+              "title": "Navmesh"
             }
           }
         ]
@@ -109,7 +109,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Welcome.md",
+                "file": "Engine e Programação/To Do/Navmesh.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -119,7 +119,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Welcome"
+              "title": "Backlinks for Navmesh"
             }
           },
           {
@@ -180,6 +180,19 @@
   },
   "active": "9275d1dfe08292d4",
   "lastOpenFiles": [
+    "Engine e Programação/To Do/Physics and Collision.md",
+    "Engine e Programação/To Do/Navmesh.md",
+    "Arte/Personagens/Animação",
+    "Arte/Personagens",
+    "Arte/Cenario",
+    "Arte/Cenario/Tilemap/W.I.P/Sprites.md",
+    "Cenario/Tilemap/W.I.P/Arte",
+    "Engine e Programação/W.I.P",
+    "Engine e Programação/To Do",
+    "Engine e Programação/Done",
+    "Narrativa/W.I.P",
+    "Narrativa/To do",
+    "Narrativa/Done",
     "Welcome.md"
   ]
 }
