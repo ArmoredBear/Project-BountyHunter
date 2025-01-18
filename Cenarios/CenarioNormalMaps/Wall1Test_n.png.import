@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cs0ba1lbk54cf"
-path="res://.godot/imported/lightmaptexture.png-291b6db3bf1f6b44942f83e2c6804081.ctex"
+uid="uid://dy8i6ncv8mdvs"
+path="res://.godot/imported/Wall1Test_n.png-0bf6f48f713621addf7a6b81f97c3b88.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Lighting/LightmapTextures/lightmaptexture.png"
-dest_files=["res://.godot/imported/lightmaptexture.png-291b6db3bf1f6b44942f83e2c6804081.ctex"]
+source_file="res://Cenarios/CenarioNormalMaps/Wall1Test_n.png"
+dest_files=["res://.godot/imported/Wall1Test_n.png-0bf6f48f713621addf7a6b81f97c3b88.ctex"]
 
 [params]
 
@@ -19,7 +19,7 @@ compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=false
 mipmaps/limit=-1

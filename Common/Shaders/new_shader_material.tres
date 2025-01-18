@@ -1,0 +1,39 @@
+[gd_resource type="VisualShader" load_steps=3 format=3 uid="uid://mvl5vdw7j3ny"]
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_qf6i5"]
+parameter_name = "Normal_Map"
+texture_type = 2
+texture_filter = 1
+texture_repeat = 2
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_qp1cs"]
+source = 5
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform sampler2D Normal_Map : hint_normal, filter_nearest, repeat_disable;
+
+
+
+void fragment() {
+	vec4 n_out3p0;
+// Texture2D:3
+	n_out3p0 = texture(Normal_Map, UV);
+
+
+// Output:0
+	NORMAL_MAP = vec3(n_out3p0.xyz);
+
+
+}
+"
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2(1040, 100)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture2DParameter_qf6i5")
+nodes/fragment/2/position = Vector2(240, 120)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_qp1cs")
+nodes/fragment/3/position = Vector2(680, 100)
+nodes/fragment/connections = PackedInt32Array(2, 0, 3, 2, 3, 0, 0, 3)
