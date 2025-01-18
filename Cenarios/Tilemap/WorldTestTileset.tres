@@ -8,17 +8,17 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)])
 agent_radius = 0.0
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_qkqfk"]
-polygon = PackedVector2Array(-64, -64, -49, -64, -51, 64, -64, 64)
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hm1mk"]
-polygon = PackedVector2Array(49, -64, 64, -64, 64, 64, 47, 64)
-
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_mksr4"]
 polygon = PackedVector2Array(54, 54, 64, 54, 64, 64, 52, 64)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_vvwr8"]
 polygon = PackedVector2Array(54, -64, 64, -64, 64, 64, 56, 64)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7r04d"]
+polygon = PackedVector2Array(-64, -64, -55, -64, -55, 64, -64, 64)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_kq14o"]
+polygon = PackedVector2Array(57, -64, 64, -64, 64, 64, 55, 64)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ajqju"]
 polygon = PackedVector2Array(-64, 54, 64, 54, 64, 64, -64, 64)
@@ -238,21 +238,13 @@ texture_region_size = Vector2i(128, 128)
 8:1/0 = 0
 8:1/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_21sf8")
 11:2/0 = 0
-11:2/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_qkqfk")
 11:3/0 = 0
-11:3/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_qkqfk")
 11:4/0 = 0
-11:4/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_qkqfk")
 11:5/0 = 0
-11:5/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_qkqfk")
 11:6/0 = 0
-11:6/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_qkqfk")
 11:7/0 = 0
-11:7/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_qkqfk")
 11:8/0 = 0
-11:8/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_qkqfk")
 11:9/0 = 0
-11:9/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_qkqfk")
 12:2/0 = 0
 12:3/0 = 0
 12:4/0 = 0
@@ -302,21 +294,45 @@ texture_region_size = Vector2i(128, 128)
 17:8/0 = 0
 17:9/0 = 0
 18:2/0 = 0
-18:2/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_hm1mk")
 18:3/0 = 0
-18:3/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_hm1mk")
 18:4/0 = 0
-18:4/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_hm1mk")
 18:5/0 = 0
-18:5/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_hm1mk")
 18:6/0 = 0
-18:6/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_hm1mk")
 18:7/0 = 0
-18:7/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_hm1mk")
 18:8/0 = 0
-18:8/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_hm1mk")
 18:9/0 = 0
-18:9/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_hm1mk")
+20:2/0 = 0
+20:2/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_7r04d")
+20:3/0 = 0
+20:3/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_7r04d")
+20:4/0 = 0
+20:4/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_7r04d")
+20:5/0 = 0
+20:5/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_7r04d")
+20:6/0 = 0
+20:6/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_7r04d")
+20:7/0 = 0
+20:7/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_7r04d")
+20:8/0 = 0
+20:8/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_7r04d")
+20:9/0 = 0
+20:9/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_7r04d")
+21:9/0 = 0
+21:9/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_kq14o")
+21:8/0 = 0
+21:8/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_kq14o")
+21:7/0 = 0
+21:7/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_kq14o")
+21:6/0 = 0
+21:6/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_kq14o")
+21:5/0 = 0
+21:5/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_kq14o")
+21:4/0 = 0
+21:4/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_kq14o")
+21:3/0 = 0
+21:3/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_kq14o")
+21:2/0 = 0
+21:2/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_kq14o")
 
 [resource]
 tile_size = Vector2i(128, 128)

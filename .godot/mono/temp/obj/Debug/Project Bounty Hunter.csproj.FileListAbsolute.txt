@@ -1,0 +1,19 @@
+/home/arthurgf/GodotProjects/Project BountyHunter/.godot/mono/temp/bin/Debug/Project Bounty Hunter.deps.json
+/home/arthurgf/GodotProjects/Project BountyHunter/.godot/mono/temp/bin/Debug/Project Bounty Hunter.runtimeconfig.json
+/home/arthurgf/GodotProjects/Project BountyHunter/.godot/mono/temp/bin/Debug/Project Bounty Hunter.dll
+/home/arthurgf/GodotProjects/Project BountyHunter/.godot/mono/temp/bin/Debug/Project Bounty Hunter.pdb
+/home/arthurgf/GodotProjects/Project BountyHunter/.godot/mono/temp/bin/Debug/GodotSharp.dll
+/home/arthurgf/GodotProjects/Project BountyHunter/.godot/mono/temp/bin/Debug/GodotSharpEditor.dll
+/home/arthurgf/GodotProjects/Project BountyHunter/.godot/mono/temp/obj/Debug/Project Bounty Hunter.csproj.AssemblyReference.cache
+/home/arthurgf/GodotProjects/Project BountyHunter/.godot/mono/temp/obj/Debug/Project Bounty Hunter.GeneratedMSBuildEditorConfig.editorconfig
+/home/arthurgf/GodotProjects/Project BountyHunter/.godot/mono/temp/obj/Debug/Project Bounty Hunter.AssemblyInfoInputs.cache
+/home/arthurgf/GodotProjects/Project BountyHunter/.godot/mono/temp/obj/Debug/Project Bounty Hunter.AssemblyInfo.cs
+/home/arthurgf/GodotProjects/Project BountyHunter/.godot/mono/temp/obj/Debug/Project Bounty Hunter.csproj.CoreCompileInputs.cache
+/home/arthurgf/GodotProjects/Project BountyHunter/.godot/mono/temp/obj/Debug/Project Bounty Hunter.csproj.CopyComplete
+/home/arthurgf/GodotProjects/Project BountyHunter/.godot/mono/temp/obj/Debug/Project Bounty Hunter.dll
+/home/arthurgf/GodotProjects/Project BountyHunter/.godot/mono/temp/obj/Debug/refint/Project Bounty Hunter.dll
+/home/arthurgf/GodotProjects/Project BountyHunter/.godot/mono/temp/obj/Debug/Project Bounty Hunter.pdb
+/home/arthurgf/GodotProjects/Project BountyHunter/.godot/mono/temp/obj/Debug/Project Bounty Hunter.genruntimeconfig.cache
+/home/arthurgf/GodotProjects/Project BountyHunter/.godot/mono/temp/obj/Debug/ref/Project Bounty Hunter.dll
+/home/arthurgf/GodotProjects/Project BountyHunter/.godot/mono/temp/obj/Debug/Project Bounty Hunter.sourcelink.json
+/home/arthurgf/GodotProjects/Project BountyHunter/.godot/mono/temp/bin/Debug/Newtonsoft.Json.dll
