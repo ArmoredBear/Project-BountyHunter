@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bswa5xld6wyiu"]
+[gd_scene load_steps=16 format=3 uid="uid://bswa5xld6wyiu"]
 
 [ext_resource type="PackedScene" uid="uid://cstb8svv5da71" path="res://Player/PlayerPrefabs/QuickItems_List.tscn" id="1_v8mnl"]
 [ext_resource type="Script" path="res://Player/PlayerScripts/Player.cs" id="2_gnjcu"]
@@ -10,7 +10,6 @@
 [ext_resource type="Script" path="res://Player/PlayerScripts/PlayerStates/Attacking_State.cs" id="9_tafg2"]
 [ext_resource type="PackedScene" uid="uid://bqojx1gwnybpn" path="res://Player/PlayerPrefabs/Player_UI.tscn" id="9_xt5uy"]
 [ext_resource type="Script" path="res://Player/PlayerScripts/PlayerStates/Evade_State.cs" id="10_ydvyn"]
-[ext_resource type="Texture2D" uid="uid://cs0ba1lbk54cf" path="res://Lighting/LightmapTextures/lightmaptexture.png" id="11_7v43v"]
 
 [sub_resource type="Animation" id="Animation_y7ux2"]
 resource_name = "Idle"
@@ -23,6 +22,19 @@ _data = {
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hqqtb"]
 size = Vector2(150, 200)
+
+[sub_resource type="Gradient" id="Gradient_mnmvw"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qbee6"]
+gradient = SubResource("Gradient_mnmvw")
+width = 1024
+height = 1024
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0.3)
 
 [node name="Player" type="Node2D"]
 z_index = 2
@@ -38,7 +50,8 @@ script = ExtResource("2_gnjcu")
 [node name="Main_Collider" parent="Player_Body" instance=ExtResource("2_imxp1")]
 
 [node name="Camera2D" type="Camera2D" parent="Player_Body"]
-zoom = Vector2(0.35, 0.35)
+texture_filter = 1
+zoom = Vector2(0.45, 0.45)
 limit_smoothed = true
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
@@ -94,10 +107,13 @@ script = ExtResource("10_ydvyn")
 
 [node name="PointLight2D" type="PointLight2D" parent="Player_Body"]
 color = Color(0.944458, 1, 0.453125, 1)
-energy = 3.0
+energy = 2.0
+blend_mode = 2
 shadow_enabled = true
-texture = ExtResource("11_7v43v")
-texture_scale = 2.0
+shadow_filter = 2
+texture = SubResource("GradientTexture2D_qbee6")
+texture_scale = 3.0
+height = 20.0
 
 [node name="Player_UI" parent="." instance=ExtResource("9_xt5uy")]
 unique_name_in_owner = true
