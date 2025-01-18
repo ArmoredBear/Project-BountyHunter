@@ -1,0 +1,337 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1737225944
+export_presets.cfg::TextFile::-1::1737076437::0::1::::<><>::
+icon.svg::CompressedTexture2D::2360865516099563226::1694726534::1724727786::1::::<><>::
+README.md::TextFile::-1::1696023089::0::1::::<><>::
+::res://_Debug/::1737225929
+SlotTesting2.png::CompressedTexture2D::514357717239578103::1725390775::1725390791::1::::<><>::
+SlotTesting.tscn::PackedScene::8006873946938468617::1737225929::0::1::::<><>::uid://hlfnqkigyf3l::::res://_Debug/SlotTesting2.png
+::res://addons/::1725390775
+::res://addons/panku_console/::1725390791
+console.gd::GDScript::-1::1725390775::0::1::::PankuConsole<>CanvasLayer<>::
+console.tscn::PackedScene::6468885623186101079::1725390775::0::1::::<><>::res://addons/panku_console/console.gd<>uid://bk18yfu0d77wk::::res://addons/panku_console/res/panku_console_theme.tres<>res://addons/panku_console/common/lynx_window2/lynx_windows_manager_2.gd
+default_panku_config.cfg::TextFile::-1::1725390775::0::1::::<><>::
+logo.svg::CompressedTexture2D::1215273567287972993::1725390775::1725390791::1::::<><>::
+plugin.cfg::TextFile::-1::1725390775::0::1::::<><>::
+plugin.gd::GDScript::-1::1725390775::0::1::::PankuConsolePlugin<>EditorPlugin<>::
+README.md::TextFile::-1::1725390775::0::1::::<><>::
+::res://addons/panku_console/common/::1725390775
+buffered_rich_text.gd::GDScript::-1::1725390775::0::1::::<>VBoxContainer<>::
+config.gd::GDScript::-1::1725390775::0::1::::PankuConfig<>RefCounted<>::
+gdexprenv.gd::GDScript::-1::1725390775::0::1::::PankuGDExprEnv<>RefCounted<>::
+module_manager.gd::GDScript::-1::1725390775::0::1::::PankuModuleManager<>RefCounted<>::
+module_options.gd::GDScript::-1::1725390775::0::1::::ModuleOptions<>Resource<>::
+panku_button.gd::GDScript::-1::1725390775::0::1::::PankuButton<>Control<>::
+panku_button.tscn::PackedScene::8381166153037413959::1725390775::0::1::::<><>::res://addons/panku_console/common/panku_button.gd<>uid://dchvk7qgfe37m::::res://addons/panku_console/res/icons2/fold-svgrepo-com.svg
+panku_module.gd::GDScript::-1::1725390775::0::1::::PankuModule<>Node<>::
+repl_base_instance.gd::GDScript::-1::1725390775::0::1::::<>RefCounted<>::
+utils.gd::GDScript::-1::1725390775::0::1::::PankuUtils<>RefCounted<>::
+::res://addons/panku_console/common/lynx_window2/::1725390885
+border.gd::GDScript::-1::1725390775::0::1::::<>Panel<>::
+lynx_windows_manager_2.gd::GDScript::-1::1725390775::0::1::::PankuLynxWindowsManager<>Control<>::
+lynx_window_2.gd::GDScript::-1::1725390775::0::1::::PankuLynxWindow<>ColorRect<>::
+lynx_window_2.tscn::PackedScene::1333547715044527970::1725390775::0::1::::<><>::uid://dyipeqsa8lcpc::::res://addons/panku_console/common/lynx_window2/lynx_window_shader_material.tres<>res://addons/panku_console/common/lynx_window2/lynx_window_2.gd<>uid://bk18yfu0d77wk::::res://addons/panku_console/res/panku_console_theme.tres<>uid://dosm26riekruh::::res://addons/panku_console/res/icons2/menu.svg<>uid://drn5t13m088fb::::res://addons/panku_console/common/panku_button.tscn<>uid://gav3m4qtvgje::::res://addons/panku_console/res/icons2/pop-out-svgrepo-com.svg<>uid://8g5afcuanbl6::::res://addons/panku_console/res/icons2/close.svg<>uid://dvr12fl5prm78::::res://addons/panku_console/res/effect/square_shadow.png<>uid://ciu5jiw4xmkq0::::res://addons/panku_console/res/icons2/resize-svgrepo-com.svg<>res://addons/panku_console/common/lynx_window2/border.gd
+lynx_window_shader_material.tres::ShaderMaterial::8861228086716291184::1725390885::0::1::::<><>::res://addons/panku_console/res/shader/simple_fast_blur.gdshader
+::res://addons/panku_console/common/smooth_scroll/::1725390775
+smooth_scroll.gd::GDScript::-1::1725390775::0::1::::<>PanelContainer<>::
+smooth_scroll.tscn::PackedScene::8878615982368967383::1725390775::0::1::::<><>::res://addons/panku_console/common/smooth_scroll/smooth_scroll.gd<>uid://bk18yfu0d77wk::::res://addons/panku_console/res/panku_console_theme.tres
+::res://addons/panku_console/modules/::1725390775
+::res://addons/panku_console/modules/about/::1725390775
+about.gd::GDScript::-1::1725390775::0::1::::<>Control<>::
+about.tscn::PackedScene::5239805328440672184::1725390775::0::1::::<><>::res://addons/panku_console/modules/about/about.gd<>uid://dyq4rjkkjs55d::::res://addons/panku_console/common/smooth_scroll/smooth_scroll.tscn<>uid://rkxm4c3bbf34::::res://addons/panku_console/logo.svg<>uid://cxmplwhfv5l88::::res://addons/panku_console/modules/about/url_button.tscn
+env.gd::GDScript::-1::1725390775::0::1::::<>RefCounted<>::
+module.gd::GDScript::-1::1725390775::0::1::::PankuModuleAbout<>PankuModule<>::
+url_button.gd::GDScript::-1::1725390775::0::1::::<>Button<>::
+url_button.tscn::PackedScene::6412888869317882319::1725390775::0::1::::<><>::res://addons/panku_console/modules/about/url_button.gd
+::res://addons/panku_console/modules/check_latest_release/::1725390775
+env.gd::GDScript::-1::1725390775::0::1::::<>RefCounted<>::
+module.gd::GDScript::-1::1725390775::0::1::::PankuModuleCheckLatestRelease<>PankuModule<>::
+network.gd::GDScript::-1::1725390775::0::1::::<>HTTPRequest<>::
+opt.gd::GDScript::-1::1725390775::0::1::::<>ModuleOptions<>::
+::res://addons/panku_console/modules/data_controller/::1725390775
+module.gd::GDScript::-1::1725390775::0::1::::PankuModuleDataController<>PankuModule<>::
+::res://addons/panku_console/modules/data_controller/exporter/::1725390775
+exporter_2.gd::GDScript::-1::1725390775::0::1::::<>Control<>::
+exporter_2.tscn::PackedScene::6578687412203006798::1725390775::0::1::::<><>::res://addons/panku_console/modules/data_controller/exporter/exporter_2.gd<>uid://bk18yfu0d77wk::::res://addons/panku_console/res/panku_console_theme.tres<>uid://cj0urmvj2rtas::::res://addons/panku_console/modules/data_controller/exporter/row_vec_2.tscn<>uid://b4jxqh4ysyodt::::res://addons/panku_console/modules/data_controller/exporter/row_string.tscn<>uid://dyq4rjkkjs55d::::res://addons/panku_console/common/smooth_scroll/smooth_scroll.tscn<>uid://dal16suyx5int::::res://addons/panku_console/modules/data_controller/exporter/row_read_only.tscn<>uid://b6w4d5bsp0erj::::res://addons/panku_console/modules/data_controller/exporter/row_range_number.tscn<>uid://cnsnrihcgjsa::::res://addons/panku_console/modules/data_controller/exporter/row_int.tscn<>uid://78evbpdhqe4b::::res://addons/panku_console/modules/data_controller/exporter/row_group_button.tscn<>uid://bneg4nt6ryuuj::::res://addons/panku_console/modules/data_controller/exporter/row_float.tscn<>uid://dfsypgkiprnp8::::res://addons/panku_console/modules/data_controller/exporter/row_enum.tscn<>uid://b4iurk1ni11v2::::res://addons/panku_console/modules/data_controller/exporter/row_color.tscn<>uid://ds3hbsvvlvdyw::::res://addons/panku_console/modules/data_controller/exporter/row_button.tscn<>uid://i2pcctq0i2o3::::res://addons/panku_console/modules/data_controller/exporter/row_bool.tscn
+joystick_button.gd::GDScript::-1::1725390775::0::1::::<>PankuButton<>::
+row_bool.tscn::PackedScene::618163410101885300::1725390775::0::1::::<><>::res://addons/panku_console/modules/data_controller/exporter/row_ui_bool.gd<>uid://bk18yfu0d77wk::::res://addons/panku_console/res/panku_console_theme.tres
+row_button.tscn::PackedScene::8480891597251698570::1725390775::0::1::::<><>::
+row_color.tscn::PackedScene::4439657435581051069::1725390775::0::1::::<><>::res://addons/panku_console/modules/data_controller/exporter/row_ui_color.gd
+row_comment.tscn::PackedScene::6414972787971372688::1725390775::0::1::::<><>::res://addons/panku_console/modules/data_controller/exporter/row_ui_comment.gd<>uid://bk18yfu0d77wk::::res://addons/panku_console/res/panku_console_theme.tres<>uid://drn5t13m088fb::::res://addons/panku_console/common/panku_button.tscn<>uid://b6jt0ggmuoyeb::::res://addons/panku_console/res/icons2/info2.svg
+row_enum.tscn::PackedScene::7548849394549866827::1725390775::0::1::::<><>::res://addons/panku_console/modules/data_controller/exporter/row_ui_enum.gd
+row_float.tscn::PackedScene::3307549965570620657::1725390775::0::1::::<><>::res://addons/panku_console/modules/data_controller/exporter/row_ui_float.gd<>uid://drn5t13m088fb::::res://addons/panku_console/common/panku_button.tscn<>uid://bc2g8vv0x3d8y::::res://addons/panku_console/res/icons2/swap_horiz.svg<>res://addons/panku_console/modules/data_controller/exporter/joystick_button.gd
+row_group_button.gd::GDScript::-1::1725390775::0::1::::<>Button<>::
+row_group_button.tscn::PackedScene::2314447907785789051::1725390775::0::1::::<><>::uid://ws58gucuygx1::::res://addons/panku_console/res/icons2/chevron_right.svg<>res://addons/panku_console/modules/data_controller/exporter/row_group_button.gd
+row_int.tscn::PackedScene::168331624845757112::1725390775::0::1::::<><>::res://addons/panku_console/modules/data_controller/exporter/row_ui_int.gd<>uid://drn5t13m088fb::::res://addons/panku_console/common/panku_button.tscn<>uid://dnexm7u6lq3km::::res://addons/panku_console/res/icons2/remove.svg<>uid://dprpfr0l5xvmu::::res://addons/panku_console/res/icons2/add.svg
+row_range_number.tscn::PackedScene::4609458875317541395::1725390775::0::1::::<><>::res://addons/panku_console/modules/data_controller/exporter/row_ui_range_number.gd
+row_read_only.tscn::PackedScene::7183605185235706189::1725390775::0::1::::<><>::res://addons/panku_console/modules/data_controller/exporter/row_ui_readonly.gd
+row_string.tscn::PackedScene::4441902026096928081::1725390775::0::1::::<><>::res://addons/panku_console/modules/data_controller/exporter/row_ui_string.gd
+row_ui.gd::GDScript::-1::1725390775::0::1::::<>HBoxContainer<>::
+row_ui_bool.gd::GDScript::-1::1725390775::0::1::::<><>::
+row_ui_color.gd::GDScript::-1::1725390775::0::1::::<><>::
+row_ui_comment.gd::GDScript::-1::1725390775::0::1::::<>HBoxContainer<>::
+row_ui_enum.gd::GDScript::-1::1725390775::0::1::::<><>::
+row_ui_float.gd::GDScript::-1::1725390775::0::1::::<><>::
+row_ui_int.gd::GDScript::-1::1725390775::0::1::::<><>::
+row_ui_range_number.gd::GDScript::-1::1725390775::0::1::::<><>::
+row_ui_readonly.gd::GDScript::-1::1725390775::0::1::::<><>::
+row_ui_string.gd::GDScript::-1::1725390775::0::1::::<><>::
+row_ui_vec2.gd::GDScript::-1::1725390775::0::1::::<><>::
+row_vec_2.tscn::PackedScene::5457395765498484982::1725390775::0::1::::<><>::res://addons/panku_console/modules/data_controller/exporter/row_ui_vec2.gd<>uid://drn5t13m088fb::::res://addons/panku_console/common/panku_button.tscn<>uid://b22jdciwq07ic::::res://addons/panku_console/res/icons2/open_with.svg<>res://addons/panku_console/modules/data_controller/exporter/joystick_button.gd
+::res://addons/panku_console/modules/engine_tools/::1725390775
+env.gd::GDScript::-1::1725390775::0::1::::<>RefCounted<>::
+module.gd::GDScript::-1::1725390775::0::1::::PankuModuleEngineTools<>PankuModule<>::
+opt.gd::GDScript::-1::1725390775::0::1::::<>ModuleOptions<>::
+::res://addons/panku_console/modules/expression_monitor/::1725390775
+env.gd::GDScript::-1::1725390775::0::1::::<>RefCounted<>::
+expression_item.gd::GDScript::-1::1725390775::0::1::::<>Control<>::
+expression_item.tscn::PackedScene::29688900715718888::1725390775::0::1::::<><>::res://addons/panku_console/modules/expression_monitor/expression_item.gd<>uid://8g5afcuanbl6::::res://addons/panku_console/res/icons2/close.svg<>uid://drn5t13m088fb::::res://addons/panku_console/common/panku_button.tscn
+expression_monitor2.gd::GDScript::-1::1725390775::0::1::::<>Control<>::
+expression_monitor2.tscn::PackedScene::2990678251737340826::1725390775::0::1::::<><>::res://addons/panku_console/modules/expression_monitor/expression_monitor2.gd<>uid://dyq4rjkkjs55d::::res://addons/panku_console/common/smooth_scroll/smooth_scroll.tscn<>uid://ctgf7kewoa1cn::::res://addons/panku_console/modules/expression_monitor/monitor_groups_ui.tscn
+module.gd::GDScript::-1::1725390775::0::1::::PankuModuleExpressionMonitor<>PankuModule<>::
+monitor_groups_ui.gd::GDScript::-1::1725390775::0::1::::<>VBoxContainer<>::
+monitor_groups_ui.tscn::PackedScene::6119176925833002329::1725390775::0::1::::<><>::res://addons/panku_console/modules/expression_monitor/monitor_groups_ui.gd<>uid://bk18yfu0d77wk::::res://addons/panku_console/res/panku_console_theme.tres<>uid://dlnkho5p7p2aq::::res://addons/panku_console/modules/expression_monitor/monitor_group_ui.tscn<>uid://dprpfr0l5xvmu::::res://addons/panku_console/res/icons2/add.svg
+monitor_group_ui.gd::GDScript::-1::1725390775::0::1::::<>VBoxContainer<>::
+monitor_group_ui.tscn::PackedScene::7958796694781384788::1725390775::0::1::::<><>::uid://bk18yfu0d77wk::::res://addons/panku_console/res/panku_console_theme.tres<>res://addons/panku_console/modules/expression_monitor/monitor_group_ui.gd<>uid://ws58gucuygx1::::res://addons/panku_console/res/icons2/chevron_right.svg<>uid://ecmevhk0tuas::::res://addons/panku_console/res/icons2/play-1001-svgrepo-com.svg<>uid://2cjvp0dp8ede::::res://addons/panku_console/res/icons2/check-svgrepo-com.svg<>uid://8g5afcuanbl6::::res://addons/panku_console/res/icons2/close.svg<>uid://brf6iwx4r6bdd::::res://addons/panku_console/res/icons2/rename-svgrepo-com.svg<>uid://nr65cgweqh8n::::res://addons/panku_console/res/green_gradient_1d.tres<>uid://drn5t13m088fb::::res://addons/panku_console/common/panku_button.tscn<>uid://d0k813mm5y0d5::::res://addons/panku_console/res/icons2/arrow-up-md-svgrepo-com.svg<>uid://cdxbns8lyctqp::::res://addons/panku_console/res/icons2/arrow-down-svgrepo-com.svg<>uid://om8bp40jo1e::::res://addons/panku_console/modules/expression_monitor/expression_item.tscn<>uid://cngs5d4uosvmt::::res://addons/panku_console/res/icons2/bin-cancel-delete-remove-trash-garbage-svgrepo-com.svg<>uid://dprpfr0l5xvmu::::res://addons/panku_console/res/icons2/add.svg
+::res://addons/panku_console/modules/general_settings/::1725390775
+env.gd::GDScript::-1::1725390775::0::1::::<>RefCounted<>::
+module.gd::GDScript::-1::1725390775::0::1::::PankuModuleGeneralSettings<>PankuModule<>::
+opt.gd::GDScript::-1::1725390775::0::1::::<>ModuleOptions<>::
+::res://addons/panku_console/modules/history_manager/::1725390775
+env.gd::GDScript::-1::1725390775::0::1::::<>RefCounted<>::
+exp_history.gd::GDScript::-1::1725390775::0::1::::<>Control<>::
+exp_history.tscn::PackedScene::373657929734084349::1725390775::0::1::::<><>::uid://bk18yfu0d77wk::::res://addons/panku_console/res/panku_console_theme.tres<>res://addons/panku_console/modules/history_manager/exp_history.gd<>uid://dhsvbbxqlb1xy::::res://addons/panku_console/modules/history_manager/exp_history_item.tscn
+exp_history_item.gd::GDScript::-1::1725390775::0::1::::<>HBoxContainer<>::
+exp_history_item.tscn::PackedScene::7689019687556194822::1725390775::0::1::::<><>::uid://bk18yfu0d77wk::::res://addons/panku_console/res/panku_console_theme.tres<>res://addons/panku_console/modules/history_manager/exp_history_item.gd<>uid://hf6h8otb8qkv::::res://addons/panku_console/res/icons2/favorite.svg
+module.gd::GDScript::-1::1725390775::0::1::::PankuModuleHistoryManager<>PankuModule<>::
+opt.gd::GDScript::-1::1725390775::0::1::::<>ModuleOptions<>::
+::res://addons/panku_console/modules/interactive_shell/::1725390775
+env.gd::GDScript::-1::1725390775::0::1::::<>RefCounted<>::
+mini_repl_2.gd::GDScript::-1::1725390775::0::1::::<>VBoxContainer<>::
+mini_repl_2.tscn::PackedScene::2314155975716386450::1725390775::0::1::::<><>::uid://bme8twac4ick5::::res://addons/panku_console/modules/interactive_shell/input_field/input_area.tscn<>res://addons/panku_console/modules/interactive_shell/mini_repl_2.gd<>res://addons/panku_console/modules/interactive_shell/console_ui/repl.gd<>uid://bk18yfu0d77wk::::res://addons/panku_console/res/panku_console_theme.tres<>uid://cbijhl1nhy64n::::res://addons/panku_console/modules/interactive_shell/console_ui/help_bar.tscn<>res://addons/panku_console/res/shader/simple_fast_blur.gdshader<>uid://b3jf18wonocnv::::res://addons/panku_console/modules/interactive_shell/hints_list/hints_list.tscn
+module.gd::GDScript::-1::1725390775::0::1::::PankuModuleInteractiveShell<>PankuModule<>::
+opt.gd::GDScript::-1::1725390775::0::1::::<>ModuleOptions<>::
+side_menu_config.json::JSON::-1::1725390775::0::1::::<><>::
+::res://addons/panku_console/modules/interactive_shell/console_logs/::1725390775
+console_logs.gd::GDScript::-1::1725390775::0::1::::<>MarginContainer<>::
+console_logs.tscn::PackedScene::962807213383700640::1725390775::0::1::::<><>::res://addons/panku_console/modules/interactive_shell/console_logs/console_logs.gd<>uid://bk18yfu0d77wk::::res://addons/panku_console/res/panku_console_theme.tres<>res://addons/panku_console/common/smooth_scroll/smooth_scroll.gd
+::res://addons/panku_console/modules/interactive_shell/console_ui/::1725390775
+help_bar.tscn::PackedScene::4860104805071706547::1725390775::0::1::::<><>::
+panku_console_ui.gd::GDScript::-1::1725390775::0::1::::<>Control<>::
+panku_console_ui.tscn::PackedScene::3520540771917015114::1725390775::0::1::::<><>::uid://bk18yfu0d77wk::::res://addons/panku_console/res/panku_console_theme.tres<>res://addons/panku_console/modules/interactive_shell/console_ui/panku_console_ui.gd<>uid://nynkaa0igrh5::::res://addons/panku_console/modules/interactive_shell/console_logs/console_logs.tscn<>uid://bme8twac4ick5::::res://addons/panku_console/modules/interactive_shell/input_field/input_area.tscn<>uid://b3jf18wonocnv::::res://addons/panku_console/modules/interactive_shell/hints_list/hints_list.tscn<>uid://drn5t13m088fb::::res://addons/panku_console/common/panku_button.tscn<>uid://ca0bkchv6nsrb::::res://addons/panku_console/modules/interactive_shell/console_ui/repl.tscn<>res://addons/panku_console/modules/interactive_shell/console_ui/side_buttons_controller.gd<>uid://cbijhl1nhy64n::::res://addons/panku_console/modules/interactive_shell/console_ui/help_bar.tscn<>res://addons/panku_console/modules/interactive_shell/console_ui/remote_control_node.gd
+remote_control_node.gd::GDScript::-1::1725390775::0::1::::<>Control<>::
+repl.gd::GDScript::-1::1725390775::0::1::::<>Node<>::
+repl.tscn::PackedScene::4824529503025945795::1725390775::0::1::::<><>::res://addons/panku_console/modules/interactive_shell/console_ui/repl.gd
+side_buttons_controller.gd::GDScript::-1::1725390775::0::1::::<>PankuButton<>::
+::res://addons/panku_console/modules/interactive_shell/hints_list/::1725390775
+hint.gd::GDScript::-1::1725390775::0::1::::<>PanelContainer<>::
+hint.tscn::PackedScene::7269509294898911422::1725390775::0::1::::<><>::res://addons/panku_console/modules/interactive_shell/hints_list/hint.gd
+hints_list.gd::GDScript::-1::1725390775::0::1::::<>ScrollContainer<>::
+hints_list.tscn::PackedScene::4370639488860178647::1725390775::0::1::::<><>::res://addons/panku_console/modules/interactive_shell/hints_list/hints_list.gd
+::res://addons/panku_console/modules/interactive_shell/input_field/::1725390775
+input_area.gd::GDScript::-1::1725390775::0::1::::<>HBoxContainer<>::
+input_area.tscn::PackedScene::3238983064854859978::1725390775::0::1::::<><>::uid://bk18yfu0d77wk::::res://addons/panku_console/res/panku_console_theme.tres<>res://addons/panku_console/modules/interactive_shell/input_field/input_area.gd<>uid://drn5t13m088fb::::res://addons/panku_console/common/panku_button.tscn<>res://addons/panku_console/modules/interactive_shell/input_field/input_field.gd<>uid://b4jd6tqlie0wx::::res://addons/panku_console/res/icons2/reply.svg
+input_field.gd::GDScript::-1::1725390775::0::1::::<>LineEdit<>::
+::res://addons/panku_console/modules/keyboard_shortcuts/::1725390775
+env.gd::GDScript::-1::1725390775::0::1::::<>RefCounted<>::
+exp_key_item.gd::GDScript::-1::1725390775::0::1::::<>HBoxContainer<>::
+exp_key_item.tscn::PackedScene::7908554647270007486::1725390775::0::1::::<><>::uid://bk18yfu0d77wk::::res://addons/panku_console/res/panku_console_theme.tres<>res://addons/panku_console/modules/keyboard_shortcuts/exp_key_item.gd<>res://addons/panku_console/modules/keyboard_shortcuts/remap_button.gd<>uid://dnexm7u6lq3km::::res://addons/panku_console/res/icons2/remove.svg
+exp_key_mapper_2.gd::GDScript::-1::1725390775::0::1::::<>Control<>::
+exp_key_mapper_2.tscn::PackedScene::6963934836735850827::1725390775::0::1::::<><>::uid://bk18yfu0d77wk::::res://addons/panku_console/res/panku_console_theme.tres<>res://addons/panku_console/modules/keyboard_shortcuts/exp_key_mapper_2.gd<>uid://dprpfr0l5xvmu::::res://addons/panku_console/res/icons2/add.svg<>uid://b6jt0ggmuoyeb::::res://addons/panku_console/res/icons2/info2.svg
+module.gd::GDScript::-1::1725390775::0::1::::PankuModuleKeyboardShortcuts<>PankuModule<>::
+opt.gd::GDScript::-1::1725390775::0::1::::<>ModuleOptions<>::
+remap_button.gd::GDScript::-1::1725390775::0::1::::<>Button<>::
+::res://addons/panku_console/modules/native_logger/::1725390775
+env.gd::GDScript::-1::1725390775::0::1::::<>RefCounted<>::
+godot_log_monitor.gd::GDScript::-1::1725390775::0::1::::<>Node<>::
+logger_view.gd::GDScript::-1::1725390775::0::1::::<>Control<>::
+logger_view.tscn::PackedScene::4217036032205988396::1725390775::0::1::::<><>::uid://bk18yfu0d77wk::::res://addons/panku_console/res/panku_console_theme.tres<>uid://dpurdc5me82ds::::res://addons/panku_console/modules/native_logger/log_view_tag.tscn<>res://addons/panku_console/modules/native_logger/logger_view.gd
+log_overlay.tscn::PackedScene::5590441662404827567::1725390775::0::1::::<><>::uid://bk18yfu0d77wk::::res://addons/panku_console/res/panku_console_theme.tres
+log_view_tag.gd::GDScript::-1::1725390775::0::1::::<>Control<>::
+log_view_tag.tscn::PackedScene::8254419958932460588::1725390775::0::1::::<><>::uid://bk18yfu0d77wk::::res://addons/panku_console/res/panku_console_theme.tres<>res://addons/panku_console/modules/native_logger/log_view_tag.gd<>uid://drn5t13m088fb::::res://addons/panku_console/common/panku_button.tscn<>uid://8g5afcuanbl6::::res://addons/panku_console/res/icons2/close.svg
+module.gd::GDScript::-1::1725390775::0::1::::PankuModuleNativeLogger<>PankuModule<>::
+opt.gd::GDScript::-1::1725390775::0::1::::<>ModuleOptions<>::
+::res://addons/panku_console/modules/screen_crt_effect/::1725390775
+crt_effect_layer.tscn::PackedScene::6543347401682293693::1725390775::0::1::::<><>::res://addons/panku_console/res/shader/mattias_crt.gdshader
+env.gd::GDScript::-1::1725390775::0::1::::<>RefCounted<>::
+module.gd::GDScript::-1::1725390775::0::1::::PankuModuleScreenCrtEffect<>PankuModule<>::
+opt.gd::GDScript::-1::1725390775::0::1::::<>ModuleOptions<>::
+::res://addons/panku_console/modules/screen_notifier/::1725390775
+env.gd::GDScript::-1::1725390775::0::1::::<>RefCounted<>::
+log_item.gd::GDScript::-1::1725390775::0::1::::<>HBoxContainer<>::
+log_item.tscn::PackedScene::7124498270467695330::1725390775::0::1::::<><>::res://addons/panku_console/modules/screen_notifier/log_item.gd
+module.gd::GDScript::-1::1725390775::0::1::::PankuModuleScreenNotifier<>PankuModule<>::
+resident_logs.gd::GDScript::-1::1725390775::0::1::::<>CanvasLayer<>::
+resident_logs.tscn::PackedScene::4949886924116829620::1725390775::0::1::::<><>::res://addons/panku_console/modules/screen_notifier/resident_logs.gd<>uid://bk18yfu0d77wk::::res://addons/panku_console/res/panku_console_theme.tres
+::res://addons/panku_console/modules/snake/::1725390885
+env.gd::GDScript::-1::1725390775::0::1::::<>RefCounted<>::
+module.gd::GDScript::-1::1725390775::0::1::::PankuModuleSnakeGame<>PankuModule<>::
+snake.gd::GDScript::-1::1725390775::0::1::::<>RefCounted<>::
+snake.tscn::PackedScene::8627809492183182492::1725390775::0::1::::<><>::res://addons/panku_console/modules/snake/snake_ui.gd
+snake_gradient.tres::Gradient::5280844667192836063::1725390885::0::1::::<><>::
+snake_ui.gd::GDScript::-1::1725390775::0::1::::<>Control<>::
+::res://addons/panku_console/modules/system_report/::1725390775
+env.gd::GDScript::-1::1725390775::0::1::::<>RefCounted<>::
+module.gd::GDScript::-1::1725390775::0::1::::PankuModuleSystemReport<>PankuModule<>::
+os_report.gd::GDScript::-1::1725390775::0::1::::<>RefCounted<>::
+::res://addons/panku_console/modules/texture_viewer/::1725390775
+module.gd::GDScript::-1::1725390775::0::1::::PankuModuleTextureViewer<>PankuModule<>::
+texture_viewer.gd::GDScript::-1::1725390775::0::1::::<>Control<>::
+texture_viewer.tscn::PackedScene::7750132616475338843::1725390775::0::1::::<><>::res://addons/panku_console/modules/texture_viewer/texture_viewer.gd
+::res://addons/panku_console/modules/variable_tracker/::1725390775
+module.gd::GDScript::-1::1725390775::0::1::::PankuModuleVariableTracker<>PankuModule<>::
+opt.gd::GDScript::-1::1725390775::0::1::::<>ModuleOptions<>::
+::res://addons/panku_console/res/::1737225730
+green_gradient_1d.tres::Gradient::949485305027433995::1725390885::0::1::::<><>::
+panku_console_theme.tres::Theme::3144029756148019014::1737225730::0::1::::<><>::
+::res://addons/panku_console/res/effect/::1725390791
+square_shadow.png::CompressedTexture2D::8669949328537749897::1725390775::1725390791::1::::<><>::
+::res://addons/panku_console/res/icons2/::1725390791
+add.svg::CompressedTexture2D::8248109743387697848::1725390775::1725390791::1::::<><>::
+arrow-down-svgrepo-com.svg::CompressedTexture2D::5030973515888015403::1725390775::1725390791::1::::<><>::
+arrow-up-md-svgrepo-com.svg::CompressedTexture2D::8936678500751275656::1725390775::1725390791::1::::<><>::
+bin-cancel-delete-remove-trash-garbage-svgrepo-com.svg::CompressedTexture2D::5698829284189452847::1725390775::1725390791::1::::<><>::
+bookmark-filled-svgrepo-com.svg::CompressedTexture2D::1671439030748304991::1725390775::1725390791::1::::<><>::
+bookmark-svgrepo-com.svg::CompressedTexture2D::1954578364813987539::1725390775::1725390791::1::::<><>::
+check-svgrepo-com.svg::CompressedTexture2D::1899812314969910546::1725390775::1725390791::1::::<><>::
+checkbox_checked.svg::CompressedTexture2D::3792253044796478696::1725390775::1725390791::1::::<><>::
+checkbox_unchecked.svg::CompressedTexture2D::7879142622907838266::1725390775::1725390791::1::::<><>::
+chevron_right.svg::CompressedTexture2D::1583194146746381696::1725390775::1725390791::1::::<><>::
+close.svg::CompressedTexture2D::2330439882978001793::1725390775::1725390791::1::::<><>::
+close_20x.svg::CompressedTexture2D::1372883782339125442::1725390775::1725390791::1::::<><>::
+expand_more.svg::CompressedTexture2D::9017232263723169697::1725390775::1725390791::1::::<><>::
+eye.svg::CompressedTexture2D::6270057956036863618::1725390775::1725390791::1::::<><>::
+favorite.svg::CompressedTexture2D::503540277333362081::1725390775::1725390791::1::::<><>::
+fold-svgrepo-com.svg::CompressedTexture2D::7315385003164491244::1725390775::1725390791::1::::<><>::
+gear.svg::CompressedTexture2D::5321532144343363229::1725390775::1725390791::1::::<><>::
+history.svg::CompressedTexture2D::723593119611772523::1725390775::1725390791::1::::<><>::
+info2.svg::CompressedTexture2D::4582052828950285465::1725390775::1725390791::1::::<><>::
+info.svg::CompressedTexture2D::8817813311756613397::1725390775::1725390791::1::::<><>::
+keyboard.svg::CompressedTexture2D::3557403633208427201::1725390775::1725390791::1::::<><>::
+menu.svg::CompressedTexture2D::8179843136788233923::1725390775::1725390791::1::::<><>::
+more_horiz.svg::CompressedTexture2D::2462545555787975437::1725390775::1725390791::1::::<><>::
+open_with.svg::CompressedTexture2D::4337809590023318426::1725390775::1725390791::1::::<><>::
+pause-1010-svgrepo-com.svg::CompressedTexture2D::5836794515938135974::1725390775::1725390791::1::::<><>::
+play-1001-svgrepo-com.svg::CompressedTexture2D::285620991441582730::1725390775::1725390791::1::::<><>::
+pop-out-svgrepo-com.svg::CompressedTexture2D::422458796738346726::1725390775::1725390791::1::::<><>::
+question.svg::CompressedTexture2D::4836932975350444785::1725390775::1725390791::1::::<><>::
+remove.svg::CompressedTexture2D::8081394162817603040::1725390775::1725390791::1::::<><>::
+rename-svgrepo-com.svg::CompressedTexture2D::3591850619822719445::1725390775::1725390791::1::::<><>::
+reply.svg::CompressedTexture2D::4440715082743119975::1725390775::1725390791::1::::<><>::
+resize-svgrepo-com.svg::CompressedTexture2D::5377477709021139793::1725390775::1725390791::1::::<><>::
+search.svg::CompressedTexture2D::461470075230879948::1725390775::1725390791::1::::<><>::
+swap_horiz.svg::CompressedTexture2D::2582960940083212342::1725390775::1725390791::1::::<><>::
+::res://addons/panku_console/res/shader/::1725390885
+mattias_crt.gdshader::Shader::-1::1725390885::0::1::::<><>::
+simple_fast_blur.gdshader::Shader::-1::1725390885::0::1::::<><>::
+::res://Builds/::1737076529
+::res://Cenarios/::1737171578
+::res://Cenarios/CenarioArt/::1737225719
+CenarioTestSpriteSheet.png::CompressedTexture2D::5086995843643595355::1737225689::1737225719::1::::<><>::
+Floor1Test.png::CompressedTexture2D::3426849927747847358::1734676731::1736536893::1::::<><>::
+Wall1Test.png::CompressedTexture2D::1860732161921624815::1737171061::1737181862::1::::<><>::
+::res://Cenarios/CenarioMaterials/::1737182006
+new_shader_material.tres::ShaderMaterial::3170153208257573961::1737182006::0::1::::<><>::uid://mvl5vdw7j3ny::::res://Common/Shaders/new_shader_material.tres<>uid://dy8i6ncv8mdvs::::res://Cenarios/CenarioNormalMaps/Wall1Test_n.png
+::res://Cenarios/CenarioNormalMaps/::1737183584
+new_canvas_texture.tres::CanvasTexture::1439000101111270863::1737180146::0::1::::<><>::uid://dy8i6ncv8mdvs::::res://Cenarios/CenarioNormalMaps/Wall1Test_n.png
+Wall1Test_n.png::CompressedTexture2D::8912460546721116024::1737183566::1737183584::1::::<><>::
+::res://Cenarios/Tilemap/::1737225929
+World.tscn::PackedScene::8841911089074408391::1737225929::0::1::::<><>::uid://b6dow6ykq2pmo::::res://Cenarios/Tilemap/WorldTestTileset.tres
+WorldTestTileset.tres::TileSet::4569358960874897530::1737225929::0::1::::<><>::uid://ceqgcwsrcqkwh::::res://Cenarios/CenarioArt/CenarioTestSpriteSheet.png
+::res://Common/::1737225929
+Main.tscn::PackedScene::8046396890752479378::1737225929::0::1::::<><>::uid://dx8c8pj78l6qd::::res://Cenarios/Tilemap/World.tscn<>uid://8vvd0kj377du::::res://icon.svg
+Main_Menu.tscn::PackedScene::4681549589845710338::1737225929::0::1::::<><>::res://Common/General Scritps/Continue.cs
+SaveSystem.tscn::PackedScene::6252410342004751613::1737225929::0::1::::<><>::res://Common/General Scritps/Save_Load_Control.cs
+::res://Common/General Scritps/::1725586049
+Continue.cs::CSharpScript::-1::1725390775::0::1::::<>Node<>::
+Messenger.cs::CSharpScript::-1::1725390775::0::1::::<>Node<>::
+Save_Load_Control.cs::CSharpScript::-1::1725590755::0::1::::<>Node<>::
+::res://Common/General Scritps/Enums/::1725390775
+Item_Type.cs::CSharpScript::-1::1725390775::0::1::::<><>::
+States.cs::CSharpScript::-1::1725390775::0::1::::<><>::
+::res://Common/General Scritps/Interfaces/::1697312570
+IStatus.cs::CSharpScript::-1::1695149152::0::1::::<><>::
+IUse.cs::CSharpScript::-1::1695501291::0::1::::<><>::
+::res://Common/Inventory/::1725588077
+Inventory.cs::CSharpScript::-1::1725395585::0::1::::<>Node<>::
+::res://Common/Resources/::1725588077
+Item.cs::CSharpScript::-1::1725394704::0::1::::<>Resource<>::
+::res://Common/Resources/EquipmentItems/::1725390775
+Elixir_Tank.cs::CSharpScript::-1::1725394722::0::1::::<>Resource<>::
+::res://Common/Resources/InventoryItems/::1725588019
+Pill.cs::CSharpScript::-1::1725395350::0::1::::Pill<>Resource<>::
+::res://Common/Resources/QuickItems/::1725390775
+Quick_Item.cs::CSharpScript::-1::1725395921::0::1::::<>Resource<>::
+::res://Common/Shaders/::1737225730
+Healthbar_Shader.tres::VisualShader::5579358277967577442::1737225730::0::1::::<><>::
+Healthlines_Shader.tres::VisualShader::2844158278713515989::1737225730::0::1::::<><>::
+new_shader_material.tres::VisualShader::886340625896716810::1737225730::0::1::::<><>::
+Staminabar_Shader.tres::VisualShader::6312704925020728607::1737225730::0::1::::<><>::uid://owe8gguuup3t::::res://Player/User Interface/UI_Art/StaminaFogTexture.png
+Thunder_Shader.tres::VisualShader::8597135893991288913::1737225730::0::1::::<><>::
+::res://Enemys/::1694794686
+::res://Obsidian/::1736725728
+::res://Obsidian/Project Bounty Hunter/::1736907106
+::res://Obsidian/Project Bounty Hunter/Arte/::1736907164
+::res://Obsidian/Project Bounty Hunter/Arte/Cenario/::1736907123
+::res://Obsidian/Project Bounty Hunter/Arte/Cenario/Tilemap/::1736906715
+::res://Obsidian/Project Bounty Hunter/Arte/Cenario/Tilemap/Done/::1736892878
+::res://Obsidian/Project Bounty Hunter/Arte/Cenario/Tilemap/To do/::1736907095
+::res://Obsidian/Project Bounty Hunter/Arte/Cenario/Tilemap/W.I.P/::1736907066
+Sprites.md::TextFile::-1::1736906511::0::1::::<><>::
+::res://Obsidian/Project Bounty Hunter/Arte/Personagens/::1736907174
+::res://Obsidian/Project Bounty Hunter/Arte/Personagens/Animação/::1736907171
+::res://Obsidian/Project Bounty Hunter/Engine e Programação/::1736906782
+::res://Obsidian/Project Bounty Hunter/Engine e Programação/Done/::1736906765
+::res://Obsidian/Project Bounty Hunter/Engine e Programação/To Do/::1736907095
+Navmesh.md::TextFile::-1::1736906084::0::1::::<><>::
+Physics and Collision.md::TextFile::-1::1736906978::0::1::::<><>::
+::res://Obsidian/Project Bounty Hunter/Engine e Programação/W.I.P/::1736906778
+::res://Obsidian/Project Bounty Hunter/Game Design/::1736906739
+::res://Obsidian/Project Bounty Hunter/Game Design/Done/::1736906689
+::res://Obsidian/Project Bounty Hunter/Game Design/To do/::1736906727
+::res://Obsidian/Project Bounty Hunter/Game Design/W.I.P/::1736906694
+::res://Obsidian/Project Bounty Hunter/Narrativa/::1736906762
+::res://Obsidian/Project Bounty Hunter/Narrativa/Done/::1736906746
+::res://Obsidian/Project Bounty Hunter/Narrativa/To do/::1736906751
+::res://Obsidian/Project Bounty Hunter/Narrativa/W.I.P/::1736906758
+::res://Player/::1725390775
+::res://Player/Animation/::1725390775
+Player_PlaceHolder_Animation.tres::SpriteFrames::7239417502139429078::1725390775::0::1::::<><>::uid://bsvujlg82t8l8::::res://Player/PlayerArt/PlaceHolderPlayer.png
+::res://Player/Collision/::1695083394
+main_collider.tscn::PackedScene::811582608222668187::1695083335::0::1::::<><>::
+::res://Player/PlayerArt/::1725390791
+Idle.png::CompressedTexture2D::8656555799168343007::1695122583::1724727786::1::::<><>::
+PlaceHolderPlayer.png::CompressedTexture2D::3694402802575326083::1725390775::1725390791::1::::<><>::
+::res://Player/PlayerPrefabs/::1737225929
+Player.tscn::PackedScene::3695290978792673220::1737225929::0::1::::<><>::uid://cstb8svv5da71::::res://Player/PlayerPrefabs/QuickItems_List.tscn<>res://Player/PlayerScripts/Player.cs<>uid://ltev86bv3ovj::::res://Player/Collision/main_collider.tscn<>res://Player/PlayerScripts/Player_FSM.cs<>res://Player/PlayerScripts/PlayerStates/Idle_State.cs<>res://Player/PlayerScripts/PlayerStates/Walking_State.cs<>res://Player/PlayerScripts/PlayerStates/Running_State.cs<>res://Player/PlayerScripts/PlayerStates/Attacking_State.cs<>uid://bqojx1gwnybpn::::res://Player/PlayerPrefabs/Player_UI.tscn<>res://Player/PlayerScripts/PlayerStates/Evade_State.cs
+Player_Data.tres::Resource/Player_Data::5297623335292475942::1725390775::0::1::::<><>::res://Player/PlayerScripts/Player_Data.cs
+Player_UI.tscn::PackedScene::3538932372546993759::1737225929::0::1::::<><>::res://Player/User Interface/UI_Scripts/Player_Healthbar_UI.cs<>uid://crhqsrd1pob0e::::res://Player/User Interface/UI_Art/Health_Monitor.png<>uid://dl8x3gdfx7ffe::::res://Player/User Interface/UI_Art/Healthbar_Background.png<>uid://bgry4vid31342::::res://Common/Shaders/Healthlines_Shader.tres<>uid://dsi8vnmxm1kh4::::res://Player/User Interface/UI_Art/Health_Lines.png<>uid://csuln21ai4cjl::::res://Player/User Interface/UI_Art/Vignette.png<>res://Player/User Interface/UI_Scripts/Player_Staminabar_UI.cs<>uid://cv66le7seyjq2::::res://Common/Shaders/Staminabar_Shader.tres<>uid://y2j0ijuw8uh4::::res://Player/User Interface/UI_Art/Armor_Bar.png<>uid://owe8gguuup3t::::res://Player/User Interface/UI_Art/StaminaFogTexture.png<>uid://clqxhllh4phgs::::res://Common/Shaders/Healthbar_Shader.tres
+QuickItems_List.tscn::PackedScene::6075584357245097138::1737225929::0::1::::<><>::
+::res://Player/PlayerScripts/::1725390775
+Player.cs::CSharpScript::-1::1736705282::0::1::::<>CharacterBody2D<>::
+Player_Data.cs::CSharpScript::-1::1725390775::0::1::::Player_Data<>Resource<>::
+Player_Data_Autoload.cs::CSharpScript::-1::1725591109::0::1::::<>Node<>::
+Player_FSM.cs::CSharpScript::-1::1725390775::0::1::::<>Node<>::
+::res://Player/PlayerScripts/PlayerStates/::1725390775
+Attacking_State.cs::CSharpScript::-1::1725390775::0::1::::<>Node<>::
+Evade_State.cs::CSharpScript::-1::1725390775::0::1::::<>Node<>::
+Idle_State.cs::CSharpScript::-1::1725390775::0::1::::<>Node<>::
+Player_State.cs::CSharpScript::-1::1725390775::0::1::::<>Node<>::
+Running_State.cs::CSharpScript::-1::1725390775::0::1::::<>Node<>::
+Walking_State.cs::CSharpScript::-1::1725390775::0::1::::<>Node<>::
+::res://Player/Sound/::1695083386
+::res://Player/User Interface/::1725390775
+::res://Player/User Interface/UI_Art/::1725504171
+Armor_Bar.png::CompressedTexture2D::1740861979484380931::1725390775::1725390791::1::::<><>::
+Healthbar_Background.png::CompressedTexture2D::8000910610078288402::1725390775::1725390791::1::::<><>::
+Health_Lines.png::CompressedTexture2D::8441218123432949795::1725495800::1725495801::1::::<><>::
+Health_Monitor.png::CompressedTexture2D::5981506868419006650::1725390775::1725390791::1::::<><>::
+Panel_Export_Test.png::CompressedTexture2D::3761901143549730003::1725390775::1725390791::1::::<><>::
+StaminaFogTexture.png::CompressedTexture2D::1028362246036862823::1725417612::1725417613::1::::<><>::
+TempHealthBar_Health.png::CompressedTexture2D::1016912148448105076::1725390775::1725390791::1::::<><>::
+TempHealthBar_Over.png::CompressedTexture2D::3795900244791670981::1725390775::1725390791::1::::<><>::
+VFX_Thunder.png::CompressedTexture2D::7678525517088334750::1725390775::1725390791::1::::<><>::
+Vignette.png::CompressedTexture2D::6078220668500377133::1725390775::1725390791::1::::<><>::
+::res://Player/User Interface/UI_Scripts/::1725390775
+Player_Healthbar_UI.cs::CSharpScript::-1::1725590764::0::1::::<>Control<>::
+Player_Staminabar_UI.cs::CSharpScript::-1::1725390775::0::1::::<>TextureProgressBar<>::
