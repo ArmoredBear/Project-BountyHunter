@@ -1,6 +1,6 @@
-ShaderMaterial
-CanvasItemMaterial
 CanvasTexture
+CanvasItemMaterial
+ShaderMaterial
 VisualShader
 Shader
 TileSetAtlasSource

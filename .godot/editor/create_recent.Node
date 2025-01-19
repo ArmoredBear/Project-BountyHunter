@@ -1,6 +1,6 @@
-WorldEnvironment
-TileMapLayer
 PointLight2D
+TileMapLayer
+WorldEnvironment
 DirectionalLight2D
 CanvasModulate
 Camera2D
@@ -12,4 +12,3 @@ TextureProgressBar
 TextureRect
 Line2D
 Button
-VBoxContainer

@@ -23,18 +23,18 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hqqtb"]
 size = Vector2(150, 200)
 
-[sub_resource type="Gradient" id="Gradient_mnmvw"]
+[sub_resource type="Gradient" id="Gradient_k5vcg"]
 interpolation_mode = 2
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_qbee6"]
-gradient = SubResource("Gradient_mnmvw")
+gradient = SubResource("Gradient_k5vcg")
 width = 1024
 height = 1024
 use_hdr = true
 fill = 1
 fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0.3)
+fill_to = Vector2(0.5, 0.1)
 
 [node name="Player" type="Node2D"]
 z_index = 2
@@ -46,8 +46,10 @@ unique_name_in_owner = true
 script = ExtResource("2_gnjcu")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player_Body"]
+visible = false
 
 [node name="Main_Collider" parent="Player_Body" instance=ExtResource("2_imxp1")]
+visible = false
 
 [node name="Camera2D" type="Camera2D" parent="Player_Body"]
 texture_filter = 1
@@ -62,6 +64,7 @@ editor_draw_drag_margin = true
 
 [node name="Player_FSM" type="Node2D" parent="Player_Body"]
 unique_name_in_owner = true
+visible = false
 script = ExtResource("4_1x6g7")
 _initial_state = NodePath("Idle")
 
@@ -105,15 +108,23 @@ shape = SubResource("RectangleShape2D_hqqtb")
 unique_name_in_owner = true
 script = ExtResource("10_ydvyn")
 
-[node name="PointLight2D" type="PointLight2D" parent="Player_Body"]
+[node name="PointLight2D_Light" type="PointLight2D" parent="Player_Body"]
 color = Color(0.944458, 1, 0.453125, 1)
-energy = 2.0
-blend_mode = 2
+energy = 4.0
+shadow_filter = 1
+shadow_filter_smooth = 5.5
+texture = SubResource("GradientTexture2D_qbee6")
+texture_scale = 2.0
+height = 80.0
+
+[node name="PointLight2D_Shadows" type="PointLight2D" parent="Player_Body"]
+color = Color(0.944458, 1, 0.453125, 1)
+energy = 4.0
 shadow_enabled = true
 shadow_filter = 2
 texture = SubResource("GradientTexture2D_qbee6")
-texture_scale = 3.0
-height = 20.0
+texture_scale = 2.0
+height = 80.0
 
 [node name="Player_UI" parent="." instance=ExtResource("9_xt5uy")]
 unique_name_in_owner = true

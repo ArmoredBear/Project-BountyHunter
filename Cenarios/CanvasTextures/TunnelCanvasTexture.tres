@@ -1,0 +1,8 @@
+[gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://dhkvnbovmyr1l"]
+
+[ext_resource type="Texture2D" uid="uid://ceqgcwsrcqkwh" path="res://Cenarios/CenarioArt/TunnelSpriteSheet.png" id="1_pb1ac"]
+[ext_resource type="Texture2D" uid="uid://cbbem4s3ty2w" path="res://Cenarios/CenarioNormalMaps/TunnelSpriteSheet_n.png" id="2_0pdia"]
+
+[resource]
+diffuse_texture = ExtResource("1_pb1ac")
+normal_texture = ExtResource("2_0pdia")

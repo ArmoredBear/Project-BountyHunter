@@ -2,7 +2,6 @@
 
 [sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_qf6i5"]
 parameter_name = "Normal_Map"
-texture_type = 2
 texture_filter = 1
 texture_repeat = 2
 
@@ -13,7 +12,7 @@ source = 5
 code = "shader_type canvas_item;
 render_mode blend_mix;
 
-uniform sampler2D Normal_Map : hint_normal, filter_nearest, repeat_disable;
+uniform sampler2D Normal_Map : filter_nearest, repeat_disable;
 
 
 
@@ -29,11 +28,12 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(74.3956, -49.8377)
 mode = 1
 flags/light_only = false
-nodes/fragment/0/position = Vector2(1040, 100)
+nodes/fragment/0/position = Vector2(1060, 120)
 nodes/fragment/2/node = SubResource("VisualShaderNodeTexture2DParameter_qf6i5")
-nodes/fragment/2/position = Vector2(240, 120)
+nodes/fragment/2/position = Vector2(200, 60)
 nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_qp1cs")
-nodes/fragment/3/position = Vector2(680, 100)
+nodes/fragment/3/position = Vector2(660, 80)
 nodes/fragment/connections = PackedInt32Array(2, 0, 3, 2, 3, 0, 0, 3)
