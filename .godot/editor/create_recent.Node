@@ -1,3 +1,8 @@
+CollisionShape2D
+CharacterBody2D
+Node2D
+NavigationAgent2D
+Sprite2D
 PointLight2D
 TileMapLayer
 WorldEnvironment
@@ -7,8 +12,3 @@ Camera2D
 Node
 CanvasLayer
 MarginContainer
-Timer
-TextureProgressBar
-TextureRect
-Line2D
-Button

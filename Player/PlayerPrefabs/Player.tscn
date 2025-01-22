@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bswa5xld6wyiu"]
+[gd_scene load_steps=17 format=3 uid="uid://bswa5xld6wyiu"]
 
 [ext_resource type="PackedScene" uid="uid://cstb8svv5da71" path="res://Player/PlayerPrefabs/QuickItems_List.tscn" id="1_v8mnl"]
 [ext_resource type="Script" path="res://Player/PlayerScripts/Player.cs" id="2_gnjcu"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" path="res://Player/PlayerScripts/PlayerStates/Attacking_State.cs" id="9_tafg2"]
 [ext_resource type="PackedScene" uid="uid://bqojx1gwnybpn" path="res://Player/PlayerPrefabs/Player_UI.tscn" id="9_xt5uy"]
 [ext_resource type="Script" path="res://Player/PlayerScripts/PlayerStates/Evade_State.cs" id="10_ydvyn"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_w3gk5"]
 
 [sub_resource type="Animation" id="Animation_y7ux2"]
 resource_name = "Idle"
@@ -39,17 +41,17 @@ fill_to = Vector2(0.5, 0.1)
 [node name="Player" type="Node2D"]
 z_index = 2
 position = Vector2(550, 300)
-scale = Vector2(3, 3)
 
 [node name="Player_Body" type="CharacterBody2D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2_gnjcu")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player_Body"]
-visible = false
+scale = Vector2(100, 300)
+texture = SubResource("CanvasTexture_w3gk5")
 
 [node name="Main_Collider" parent="Player_Body" instance=ExtResource("2_imxp1")]
-visible = false
+position = Vector2(48.3333, 263.667)
 
 [node name="Camera2D" type="Camera2D" parent="Player_Body"]
 texture_filter = 1
@@ -64,7 +66,6 @@ editor_draw_drag_margin = true
 
 [node name="Player_FSM" type="Node2D" parent="Player_Body"]
 unique_name_in_owner = true
-visible = false
 script = ExtResource("4_1x6g7")
 _initial_state = NodePath("Idle")
 
@@ -101,7 +102,7 @@ Player_body_P = NodePath("../..")
 
 [node name="Attack_Collider" type="CollisionShape2D" parent="Player_Body/Player_FSM/Attacking/Area2D"]
 unique_name_in_owner = true
-position = Vector2(147, 0)
+position = Vector2(205, 126)
 shape = SubResource("RectangleShape2D_hqqtb")
 
 [node name="Evading" type="Node2D" parent="Player_Body/Player_FSM"]

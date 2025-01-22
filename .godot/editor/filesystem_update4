@@ -1,17 +1,38 @@
-res://Common/Shaders/CenarioTunnel_Shader.tres
-res://Cenarios/Tilemap/World.tscn
-res://addons/panku_console/res/panku_console_theme.tres
+res://Player/PlayerPrefabs/Player.tscn
 res://Common/Shaders/Healthlines_Shader.tres
 res://Common/Shaders/Staminabar_Shader.tres
 res://Common/Shaders/Healthbar_Shader.tres
+res://addons/panku_console/res/panku_console_theme.tres
+res://Common/Shaders/CenarioTunnel_Shader.tres
 res://Cenarios/CenarioMaterials/TunnelMaterial.tres
 res://Cenarios/Tilemap/WorldTestTileset.tres
 res://Common/Shaders/Thunder_Shader.tres
-res://Player/PlayerPrefabs/Player.tscn
 res://Common/Main.tscn
 res://Player/PlayerPrefabs/Player_UI.tscn
 res://_Debug/SlotTesting.tscn
 res://Player/PlayerPrefabs/QuickItems_List.tscn
 res://Common/Main_Menu.tscn
 res://Common/SaveSystem.tscn
-res://Cenarios/CanvasTextures/TunnelCanvasTexture.tres
+res://Cenarios/Tilemap/World.tscn
+res://Enemys/Normal/Enemy.tscn
+res://Common/General Scritps/Save_Load_Control.cs
+res://Player/PlayerScripts/PlayerStates/Idle_State.cs
+res://Player/PlayerScripts/PlayerStates/Walking_State.cs
+res://Common/Resources/Item.cs
+res://Player/PlayerScripts/Player_FSM.cs
+res://Common/General Scritps/Continue.cs
+res://Enemys/Normal/EnemyScripts/Enemy.cs
+res://Common/Resources/QuickItems/Quick_Item.cs
+res://Player/PlayerScripts/PlayerStates/Running_State.cs
+res://Player/PlayerScripts/Player_Data_Autoload.cs
+res://Player/PlayerScripts/Player.cs
+res://Player/PlayerScripts/PlayerStates/Attacking_State.cs
+res://Player/PlayerScripts/PlayerStates/Player_State.cs
+res://Common/Resources/InventoryItems/Pill.cs
+res://Player/User Interface/UI_Scripts/Player_Healthbar_UI.cs
+res://Player/User Interface/UI_Scripts/Player_Staminabar_UI.cs
+res://Player/PlayerScripts/Player_Data.cs
+res://Common/Resources/EquipmentItems/Elixir_Tank.cs
+res://Player/PlayerScripts/PlayerStates/Evade_State.cs
+res://Common/General Scritps/Messenger.cs
+res://Common/Inventory/Inventory.cs
