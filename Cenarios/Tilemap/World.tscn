@@ -43,3 +43,6 @@ compositor = SubResource("Compositor_jjbs8")
 
 [node name="Enemy" parent="Enemys" instance=ExtResource("2_y2vy7")]
 position = Vector2(-1496, -504)
+
+[node name="Enemy2" parent="Enemys" instance=ExtResource("2_y2vy7")]
+position = Vector2(3102, -378)

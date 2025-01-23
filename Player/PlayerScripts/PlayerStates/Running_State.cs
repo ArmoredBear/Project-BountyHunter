@@ -189,14 +189,14 @@ public partial class Running_State : Player_State
 	{
 		if (Input.IsActionPressed("Game_Pad_Run") || Input.IsActionPressed("Keyboard_Run"))
 		{
-			Player.Instance.Player_State_P = State.Running;
+			Player.Instance.Player_State_P = Player_States.Running;
 			Player_FSM_P.TransitionToState("Running");
 			
 		}
 
 		else if(!Input.IsActionJustReleased("Game_Pad_Run") || !Input.IsActionJustReleased("Keyboard_Run"))
 		{
-			Player.Instance.Player_State_P = State.Walking;
+			Player.Instance.Player_State_P = Player_States.Walking;
             Player_FSM_P.TransitionToState("Walking");
 		}
 

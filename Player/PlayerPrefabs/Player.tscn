@@ -49,9 +49,10 @@ script = ExtResource("2_gnjcu")
 [node name="Sprite2D" type="Sprite2D" parent="Player_Body"]
 scale = Vector2(100, 300)
 texture = SubResource("CanvasTexture_w3gk5")
+offset = Vector2(0, -1)
 
 [node name="Main_Collider" parent="Player_Body" instance=ExtResource("2_imxp1")]
-position = Vector2(48.3333, 263.667)
+position = Vector2(51, -41)
 
 [node name="Camera2D" type="Camera2D" parent="Player_Body"]
 texture_filter = 1
@@ -102,7 +103,7 @@ Player_body_P = NodePath("../..")
 
 [node name="Attack_Collider" type="CollisionShape2D" parent="Player_Body/Player_FSM/Attacking/Area2D"]
 unique_name_in_owner = true
-position = Vector2(205, 126)
+position = Vector2(205, -115)
 shape = SubResource("RectangleShape2D_hqqtb")
 
 [node name="Evading" type="Node2D" parent="Player_Body/Player_FSM"]

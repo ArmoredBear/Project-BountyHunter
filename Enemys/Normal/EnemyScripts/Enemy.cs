@@ -11,10 +11,17 @@ public partial class Enemy : CharacterBody2D
     [Export] public Node2D Target;
     [Export] public float Movement_Speed;
 
+    private Enemy_States State_of_Enemy;
+
+    //!---------------------------------------------------------------------------------------------------------
+	#region Initialization and Processes
+	//!---------------------------------------------------------------------------------------------------------
 
     public override void _Ready()
     {
         base._Ready();
+
+        State_of_Enemy = Enemy_States.Idle;
 
         Agent_Current_Position = GlobalTransform.Origin;
         Agent_Next_Path_Position = Agent.GetNextPathPosition();
@@ -38,6 +45,32 @@ public partial class Enemy : CharacterBody2D
     {
         base._PhysicsProcess(delta);
 
+        Enemy_Movement();
+    }
+
+    #endregion
+    //!---------------------------------------------------------------------------------------------------------
+
+
+
+    //!---------------------------------------------------------------------------------------------------------
+	#region Methods
+	//!---------------------------------------------------------------------------------------------------------
+
+    private async void ActorSetup()
+    {
+        // Wait for the first physics frame so the NavigationServer can sync.
+        await ToSignal(GetTree(), SceneTree.SignalName.PhysicsFrame);
+
+        if(Target != null)
+        {
+            Agent.TargetPosition = Target.GlobalPosition;
+        }
+        
+    }
+    
+    public void Enemy_Movement()
+    {
         if(Target != null)
         {
             Agent.TargetPosition = Target.GlobalPosition;
@@ -54,16 +87,38 @@ public partial class Enemy : CharacterBody2D
         MoveAndSlide();
     }
 
+    //!---------------------------------------------------------------------------------------------------------
+	#region Enemy States
+	//!---------------------------------------------------------------------------------------------------------
+    
 
-    private async void ActorSetup()
+    public void Patrol()
     {
-        // Wait for the first physics frame so the NavigationServer can sync.
-        await ToSignal(GetTree(), SceneTree.SignalName.PhysicsFrame);
 
-        if(Target != null)
-        {
-            Agent.TargetPosition = Target.GlobalPosition;
-        }
-        
     }
+
+    public void Pursue()
+    {
+
+    }
+
+    public void Search()
+    {
+
+    }
+
+    public void Attack()
+    {
+
+    }
+
+    #endregion
+    //!---------------------------------------------------------------------------------------------------------
+
+    
+
+    #endregion
+    //!---------------------------------------------------------------------------------------------------------
+
+    
 }
