@@ -1,3 +1,6 @@
+RemoteTransform2D
+CanvasModulate
+LightOccluder2D
 CollisionShape2D
 CharacterBody2D
 Node2D
@@ -7,8 +10,6 @@ PointLight2D
 TileMapLayer
 WorldEnvironment
 DirectionalLight2D
-CanvasModulate
 Camera2D
 Node
 CanvasLayer
-MarginContainer

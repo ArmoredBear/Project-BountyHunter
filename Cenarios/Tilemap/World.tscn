@@ -19,7 +19,8 @@ dof_blur_near_enabled = true
 [node name="World" type="Node2D"]
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-color = Color(0.0924053, 0.0823975, 0.140625, 1)
+visible = false
+color = Color(0.0996129, 0.0886688, 0.152344, 1)
 energy = 0.2
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]

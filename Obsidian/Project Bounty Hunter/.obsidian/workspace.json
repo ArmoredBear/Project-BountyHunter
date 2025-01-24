@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Engine e Programação/To Do/Navmesh.md",
+                "file": "Narrativa/Ideias.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Navmesh"
+              "title": "Ideias"
             }
           }
         ]
@@ -180,8 +180,9 @@
   },
   "active": "9275d1dfe08292d4",
   "lastOpenFiles": [
-    "Engine e Programação/To Do/Physics and Collision.md",
     "Engine e Programação/To Do/Navmesh.md",
+    "Narrativa/Ideias.md",
+    "Engine e Programação/To Do/Physics and Collision.md",
     "Arte/Personagens/Animação",
     "Arte/Personagens",
     "Arte/Cenario",

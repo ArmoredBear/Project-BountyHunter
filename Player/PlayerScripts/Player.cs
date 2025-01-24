@@ -1,3 +1,5 @@
+using System;
+using System.Diagnostics;
 using Godot;
 
 /**-----------------------------------------------------------------------------------------------------------------------
@@ -159,9 +161,8 @@ public partial class Player : CharacterBody2D
 
     public override void _PhysicsProcess(double delta)
 	{
-		//Movement_Calculation();
-		//Stop_Calculation();
-	}
+		
+    }
 
 
 	#endregion

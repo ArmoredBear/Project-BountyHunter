@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bswa5xld6wyiu"]
+[gd_scene load_steps=18 format=3 uid="uid://bswa5xld6wyiu"]
 
 [ext_resource type="PackedScene" uid="uid://cstb8svv5da71" path="res://Player/PlayerPrefabs/QuickItems_List.tscn" id="1_v8mnl"]
 [ext_resource type="Script" path="res://Player/PlayerScripts/Player.cs" id="2_gnjcu"]
@@ -7,11 +7,13 @@
 [ext_resource type="Script" path="res://Player/PlayerScripts/PlayerStates/Idle_State.cs" id="6_aasnl"]
 [ext_resource type="Script" path="res://Player/PlayerScripts/PlayerStates/Walking_State.cs" id="7_wntvl"]
 [ext_resource type="Script" path="res://Player/PlayerScripts/PlayerStates/Running_State.cs" id="8_xs526"]
+[ext_resource type="Texture2D" uid="uid://1knoiw4xlgsj" path="res://Player/PlayerArt/LightMaps/Lantern_LightMap_Right.png" id="9_5p6cd"]
+[ext_resource type="Texture2D" uid="uid://dxgt2i8511f4q" path="res://Player/PlayerArt/Point_Light_Map.tres" id="9_5xv4b"]
 [ext_resource type="Script" path="res://Player/PlayerScripts/PlayerStates/Attacking_State.cs" id="9_tafg2"]
 [ext_resource type="PackedScene" uid="uid://bqojx1gwnybpn" path="res://Player/PlayerPrefabs/Player_UI.tscn" id="9_xt5uy"]
 [ext_resource type="Script" path="res://Player/PlayerScripts/PlayerStates/Evade_State.cs" id="10_ydvyn"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_w3gk5"]
+[ext_resource type="Script" path="res://Player/PlayerScripts/LightFlip.cs" id="11_imqv6"]
+[ext_resource type="Texture2D" uid="uid://bsvujlg82t8l8" path="res://Player/PlayerArt/PlaceHolderPlayer.png" id="15_gso6f"]
 
 [sub_resource type="Animation" id="Animation_y7ux2"]
 resource_name = "Idle"
@@ -25,34 +27,14 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hqqtb"]
 size = Vector2(150, 200)
 
-[sub_resource type="Gradient" id="Gradient_k5vcg"]
-interpolation_mode = 2
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_qbee6"]
-gradient = SubResource("Gradient_k5vcg")
-width = 1024
-height = 1024
-use_hdr = true
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0.1)
-
 [node name="Player" type="Node2D"]
 z_index = 2
 position = Vector2(550, 300)
 
 [node name="Player_Body" type="CharacterBody2D" parent="."]
 unique_name_in_owner = true
+motion_mode = 1
 script = ExtResource("2_gnjcu")
-
-[node name="Sprite2D" type="Sprite2D" parent="Player_Body"]
-scale = Vector2(100, 300)
-texture = SubResource("CanvasTexture_w3gk5")
-offset = Vector2(0, -1)
-
-[node name="Main_Collider" parent="Player_Body" instance=ExtResource("2_imxp1")]
-position = Vector2(51, -41)
 
 [node name="Camera2D" type="Camera2D" parent="Player_Body"]
 texture_filter = 1
@@ -111,22 +93,34 @@ unique_name_in_owner = true
 script = ExtResource("10_ydvyn")
 
 [node name="PointLight2D_Light" type="PointLight2D" parent="Player_Body"]
-color = Color(0.944458, 1, 0.453125, 1)
-energy = 4.0
+visible = false
+color = Color(0.963104, 1, 0.636719, 1)
+energy = 5.0
 shadow_filter = 1
 shadow_filter_smooth = 5.5
-texture = SubResource("GradientTexture2D_qbee6")
+texture = ExtResource("9_5xv4b")
 texture_scale = 2.0
 height = 80.0
 
-[node name="PointLight2D_Shadows" type="PointLight2D" parent="Player_Body"]
-color = Color(0.944458, 1, 0.453125, 1)
-energy = 4.0
+[node name="SpotLight2D_w_Shadows" type="PointLight2D" parent="Player_Body"]
+color = Color(0.963104, 1, 0.636719, 1)
+energy = 6.0
 shadow_enabled = true
 shadow_filter = 2
-texture = SubResource("GradientTexture2D_qbee6")
-texture_scale = 2.0
+shadow_filter_smooth = 1.0
+texture = ExtResource("9_5p6cd")
+offset = Vector2(1000, 0)
+texture_scale = 4.0
 height = 80.0
+script = ExtResource("11_imqv6")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player_Body"]
+position = Vector2(50, -363)
+texture = ExtResource("15_gso6f")
+offset = Vector2(0, -1)
+
+[node name="Main_Collider" parent="Player_Body" instance=ExtResource("2_imxp1")]
+position = Vector2(50, -31)
 
 [node name="Player_UI" parent="." instance=ExtResource("9_xt5uy")]
 unique_name_in_owner = true

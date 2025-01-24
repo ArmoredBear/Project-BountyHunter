@@ -1,10 +1,11 @@
+res://Player/PlayerArt/
+res://Cenarios/CenarioMaterials/
 res://Common
 res://Cenarios/Tilemap
 res://Enemys/Normal
 res://Cenarios/CenarioMaterials
 res://Cenarios/CenarioArt
 res://Cenarios/CenarioArt/
-res://Cenarios/CenarioMaterials/
 res://Cenarios/CenarioNormalMaps
 res://Common/Shaders
 res://Cenarios/CenarioNormalMaps/
@@ -19,5 +20,4 @@ res://_Debug
 res://Player/Animation
 res://Player/PlayerArt
 /home/arthurgf/GodotProjects/Project BountyHunter
-res://Cenarios/
 /home/arthurgf/GodotProjects/Project BountyHunter/Player/PlayerScripts

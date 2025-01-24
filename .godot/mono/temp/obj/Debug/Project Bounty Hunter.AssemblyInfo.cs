@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Project Bounty Hunter")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5912a011763101775caebd44c54b5192c47cbeb0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b4a0f0afc18b157422bbea990c6b17bbfd2c9319")]
 [assembly: System.Reflection.AssemblyProductAttribute("Project Bounty Hunter")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Project Bounty Hunter")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

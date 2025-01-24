@@ -1,5 +1,7 @@
-CanvasTexture
+OccluderPolygon2D
+StandardMaterial3D
 CanvasItemMaterial
+CanvasTexture
 ShaderMaterial
 VisualShader
 Shader
