@@ -1,6 +1,0 @@
-[gd_resource type="CanvasTexture" load_steps=2 format=3 uid="uid://urceemqjkmfv"]
-
-[ext_resource type="Texture2D" uid="uid://dy8i6ncv8mdvs" path="res://Cenarios/CenarioNormalMaps/Wall1Test_n.png" id="1_iwtgj"]
-
-[resource]
-normal_texture = ExtResource("1_iwtgj")

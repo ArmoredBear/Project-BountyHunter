@@ -1,11 +1,11 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1737225944
+::res://::1737696866
 export_presets.cfg::TextFile::-1::1737076437::0::1::::<><>::
 icon.svg::CompressedTexture2D::2360865516099563226::1694726534::1724727786::1::::<><>::
 README.md::TextFile::-1::1696023089::0::1::::<><>::
-::res://_Debug/::1737225929
+::res://_Debug/::1737696112
 SlotTesting2.png::CompressedTexture2D::514357717239578103::1725390775::1725390791::1::::<><>::
-SlotTesting.tscn::PackedScene::8006873946938468617::1737225929::0::1::::<><>::uid://hlfnqkigyf3l::::res://_Debug/SlotTesting2.png
+SlotTesting.tscn::PackedScene::8006873946938468617::1737696112::0::1::::<><>::uid://hlfnqkigyf3l::::res://_Debug/SlotTesting2.png
 ::res://addons/::1725390775
 ::res://addons/panku_console/::1725390791
 console.gd::GDScript::-1::1725390775::0::1::::PankuConsole<>CanvasLayer<>::
@@ -181,9 +181,9 @@ texture_viewer.tscn::PackedScene::7750132616475338843::1725390775::0::1::::<><>:
 ::res://addons/panku_console/modules/variable_tracker/::1725390775
 module.gd::GDScript::-1::1725390775::0::1::::PankuModuleVariableTracker<>PankuModule<>::
 opt.gd::GDScript::-1::1725390775::0::1::::<>ModuleOptions<>::
-::res://addons/panku_console/res/::1737225730
+::res://addons/panku_console/res/::1737676050
 green_gradient_1d.tres::Gradient::949485305027433995::1725390885::0::1::::<><>::
-panku_console_theme.tres::Theme::3144029756148019014::1737225730::0::1::::<><>::
+panku_console_theme.tres::Theme::3144029756148019014::1737676050::0::1::::<><>::
 ::res://addons/panku_console/res/effect/::1725390791
 square_shadow.png::CompressedTexture2D::8669949328537749897::1725390775::1725390791::1::::<><>::
 ::res://addons/panku_console/res/icons2/::1725390791
@@ -225,30 +225,31 @@ swap_horiz.svg::CompressedTexture2D::2582960940083212342::1725390775::1725390791
 mattias_crt.gdshader::Shader::-1::1725390885::0::1::::<><>::
 simple_fast_blur.gdshader::Shader::-1::1725390885::0::1::::<><>::
 ::res://Builds/::1737076529
-::res://Cenarios/::1737171578
-::res://Cenarios/CenarioArt/::1737225719
-CenarioTestSpriteSheet.png::CompressedTexture2D::5086995843643595355::1737225689::1737225719::1::::<><>::
-Floor1Test.png::CompressedTexture2D::3426849927747847358::1734676731::1736536893::1::::<><>::
-Wall1Test.png::CompressedTexture2D::1860732161921624815::1737171061::1737181862::1::::<><>::
-::res://Cenarios/CenarioMaterials/::1737182006
-new_shader_material.tres::ShaderMaterial::3170153208257573961::1737182006::0::1::::<><>::uid://mvl5vdw7j3ny::::res://Common/Shaders/new_shader_material.tres<>uid://dy8i6ncv8mdvs::::res://Cenarios/CenarioNormalMaps/Wall1Test_n.png
-::res://Cenarios/CenarioNormalMaps/::1737183584
-new_canvas_texture.tres::CanvasTexture::1439000101111270863::1737180146::0::1::::<><>::uid://dy8i6ncv8mdvs::::res://Cenarios/CenarioNormalMaps/Wall1Test_n.png
-Wall1Test_n.png::CompressedTexture2D::8912460546721116024::1737183566::1737183584::1::::<><>::
-::res://Cenarios/Tilemap/::1737225929
-World.tscn::PackedScene::8841911089074408391::1737225929::0::1::::<><>::uid://b6dow6ykq2pmo::::res://Cenarios/Tilemap/WorldTestTileset.tres
-WorldTestTileset.tres::TileSet::4569358960874897530::1737225929::0::1::::<><>::uid://ceqgcwsrcqkwh::::res://Cenarios/CenarioArt/CenarioTestSpriteSheet.png
-::res://Common/::1737225929
-Main.tscn::PackedScene::8046396890752479378::1737225929::0::1::::<><>::uid://dx8c8pj78l6qd::::res://Cenarios/Tilemap/World.tscn<>uid://8vvd0kj377du::::res://icon.svg
-Main_Menu.tscn::PackedScene::4681549589845710338::1737225929::0::1::::<><>::res://Common/General Scritps/Continue.cs
-SaveSystem.tscn::PackedScene::6252410342004751613::1737225929::0::1::::<><>::res://Common/General Scritps/Save_Load_Control.cs
+::res://Cenarios/::1737605443
+::res://Cenarios/CanvasTextures/::1737607202
+TunnelCanvasTexture.tres::CanvasTexture::7672526081376742755::1737607202::0::1::::<><>::uid://ceqgcwsrcqkwh::::res://Cenarios/CenarioArt/TunnelSpriteSheet.png<>uid://cbbem4s3ty2w::::res://Cenarios/CenarioNormalMaps/TunnelSpriteSheet_n.png<>uid://bceihkidu75wu::::res://Cenarios/CenarioSpecularMaps/CenarioTestSpriteSheet_s.png
+::res://Cenarios/CenarioArt/::1737242288
+TunnelSpriteSheet.png::CompressedTexture2D::5086995843643595355::1737227219::1737242288::1::::<><>::
+::res://Cenarios/CenarioMaterials/::1737690161
+TunnelMaterial.tres::ShaderMaterial::3170153208257573961::1737690161::0::1::::<><>::uid://mvl5vdw7j3ny::::res://Common/Shaders/CenarioTunnel_Shader.tres<>uid://cbbem4s3ty2w::::res://Cenarios/CenarioNormalMaps/TunnelSpriteSheet_n.png
+::res://Cenarios/CenarioNormalMaps/::1737242319
+TunnelSpriteSheet_n.png::CompressedTexture2D::142510601134070884::1737240306::1737242319::1::::<><>::
+::res://Cenarios/CenarioSpecularMaps/::1737605516
+CenarioTestSpriteSheet_s.png::CompressedTexture2D::2535554656241133848::1737605360::1737605516::1::::<><>::
+::res://Cenarios/Tilemap/::1737696112
+World.tscn::PackedScene::8841911089074408391::1737696112::0::1::::<><>::uid://b6dow6ykq2pmo::::res://Cenarios/Tilemap/WorldTestTileset.tres<>uid://4isaj33lvd0g::::res://Enemys/Normal/Enemy.tscn
+WorldTestTileset.tres::TileSet::4569358960874897530::1737694556::0::1::::<><>::uid://ceqgcwsrcqkwh::::res://Cenarios/CenarioArt/TunnelSpriteSheet.png<>uid://blfv7v7ygffqn::::res://Cenarios/CenarioMaterials/TunnelMaterial.tres
+::res://Common/::1737696112
+Main.tscn::PackedScene::8046396890752479378::1737696112::0::1::::<><>::uid://dx8c8pj78l6qd::::res://Cenarios/Tilemap/World.tscn
+Main_Menu.tscn::PackedScene::4681549589845710338::1737696112::0::1::::<><>::res://Common/General Scritps/Continue.cs
+SaveSystem.tscn::PackedScene::6252410342004751613::1737696112::0::1::::<><>::res://Common/General Scritps/Save_Load_Control.cs
 ::res://Common/General Scritps/::1725586049
 Continue.cs::CSharpScript::-1::1725390775::0::1::::<>Node<>::
 Messenger.cs::CSharpScript::-1::1725390775::0::1::::<>Node<>::
 Save_Load_Control.cs::CSharpScript::-1::1725590755::0::1::::<>Node<>::
 ::res://Common/General Scritps/Enums/::1725390775
 Item_Type.cs::CSharpScript::-1::1725390775::0::1::::<><>::
-States.cs::CSharpScript::-1::1725390775::0::1::::<><>::
+States.cs::CSharpScript::-1::1737590019::0::1::::<><>::
 ::res://Common/General Scritps/Interfaces/::1697312570
 IStatus.cs::CSharpScript::-1::1695149152::0::1::::<><>::
 IUse.cs::CSharpScript::-1::1695501291::0::1::::<><>::
@@ -262,15 +263,21 @@ Elixir_Tank.cs::CSharpScript::-1::1725394722::0::1::::<>Resource<>::
 Pill.cs::CSharpScript::-1::1725395350::0::1::::Pill<>Resource<>::
 ::res://Common/Resources/QuickItems/::1725390775
 Quick_Item.cs::CSharpScript::-1::1725395921::0::1::::<>Resource<>::
-::res://Common/Shaders/::1737225730
-Healthbar_Shader.tres::VisualShader::5579358277967577442::1737225730::0::1::::<><>::
-Healthlines_Shader.tres::VisualShader::2844158278713515989::1737225730::0::1::::<><>::
-new_shader_material.tres::VisualShader::886340625896716810::1737225730::0::1::::<><>::
-Staminabar_Shader.tres::VisualShader::6312704925020728607::1737225730::0::1::::<><>::uid://owe8gguuup3t::::res://Player/User Interface/UI_Art/StaminaFogTexture.png
-Thunder_Shader.tres::VisualShader::8597135893991288913::1737225730::0::1::::<><>::
-::res://Enemys/::1694794686
+::res://Common/Shaders/::1737692003
+CenarioTunnel_Shader.tres::VisualShader::886340625896716810::1737692003::0::1::::<><>::
+Healthbar_Shader.tres::VisualShader::5579358277967577442::1737676050::0::1::::<><>::
+Healthlines_Shader.tres::VisualShader::2844158278713515989::1737676050::0::1::::<><>::
+Staminabar_Shader.tres::VisualShader::6312704925020728607::1737676050::0::1::::<><>::uid://owe8gguuup3t::::res://Player/User Interface/UI_Art/StaminaFogTexture.png
+Thunder_Shader.tres::VisualShader::8597135893991288913::1737676050::0::1::::<><>::
+::res://Enemys/::1737420624
+::res://Enemys/Boss/::1737421307
+::res://Enemys/Boss/BossScripts/::1737421307
+::res://Enemys/Normal/::1737696112
+Enemy.tscn::PackedScene::2053084910657609916::1737696112::0::1::::<><>::res://Enemys/Normal/EnemyScripts/Enemy.cs
+::res://Enemys/Normal/EnemyScripts/::1737421357
+Enemy.cs::CSharpScript::-1::1737608948::0::1::::<>CharacterBody2D<>::
 ::res://Obsidian/::1736725728
-::res://Obsidian/Project Bounty Hunter/::1736907106
+::res://Obsidian/Project Bounty Hunter/::1737685264
 ::res://Obsidian/Project Bounty Hunter/Arte/::1736907164
 ::res://Obsidian/Project Bounty Hunter/Arte/Cenario/::1736907123
 ::res://Obsidian/Project Bounty Hunter/Arte/Cenario/Tilemap/::1736906715
@@ -290,7 +297,8 @@ Physics and Collision.md::TextFile::-1::1736906978::0::1::::<><>::
 ::res://Obsidian/Project Bounty Hunter/Game Design/Done/::1736906689
 ::res://Obsidian/Project Bounty Hunter/Game Design/To do/::1736906727
 ::res://Obsidian/Project Bounty Hunter/Game Design/W.I.P/::1736906694
-::res://Obsidian/Project Bounty Hunter/Narrativa/::1736906762
+::res://Obsidian/Project Bounty Hunter/Narrativa/::1737685294
+Ideias.md::TextFile::-1::1737685283::0::1::::<><>::
 ::res://Obsidian/Project Bounty Hunter/Narrativa/Done/::1736906746
 ::res://Obsidian/Project Bounty Hunter/Narrativa/To do/::1736906751
 ::res://Obsidian/Project Bounty Hunter/Narrativa/W.I.P/::1736906758
@@ -299,16 +307,23 @@ Physics and Collision.md::TextFile::-1::1736906978::0::1::::<><>::
 Player_PlaceHolder_Animation.tres::SpriteFrames::7239417502139429078::1725390775::0::1::::<><>::uid://bsvujlg82t8l8::::res://Player/PlayerArt/PlaceHolderPlayer.png
 ::res://Player/Collision/::1695083394
 main_collider.tscn::PackedScene::811582608222668187::1695083335::0::1::::<><>::
-::res://Player/PlayerArt/::1725390791
+::res://Player/PlayerArt/::1737696866
 Idle.png::CompressedTexture2D::8656555799168343007::1695122583::1724727786::1::::<><>::
 PlaceHolderPlayer.png::CompressedTexture2D::3694402802575326083::1725390775::1725390791::1::::<><>::
-::res://Player/PlayerPrefabs/::1737225929
-Player.tscn::PackedScene::3695290978792673220::1737225929::0::1::::<><>::uid://cstb8svv5da71::::res://Player/PlayerPrefabs/QuickItems_List.tscn<>res://Player/PlayerScripts/Player.cs<>uid://ltev86bv3ovj::::res://Player/Collision/main_collider.tscn<>res://Player/PlayerScripts/Player_FSM.cs<>res://Player/PlayerScripts/PlayerStates/Idle_State.cs<>res://Player/PlayerScripts/PlayerStates/Walking_State.cs<>res://Player/PlayerScripts/PlayerStates/Running_State.cs<>res://Player/PlayerScripts/PlayerStates/Attacking_State.cs<>uid://bqojx1gwnybpn::::res://Player/PlayerPrefabs/Player_UI.tscn<>res://Player/PlayerScripts/PlayerStates/Evade_State.cs
+Point_Light_Map.tres::GradientTexture2D::8787194033140584686::1737676050::0::1::::<><>::
+::res://Player/PlayerArt/LightMaps/::1737696866
+Lantern_LightMap_Down.png::CompressedTexture2D::849472410268101352::1737696844::1737696867::1::::<><>::
+Lantern_LightMap_Left.png::CompressedTexture2D::3804219108376054995::1737696371::1737696867::1::::<><>::
+Lantern_LightMap_Right.png::CompressedTexture2D::1846368489671373549::1737621144::1737696867::1::::<><>::
+Lantern_LightMap_Up.png::CompressedTexture2D::8601022688938041936::1737696821::1737696867::1::::<><>::
+::res://Player/PlayerPrefabs/::1737696866
+Player.tscn::PackedScene::3695290978792673220::1737696866::0::1::::<><>::uid://cstb8svv5da71::::res://Player/PlayerPrefabs/QuickItems_List.tscn<>res://Player/PlayerScripts/Player.cs<>uid://ltev86bv3ovj::::res://Player/Collision/main_collider.tscn<>res://Player/PlayerScripts/Player_FSM.cs<>res://Player/PlayerScripts/PlayerStates/Idle_State.cs<>res://Player/PlayerScripts/PlayerStates/Walking_State.cs<>res://Player/PlayerScripts/PlayerStates/Running_State.cs<>uid://1knoiw4xlgsj::::res://Player/PlayerArt/LightMaps/Lantern_LightMap_Right.png<>uid://dxgt2i8511f4q::::res://Player/PlayerArt/Point_Light_Map.tres<>res://Player/PlayerScripts/PlayerStates/Attacking_State.cs<>uid://bqojx1gwnybpn::::res://Player/PlayerPrefabs/Player_UI.tscn<>res://Player/PlayerScripts/PlayerStates/Evade_State.cs<>res://Player/PlayerScripts/LightFlip.cs
 Player_Data.tres::Resource/Player_Data::5297623335292475942::1725390775::0::1::::<><>::res://Player/PlayerScripts/Player_Data.cs
-Player_UI.tscn::PackedScene::3538932372546993759::1737225929::0::1::::<><>::res://Player/User Interface/UI_Scripts/Player_Healthbar_UI.cs<>uid://crhqsrd1pob0e::::res://Player/User Interface/UI_Art/Health_Monitor.png<>uid://dl8x3gdfx7ffe::::res://Player/User Interface/UI_Art/Healthbar_Background.png<>uid://bgry4vid31342::::res://Common/Shaders/Healthlines_Shader.tres<>uid://dsi8vnmxm1kh4::::res://Player/User Interface/UI_Art/Health_Lines.png<>uid://csuln21ai4cjl::::res://Player/User Interface/UI_Art/Vignette.png<>res://Player/User Interface/UI_Scripts/Player_Staminabar_UI.cs<>uid://cv66le7seyjq2::::res://Common/Shaders/Staminabar_Shader.tres<>uid://y2j0ijuw8uh4::::res://Player/User Interface/UI_Art/Armor_Bar.png<>uid://owe8gguuup3t::::res://Player/User Interface/UI_Art/StaminaFogTexture.png<>uid://clqxhllh4phgs::::res://Common/Shaders/Healthbar_Shader.tres
-QuickItems_List.tscn::PackedScene::6075584357245097138::1737225929::0::1::::<><>::
-::res://Player/PlayerScripts/::1725390775
-Player.cs::CSharpScript::-1::1736705282::0::1::::<>CharacterBody2D<>::
+Player_UI.tscn::PackedScene::3538932372546993759::1737696112::0::1::::<><>::res://Player/User Interface/UI_Scripts/Player_Healthbar_UI.cs<>uid://crhqsrd1pob0e::::res://Player/User Interface/UI_Art/Health_Monitor.png<>uid://dl8x3gdfx7ffe::::res://Player/User Interface/UI_Art/Healthbar_Background.png<>uid://bgry4vid31342::::res://Common/Shaders/Healthlines_Shader.tres<>uid://dsi8vnmxm1kh4::::res://Player/User Interface/UI_Art/Health_Lines.png<>uid://csuln21ai4cjl::::res://Player/User Interface/UI_Art/Vignette.png<>res://Player/User Interface/UI_Scripts/Player_Staminabar_UI.cs<>uid://cv66le7seyjq2::::res://Common/Shaders/Staminabar_Shader.tres<>uid://y2j0ijuw8uh4::::res://Player/User Interface/UI_Art/Armor_Bar.png<>uid://owe8gguuup3t::::res://Player/User Interface/UI_Art/StaminaFogTexture.png<>uid://clqxhllh4phgs::::res://Common/Shaders/Healthbar_Shader.tres
+QuickItems_List.tscn::PackedScene::6075584357245097138::1737696112::0::1::::<><>::
+::res://Player/PlayerScripts/::1737694921
+LightFlip.cs::CSharpScript::-1::1737696288::0::1::::<>PointLight2D<>::
+Player.cs::CSharpScript::-1::1737590721::0::1::::<>CharacterBody2D<>::
 Player_Data.cs::CSharpScript::-1::1725390775::0::1::::Player_Data<>Resource<>::
 Player_Data_Autoload.cs::CSharpScript::-1::1725591109::0::1::::<>Node<>::
 Player_FSM.cs::CSharpScript::-1::1725390775::0::1::::<>Node<>::
@@ -317,7 +332,7 @@ Attacking_State.cs::CSharpScript::-1::1725390775::0::1::::<>Node<>::
 Evade_State.cs::CSharpScript::-1::1725390775::0::1::::<>Node<>::
 Idle_State.cs::CSharpScript::-1::1725390775::0::1::::<>Node<>::
 Player_State.cs::CSharpScript::-1::1725390775::0::1::::<>Node<>::
-Running_State.cs::CSharpScript::-1::1725390775::0::1::::<>Node<>::
+Running_State.cs::CSharpScript::-1::1737590338::0::1::::<>Node<>::
 Walking_State.cs::CSharpScript::-1::1725390775::0::1::::<>Node<>::
 ::res://Player/Sound/::1695083386
 ::res://Player/User Interface/::1725390775
@@ -334,4 +349,4 @@ VFX_Thunder.png::CompressedTexture2D::7678525517088334750::1725390775::172539079
 Vignette.png::CompressedTexture2D::6078220668500377133::1725390775::1725390791::1::::<><>::
 ::res://Player/User Interface/UI_Scripts/::1725390775
 Player_Healthbar_UI.cs::CSharpScript::-1::1725590764::0::1::::<>Control<>::
-Player_Staminabar_UI.cs::CSharpScript::-1::1725390775::0::1::::<>TextureProgressBar<>::
+Player_Staminabar_UI.cs::CSharpScript::-1::1737590353::0::1::::<>TextureProgressBar<>::

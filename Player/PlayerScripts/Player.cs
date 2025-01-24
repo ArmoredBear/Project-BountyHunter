@@ -1,3 +1,5 @@
+using System;
+using System.Diagnostics;
 using Godot;
 
 /**-----------------------------------------------------------------------------------------------------------------------
@@ -23,10 +25,13 @@ public partial class Player : CharacterBody2D
 	private Vector2 _keyboard_directional_input_vector;
 	private float _speed;
 	private float _run_speed_modifier;
-	private State _Player_State_P;
+	private Player_States _Player_State_P;
 	private bool _is_running;
     
 	#endregion
+	//!---------------------------------------------------------------------------------------------------------
+
+	
 
 	//!---------------------------------------------------------------------------------------------------------
 	#region Properties
@@ -90,7 +95,7 @@ public partial class Player : CharacterBody2D
 	}
 
 	[Export]
-	public State Player_State_P
+	public Player_States Player_State_P
 	{
 		get
 		{
@@ -105,6 +110,9 @@ public partial class Player : CharacterBody2D
 
 
 	#endregion
+	//!---------------------------------------------------------------------------------------------------------
+
+
 
 	//!---------------------------------------------------------------------------------------------------------
 	#region Signals
@@ -114,6 +122,9 @@ public partial class Player : CharacterBody2D
 	//public delegate void Player_State_Changer_EventHandler();
 	
 	#endregion
+	//!---------------------------------------------------------------------------------------------------------
+
+
 
 	//!---------------------------------------------------------------------------------------------------------
 	#region Initialization and Processes
@@ -134,7 +145,7 @@ public partial class Player : CharacterBody2D
 		
 		Speed = 1000;
 		Run_Modifier = 2;
-		Player_State_P = State.Idle;
+		Player_State_P = Player_States.Idle;
 
 		if(GetTree().CurrentScene.Name != "Main")
 		{
@@ -150,12 +161,14 @@ public partial class Player : CharacterBody2D
 
     public override void _PhysicsProcess(double delta)
 	{
-		//Movement_Calculation();
-		//Stop_Calculation();
-	}
+		
+    }
 
 
 	#endregion
+	//!---------------------------------------------------------------------------------------------------------
+
+
 
 	//!---------------------------------------------------------------------------------------------------------
 	#region Methods and Interfaces
@@ -163,4 +176,6 @@ public partial class Player : CharacterBody2D
 	
 
 	#endregion
+	//!---------------------------------------------------------------------------------------------------------
+
 }

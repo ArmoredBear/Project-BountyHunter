@@ -73,7 +73,7 @@ public partial class Player_Staminabar_UI : TextureProgressBar
 
 	public bool Check_Running()
 	{
-		if (Player.Instance.Player_State_P == State.Running)
+		if (Player.Instance.Player_State_P == Player_States.Running)
 		{
 			return true;
 		}
