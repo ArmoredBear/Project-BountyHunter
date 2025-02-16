@@ -1,4 +1,4 @@
-res://Player/PlayerPrefabs/Player.tscn
+res://Cenarios/Tilemap/World.tscn
 res://Player/PlayerArt/Lighting/Player_Point_Light_Map.tres
 res://Common/Shaders/Healthlines_Shader.tres
 res://Common/Shaders/Staminabar_Shader.tres
@@ -16,7 +16,7 @@ res://Cenarios/CenarioMaterials/GodRaysMaterial_1.tres
 res://Cenarios/CenarioArt/Lighting/Cenario_Point_Light_Map.tres
 res://Cenarios/CenarioMaterials/GodRaysMaterial_2.tres
 res://Common/Shaders/Thunder_Shader.tres
-res://Cenarios/Tilemap/World.tscn
+res://Player/PlayerPrefabs/Player.tscn
 res://Common/Main.tscn
 res://Player/PlayerPrefabs/Player_UI.tscn
 res://_Debug/SlotTesting.tscn
@@ -24,25 +24,3 @@ res://Player/PlayerPrefabs/QuickItems_List.tscn
 res://Common/Main_Menu.tscn
 res://Common/SaveSystem.tscn
 res://Enemys/Normal/Enemy.tscn
-res://Player/PlayerScripts/Player_Data_Autoload.cs
-res://Common/Resources/Item.cs
-res://Common/General Scritps/Continue.cs
-res://Player/PlayerScripts/PlayerStates/Idle_State.cs
-res://Common/Resources/InventoryItems/Pill.cs
-res://Player/PlayerScripts/PlayerStates/Evade_State.cs
-res://Common/Resources/QuickItems/Quick_Item.cs
-res://Player/PlayerScripts/LightFlip.cs
-res://Player/PlayerScripts/PlayerStates/Walking_State.cs
-res://Player/User Interface/UI_Scripts/Player_Staminabar_UI.cs
-res://Player/PlayerScripts/PlayerStates/Running_State.cs
-res://Player/User Interface/UI_Scripts/Player_Healthbar_UI.cs
-res://Common/General Scritps/Save_Load_Control.cs
-res://Player/PlayerScripts/PlayerStates/Attacking_State.cs
-res://Player/PlayerScripts/PlayerStates/Player_State.cs
-res://Player/PlayerScripts/Player.cs
-res://Common/General Scritps/Messenger.cs
-res://Common/Inventory/Inventory.cs
-res://Player/PlayerScripts/Player_Data.cs
-res://Player/PlayerScripts/Player_FSM.cs
-res://Enemys/Normal/EnemyScripts/Enemy.cs
-res://Common/Resources/EquipmentItems/Elixir_Tank.cs

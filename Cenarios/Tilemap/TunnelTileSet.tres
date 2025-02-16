@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=44 format=3 uid="uid://bm6068a5v0klm"]
+[gd_resource type="TileSet" load_steps=45 format=3 uid="uid://bm6068a5v0klm"]
 
 [ext_resource type="Material" uid="uid://blfv7v7ygffqn" path="res://Cenarios/CenarioMaterials/TunnelMaterial.tres" id="1_cwukg"]
 [ext_resource type="Texture2D" uid="uid://ceqgcwsrcqkwh" path="res://Cenarios/CenarioArt/Environment/TunnelSpriteSheet.png" id="2_6a88p"]
@@ -41,6 +41,12 @@ polygon = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5v85d"]
 polygon = PackedVector2Array(-64, -64, -29, -64, -31, 64, -64, 64)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_6fpvq"]
+vertices = PackedVector2Array(64, 64, -64, 64, -64, -64, 64, -64)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)])
+agent_radius = 0.0
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ajqju"]
 polygon = PackedVector2Array(-64, 54, 64, 54, 64, 64, -64, 64)
@@ -2086,7 +2092,22 @@ texture_region_size = Vector2i(128, 128)
 18:21/0/material = ExtResource("1_cwukg")
 18:21/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_8f8dq")
 21:29/0 = 0
+21:29/0/material = ExtResource("1_cwukg")
 21:29/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, -35, -64, -64, -48, -64, -44)
+29:33/0 = 0
+29:33/0/material = ExtResource("1_cwukg")
+29:33/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_6fpvq")
+29:34/0 = 0
+29:34/0/material = ExtResource("1_cwukg")
+29:34/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_6fpvq")
+30:34/0 = 0
+30:34/0/material = ExtResource("1_cwukg")
+30:34/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_6fpvq")
+30:33/0 = 0
+30:33/0/material = ExtResource("1_cwukg")
+30:33/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_6fpvq")
+6:37/0 = 0
+21:37/0 = 0
 
 [resource]
 tile_size = Vector2i(128, 128)
