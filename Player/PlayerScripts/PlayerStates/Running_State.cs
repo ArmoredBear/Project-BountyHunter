@@ -65,6 +65,12 @@ public partial class Running_State : Player_State
 			Player_body_P.Velocity = _movement_input.Normalized() * Player.Speed * Player.Run_Modifier;
 		    Player_body_P.MoveAndSlide();
 		}
+
+		else
+		{
+			Player.Instance.Player_State_P = Player_States.Walking;
+            Player_FSM_P.TransitionToState("Walking");
+		}
     }
 
     public void Movement_Calculation()
@@ -187,13 +193,16 @@ public partial class Running_State : Player_State
 
 	public void Movement()
 	{
+		
 		if (Input.IsActionPressed("Game_Pad_Run") || Input.IsActionPressed("Keyboard_Run"))
 		{
-			Player.Instance.Player_State_P = Player_States.Running;
-			Player_FSM_P.TransitionToState("Running");
-			
-		}
-
+			if (Player_Data_Autoload.Data.CURRENT_Stamina == 100)
+			{
+				Player.Instance.Player_State_P = Player_States.Running;
+				Player_FSM_P.TransitionToState("Running");
+			}
+		}	
+		
 		else if(!Input.IsActionJustReleased("Game_Pad_Run") || !Input.IsActionJustReleased("Keyboard_Run"))
 		{
 			Player.Instance.Player_State_P = Player_States.Walking;
@@ -204,5 +213,6 @@ public partial class Running_State : Player_State
 		{
 			Player_FSM_P.TransitionToState("Idle");
 		}
+		
 	}
 }

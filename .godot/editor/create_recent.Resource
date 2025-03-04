@@ -1,11 +1,12 @@
-ParticleProcessMaterial
+CapsuleShape2D
 ShaderMaterial
+VisualShader
+ParticleProcessMaterial
 Shader
 OccluderPolygon2D
 StandardMaterial3D
 CanvasItemMaterial
 CanvasTexture
-VisualShader
 TileSetAtlasSource
 TileSet
 Player_Data
