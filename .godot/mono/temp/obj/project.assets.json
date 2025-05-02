@@ -11,14 +11,10 @@
       "GodotSharp/4.3.0": {
         "type": "package",
         "compile": {
-          "lib/net6.0/GodotSharp.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/GodotSharp.dll": {}
         },
         "runtime": {
-          "lib/net6.0/GodotSharp.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/GodotSharp.dll": {}
         }
       },
       "GodotSharpEditor/4.3.0": {
@@ -27,27 +23,19 @@
           "GodotSharp": "4.3.0"
         },
         "compile": {
-          "lib/net6.0/GodotSharpEditor.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/GodotSharpEditor.dll": {}
         },
         "runtime": {
-          "lib/net6.0/GodotSharpEditor.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/GodotSharpEditor.dll": {}
         }
       },
       "Newtonsoft.Json/13.0.3": {
         "type": "package",
         "compile": {
-          "lib/net6.0/Newtonsoft.Json.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/Newtonsoft.Json.dll": {}
         },
         "runtime": {
-          "lib/net6.0/Newtonsoft.Json.dll": {
-            "related": ".xml"
-          }
+          "lib/net6.0/Newtonsoft.Json.dll": {}
         }
       }
     }
@@ -132,19 +120,19 @@
     ]
   },
   "packageFolders": {
-    "/home/arthurgf/.nuget/packages/": {}
+    "/home/lordgrifon/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/arthurgf/GodotProjects/Project BountyHunter/Project Bounty Hunter.csproj",
+      "projectUniqueName": "/mnt/181463a2-25e7-4b53-bae3-556a444365b9/BountyHunter/Project-BountyHunter/Project Bounty Hunter.csproj",
       "projectName": "Project Bounty Hunter",
-      "projectPath": "/home/arthurgf/GodotProjects/Project BountyHunter/Project Bounty Hunter.csproj",
-      "packagesPath": "/home/arthurgf/.nuget/packages/",
-      "outputPath": "/home/arthurgf/GodotProjects/Project BountyHunter/.godot/mono/temp/obj/",
+      "projectPath": "/mnt/181463a2-25e7-4b53-bae3-556a444365b9/BountyHunter/Project-BountyHunter/Project Bounty Hunter.csproj",
+      "packagesPath": "/home/lordgrifon/.nuget/packages/",
+      "outputPath": "/mnt/181463a2-25e7-4b53-bae3-556a444365b9/BountyHunter/Project-BountyHunter/.godot/mono/temp/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/arthurgf/.nuget/NuGet/NuGet.Config"
+        "/home/lordgrifon/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -162,13 +150,7 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
-      },
-      "SdkAnalysisLevel": "9.0.100"
+      }
     },
     "frameworks": {
       "net6.0": {
@@ -197,18 +179,13 @@
           "net47",
           "net471",
           "net472",
-          "net48",
-          "net481"
+          "net48"
         ],
         "assetTargetFallback": true,
         "warn": true,
         "downloadDependencies": [
           {
             "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[6.0.36, 6.0.36]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
             "version": "[6.0.36, 6.0.36]"
           }
         ],
@@ -217,7 +194,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.103/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.136/RuntimeIdentifierGraph.json"
       }
     }
   }
