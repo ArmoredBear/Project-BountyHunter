@@ -1,6 +1,6 @@
+TileMapLayer
 PointLight2D
 Node2D
-TileMapLayer
 LightOccluder2D
 Sprite2D
 GPUParticles2D

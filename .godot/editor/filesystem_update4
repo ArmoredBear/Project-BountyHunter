@@ -1,4 +1,4 @@
-res://Player/PlayerPrefabs/Player.tscn
+res://Cenarios/Tilemap/World.tscn
 res://Player/PlayerArt/Lighting/Player_Point_Light_Map.tres
 res://Common/Shaders/Healthlines_Shader.tres
 res://Common/Shaders/Staminabar_Shader.tres
@@ -18,10 +18,10 @@ res://Cenarios/CenarioMaterials/GodRaysMaterial_1.tres
 res://Cenarios/CenarioArt/Lighting/Cenario_Point_Light_Map.tres
 res://Cenarios/CenarioMaterials/GodRaysMaterial_2.tres
 res://Common/Shaders/Thunder_Shader.tres
+res://Player/PlayerPrefabs/Player.tscn
 res://Common/Main.tscn
 res://Player/PlayerPrefabs/Player_UI.tscn
 res://_Debug/SlotTesting.tscn
 res://Player/PlayerPrefabs/QuickItems_List.tscn
 res://Common/SaveSystem.tscn
-res://Cenarios/Tilemap/World.tscn
 res://Enemys/Normal/Enemy.tscn
