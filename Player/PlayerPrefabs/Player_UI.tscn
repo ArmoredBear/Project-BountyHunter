@@ -1,9 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://bqojx1gwnybpn"]
+[gd_scene load_steps=27 format=3 uid="uid://bqojx1gwnybpn"]
 
 [ext_resource type="Script" path="res://Player/User Interface/UI_Scripts/Player_Healthbar_UI.cs" id="1_2042d"]
+[ext_resource type="FontFile" uid="uid://ghrnan3qvune" path="res://DialogBox/Font/JMH Typewriter.ttf" id="1_ub7j8"]
+[ext_resource type="Texture2D" uid="uid://ckjuid2ckqikj" path="res://DialogBox/DialogImages/DialogueBox.png" id="2_ahwuk"]
 [ext_resource type="Texture2D" uid="uid://crhqsrd1pob0e" path="res://Player/User Interface/UI_Art/Health_Monitor.png" id="2_sfdbi"]
 [ext_resource type="Texture2D" uid="uid://dl8x3gdfx7ffe" path="res://Player/User Interface/UI_Art/Healthbar_Background.png" id="3_aoo3p"]
 [ext_resource type="Shader" uid="uid://bgry4vid31342" path="res://Common/Shaders/Healthlines_Shader.tres" id="3_hcd7x"]
+[ext_resource type="Texture2D" uid="uid://bm6myu4gxmunq" path="res://DialogBox/DialogImages/Seta.png" id="3_i8pxw"]
+[ext_resource type="Script" path="res://DialogBox/ScriptsUI/dialog.gd" id="3_u1kri"]
 [ext_resource type="Texture2D" uid="uid://dsi8vnmxm1kh4" path="res://Player/User Interface/UI_Art/Health_Lines.png" id="4_7hy6p"]
 [ext_resource type="Texture2D" uid="uid://csuln21ai4cjl" path="res://Player/User Interface/UI_Art/Vignette.png" id="4_avq2p"]
 [ext_resource type="Script" path="res://Player/User Interface/UI_Scripts/Player_Staminabar_UI.cs" id="8_8jq05"]
@@ -11,6 +15,40 @@
 [ext_resource type="Texture2D" uid="uid://y2j0ijuw8uh4" path="res://Player/User Interface/UI_Art/Armor_Bar.png" id="9_2ool3"]
 [ext_resource type="Texture2D" uid="uid://owe8gguuup3t" path="res://Player/User Interface/UI_Art/StaminaFogTexture.png" id="9_e6ycs"]
 [ext_resource type="Shader" uid="uid://clqxhllh4phgs" path="res://Common/Shaders/Healthbar_Shader.tres" id="10_rrm7i"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lp081"]
+texture = ExtResource("2_ahwuk")
+texture_margin_left = 256.0
+texture_margin_top = 256.0
+texture_margin_right = 256.0
+texture_margin_bottom = 256.0
+
+[sub_resource type="Theme" id="Theme_lsd02"]
+default_font = ExtResource("1_ub7j8")
+default_font_size = 16
+Label/colors/font_color = Color(1, 0, 0, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 1)
+Label/fonts/font = ExtResource("1_ub7j8")
+Panel/styles/panel = SubResource("StyleBoxTexture_lp081")
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8q3hw"]
+texture = ExtResource("3_i8pxw")
+modulate_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3c2vd"]
+texture = ExtResource("3_i8pxw")
+modulate_color = Color(0.501961, 0.501961, 0.501961, 0.501961)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7nfp0"]
+texture = ExtResource("3_i8pxw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k8g07"]
+texture = ExtResource("3_i8pxw")
+modulate_color = Color(1, 1, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eocig"]
+texture = ExtResource("3_i8pxw")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vccdo"]
 shader = ExtResource("3_hcd7x")
@@ -31,6 +69,70 @@ shader_parameter/Texture2D = ExtResource("9_e6ycs")
 
 [node name="Player_UI" type="CanvasLayer"]
 visible = false
+
+[node name="Dialog" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchor_top = 0.667
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -0.359985
+offset_right = 792.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_lsd02")
+script = ExtResource("3_u1kri")
+
+[node name="Box" type="Panel" parent="Dialog"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -640.0
+offset_bottom = -112.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+
+[node name="Continue" type="Button" parent="Dialog/Box"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -98.0
+offset_top = -100.0
+offset_right = -34.0
+offset_bottom = -36.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/focus = SubResource("StyleBoxTexture_8q3hw")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_3c2vd")
+theme_override_styles/hover = SubResource("StyleBoxTexture_7nfp0")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_k8g07")
+theme_override_styles/normal = SubResource("StyleBoxTexture_eocig")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Dialog"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 1027.0
+offset_bottom = 210.0
+
+[node name="Speaker" type="Label" parent="Dialog/VBoxContainer"]
+layout_mode = 2
+text = "Personagem"
+
+[node name="Dialogue" type="RichTextLabel" parent="Dialog/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
+
+"
+fit_content = true
 
 [node name="Status" type="Control" parent="."]
 layout_mode = 3

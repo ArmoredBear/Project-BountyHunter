@@ -17,3 +17,21 @@
 /home/arthurgf/GodotProjects/Project BountyHunter/.godot/mono/temp/obj/Debug/Project Bounty Hunter.sourcelink.json
 /home/arthurgf/GodotProjects/Project BountyHunter/.godot/mono/temp/bin/Debug/Newtonsoft.Json.dll
 /home/arthurgf/GodotProjects/Project BountyHunter/.godot/mono/temp/obj/Debug/Project .54E98F0C.Up2Date
+/mnt/181463a2-25e7-4b53-bae3-556a444365b9/BountyHunter/Project-BountyHunter/.godot/mono/temp/bin/Debug/Project Bounty Hunter.deps.json
+/mnt/181463a2-25e7-4b53-bae3-556a444365b9/BountyHunter/Project-BountyHunter/.godot/mono/temp/bin/Debug/Project Bounty Hunter.runtimeconfig.json
+/mnt/181463a2-25e7-4b53-bae3-556a444365b9/BountyHunter/Project-BountyHunter/.godot/mono/temp/bin/Debug/Project Bounty Hunter.dll
+/mnt/181463a2-25e7-4b53-bae3-556a444365b9/BountyHunter/Project-BountyHunter/.godot/mono/temp/bin/Debug/ref/Project Bounty Hunter.dll
+/mnt/181463a2-25e7-4b53-bae3-556a444365b9/BountyHunter/Project-BountyHunter/.godot/mono/temp/bin/Debug/Project Bounty Hunter.pdb
+/mnt/181463a2-25e7-4b53-bae3-556a444365b9/BountyHunter/Project-BountyHunter/.godot/mono/temp/bin/Debug/GodotSharp.dll
+/mnt/181463a2-25e7-4b53-bae3-556a444365b9/BountyHunter/Project-BountyHunter/.godot/mono/temp/bin/Debug/GodotSharpEditor.dll
+/mnt/181463a2-25e7-4b53-bae3-556a444365b9/BountyHunter/Project-BountyHunter/.godot/mono/temp/bin/Debug/Newtonsoft.Json.dll
+/mnt/181463a2-25e7-4b53-bae3-556a444365b9/BountyHunter/Project-BountyHunter/.godot/mono/temp/obj/Debug/Project Bounty Hunter.csproj.AssemblyReference.cache
+/mnt/181463a2-25e7-4b53-bae3-556a444365b9/BountyHunter/Project-BountyHunter/.godot/mono/temp/obj/Debug/Project Bounty Hunter.GeneratedMSBuildEditorConfig.editorconfig
+/mnt/181463a2-25e7-4b53-bae3-556a444365b9/BountyHunter/Project-BountyHunter/.godot/mono/temp/obj/Debug/Project Bounty Hunter.AssemblyInfoInputs.cache
+/mnt/181463a2-25e7-4b53-bae3-556a444365b9/BountyHunter/Project-BountyHunter/.godot/mono/temp/obj/Debug/Project Bounty Hunter.AssemblyInfo.cs
+/mnt/181463a2-25e7-4b53-bae3-556a444365b9/BountyHunter/Project-BountyHunter/.godot/mono/temp/obj/Debug/Project Bounty Hunter.csproj.CoreCompileInputs.cache
+/mnt/181463a2-25e7-4b53-bae3-556a444365b9/BountyHunter/Project-BountyHunter/.godot/mono/temp/obj/Debug/Project Bounty Hunter.csproj.CopyComplete
+/mnt/181463a2-25e7-4b53-bae3-556a444365b9/BountyHunter/Project-BountyHunter/.godot/mono/temp/obj/Debug/Project Bounty Hunter.dll
+/mnt/181463a2-25e7-4b53-bae3-556a444365b9/BountyHunter/Project-BountyHunter/.godot/mono/temp/obj/Debug/ref/Project Bounty Hunter.dll
+/mnt/181463a2-25e7-4b53-bae3-556a444365b9/BountyHunter/Project-BountyHunter/.godot/mono/temp/obj/Debug/Project Bounty Hunter.pdb
+/mnt/181463a2-25e7-4b53-bae3-556a444365b9/BountyHunter/Project-BountyHunter/.godot/mono/temp/obj/Debug/Project Bounty Hunter.genruntimeconfig.cache

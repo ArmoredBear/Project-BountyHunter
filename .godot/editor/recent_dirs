@@ -1,3 +1,4 @@
+res://DialogBox/ScriptsUI
 res://Common/Shaders
 res://Cenarios/CenarioMaterials/
 res://Cenarios/CenarioMaterials
@@ -19,6 +20,5 @@ res://Player/User Interface
 res://_Debug
 /home/arthurgf/GodotProjects/Project BountyHunter/_Debug
 res://Player/Animation
-res://Player/PlayerArt
 /home/arthurgf/GodotProjects/Project BountyHunter
 /home/arthurgf/GodotProjects/Project BountyHunter/Player/PlayerScripts
