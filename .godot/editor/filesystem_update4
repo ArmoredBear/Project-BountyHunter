@@ -1,0 +1,9 @@
+res://Player/PlayerArt/Point_Light_Map.tres
+res://Common/Shaders/Healthlines_Shader.tres
+res://Common/Shaders/Staminabar_Shader.tres
+res://Common/Shaders/Healthbar_Shader.tres
+res://addons/panku_console/res/panku_console_theme.tres
+res://Common/Shaders/CenarioTunnel_Shader.tres
+res://Cenarios/CenarioMaterials/TunnelMaterial.tres
+res://Cenarios/Tilemap/WorldTestTileset.tres
+res://Common/Shaders/Thunder_Shader.tres
