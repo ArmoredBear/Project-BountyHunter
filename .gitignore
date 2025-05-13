@@ -2,3 +2,5 @@ godot/editor
 .godot/
 **/.godot/
 .cache
+/.godot
+.godot/mono/metadata/ide_messaging_meta.txt
