@@ -1,1 +1,4 @@
-
+godot/editor
+.godot/
+**/.godot/
+.cache
