@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bqojx1gwnybpn"]
+[gd_scene load_steps=26 format=3 uid="uid://bqojx1gwnybpn"]
 
 [ext_resource type="Script" path="res://Player/User Interface/UI_Scripts/Player_Healthbar_UI.cs" id="1_2042d"]
 [ext_resource type="Texture2D" uid="uid://crhqsrd1pob0e" path="res://Player/User Interface/UI_Art/Health_Monitor.png" id="2_sfdbi"]
@@ -11,6 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://y2j0ijuw8uh4" path="res://Player/User Interface/UI_Art/Armor_Bar.png" id="9_2ool3"]
 [ext_resource type="Texture2D" uid="uid://owe8gguuup3t" path="res://Player/User Interface/UI_Art/StaminaFogTexture.png" id="9_e6ycs"]
 [ext_resource type="Shader" uid="uid://clqxhllh4phgs" path="res://Common/Shaders/Healthbar_Shader.tres" id="10_rrm7i"]
+[ext_resource type="Texture2D" uid="uid://ckjuid2ckqikj" path="res://Common/DialogBox/DialogImages/DialogueBox.png" id="12_54aib"]
+[ext_resource type="FontFile" uid="uid://ghrnan3qvune" path="res://Common/DialogBox/Font/JMH Typewriter.ttf" id="13_mabhj"]
+[ext_resource type="Texture2D" uid="uid://bm6myu4gxmunq" path="res://Common/DialogBox/DialogImages/Seta.png" id="14_e3a4q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vccdo"]
 shader = ExtResource("3_hcd7x")
@@ -28,6 +31,36 @@ shader = ExtResource("8_p2cva")
 shader_parameter/FloatParameter = 5.0
 shader_parameter/Move_Speed = Vector2(0.2, 0)
 shader_parameter/Texture2D = ExtResource("9_e6ycs")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0iuxi"]
+texture = ExtResource("12_54aib")
+texture_margin_left = 256.0
+texture_margin_top = 256.0
+texture_margin_right = 256.0
+texture_margin_bottom = 256.0
+
+[sub_resource type="Theme" id="Theme_4jfpb"]
+default_font = ExtResource("13_mabhj")
+default_font_size = 32
+Label/colors/font_color = Color(1, 0, 0, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 1)
+Panel/styles/panel = SubResource("StyleBoxTexture_0iuxi")
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i17x3"]
+texture = ExtResource("14_e3a4q")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_203yo"]
+texture = ExtResource("14_e3a4q")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4cavy"]
+texture = ExtResource("14_e3a4q")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eq1su"]
+texture = ExtResource("14_e3a4q")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nbl7e"]
+texture = ExtResource("14_e3a4q")
 
 [node name="Player_UI" type="CanvasLayer"]
 visible = false
@@ -147,3 +180,62 @@ stretch_margin_top = 5
 stretch_margin_right = 50
 stretch_margin_bottom = 5
 texture_progress = ExtResource("9_2ool3")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Dialog" type="Control" parent="UI"]
+layout_mode = 3
+anchor_top = 0.667
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_4jfpb")
+
+[node name="Box" type="Panel" parent="UI/Dialog"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1918.0
+offset_bottom = 359.36
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+
+[node name="Continue" type="Button" parent="UI/Dialog/Box"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -198.0
+offset_top = -191.72
+offset_right = -30.0
+offset_bottom = -37.72
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/focus = SubResource("StyleBoxTexture_i17x3")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_203yo")
+theme_override_styles/hover = SubResource("StyleBoxTexture_4cavy")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_eq1su")
+theme_override_styles/normal = SubResource("StyleBoxTexture_nbl7e")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Dialog"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 10.0
+offset_right = 1908.0
+offset_bottom = 345.0
+
+[node name="Speaker" type="Label" parent="UI/Dialog/VBoxContainer"]
+layout_mode = 2
+text = "Personagem"
+
+[node name="Dialogue" type="RichTextLabel" parent="UI/Dialog/VBoxContainer"]
+layout_mode = 2
+text = "Lorem ipsum dolor sit amet. Aut officiis aspernatur quo nulla consequatur qui quibusdam voluptatem eum repellat voluptas et dolor provident. In magni quisquam eum nostrum aliquam non culpa aspernatur qui aliquid nisi in ducimus galisum. 33 iusto similique sit architecto similique aut quae obcaecati.
+
+"
+fit_content = true
