@@ -26,7 +26,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hqqtb"]
-size = Vector2(321, 696)
+size = Vector2(321, 742)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_j0e33"]
 blend_mode = 1
@@ -96,7 +96,7 @@ Player_body_P = NodePath("../..")
 
 [node name="Attack_Collider" type="CollisionShape2D" parent="Player_Body/Player_FSM/Attacking/Area2D"]
 unique_name_in_owner = true
-position = Vector2(290.5, -363)
+position = Vector2(0, -262)
 shape = SubResource("RectangleShape2D_hqqtb")
 
 [node name="Evading" type="Node2D" parent="Player_Body/Player_FSM"]
@@ -132,12 +132,10 @@ height = 60.0
 script = ExtResource("11_imqv6")
 
 [node name="Lantern_Light" type="Sprite2D" parent="Player_Body/SpotLight2D_w_Shadows"]
-visible = false
 modulate = Color(1, 1, 1, 0.980392)
-self_modulate = Color(0.952941, 1, 0.694118, 0.0196078)
-z_index = 1
+self_modulate = Color(0.952941, 1, 0.694118, 0.0117647)
 material = SubResource("CanvasItemMaterial_j0e33")
-scale = Vector2(2, 2.5)
+scale = Vector2(0.75, 1.25)
 texture = ExtResource("11_8drmn")
 offset = Vector2(900, 0)
 
