@@ -3,12 +3,13 @@ using System;
 
 public partial class GameManager : Node
 {
-    public static GameManager Instance;
-    public override void _Ready()
-    {
-        base._Ready();
-
-        if(Instance == null)
+	public static GameManager Instance;
+	public Dialog dialogManager;
+	public override void _Ready()
+	{
+		base._Ready();
+			
+		if(Instance == null)
 		{
 			Instance = this;
 		}
@@ -17,8 +18,8 @@ public partial class GameManager : Node
 		{
 			GD.PrintErr("ERROR!! Instance of Game Manager already exist!!");
 		}
-
-        GD.Print("Game Manager loaded...");
-        
-    }
+			dialogManager = GetNode<Dialog>("Player_UI/UI/Dialog");
+		GD.Print("Game Manager loaded...");
+		
+	}
 }
