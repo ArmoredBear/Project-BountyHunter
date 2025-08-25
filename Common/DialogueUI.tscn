@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyrouglxomcss"]
+
+[ext_resource type="Script" path="res://Common/DialogBox/ScriptsUI/DialogueUi.cs" id="1_awte6"]
+
+[node name="DialogueUI" type="CanvasLayer"]
+script = ExtResource("1_awte6")
+
+[node name="DialogueBox" type="PanelContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -27.0
+offset_bottom = 334.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="DialogueBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DialogueBox/MarginContainer"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="DialogueBox/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Nome do Personagem
+"
+
+[node name="TextLabel" type="RichTextLabel" parent="DialogueBox/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+"
+fit_content = true

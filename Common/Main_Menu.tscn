@@ -118,4 +118,18 @@ autowrap_mode = 3
 icon_alignment = 1
 language = "en"
 
+[node name="Dialogue" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 30
+text = "Dialogue Test
+"
+alignment = 0
+text_overrun_behavior = 1
+autowrap_mode = 3
+icon_alignment = 1
+language = "en"
+
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/Continue" to="Control/MarginContainer/VBoxContainer/Continue" method="OnButtonPressed"]

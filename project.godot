@@ -26,6 +26,7 @@ Inventory="*res://Common/Inventory/Inventory.cs"
 Panku="*res://addons/panku_console/console.tscn"
 SaveSystem="*res://Common/SaveSystem.tscn"
 GameManager="*res://Common/General Scritps/GameManager.cs"
+DialogueManager="*res://Common/DialogBox/ScriptsUI/DialogueManager.cs"
 
 [display]
 
