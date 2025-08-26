@@ -14,7 +14,7 @@
 [ext_resource type="Script" path="res://Player/PlayerScripts/PlayerStates/Evade_State.cs" id="10_ydvyn"]
 [ext_resource type="Texture2D" uid="uid://86173bnxxr3h" path="res://Player/PlayerArt/LanternLight.png" id="11_8drmn"]
 [ext_resource type="Script" path="res://Player/PlayerScripts/LightFlip.cs" id="11_imqv6"]
-[ext_resource type="Texture2D" uid="uid://bsvujlg82t8l8" path="res://Player/PlayerArt/PlaceHolderPlayer.png" id="15_gso6f"]
+[ext_resource type="Texture2D" uid="uid://dkhhgik36yd4t" path="res://Player/PlayerArt/CharacterRunCycle.png" id="12_k3aki"]
 
 [sub_resource type="Animation" id="Animation_y7ux2"]
 resource_name = "Idle"
@@ -143,7 +143,7 @@ offset = Vector2(900, 0)
 light_mask = 3
 visibility_layer = 3
 position = Vector2(0, -260)
-texture = ExtResource("15_gso6f")
+texture = ExtResource("12_k3aki")
 offset = Vector2(0, -1)
 
 [node name="Main_Collider" parent="Player_Body" instance=ExtResource("2_imxp1")]

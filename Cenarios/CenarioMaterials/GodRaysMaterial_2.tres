@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cbreiv2hkksu5"]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dd0284oj67vwv"]
 
 [ext_resource type="Shader" path="res://Common/Shaders/GodRays.gdshader" id="1_0qbkf"]
 

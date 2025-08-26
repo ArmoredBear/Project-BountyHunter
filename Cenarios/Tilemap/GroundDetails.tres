@@ -1,7 +1,7 @@
 [gd_resource type="TileSet" load_steps=4 format=3 uid="uid://ciiacghrwpbvo"]
 
 [ext_resource type="Texture2D" uid="uid://b5gwdkydxyspv" path="res://Cenarios/CenarioArt/Environment/GroundDetails.png" id="1_nhwyo"]
-[ext_resource type="Material" uid="uid://737s3g727dlf" path="res://Cenarios/CenarioMaterials/GroundDetailsMaterial.tres" id="1_wdoyr"]
+[ext_resource type="Material" uid="uid://737s3g727dlf" path="res://Cenarios/CenarioMaterials/TunnelGroundDetailsMaterial.tres" id="1_wdoyr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u7wny"]
 texture = ExtResource("1_nhwyo")

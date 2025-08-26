@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=3 format=3 uid="uid://bw2fye0l78i6w"]
+[gd_resource type="VisualShader" load_steps=3 format=3 uid="uid://c7hc8enl48k4f"]
 
 [sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_qf6i5"]
 parameter_name = "Normal_Map"
