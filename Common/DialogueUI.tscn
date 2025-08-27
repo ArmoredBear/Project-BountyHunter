@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cyrouglxomcss"]
+[gd_scene load_steps=2 format=3 uid="uid://bya6ubil8kdvn"]
 
-[ext_resource type="Script" path="res://Common/DialogBox/ScriptsUI/DialogueUi.cs" id="1_awte6"]
+[ext_resource type="Script" path="res://Common/DialogBox/ScriptsUI/DialogueUI.cs" id="1_awte6"]
 
 [node name="DialogueUI" type="CanvasLayer"]
 script = ExtResource("1_awte6")

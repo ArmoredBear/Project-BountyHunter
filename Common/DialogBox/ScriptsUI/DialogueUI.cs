@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 public partial class DialogueUI : CanvasLayer
@@ -12,13 +13,18 @@ public partial class DialogueUI : CanvasLayer
 		_textLabel = GetNode<RichTextLabel>("%TextLabel");
 	}
 
-	public void SetName(string name)
+	public void SetDialogueName(string name)
 	{
 		_nameLabel.Text = name;
 	}
 
-	public void SetText(string text)
+	public void SetDialogueText(string text)
 	{
 		_textLabel.Text = text;
 	}
+
+    public static implicit operator DialogueUI(PackedScene v)
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -19,14 +19,18 @@ boot_splash/minimum_display_time=2000
 
 [autoload]
 
+GameManager="*res://Common/General Scritps/GameManager.cs"
 PlayerDataAutoload="*res://Player/PlayerScripts/Player_Data_Autoload.cs"
 Player="*res://Player/PlayerPrefabs/Player.tscn"
 Messenger="*res://Common/General Scritps/Messenger.cs"
 Inventory="*res://Common/Inventory/Inventory.cs"
 Panku="*res://addons/panku_console/console.tscn"
 SaveSystem="*res://Common/SaveSystem.tscn"
-GameManager="*res://Common/General Scritps/GameManager.cs"
 DialogueManager="*res://Common/DialogBox/ScriptsUI/DialogueManager.cs"
+
+[debug]
+
+settings/stdout/print_fps=true
 
 [display]
 

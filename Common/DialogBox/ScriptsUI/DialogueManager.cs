@@ -12,14 +12,30 @@ public partial class DialogueManager : Node
 	private DialogueUI _dialogueUI;
 	private bool _isDialogueActive = false;
 
+	private Button _dialogueButton;
+	private DialogueManager _dialogueManager;
+
 	public override void _Ready()
 	{
+		DialogueInitiation();
+
 		// Carregamos a cena da UI de diálogo e a adicionamos como filha do manager.
 		// Assim, o manager controla totalmente a sua UI.
-		var dialogueUIScene = GD.Load<PackedScene>("res://Common/DialogueUI.tscn");
-		_dialogueUI = dialogueUIScene.Instantiate<DialogueUI>();
-		AddChild(_dialogueUI);
+		var dialogueUIScene = ResourceLoader.Load<PackedScene>("res://Common/DialogueUI.tscn").Instantiate();
+		AddChild(dialogueUIScene);
+		_dialogueUI = (DialogueUI)dialogueUIScene;
 		_dialogueUI.Hide(); // Começa escondida
+
+		
+	}
+
+	public void DialogueInitiation()
+	{
+		_dialogueManager = this;
+		_dialogueButton = GetNode("/root/Main_Menu/Control/MarginContainer/VBoxContainer/Dialogue") as Button;
+		_dialogueButton.Pressed += OnDialogueButtonPressed;
+		_dialogueManager.DialogueFinished += OnDialogueFinished;
+
 	}
 
 	public override void _UnhandledInput(InputEvent @event)
@@ -66,8 +82,8 @@ public partial class DialogueManager : Node
 		if (_dialogueQueue.Count > 0)
 		{
 			var line = _dialogueQueue.Dequeue();
-			_dialogueUI.SetName(line.Character);
-			_dialogueUI.SetText(line.Text);
+			_dialogueUI.SetDialogueName(line.Character);
+			_dialogueUI.SetDialogueText(line.Text);
 		}
 		else
 		{
@@ -80,5 +96,20 @@ public partial class DialogueManager : Node
 		_isDialogueActive = false;
 		_dialogueUI.Hide();
 		EmitSignal(SignalName.DialogueFinished);
+	}
+	
+	private void OnDialogueButtonPressed()
+	{
+		// Desabilita o botão para não ser clicado novamente durante o diálogo
+		_dialogueButton.Disabled = true;
+		// Inicia o diálogo passando o caminho para o arquivo JSON
+		_dialogueManager.StartDialogue("res://Dialogue/intro_dialogue.json");
+	}
+
+	private void OnDialogueFinished()
+	{
+		GD.Print("O diálogo terminou! O jogo pode continuar.");
+		// Reabilita o botão
+		_dialogueButton.Disabled = false;
 	}
 }
