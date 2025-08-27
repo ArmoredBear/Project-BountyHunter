@@ -41,7 +41,7 @@ public partial class DialogueManager : Node
 	public override void _UnhandledInput(InputEvent @event)
 	{
 		// Só processa input se o diálogo estiver ativo
-		if (_isDialogueActive && @event.IsActionPressed("ui_accept"))
+		if (_isDialogueActive && @event.IsActionPressed("Dialogue_Interact"))
 		{
 			// Marca o evento como "tratado" para que outros nós não o processem (ex: o jogador não pula)
 			GetViewport().SetInputAsHandled();
