@@ -21,7 +21,7 @@ public partial class DialogueManager : Node
 
 		// Carregamos a cena da UI de diálogo e a adicionamos como filha do manager.
 		// Assim, o manager controla totalmente a sua UI.
-		var dialogueUIScene = ResourceLoader.Load<PackedScene>("res://Common/DialogueUI.tscn").Instantiate();
+		var dialogueUIScene = GD.Load<PackedScene>("res://Common/DialogueUI.tscn").Instantiate();
 		AddChild(dialogueUIScene);
 		_dialogueUI = (DialogueUI)dialogueUIScene;
 		_dialogueUI.Hide(); // Começa escondida
