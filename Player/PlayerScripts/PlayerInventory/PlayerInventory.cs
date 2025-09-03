@@ -4,8 +4,7 @@ using System.Collections.Generic;
 
 namespace PlayerScript.PlayerInventory
 {
-	[GlobalClass] // permite criar o Resource direto pelo editor do Godot
-	public partial class PlayerInventory : Resource
+	public partial class PlayerInventory : Node
 	{
 		[Export] public int MaxInventorySlots { get; set; } = 20;
 
@@ -47,7 +46,7 @@ namespace PlayerScript.PlayerInventory
 			int newUsage = _usedSlots + item.GetTotalSlotUsage();
 			if (newUsage <= MaxInventorySlots)
 			{
-				_inventoryByType[item.Type].Add(item);
+				_inventoryByType[item.Data.Type].Add(item);
 				_usedSlots = newUsage;
 				return true;
 			}
@@ -55,7 +54,7 @@ namespace PlayerScript.PlayerInventory
 		}
 		public bool RemoveItem(ItemInstance item)
 		{
-			if (_inventoryByType[item.Type].Remove(item))
+			if (_inventoryByType[item.Data.Type].Remove(item))
 			{
 				_usedSlots -= item.GetTotalSlotUsage();
 				return true;
@@ -67,10 +66,8 @@ namespace PlayerScript.PlayerInventory
 		// BUSCA GENÉRICA
 		// -------------------------
 
-		// <summary>
 		/// Procura o primeiro item que satisfaça a condição.
 		/// Exemplo: FindItem(i => i.Id == "potion_01");
-		/// </summary>
 		public ItemInstance? FindItem(Predicate<ItemInstance> match)
 		{
 			foreach (var category in _inventoryByType.Values)

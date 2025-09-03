@@ -5,11 +5,14 @@ namespace PlayerScript.PlayerInventory
 	[GlobalClass]
 	public partial class ItemInstance : Resource
 	{
-		[Export] public string ItemID;
+		[Export] public ItemData Data;   // Referência ao "template" do item
 		[Export] public int Quantity = 1;
-		[Export] public int SlotPerItem = 1;
-		[Export] public ItemType Type;
 
-		public int GetTotalSlotUsage() => Quantity * SlotPerItem;
+		public int GetTotalSlotUsage() => Quantity * (Data?.SlotPerItem ?? 1);
+
+		public override string ToString()
+		{
+			return $"{Data?.Name ?? "Unknown"} x{Quantity}";
+		}
 	}
 }
