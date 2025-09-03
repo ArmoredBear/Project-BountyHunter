@@ -100,11 +100,11 @@ public partial class Player_Data : Resource, IStatus
 
 	public Player_Data() { }
 
-	public Player_Data(int m_health, int m_stamina, int m_ee, int m_em, bool alive, bool armored, bool poisoned)
+	public Player_Data(int m_health, int m_stamina, int m_em, bool alive, bool armored, bool poisoned)
 	{
 		MAX_Health = m_health;
 		MAX_Stamina = m_stamina;
-		MAX_Energy = m_ee;
+		MAX_Energy = m_em;
 
 		CURRENT_Health = MAX_Health;
 		CURRENT_Stamina = MAX_Stamina;
