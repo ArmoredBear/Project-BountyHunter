@@ -2,6 +2,8 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
+#nullable enable
+
 namespace PlayerScript.PlayerInventory
 {
 	public partial class PlayerInventory : Node
@@ -35,6 +37,8 @@ namespace PlayerScript.PlayerInventory
 		// -------------------------
 		// ADD / REMOVE
 		// -------------------------=
+		[Signal] public delegate void ItemAddedEventHandler(ItemInstance item);
+		[Signal] public delegate void ItemRemovedEventHandler(ItemInstance item);
 
 		public bool CanAddItem(ItemInstance item)
 		{
@@ -48,6 +52,7 @@ namespace PlayerScript.PlayerInventory
 			{
 				_inventoryByType[item.Data.Type].Add(item);
 				_usedSlots = newUsage;
+				EmitSignal(SignalName.ItemAdded, item);
 				return true;
 			}
 			return false;
@@ -57,6 +62,7 @@ namespace PlayerScript.PlayerInventory
 			if (_inventoryByType[item.Data.Type].Remove(item))
 			{
 				_usedSlots -= item.GetTotalSlotUsage();
+				EmitSignal(SignalName.ItemRemoved, item);
 				return true;
 			}
 			return false;
@@ -100,19 +106,19 @@ namespace PlayerScript.PlayerInventory
 		// -------------------------
 		// DEBUG
 		// -------------------------
-		
+
 		public void PrintInventory()
-        {
-            GD.Print($"[Inventory] Used: {_usedSlots}/{MaxInventorySlots}");
-            foreach (var kvp in _inventoryByType)
-            {
-                GD.Print($"  {kvp.Key}: {kvp.Value.Count} items");
-                foreach (var item in kvp.Value)
-                {
-                    GD.Print($"    - {item}");
-                }
-            }
-        }
+		{
+			GD.Print($"[Inventory] Used: {_usedSlots}/{MaxInventorySlots}");
+			foreach (var kvp in _inventoryByType)
+			{
+				GD.Print($"  {kvp.Key}: {kvp.Value.Count} items");
+				foreach (var item in kvp.Value)
+				{
+					GD.Print($"    - {item}");
+				}
+			}
+		}
 
 	}
 }
