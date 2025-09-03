@@ -8,15 +8,15 @@ public partial class GameManager : Node
     {
         base._Ready();
 
-        if(Instance == null)
-		{
-			Instance = this;
-		}
+        if (Instance == null)
+        {
+            Instance = this;
+        }
 
-		else if (Instance != null && Instance != this)
-		{
-			GD.PrintErr("ERROR!! Instance of Game Manager already exist!!");
-		}
+        else if (Instance != null && Instance != this)
+        {
+            GD.PrintErr("ERROR!! Instance of Game Manager already exist!!");
+        }
 
         GD.Print("Game Manager loaded...");
         
