@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=4 format=3 uid="uid://bt106diw7wmug"]
 
-[ext_resource type="Material" uid="uid://bjmk5fmhtwarr" path="res://Cenarios/CenarioMaterials/WallDetailsMaterial.tres" id="1_a8v4j"]
+[ext_resource type="Material" uid="uid://bjmk5fmhtwarr" path="res://Cenarios/CenarioMaterials/TunnelWallDetailsMaterial.tres" id="1_a8v4j"]
 [ext_resource type="Texture2D" uid="uid://cuuwbyrhx5bgw" path="res://Cenarios/CenarioArt/Environment/WallDetailsTest.png" id="2_wv1tx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5uyva"]

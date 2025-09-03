@@ -23,8 +23,6 @@ public partial class Player : CharacterBody2D
 	private AnimatedSprite2D _animations;
 	private Vector2 game_pad_directional_input_vector;
 	private Vector2 _keyboard_directional_input_vector;
-	private float _speed;
-	private float _run_speed_modifier;
 	private Player_States _Player_State_P;
 	private bool _is_running;
     
@@ -63,34 +61,6 @@ public partial class Player : CharacterBody2D
 		set
 		{
 			_keyboard_directional_input_vector = value;
-		}
-	}
-
-	[Export]
-	public float Speed
-	{
-		get
-		{
-			return _speed;
-		}
-
-		set
-		{
-			_speed = value;
-		}
-	}
-
-	[Export]
-	public float Run_Modifier
-	{
-		get
-		{
-			return _run_speed_modifier;
-		}
-
-		set
-		{
-			_run_speed_modifier = value;
 		}
 	}
 
@@ -143,8 +113,6 @@ public partial class Player : CharacterBody2D
 			GD.PrintErr("ERROR!! Instance of Player already exist!!");
 		}
 		
-		Speed = 1000;
-		Run_Modifier = 2;
 		Player_State_P = Player_States.Idle;
 
 		if(GetTree().CurrentScene.Name != "Main")
