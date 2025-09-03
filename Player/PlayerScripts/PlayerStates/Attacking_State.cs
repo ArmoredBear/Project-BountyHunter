@@ -3,11 +3,11 @@ using System;
 
 public partial class Attacking_State : Player_State
 {
-    private AnimationPlayer _player_animation;
+    private AnimatedSprite2D _player_animation;
     private CollisionShape2D _attack_collider;
     
     [Export]
-    public AnimationPlayer Player_Animation
+    public AnimatedSprite2D Player_Animation
     {
         get
         {
@@ -36,7 +36,7 @@ public partial class Attacking_State : Player_State
 
     public override void _Ready()
     {
-        Player_Animation = GetNode<AnimationPlayer>("%Player_Animation");
+        Player_Animation = GetNode<AnimatedSprite2D>("%Player_Animation");
         Attack_Collider = GetNode<CollisionShape2D>("Area2D/%Attack_Collider");
     }
 

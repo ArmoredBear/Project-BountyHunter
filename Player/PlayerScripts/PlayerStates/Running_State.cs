@@ -3,9 +3,11 @@ using System;
 
 public partial class Running_State : Player_State
 {
-    private AnimationPlayer _player_animation;
+    private AnimatedSprite2D _player_animation;
+	private float _run_speed_modifier;
+	private float _run_speed;
 
-	public AnimationPlayer Player_Animation
+	public AnimatedSprite2D Player_Animation
 	{
 		get
 		{
@@ -14,18 +16,46 @@ public partial class Running_State : Player_State
 
 		set
 		{
-			_player_animation =	 value;
+			_player_animation = value;
 		}
 	}
 
-    public override void _Ready()
-    {
-        Player_Animation = GetNode<AnimationPlayer>("%Player_Animation");
-    }
+	public float Run_Speed_Modifier
+	{
+		get
+		{
+			return _run_speed_modifier;
+		}
 
-    public override void Enter()
-    {
-        //GetNode<AnimationPlayer>(player_animation).Play("Running");
+		set
+		{
+			_run_speed_modifier = value;
+		}
+	}
+	
+	public float Run_Speed
+	{
+		get
+		{
+			return _run_speed;
+		}
+
+		set
+		{
+			_run_speed = value;
+		}
+	}
+
+	public override void _Ready()
+	{
+		Player_Animation = GetNode<AnimatedSprite2D>("%Player_Animation");
+		Run_Speed_Modifier = 2;
+		Run_Speed = Player_Base_Speed * Run_Speed_Modifier;
+	}
+
+	public override void Enter()
+	{
+		
     }
 
     public override void Exit()
@@ -35,6 +65,7 @@ public partial class Running_State : Player_State
 
     public override void Update(double delta)
     {
+		Calculate_Run_Direction();
         Input_Collector();
 		Stop_Calculation();
 		Movement_Calculation();
@@ -57,15 +88,64 @@ public partial class Running_State : Player_State
 		Game_Pad_Directional_Input_Vector = Input.GetVector("Game_Pad_Left", "Game_Pad_Right", "Game_Pad_Up", "Game_Pad_Down");
 		Keyboard_Directional_Input_Vector = Input.GetVector("Keyboard_Left", "Keyboard_Right", "Keyboard_Up", "Keyboard_Down");
 	}
+	
+	public void Calculate_Run_Direction()
+	{
+		if (Input.IsActionPressed("Game_Pad_Up"))
+		{
+			Player_Animation.Play("Run_Up");
+		}
+
+		if (Input.IsActionPressed("Game_Pad_Down"))
+		{
+			Player_Animation.Play("Run_Down");
+		}
+
+		if (Input.IsActionPressed("Game_Pad_Left"))
+		{
+			Player_Animation.Play("Run_Left");
+		}
+
+		if (Input.IsActionPressed("Game_Pad_Right"))
+		{
+			Player_Animation.Play("Run_Right");
+		}		
+
+		if (Input.IsActionPressed("Keyboard_Up"))
+		{
+			Player_Animation.Play("Run_Up");
+		}
+
+		if (Input.IsActionPressed("Keyboard_Down"))
+		{
+			Player_Animation.Play("Run_Down");
+		}
+
+		if (Input.IsActionPressed("Keyboard_Left"))
+		{
+			Player_Animation.Play("Run_Left");
+		}
+
+		if (Input.IsActionPressed("Keyboard_Right"))
+		{
+			Player_Animation.Play("Run_Right");
+		}
+	}
 
 	  private void Run(Vector2 _movement_input)
-    {
-        if (Player_Data_Autoload.Data.CURRENT_Stamina > 0)
+	{
+		if (Player_Data_Autoload.Data.CURRENT_Stamina > 0)
 		{
-			Player_body_P.Velocity = _movement_input.Normalized() * Player.Speed * Player.Run_Modifier;
-		    Player_body_P.MoveAndSlide();
+			Player_body_P.Velocity = _movement_input.Normalized() * Run_Speed;
+			Player_body_P.MoveAndSlide();
 		}
-    }
+
+		else
+		{
+			Player.Instance.Player_State_P = Player_States.Walking;
+			Player_FSM_P.TransitionToState("Walking");
+		}
+	}
 
     public void Movement_Calculation()
 	{
@@ -187,13 +267,16 @@ public partial class Running_State : Player_State
 
 	public void Movement()
 	{
+		
 		if (Input.IsActionPressed("Game_Pad_Run") || Input.IsActionPressed("Keyboard_Run"))
 		{
-			Player.Instance.Player_State_P = Player_States.Running;
-			Player_FSM_P.TransitionToState("Running");
-			
-		}
-
+			if (Player_Data_Autoload.Data.CURRENT_Stamina == 100)
+			{
+				Player.Instance.Player_State_P = Player_States.Running;
+				Player_FSM_P.TransitionToState("Running");
+			}
+		}	
+		
 		else if(!Input.IsActionJustReleased("Game_Pad_Run") || !Input.IsActionJustReleased("Keyboard_Run"))
 		{
 			Player.Instance.Player_State_P = Player_States.Walking;
@@ -204,5 +287,6 @@ public partial class Running_State : Player_State
 		{
 			Player_FSM_P.TransitionToState("Idle");
 		}
+		
 	}
 }

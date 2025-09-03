@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://blwde0wte3hk0"]
+
+[ext_resource type="Shader" uid="uid://c7hc8enl48k4f" path="res://Common/Shaders/TunnerDoors_Shader.tres" id="1_aj8oe"]
+[ext_resource type="Texture2D" uid="uid://bmnr5my2l5tic" path="res://Cenarios/CenarioNormalMaps/CenarioTunnelDoorsSpriteSheet_n.png" id="2_8wr8g"]
+
+[resource]
+shader = ExtResource("1_aj8oe")
+shader_parameter/Normal_Map = ExtResource("2_8wr8g")

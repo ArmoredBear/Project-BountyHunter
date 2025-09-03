@@ -1,5 +1,8 @@
-# Godot 4+ specific ignores
-
+godot/editor
 .godot/
 **/.godot/
 .cache
+/.godot
+.godot/mono/metadata/ide_messaging_meta.txt
+.godot/editor/filesystem_cache8
+.godot/editor/project_metadata.cfg
