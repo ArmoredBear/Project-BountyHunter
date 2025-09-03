@@ -287,14 +287,6 @@ public partial class Player_Data : Resource, IStatus
 
 	#endregion
 
-	#region Inventory
-
-	[ExportGroup("INVENTORY")]
-	[Export] public PlayerInventory Inventory { get; set; } = new PlayerInventory();
-
-
-	#endregion
-
 	#endregion
 
 } 
