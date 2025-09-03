@@ -25,7 +25,7 @@ Messenger="*res://Common/General Scritps/Messenger.cs"
 Inventory="*res://Common/Inventory/Inventory.cs"
 Panku="*res://addons/panku_console/console.tscn"
 SaveSystem="*res://Common/SaveSystem.tscn"
-PlayerInventory="*res://Player/PlayerScripts/PlayerInventory/PlayerInventory.cs"
+GameManager="*res://Common/General Scritps/GameManager.cs"
 
 [display]
 
