@@ -21,9 +21,8 @@ public partial class DialogueManager : Node
 
 		// Carregamos a cena da UI de diálogo e a adicionamos como filha do manager.
 		// Assim, o manager controla totalmente a sua UI.
-		var dialogueUIScene = GD.Load<PackedScene>("res://Common/DialogueUI.tscn").Instantiate();
-		AddChild(dialogueUIScene);
-		_dialogueUI = (DialogueUI)dialogueUIScene;
+
+		_dialogueUI = this.GetParent<DialogueUI>();
 		_dialogueUI.Hide(); // Começa escondida
 
 		
@@ -32,7 +31,7 @@ public partial class DialogueManager : Node
 	public void DialogueInitiation()
 	{
 		_dialogueManager = this;
-		_dialogueButton = GetNode("/root/Main_Menu/Control/MarginContainer/VBoxContainer/Dialogue") as Button;
+		_dialogueButton = GetNode("/root/Main_Menu/Control/Panel/VBoxContainer/Dialogue") as Button;
 		_dialogueButton.Pressed += OnDialogueButtonPressed;
 		_dialogueManager.DialogueFinished += OnDialogueFinished;
 
