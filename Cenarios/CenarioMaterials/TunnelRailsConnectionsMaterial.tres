@@ -1,8 +1,0 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dpyde42ps2b6o"]
-
-[ext_resource type="Shader" uid="uid://mvl5vdw7j3ny" path="res://Common/Shaders/CenarioTunnel_Shader.tres" id="1_sj4cr"]
-[ext_resource type="Texture2D" uid="uid://bwpt2socbhdua" path="res://Cenarios/CenarioNormalMaps/CenarioTunnelRailsConnections_n.png" id="2_odvj8"]
-
-[resource]
-shader = ExtResource("1_sj4cr")
-shader_parameter/Normal_Map = ExtResource("2_odvj8")

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Project Bounty Hunter"
-run/main_scene="res://Common/Main_Menu.tscn"
+run/main_scene="res://Common/MainScenes/Main_Menu.tscn"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="res://icon.svg"
@@ -19,13 +19,13 @@ boot_splash/minimum_display_time=2000
 
 [autoload]
 
-PlayerDataAutoload="*res://Player/PlayerScripts/Player_Data_Autoload.cs"
-Player="*res://Player/PlayerPrefabs/Player.tscn"
-Messenger="*res://Common/General Scritps/Messenger.cs"
-Inventory="*res://Common/Inventory/Inventory.cs"
+PlayerDataAutoload="*res://Common/Resources/Player/PlayerScripts/Player_Data_Autoload.cs"
+Player="*res://Common/Resources/Player/PlayerPrefabs/Player.tscn"
+Messenger="*res://Common/Resources/General Scritps/Messenger.cs"
+Inventory="*res://Common/Resources/Player/User Interface/Inventory/Inventory.cs"
 Panku="*res://addons/panku_console/console.tscn"
 SaveSystem="*res://Common/SaveSystem.tscn"
-GameManager="*res://Common/General Scritps/GameManager.cs"
+GameManager="*res://Common/Resources/General Scritps/GameManager.cs"
 
 [display]
 
