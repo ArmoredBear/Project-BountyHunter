@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://ci1n5svpvkdh8"]
+
+[ext_resource type="Shader" uid="uid://dd5dgn3t5k8bv" path="res://Common/Resources/Shaders/PropsShader.tres" id="1_l85oy"]
+[ext_resource type="Texture2D" uid="uid://djbooui3r2226" path="res://Common/Resources/Cenarios/Props/PropsNormalMaps/Lamp_1_n.png" id="2_ywnd4"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_l85oy")
+shader_parameter/Normal_Mapwyldheart = ExtResource("2_ywnd4")

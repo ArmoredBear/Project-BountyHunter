@@ -1,0 +1,157 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmapv7sbodtuk"]
+
+[ext_resource type="Theme" uid="uid://byfphwqv3j56s" path="res://Common/Resources/Player/User Interface/Prefabs/Themes/Base_theme.tres" id="1_7fb17"]
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 300.0
+offset_right = 1640.0
+offset_bottom = 840.0
+theme = ExtResource("1_7fb17")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 19.0
+offset_right = 802.0
+offset_bottom = 536.0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer"]
+custom_minimum_size = Vector2(700, 50)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Test Button"
+
+[node name="Button2" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Test Button"
+
+[node name="Button3" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Test Button"
+
+[node name="Button4" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Test Button"
+
+[node name="Button5" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Test Button"
+
+[node name="Button6" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Test Button"
+
+[node name="Button7" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Test Button"
+
+[node name="Button8" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Test Button"
+
+[node name="Button9" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Test Button"
+
+[node name="Button10" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Test Button"
+
+[node name="Button11" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Test Button"
+
+[node name="Button12" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Test Button"
+
+[node name="Button13" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Test Button"
+
+[node name="Button14" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Test Button"
+
+[node name="Button15" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Test Button"
+
+[node name="Button16" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Test Button"
+
+[node name="Button17" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Test Button"
+
+[node name="Button18" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Test Button"
+
+[node name="Button19" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Test Button"
+
+[node name="Button20" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Test Button"
+
+[node name="Button21" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Test Button"
+
+[node name="Button22" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Test Button"
+
+[node name="Button23" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Test Button"
+
+[node name="Button24" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Test Button"
+
+[node name="Button25" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Test Button"
