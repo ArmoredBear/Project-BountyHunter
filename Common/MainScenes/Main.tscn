@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmvy8mi8nw3d3"]
+
+[ext_resource type="PackedScene" uid="uid://dx8c8pj78l6qd" path="res://Common/Resources/Cenarios/Tilemap/World.tscn" id="1_5lara"]
+
+[node name="Main" type="Node"]
+
+[node name="World" parent="." instance=ExtResource("1_5lara")]

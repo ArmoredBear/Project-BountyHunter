@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://tjmqekt683nl"]
+
+[ext_resource type="Shader" uid="uid://dd5dgn3t5k8bv" path="res://Common/Resources/Shaders/PropsShader.tres" id="1_1e0iy"]
+[ext_resource type="Texture2D" uid="uid://djiw3aihi75wn" path="res://Common/Resources/Cenarios/Props/PropsNormalMaps/Box1_Paper_n.png" id="2_11kme"]
+
+[resource]
+shader = ExtResource("1_1e0iy")
+shader_parameter/Normal_Mapwyldheart = ExtResource("2_11kme")

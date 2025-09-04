@@ -1,0 +1,151 @@
+[gd_scene load_steps=17 format=3 uid="uid://bqojx1gwnybpn"]
+
+[ext_resource type="Script" path="res://Common/Resources/Player/User Interface/UI_Scripts/Player_Healthbar_UI.cs" id="1_2042d"]
+[ext_resource type="Texture2D" uid="uid://crhqsrd1pob0e" path="res://Common/Resources/Player/User Interface/UI_Art/Health_Monitor.png" id="2_sfdbi"]
+[ext_resource type="Texture2D" uid="uid://dl8x3gdfx7ffe" path="res://Common/Resources/Player/User Interface/UI_Art/Healthbar_Background.png" id="3_aoo3p"]
+[ext_resource type="Shader" uid="uid://bgry4vid31342" path="res://Common/Resources/Shaders/Healthlines_Shader.tres" id="3_hcd7x"]
+[ext_resource type="Texture2D" uid="uid://dsi8vnmxm1kh4" path="res://Common/Resources/Player/User Interface/UI_Art/Health_Lines.png" id="4_7hy6p"]
+[ext_resource type="Texture2D" uid="uid://csuln21ai4cjl" path="res://Common/Resources/Player/User Interface/UI_Art/Vignette.png" id="4_avq2p"]
+[ext_resource type="Script" path="res://Common/Resources/Player/User Interface/UI_Scripts/Player_Staminabar_UI.cs" id="8_8jq05"]
+[ext_resource type="Shader" uid="uid://cv66le7seyjq2" path="res://Common/Resources/Shaders/Staminabar_Shader.tres" id="8_p2cva"]
+[ext_resource type="Texture2D" uid="uid://y2j0ijuw8uh4" path="res://Common/Resources/Player/User Interface/UI_Art/Armor_Bar.png" id="9_2ool3"]
+[ext_resource type="Texture2D" uid="uid://owe8gguuup3t" path="res://Common/Resources/Player/User Interface/UI_Art/StaminaFogTexture.png" id="9_e6ycs"]
+[ext_resource type="Shader" uid="uid://clqxhllh4phgs" path="res://Common/Resources/Shaders/Healthbar_Shader.tres" id="10_rrm7i"]
+[ext_resource type="PackedScene" uid="uid://bmapv7sbodtuk" path="res://Common/Resources/Player/User Interface/Inventory/Inventory.tscn" id="12_cwngy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vccdo"]
+shader = ExtResource("3_hcd7x")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cp1x7"]
+shader = ExtResource("10_rrm7i")
+shader_parameter/Move_Speed = Vector2(-0.2, 0)
+shader_parameter/Fade_Speed = -1.0
+shader_parameter/Basic_Texture = ExtResource("2_sfdbi")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ggy1h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xrbfx"]
+shader = ExtResource("8_p2cva")
+shader_parameter/FloatParameter = 5.0
+shader_parameter/Move_Speed = Vector2(0.2, 0)
+shader_parameter/Texture2D = ExtResource("9_e6ycs")
+
+[node name="Player_UI" type="CanvasLayer"]
+
+[node name="Status" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -40.0
+offset_top = 15.0
+offset_right = 695.0
+offset_bottom = 235.0
+
+[node name="Health_Bar" type="Control" parent="Status"]
+texture_filter = 2
+texture_repeat = 2
+layout_mode = 1
+anchor_left = 0.054
+anchor_top = -0.068
+anchor_right = 0.054
+anchor_bottom = -0.068
+offset_left = 0.309998
+offset_top = 39.96
+offset_right = 550.31
+offset_bottom = 184.96
+script = ExtResource("1_2042d")
+
+[node name="Background" type="TextureRect" parent="Status/Health_Bar"]
+modulate = Color(0.813258, 0.813258, 0.813258, 1)
+layout_mode = 1
+offset_left = 5.0
+offset_top = -15.0
+offset_right = 415.0
+offset_bottom = 115.0
+texture = ExtResource("3_aoo3p")
+expand_mode = 1
+
+[node name="Lines" type="TextureProgressBar" parent="Status/Health_Bar"]
+material = SubResource("ShaderMaterial_vccdo")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -15.0
+offset_right = -140.0
+offset_bottom = -85.0
+grow_horizontal = 2
+grow_vertical = 2
+step = 0.0
+value = 100.0
+nine_patch_stretch = true
+texture_progress = ExtResource("4_7hy6p")
+tint_progress = Color(0, 1, 0.501961, 1)
+
+[node name="Health_Monitor" type="TextureProgressBar" parent="Status/Health_Bar"]
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_cp1x7")
+layout_mode = 1
+offset_left = 10.0
+offset_top = -15.0
+offset_right = 410.0
+offset_bottom = 60.0
+step = 0.0
+value = 100.0
+nine_patch_stretch = true
+texture_progress = SubResource("CanvasTexture_ggy1h")
+tint_under = Color(1, 1, 1, 0)
+tint_over = Color(1, 1, 1, 0)
+tint_progress = Color(0, 1, 0.501961, 1)
+
+[node name="Stamina_Bar" type="TextureProgressBar" parent="Status" node_paths=PackedStringArray("Stamina_Bar")]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_xrbfx")
+layout_mode = 1
+anchors_preset = -1
+offset_left = 50.0
+offset_top = 100.0
+offset_right = 450.0
+offset_bottom = 120.0
+grow_vertical = 2
+value = 85.0
+nine_patch_stretch = true
+stretch_margin_left = 3
+stretch_margin_top = 3
+stretch_margin_right = 3
+stretch_margin_bottom = 3
+texture_under = ExtResource("9_e6ycs")
+texture_progress = ExtResource("9_e6ycs")
+tint_under = Color(0.292969, 0.292969, 0.292969, 1)
+tint_over = Color(0.164706, 0.164706, 0.164706, 1)
+tint_progress = Color(0.945312, 1, 0, 1)
+script = ExtResource("8_8jq05")
+Stamina_Bar = NodePath(".")
+
+[node name="Vignette" type="TextureRect" parent="Status"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 10.0
+offset_right = 450.0
+offset_bottom = 130.0
+texture = ExtResource("4_avq2p")
+expand_mode = 1
+
+[node name="Armor_Bar" type="TextureProgressBar" parent="Status"]
+visible = false
+self_modulate = Color(0.713726, 0.713726, 0.713726, 1)
+layout_mode = 0
+offset_left = 50.0
+offset_top = 10.0
+offset_right = 450.0
+offset_bottom = 85.0
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 50
+stretch_margin_top = 5
+stretch_margin_right = 50
+stretch_margin_bottom = 5
+texture_progress = ExtResource("9_2ool3")
+
+[node name="Inventory" parent="." instance=ExtResource("12_cwngy")]
