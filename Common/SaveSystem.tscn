@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cvcyjxjruucjd"]
 
-[ext_resource type="Script" path="res://Common/General Scritps/Save_Load_Control.cs" id="1_27nuw"]
+[ext_resource type="Script" path="res://Common/Resources/General Scritps/Save_Load_Control.cs" id="1_27nuw"]
 
 [node name="Save_System" type="Node"]
 script = ExtResource("1_27nuw")

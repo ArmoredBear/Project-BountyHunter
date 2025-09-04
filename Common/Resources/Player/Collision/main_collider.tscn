@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ltev86bv3ovj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bdmlg"]
+radius = 32.0
+height = 96.0
+
+[node name="Main_Collider" type="CollisionShape2D"]
+shape = SubResource("CapsuleShape2D_bdmlg")

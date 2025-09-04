@@ -1,6 +1,0 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://blfv7v7ygffqn"]
-
-[ext_resource type="Shader" uid="uid://mvl5vdw7j3ny" path="res://Common/Shaders/CenarioTunnel_Shader.tres" id="1_xky1e"]
-
-[resource]
-shader = ExtResource("1_xky1e")
