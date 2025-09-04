@@ -1,0 +1,20 @@
+{
+  "Lines": [
+	{
+	  "Character": "Guia Experiente",
+	  "Text": "Olá, aventureiro! Bem-vindo ao mundo da Godot com C#."
+	},
+	{
+	  "Character": "Aventureiro",
+	  "Text": "Uau! Parece poderoso. Por onde eu começo?"
+	},
+	{
+	  "Character": "Guia Experiente",
+	  "Text": "Começamos com um sistema de diálogo. Este é o primeiro passo para criar uma história envolvente."
+	},
+	{
+	  "Character": "Guia Experiente",
+	  "Text": "Pressione 'Enter' ou clique para continuar a conversa."
+	}
+  ]
+}
