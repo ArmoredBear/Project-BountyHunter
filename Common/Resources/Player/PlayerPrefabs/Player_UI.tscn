@@ -150,5 +150,6 @@ stretch_margin_bottom = 5
 texture_progress = ExtResource("9_2ool3")
 
 [node name="Inventory" parent="." instance=ExtResource("12_cwngy")]
+visible = false
 
 [node name="DialogueUI" parent="." instance=ExtResource("13_st3ur")]

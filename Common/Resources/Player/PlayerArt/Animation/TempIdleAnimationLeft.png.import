@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cf48jkg6h7tdf"
-path="res://.godot/imported/TempCharacterRunCycleUp.png-582641f037a5e362d2f54babb7756166.ctex"
+uid="uid://conyhan6p1sdx"
+path="res://.godot/imported/TempIdleAnimationLeft.png-56cf737a242458e26b6ca248840b58d1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Common/Resources/Player/Animation/TempCharacterRunCycleUp.png"
-dest_files=["res://.godot/imported/TempCharacterRunCycleUp.png-582641f037a5e362d2f54babb7756166.ctex"]
+source_file="res://Common/Resources/Player/PlayerArt/Animation/TempIdleAnimationLeft.png"
+dest_files=["res://.godot/imported/TempIdleAnimationLeft.png-56cf737a242458e26b6ca248840b58d1.ctex"]
 
 [params]
 
