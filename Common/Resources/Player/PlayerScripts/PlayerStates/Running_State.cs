@@ -93,42 +93,149 @@ public partial class Running_State : Player_State
 	{
 		if (Input.IsActionPressed("Game_Pad_Up"))
 		{
-			Player_Animation.Play("Run_Up");
+			if (Input.IsActionPressed("Game_Pad_Up") && Input.IsActionPressed("Game_Pad_Left"))
+			{
+				Player_Animation.Play("Run_Left");
+			}
+
+			else if (Input.IsActionPressed("Game_Pad_Up") && Input.IsActionPressed("Game_Pad_Right"))
+			{
+				Player_Animation.Play("Run_Right");
+			}
+
+			else
+			{
+				Player_Animation.Play("Run_Up");
+			}
 		}
+		
 
 		if (Input.IsActionPressed("Game_Pad_Down"))
 		{
-			Player_Animation.Play("Run_Down");
+			if (Input.IsActionPressed("Game_Pad_Down") && Input.IsActionPressed("Game_Pad_Left"))
+			{
+				Player_Animation.Play("Run_Left");
+			}
+
+			else if (Input.IsActionPressed("Game_Pad_Down") && Input.IsActionPressed("Game_Pad_Right"))
+			{
+				Player_Animation.Play("Run_Right");
+			}
+
+			else
+			{
+				Player_Animation.Play("Run_Down");
+			}
+
 		}
 
 		if (Input.IsActionPressed("Game_Pad_Left"))
 		{
-			Player_Animation.Play("Run_Left");
+			if (Input.IsActionPressed("Game_Pad_Left") && Input.IsActionPressed("Game_Pad_Up"))
+			{
+				Player_Animation.Play("Run_Left");
+			}
+
+			else if (Input.IsActionPressed("Game_Pad_Left") && Input.IsActionPressed("Game_Pad_Down"))
+			{
+				Player_Animation.Play("Run_Left");
+			}
+
+			else
+			{
+				Player_Animation.Play("Run_Left");
+			}
 		}
 
 		if (Input.IsActionPressed("Game_Pad_Right"))
 		{
-			Player_Animation.Play("Run_Right");
-		}		
+			if (Input.IsActionPressed("Game_Pad_Right") && Input.IsActionPressed("Game_Pad_Up"))
+			{
+				Player_Animation.Play("Run_Right");
+			}
+
+			else if (Input.IsActionPressed("Game_Pad_Right") && Input.IsActionPressed("Game_Pad_Down"))
+			{
+				Player_Animation.Play("Run_Right");
+			}
+
+			else
+			{
+				Player_Animation.Play("Run_Right");
+			}
+		}
+		
 
 		if (Input.IsActionPressed("Keyboard_Up"))
 		{
-			Player_Animation.Play("Run_Up");
+			if (Input.IsActionPressed("Keyboard_Up") && Input.IsActionPressed("Keyboard_Left"))
+			{
+				Player_Animation.Play("Run_Left");
+			}
+
+			else if (Input.IsActionPressed("Keyboard_Up") && Input.IsActionPressed("Keyboard_Right"))
+			{
+				Player_Animation.Play("Run_Right");
+			}
+
+			else
+			{
+				Player_Animation.Play("Run_Up");
+			}
 		}
 
 		if (Input.IsActionPressed("Keyboard_Down"))
 		{
-			Player_Animation.Play("Run_Down");
+			if (Input.IsActionPressed("Keyboard_Down") && Input.IsActionPressed("Keyboard_Left"))
+			{
+				Player_Animation.Play("Run_Left");
+			}
+
+			else if (Input.IsActionPressed("Keyboard_Down") && Input.IsActionPressed("Keyboard_Right"))
+			{
+				Player_Animation.Play("Run_Right");
+			}
+
+			else
+			{
+				Player_Animation.Play("Run_Down");
+			}
 		}
 
 		if (Input.IsActionPressed("Keyboard_Left"))
 		{
-			Player_Animation.Play("Run_Left");
+			if (Input.IsActionPressed("Keyboard_Left") && Input.IsActionPressed("Keyboard_Up"))
+			{
+				Player_Animation.Play("Run_Left");
+			}
+
+			else if (Input.IsActionPressed("Keyboard_Left") && Input.IsActionPressed("Keyboard_Down"))
+			{
+				Player_Animation.Play("Run_Left");
+			}
+
+			else
+			{
+				Player_Animation.Play("Run_Left");
+			}
 		}
 
 		if (Input.IsActionPressed("Keyboard_Right"))
 		{
-			Player_Animation.Play("Run_Right");
+			if (Input.IsActionPressed("Keyboard_Right") && Input.IsActionPressed("Keyboard_Up"))
+			{
+				Player_Animation.Play("Run_Right");
+			}
+
+			else if (Input.IsActionPressed("Keyboard_Right") && Input.IsActionPressed("Keyboard_Down"))
+			{
+				Player_Animation.Play("Run_Right");
+			}
+
+			else
+			{
+				Player_Animation.Play("Run_Right");
+			}
 		}
 	}
 
