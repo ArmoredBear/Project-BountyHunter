@@ -79,6 +79,7 @@ debug_path_custom_point_size = 25.0
 debug_path_custom_line_width = 10.0
 
 [node name="Enemy_Animation" type="AnimatedSprite2D" parent="."]
+z_index = 3
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_kw5ea")
 animation = &"Phantom_Idle"
