@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://dx8c8pj78l6qd"]
+[gd_scene load_steps=41 format=4 uid="uid://dx8c8pj78l6qd"]
 
 [ext_resource type="TileSet" uid="uid://bm6068a5v0klm" path="res://Common/Resources/Cenarios/Tilemap/TunnelTileSet.tres" id="1_bwnyp"]
 [ext_resource type="TileSet" uid="uid://bt106diw7wmug" path="res://Common/Resources/Cenarios/Tilemap/WallDetails.tres" id="2_usaof"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://clpceitcpppyc" path="res://Common/Resources/Cenarios/Props/PropsArt/Box_Paper_2.png" id="14_yrqg0"]
 [ext_resource type="Material" uid="uid://b7jsxw8ckcfhu" path="res://Common/Resources/Cenarios/Props/PropsMaterials/PropsMaterial_Barrel_Wood.tres" id="15_d5e2e"]
 [ext_resource type="Texture2D" uid="uid://uxjphhnn38or" path="res://Common/Resources/Cenarios/Props/PropsArt/Barrel_Wood.png" id="16_f62yn"]
+[ext_resource type="PackedScene" uid="uid://ccwqnm8c8jwux" path="res://Common/Resources/Enemys/Normal/Prefabs/Phantom.tscn" id="19_1kegq"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nhg4h"]
 blend_mode = 3
@@ -628,3 +629,8 @@ color = Color(0, 0, 0, 1)
 environment = SubResource("Environment_8ix14")
 camera_attributes = SubResource("CameraAttributesPractical_12vqi")
 compositor = SubResource("Compositor_jjbs8")
+
+[node name="Enemys" type="Node2D" parent="."]
+
+[node name="Phantom" parent="Enemys" instance=ExtResource("19_1kegq")]
+position = Vector2(-204, -138)

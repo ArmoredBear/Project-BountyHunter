@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6ahe0tyuwq2w"
-path="res://.godot/imported/TempCharacterWalkCycleDown.png-1c497700b41566decf8ab64bf0993a51.ctex"
+uid="uid://b2oh27tp4t3dt"
+path="res://.godot/imported/TempCharacterRunCycleSideLeft.png-fe939d725febf6d884824341bcdaf12f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Common/Resources/Player/Animation/TempCharacterWalkCycleDown.png"
-dest_files=["res://.godot/imported/TempCharacterWalkCycleDown.png-1c497700b41566decf8ab64bf0993a51.ctex"]
+source_file="res://Common/Resources/Player/PlayerArt/Animation/TempCharacterRunCycleSideLeft.png"
+dest_files=["res://.godot/imported/TempCharacterRunCycleSideLeft.png-fe939d725febf6d884824341bcdaf12f.ctex"]
 
 [params]
 

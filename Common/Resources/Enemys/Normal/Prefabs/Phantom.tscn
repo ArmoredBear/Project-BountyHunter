@@ -1,0 +1,92 @@
+[gd_scene load_steps=12 format=3 uid="uid://ccwqnm8c8jwux"]
+
+[ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/Enemy.cs" id="1_17m5a"]
+[ext_resource type="Texture2D" uid="uid://bqkpdvjj7du2w" path="res://Common/Resources/Enemys/Normal/Prefabs/Phantom.tres" id="2_oemhw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yr1pf"]
+size = Vector2(163, 378)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bp6v8"]
+atlas = ExtResource("2_oemhw")
+region = Rect2(0, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5yve"]
+atlas = ExtResource("2_oemhw")
+region = Rect2(144, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8l6qd"]
+atlas = ExtResource("2_oemhw")
+region = Rect2(288, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wtlb"]
+atlas = ExtResource("2_oemhw")
+region = Rect2(432, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jos20"]
+atlas = ExtResource("2_oemhw")
+region = Rect2(576, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbi2f"]
+atlas = ExtResource("2_oemhw")
+region = Rect2(720, 0, 144, 144)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kw5ea"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bp6v8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5yve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8l6qd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wtlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jos20")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bbi2f")
+}],
+"loop": true,
+"name": &"Phantom_Idle",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_81yyl"]
+size = Vector2(203, 466)
+
+[node name="Phantom" type="CharacterBody2D" node_paths=PackedStringArray("Agent")]
+motion_mode = 1
+script = ExtResource("1_17m5a")
+Agent = NodePath("NavigationAgent2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-3.5, 4)
+shape = SubResource("RectangleShape2D_yr1pf")
+disabled = true
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 50.0
+target_desired_distance = 30.0
+path_postprocessing = 1
+max_speed = 500.0
+debug_path_custom_point_size = 25.0
+debug_path_custom_line_width = 10.0
+
+[node name="Enemy_Animation" type="AnimatedSprite2D" parent="."]
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_kw5ea")
+animation = &"Phantom_Idle"
+frame = 3
+frame_progress = 0.592949
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2.5, 8)
+shape = SubResource("RectangleShape2D_81yyl")

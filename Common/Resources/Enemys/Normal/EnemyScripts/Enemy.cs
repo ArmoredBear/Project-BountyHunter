@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 public partial class Enemy : CharacterBody2D
 {
 
+    [Export] public AnimatedSprite2D Animation_Sprite;
     [Export] public NavigationAgent2D Agent;
     [Export] public Vector2 Agent_Current_Position;
     [Export] public Vector2 Agent_Next_Path_Position;
@@ -22,7 +23,8 @@ public partial class Enemy : CharacterBody2D
         base._Ready();
 
         State_of_Enemy = Enemy_States.Idle;
-
+        Animation_Sprite = GetNode<AnimatedSprite2D>("Enemy_Animation");
+        Animation_Sprite.Play("Phantom_Idle");
         Agent_Current_Position = GlobalTransform.Origin;
         Agent_Next_Path_Position = Agent.GetNextPathPosition();
         Movement_Speed = 500;
@@ -62,7 +64,12 @@ public partial class Enemy : CharacterBody2D
         // Wait for the first physics frame so the NavigationServer can sync.
         await ToSignal(GetTree(), SceneTree.SignalName.PhysicsFrame);
 
-        if(Target != null)
+        if (Target == null)
+        {
+            Target = Player.Instance;
+        }
+        
+        else if (Target != null)
         {
             Agent.TargetPosition = Target.GlobalPosition;
         }
@@ -71,7 +78,12 @@ public partial class Enemy : CharacterBody2D
     
     public void Enemy_Movement()
     {
-        if(Target != null)
+        if (Target == null)
+        {
+            Target = Player.Instance;
+        }
+
+        else if (Target != null)
         {
             Agent.TargetPosition = Target.GlobalPosition;
         }

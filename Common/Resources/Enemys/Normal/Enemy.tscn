@@ -1,11 +1,60 @@
-[gd_scene load_steps=4 format=3 uid="uid://4isaj33lvd0g"]
+[gd_scene load_steps=11 format=3 uid="uid://4isaj33lvd0g"]
 
 [ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/Enemy.cs" id="1_nttci"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_gc1p2"]
+[ext_resource type="Texture2D" uid="uid://bqkpdvjj7du2w" path="res://Common/Resources/Enemys/Normal/Prefabs/Phantom.tres" id="2_08bht"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_81yyl"]
-size = Vector2(100, 60)
+size = Vector2(41, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgkcp"]
+atlas = ExtResource("2_08bht")
+region = Rect2(0, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypvl2"]
+atlas = ExtResource("2_08bht")
+region = Rect2(144, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5gsy"]
+atlas = ExtResource("2_08bht")
+region = Rect2(288, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xpmh"]
+atlas = ExtResource("2_08bht")
+region = Rect2(432, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfk2m"]
+atlas = ExtResource("2_08bht")
+region = Rect2(576, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0d1sw"]
+atlas = ExtResource("2_08bht")
+region = Rect2(720, 0, 144, 144)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kw5ea"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgkcp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ypvl2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b5gsy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1xpmh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pfk2m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0d1sw")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 6.0
+}]
 
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("Agent")]
 motion_mode = 1
@@ -22,12 +71,12 @@ debug_use_custom = true
 debug_path_custom_point_size = 25.0
 debug_path_custom_line_width = 10.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(1, 0, 0, 1)
-scale = Vector2(100, 300)
-texture = SubResource("CanvasTexture_gc1p2")
-offset = Vector2(0, -1)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(50, -29.5)
+position = Vector2(0.5, 1.5)
 shape = SubResource("RectangleShape2D_81yyl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kw5ea")
+animation = &"Idle"
+frame = 3
+frame_progress = 0.605952

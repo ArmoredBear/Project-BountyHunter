@@ -1,0 +1,10 @@
+[gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://bqkpdvjj7du2w"]
+
+[ext_resource type="Texture2D" uid="uid://b8uc8x31nuud" path="res://Common/Resources/Enemys/Normal/Art/NormalMaps/Phantom_Monster_n.png" id="1_vxdlw"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qfiv4"]
+load_path = "res://.godot/imported/Phantom_Monster.png-4e39125dd86081d0cd6dcf6635cebca0.ctex"
+
+[resource]
+diffuse_texture = SubResource("CompressedTexture2D_qfiv4")
+normal_texture = ExtResource("1_vxdlw")

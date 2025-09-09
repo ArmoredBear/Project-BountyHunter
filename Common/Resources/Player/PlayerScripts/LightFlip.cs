@@ -35,22 +35,22 @@ public partial class LightFlip : PointLight2D
 
         if(Direction.X > 0)
         {
-            Offset = new Vector2(1800, 0);
+            Offset = new Vector2(1834, 0);
         }
 
         else if (Direction.X < 0)
         {
-            Offset = new Vector2(1800, 0);
+            Offset = new Vector2(1834, 0);
         }
 
         else if (Direction.Y < 0)
         {
-            Offset = new Vector2(1800, 0);
+            Offset = new Vector2(1834, 0);
         }
 
         else if (Direction.Y > 0)
         {
-            Offset = new Vector2(1800, 0);
+            Offset = new Vector2(1834, 0);
         }
     }
  
