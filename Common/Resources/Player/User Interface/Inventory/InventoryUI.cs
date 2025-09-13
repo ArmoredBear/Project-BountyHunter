@@ -3,16 +3,15 @@ using PlayerScript.PlayerInventory;
 
 public partial class InventoryUI : Control
 {
-    [Export] private NodePath _playerInventoryPath;
-    [Export] private NodePath _vboxPath;
-
+    private NodePath _playerInventoryPath;
     private PlayerInventory _playerInventory;
-    private VBoxContainer _vbox;
+
+    public Node _vbox;
 
     public override void _Ready()
     {
+        _playerInventoryPath = "/root/Player/Inventory";
         _playerInventory = GetNode<PlayerInventory>(_playerInventoryPath);
-        _vbox = GetNode<VBoxContainer>(_vboxPath);
 
         _playerInventory.ItemAdded += OnInventoryChanged;
         _playerInventory.ItemRemoved += OnInventoryChanged;

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bswa5xld6wyiu"]
+[gd_scene load_steps=22 format=3 uid="uid://bswa5xld6wyiu"]
 
 [ext_resource type="PackedScene" uid="uid://cstb8svv5da71" path="res://Common/Resources/Player/PlayerPrefabs/QuickItems_List.tscn" id="1_v8mnl"]
 [ext_resource type="Script" path="res://Common/Resources/Player/PlayerScripts/Player.cs" id="2_gnjcu"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://Common/Resources/Player/PlayerScripts/PlayerStates/Evade_State.cs" id="10_ydvyn"]
 [ext_resource type="Texture2D" uid="uid://86173bnxxr3h" path="res://Common/Resources/Player/PlayerArt/LanternLight.png" id="11_8drmn"]
 [ext_resource type="Script" path="res://Common/Resources/Player/PlayerScripts/LightFlip.cs" id="11_imqv6"]
+[ext_resource type="Script" path="res://Common/Resources/Player/PlayerScripts/PlayerInventory/PlayerInventory.cs" id="17_ti6mo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6ctx4"]
 shader = ExtResource("4_w7j57")
@@ -146,3 +147,6 @@ shape = SubResource("CircleShape2D_mtboj")
 unique_name_in_owner = true
 
 [node name="Player_Items" parent="." instance=ExtResource("1_v8mnl")]
+
+[node name="Inventory" type="Node" parent="."]
+script = ExtResource("17_ti6mo")

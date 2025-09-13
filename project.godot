@@ -22,7 +22,6 @@ boot_splash/minimum_display_time=2000
 PlayerDataAutoload="*res://Common/Resources/Player/PlayerScripts/Player_Data_Autoload.cs"
 Player="*res://Common/Resources/Player/PlayerPrefabs/Player.tscn"
 Messenger="*res://Common/Resources/General Scritps/Messenger.cs"
-Inventory="*res://Common/Resources/Player/User Interface/Inventory/Inventory.cs"
 Panku="*res://addons/panku_console/console.tscn"
 SaveSystem="*res://Common/SaveSystem.tscn"
 GameManager="*res://Common/Resources/General Scritps/GameManager.cs"

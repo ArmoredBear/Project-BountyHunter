@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://y2j0ijuw8uh4" path="res://Common/Resources/Player/User Interface/UI_Art/Armor_Bar.png" id="9_2ool3"]
 [ext_resource type="Texture2D" uid="uid://owe8gguuup3t" path="res://Common/Resources/Player/User Interface/UI_Art/StaminaFogTexture.png" id="9_e6ycs"]
 [ext_resource type="Shader" uid="uid://clqxhllh4phgs" path="res://Common/Resources/Shaders/Healthbar_Shader.tres" id="10_rrm7i"]
-[ext_resource type="PackedScene" uid="uid://bmapv7sbodtuk" path="res://Common/Resources/Player/User Interface/Inventory/Inventory.tscn" id="12_cwngy"]
+[ext_resource type="PackedScene" uid="uid://bmapv7sbodtuk" path="res://Common/Resources/Player/User Interface/Inventory/Inventory_UI.tscn" id="12_2ppih"]
 [ext_resource type="PackedScene" uid="uid://bya6ubil8kdvn" path="res://Common/Resources/Player/User Interface/Prefabs/DialogueUI.tscn" id="13_st3ur"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vccdo"]
@@ -149,7 +149,10 @@ stretch_margin_right = 50
 stretch_margin_bottom = 5
 texture_progress = ExtResource("9_2ool3")
 
-[node name="Inventory" parent="." instance=ExtResource("12_cwngy")]
-visible = false
+[node name="Inventory_UI" parent="." instance=ExtResource("12_2ppih")]
+offset_left = -40.0
+offset_top = 15.0
+offset_right = -40.0
+offset_bottom = 15.0
 
 [node name="DialogueUI" parent="." instance=ExtResource("13_st3ur")]
