@@ -13,6 +13,8 @@ public partial class InventoryUI : Control
         _playerInventoryPath = "/root/Player/Inventory";
         _playerInventory = GetNode<PlayerInventory>(_playerInventoryPath);
 
+        _vbox = this;
+
         _playerInventory.ItemAdded += OnInventoryChanged;
         _playerInventory.ItemRemoved += OnInventoryChanged;
         _playerInventory.InventoryUpdated += OnInventoryChanged;

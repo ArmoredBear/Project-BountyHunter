@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ItemInstance" load_steps=3 format=3 uid="uid://dli3tvv4xq73l"]
+
+[ext_resource type="Script" path="res://Common/Resources/Player/PlayerScripts/PlayerInventory/ItemInstance.cs" id="1_gxtot"]
+[ext_resource type="Resource" uid="uid://c7hn5y2vvc514" path="res://_Debug/TestItem.tres" id="1_rddox"]
+
+[resource]
+script = ExtResource("1_gxtot")
+Data = ExtResource("1_rddox")
+Quantity = 1
