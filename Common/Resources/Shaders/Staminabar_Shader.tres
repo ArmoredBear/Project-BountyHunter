@@ -1,6 +1,4 @@
-[gd_resource type="VisualShader" load_steps=12 format=3 uid="uid://cv66le7seyjq2"]
-
-[ext_resource type="Texture2D" uid="uid://owe8gguuup3t" path="res://Common/Resources/Player/User Interface/UI_Art/StaminaFogTexture.png" id="1_kc058"]
+[gd_resource type="VisualShader" load_steps=11 format=3 uid="uid://cv66le7seyjq2"]
 
 [sub_resource type="VisualShaderNodeVec2Parameter" id="VisualShaderNodeVec2Parameter_nlbek"]
 expanded_output_ports = [0]
@@ -20,7 +18,6 @@ operator = 2
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_qph3d"]
 source = 5
-texture = ExtResource("1_kc058")
 texture_type = 1
 
 [sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_mj3os"]

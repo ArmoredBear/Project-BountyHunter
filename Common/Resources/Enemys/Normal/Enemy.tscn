@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://4isaj33lvd0g"]
+[gd_scene load_steps=14 format=3 uid="uid://4isaj33lvd0g"]
 
 [ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/Enemy.cs" id="1_nttci"]
 [ext_resource type="Texture2D" uid="uid://bqkpdvjj7du2w" path="res://Common/Resources/Enemys/Normal/Prefabs/Phantom.tres" id="2_08bht"]
+[ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/EnemyStats.cs" id="3_la1um"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_81yyl"]
 size = Vector2(41, 93)
@@ -56,10 +57,17 @@ animations = [{
 "speed": 6.0
 }]
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("Agent")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uya6l"]
+size = Vector2(732, 627)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mib5l"]
+size = Vector2(61, 103)
+
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("Agent", "PatrolPoints")]
 motion_mode = 1
 script = ExtResource("1_nttci")
 Agent = NodePath("NavigationAgent2D")
+PatrolPoints = []
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 50.0
@@ -80,3 +88,18 @@ sprite_frames = SubResource("SpriteFrames_kw5ea")
 animation = &"Idle"
 frame = 3
 frame_progress = 0.605952
+
+[node name="EnemyStats" type="Node" parent="."]
+script = ExtResource("3_la1um")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(-9, -7)
+shape = SubResource("RectangleShape2D_uya6l")
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(-0.5, 2.5)
+shape = SubResource("RectangleShape2D_mib5l")
