@@ -1,0 +1,8 @@
+[gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://c8ghpyhd67v6w"]
+
+[ext_resource type="Texture2D" uid="uid://iqkkwhlvynt0" path="res://Common/Resources/Player/PlayerArt/Animation/CharacterWalkCycleLeft.png" id="1_5g8yb"]
+[ext_resource type="Texture2D" uid="uid://km2rw5syugoi" path="res://Common/Resources/Player/NormalMaps/CharacterWalkCycleLeft_n.png" id="2_yuk2j"]
+
+[resource]
+diffuse_texture = ExtResource("1_5g8yb")
+normal_texture = ExtResource("2_yuk2j")

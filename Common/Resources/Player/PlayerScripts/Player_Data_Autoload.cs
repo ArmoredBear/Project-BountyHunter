@@ -86,7 +86,7 @@ public partial class Player_Data_Autoload : Node
 			GD.PrintErr("ERROR!! Instance of Player_Data_Autoload already exist!!");
 		}
 
-		Data = new Player_Data(100, 100, 100, true, false, false);
+		Data = new Player_Data(100, 1000, 100, true, false, false);
 		Player_Healthbar = GetNode<Player_Healthbar_UI>("/root/Player/Player_UI/Status/Health_Bar");
 			
 		

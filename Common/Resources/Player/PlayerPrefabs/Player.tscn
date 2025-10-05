@@ -65,7 +65,7 @@ material = SubResource("ShaderMaterial_6ctx4")
 position = Vector2(0, -185)
 scale = Vector2(5, 5)
 sprite_frames = ExtResource("3_pf8kc")
-animation = &"Idle_Right"
+animation = &"Walk_Right"
 
 [node name="Idle" type="Node2D" parent="Player_Body/Player_FSM" node_paths=PackedStringArray("Player_FSM_P", "Player_body_P")]
 unique_name_in_owner = true
