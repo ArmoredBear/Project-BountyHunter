@@ -45,7 +45,7 @@ public partial class Player_Staminabar_UI : TextureProgressBar
 	{
 		Stamina_Bar = this;
 		Stamina_Bar.Value = Player_Data_Autoload.Data.CURRENT_Stamina;
-		Stamina_Regen = 1;
+		Stamina_Regen = 2;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -53,13 +53,13 @@ public partial class Player_Staminabar_UI : TextureProgressBar
 	{
 		if (Input.IsActionPressed("Game_Pad_Run") && Check_Running())
 		{
-			Stamina_Bar.Value -= Stamina_Regen;
+			Stamina_Bar.Value -= 1;
 			Player_Data_Autoload.Data.CURRENT_Stamina = (int)Stamina_Bar.Value;
 		}
 
 		else if (Input.IsActionPressed("Keyboard_Run") && Check_Running())
 		{
-			Stamina_Bar.Value -= Stamina_Regen;
+			Stamina_Bar.Value -= 1;
 			Player_Data_Autoload.Data.CURRENT_Stamina = (int)Stamina_Bar.Value;
 		}
 

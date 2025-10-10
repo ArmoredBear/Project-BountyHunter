@@ -1,0 +1,8 @@
+[gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://cimpoketiccng"]
+
+[ext_resource type="Texture2D" uid="uid://bwm14cpcaf4k1" path="res://Common/Resources/Player/PlayerArt/Animation/CharacterRunCycleLeft.png" id="1_kam8w"]
+[ext_resource type="Texture2D" uid="uid://dkunk70oc7pnv" path="res://Common/Resources/Player/NormalMaps/CharacterRunCycleLeft_n.png" id="2_fktdj"]
+
+[resource]
+diffuse_texture = ExtResource("1_kam8w")
+normal_texture = ExtResource("2_fktdj")

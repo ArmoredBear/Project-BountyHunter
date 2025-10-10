@@ -1,0 +1,8 @@
+[gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://fmstvjxlaura"]
+
+[ext_resource type="Texture2D" uid="uid://b46ht5q15t2jv" path="res://Common/Resources/Player/PlayerArt/Animation/CharacterRunCycleRight.png" id="1_0ilip"]
+[ext_resource type="Texture2D" uid="uid://d4n0v0cj0syc8" path="res://Common/Resources/Player/NormalMaps/CharacterRunCycleRight_n.png" id="2_l7h8x"]
+
+[resource]
+diffuse_texture = ExtResource("1_0ilip")
+normal_texture = ExtResource("2_l7h8x")
