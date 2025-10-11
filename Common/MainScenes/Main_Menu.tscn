@@ -1,8 +1,36 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7x1o5b14fsu1"]
+[gd_scene load_steps=10 format=3 uid="uid://b7x1o5b14fsu1"]
 
-[ext_resource type="Theme" uid="uid://byfphwqv3j56s" path="res://Common/Resources/Player/User Interface/Prefabs/Themes/Base_theme.tres" id="1_w55jq"]
+[ext_resource type="Theme" uid="uid://byfphwqv3j56s" path="res://Common/Resources/Player/User Interface/Prefabs/Themes/Base_Main_Menu_Theme.tres" id="1_w55jq"]
 [ext_resource type="Script" path="res://Common/Resources/General Scritps/Continue.cs" id="2_6lkvc"]
+[ext_resource type="Material" uid="uid://b6jkgq0ktik5a" path="res://Common/Resources/Player/User Interface/UI_Material_Test.tres" id="2_whdxq"]
 [ext_resource type="Texture2D" uid="uid://bdwdlawohth3p" path="res://Common/Resources/Cenarios/CenarioArt/DrawnCenarios/Cenario_1.png" id="2_wv4su"]
+[ext_resource type="Texture2D" uid="uid://bikvub6t8p658" path="res://Common/Resources/ParticleEffects/pine_tree_leaves.png" id="4_l1wja"]
+[ext_resource type="Texture2D" uid="uid://scig84b6f03k" path="res://Common/Resources/Player/User Interface/UI_Art/Lamp.png" id="5_j4rh5"]
+[ext_resource type="Texture2D" uid="uid://86173bnxxr3h" path="res://Common/Resources/Player/PlayerArt/LanternLight.png" id="6_s7ywo"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rpgvg"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1boft"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_min = 45.0
+angle_max = 135.1
+flatness = 0.602
+initial_velocity_min = 127.55
+initial_velocity_max = 320.61
+angular_velocity_min = 27.96
+angular_velocity_max = 139.81
+radial_velocity_min = 38.83
+radial_velocity_max = 38.83
+gravity = Vector3(-98, 98, 0)
+linear_accel_min = 3.88
+linear_accel_max = 14.24
+damping_min = 16.828
+damping_max = 16.828
+scale_min = 0.05
+scale_max = 0.1
 
 [node name="Main_Menu" type="CanvasLayer"]
 metadata/_edit_use_anchors_ = true
@@ -14,57 +42,63 @@ offset_right = 4439.0
 offset_bottom = 2822.0
 color = Color(0, 0, 0, 1)
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("2_wv4su")
-stretch_mode = 3
+expand_mode = 2
+stretch_mode = 4
 
 [node name="Control" type="Control" parent="."]
+layout_direction = 1
 layout_mode = 3
-anchors_preset = 0
-offset_left = 1770.0
-offset_top = 599.0
-offset_right = 1770.0
-offset_bottom = 599.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("1_w55jq")
-
-[node name="Panel" type="Panel" parent="Control"]
-custom_minimum_size = Vector2(500, 500)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.26042
-anchor_top = 0.462963
-anchor_right = 1.31302
-anchor_bottom = 0.535185
-offset_left = -500.0
-offset_top = -500.0
-offset_bottom = 500.0
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = -80.0
+offset_right = 39.0
+offset_bottom = -40.0
 grow_horizontal = 0
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="Control"]
+material = ExtResource("2_whdxq")
+layout_direction = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.25
+anchor_top = 2.075
+anchor_right = -0.25
+anchor_bottom = 2.075
+offset_left = -625.0
+offset_top = -367.0
+offset_right = -25.0
+offset_bottom = 533.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource("1_w55jq")
 metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel"]
-custom_minimum_size = Vector2(300, 100)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.438
-anchor_top = 0.499536
-anchor_right = 0.638
-anchor_bottom = 0.533859
-offset_left = -119.0
-offset_top = -163.5
-offset_right = 81.0
-offset_bottom = 159.5
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1.1, 1.1)
+anchor_left = 0.53
+anchor_top = 0.573
+anchor_right = 0.53
+anchor_bottom = 0.573
+offset_left = -101.85
+offset_top = -3.84003
+offset_right = 73.1501
+offset_bottom = 321.16
 size_flags_stretch_ratio = 2.0
 alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="Continue" type="Button" parent="Control/Panel/VBoxContainer"]
 texture_filter = 1
@@ -142,6 +176,7 @@ language = "en"
 
 [node name="Dialogue" type="Button" parent="Control/Panel/VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 5
@@ -153,5 +188,49 @@ text_overrun_behavior = 1
 autowrap_mode = 3
 icon_alignment = 1
 language = "en"
+
+[node name="TextureRect2" type="TextureRect" parent="Control"]
+material = SubResource("CanvasItemMaterial_rpgvg")
+layout_mode = 0
+offset_left = -447.0
+offset_top = -567.0
+offset_right = -17.0
+offset_bottom = -67.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_j4rh5")
+
+[node name="PointLight2D" type="PointLight2D" parent="Control/TextureRect2"]
+position = Vector2(222, 372)
+rotation = 1.5708
+color = Color(1, 0.902435, 0.457031, 1)
+energy = 4.0
+blend_mode = 2
+range_layer_min = 1
+range_layer_max = 1
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+shadow_filter = 2
+texture = ExtResource("6_s7ywo")
+offset = Vector2(900, 0)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(153, -83)
+amount = 128
+amount_ratio = 0.5
+sub_emitter = NodePath(".")
+process_material = SubResource("ParticleProcessMaterial_1boft")
+texture = ExtResource("4_l1wja")
+lifetime = 10.0
+fixed_fps = 60
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+position = Vector2(1781, -83)
+amount = 128
+amount_ratio = 0.5
+sub_emitter = NodePath(".")
+process_material = SubResource("ParticleProcessMaterial_1boft")
+texture = ExtResource("4_l1wja")
+lifetime = 10.0
+fixed_fps = 60
 
 [connection signal="pressed" from="Control/Panel/VBoxContainer/Continue" to="Control/Panel/VBoxContainer/Continue" method="OnButtonPressed"]

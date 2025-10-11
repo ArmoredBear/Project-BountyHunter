@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://3lgotkdwmh7p"]
+
+[ext_resource type="TileSet" uid="uid://dg8c8oas8e06g" path="res://Common/Resources/Cenarios/Tilemap/Forest/Forest_Trees.tres" id="1_dwnof"]
+
+[node name="Forest" type="Node2D"]
+
+[node name="Ground" type="Node2D" parent="."]
+
+[node name="Ground_Background_TileMapLayer" type="TileMapLayer" parent="Ground"]
+
+[node name="Ground_Grass_TileMapLayer" type="TileMapLayer" parent="Ground"]
+
+[node name="Ground_Rocks_TileMapLayer" type="TileMapLayer" parent="Ground"]
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Wall_Trees_TileMapLayer" type="TileMapLayer" parent="Walls"]
+scale = Vector2(7, 7)
+tile_set = ExtResource("1_dwnof")
+
+[node name="Wall_Rocks_TileMapLayer" type="TileMapLayer" parent="Walls"]

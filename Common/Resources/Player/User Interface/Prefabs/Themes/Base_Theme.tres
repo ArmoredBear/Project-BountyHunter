@@ -1,0 +1,21 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://b7k1imxvkgx1"]
+
+[ext_resource type="Texture2D" uid="uid://b8ojmf6qyhlq0" path="res://Common/Resources/Player/User Interface/UI_Art/Button_Normal.png" id="1_hudjb"]
+[ext_resource type="Texture2D" uid="uid://dkkle61cheusy" path="res://Common/Resources/Player/User Interface/UI_Art/Panel2.png" id="1_mcrv8"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_02uik"]
+texture = ExtResource("1_hudjb")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v5flr"]
+texture = ExtResource("1_mcrv8")
+texture_margin_left = 50.0
+texture_margin_top = 55.0
+texture_margin_right = 50.0
+texture_margin_bottom = 65.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(16, 219, 1882, 659)
+
+[resource]
+Button/styles/normal = SubResource("StyleBoxTexture_02uik")
+Panel/styles/panel = SubResource("StyleBoxTexture_v5flr")

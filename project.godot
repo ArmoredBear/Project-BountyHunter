@@ -28,11 +28,13 @@ GameManager="*res://Common/Resources/General Scritps/GameManager.cs"
 
 [display]
 
-window/size/viewport_width=1920
+window/size/viewport_width=2560
 window/size/viewport_height=1080
-window/size/mode=2
+window/size/mode=3
+window/size/initial_position_type=0
+window/size/borderless=true
 window/size/extend_to_title=true
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
 window/per_pixel_transparency/allowed=true
 display_server/driver.linuxbsd="wayland"
 
@@ -185,12 +187,15 @@ textures/lossless_compression/force_png=true
 2d/shadow_atlas/size=4096
 textures/default_filters/use_nearest_mipmap_filter=true
 textures/default_filters/anisotropic_filtering_level=4
+camera/depth_of_field/depth_of_field_bokeh_shape=0
 environment/ssao/quality=3
 environment/ssil/quality=3
 textures/decals/filter=0
 textures/light_projectors/filter=0
 environment/screen_space_reflection/roughness_quality=3
 environment/subsurface_scattering/subsurface_scattering_quality=3
+viewport/transparent_background=true
 viewport/hdr_2d=true
 2d/snap/snap_2d_transforms_to_pixel=true
 2d/sdf/scale=0
+viewport/size/initial_position_type=1
