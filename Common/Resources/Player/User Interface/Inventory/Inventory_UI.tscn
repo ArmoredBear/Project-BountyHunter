@@ -15,9 +15,9 @@ grow_vertical = 2
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 257.0
-offset_top = 92.0
-offset_right = 2138.0
-offset_bottom = 747.0
+offset_top = 201.0
+offset_right = 1310.0
+offset_bottom = 1036.0
 theme = ExtResource("1_eugq4")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
@@ -34,13 +34,13 @@ custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 script = ExtResource("2_t3kt5")
 
-[node name="ADD_ITEM_TEMP" type="Button" parent="."]
+[node name="ADD_ITEM_TEMP" type="Button" parent="Panel"]
 texture_filter = 1
 layout_mode = 2
-offset_left = 1835.0
-offset_top = 188.0
-offset_right = 2035.0
-offset_bottom = 238.0
+offset_left = 750.0
+offset_top = 96.0
+offset_right = 950.0
+offset_bottom = 146.0
 size_flags_horizontal = 5
 size_flags_vertical = 6
 theme = ExtResource("1_eugq4")
@@ -52,4 +52,4 @@ icon_alignment = 1
 language = "en"
 script = ExtResource("3_ma5u2")
 
-[connection signal="pressed" from="ADD_ITEM_TEMP" to="ADD_ITEM_TEMP" method="OnButtonPressed"]
+[connection signal="pressed" from="Panel/ADD_ITEM_TEMP" to="Panel/ADD_ITEM_TEMP" method="OnButtonPressed"]

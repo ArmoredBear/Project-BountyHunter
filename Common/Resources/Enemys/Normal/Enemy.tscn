@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bqkpdvjj7du2w" path="res://Common/Resources/Enemys/Normal/Prefabs/Phantom.tres" id="2_08bht"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_81yyl"]
-size = Vector2(41, 93)
+size = Vector2(27, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lgkcp"]
 atlas = ExtResource("2_08bht")
@@ -52,13 +52,14 @@ animations = [{
 "texture": SubResource("AtlasTexture_0d1sw")
 }],
 "loop": true,
-"name": &"Idle",
+"name": &"Phantom_Idle",
 "speed": 6.0
 }]
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("Agent")]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("Animation_Sprite", "Agent")]
 motion_mode = 1
 script = ExtResource("1_nttci")
+Animation_Sprite = NodePath("Enemy_Animation")
 Agent = NodePath("NavigationAgent2D")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
@@ -72,11 +73,9 @@ debug_path_custom_point_size = 25.0
 debug_path_custom_line_width = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 1.5)
+position = Vector2(-0.5, 2)
 shape = SubResource("RectangleShape2D_81yyl")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Enemy_Animation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_kw5ea")
-animation = &"Idle"
-frame = 3
-frame_progress = 0.605952
+animation = &"Phantom_Idle"

@@ -20,7 +20,7 @@ public partial class Enemy : CharacterBody2D
 
     public override void _Ready()
     {
-        base._Ready();
+        //base._Ready();
 
         State_of_Enemy = Enemy_States.Idle;
         Animation_Sprite = GetNode<AnimatedSprite2D>("Enemy_Animation");

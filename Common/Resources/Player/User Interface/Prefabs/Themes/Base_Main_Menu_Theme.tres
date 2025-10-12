@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://byfphwqv3j56s"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://byfphwqv3j56s"]
 
 [ext_resource type="FontFile" uid="uid://cn32e5boubhg" path="res://Common/Resources/Player/User Interface/Fonts/veteran_typewriter/veteran typewriter.ttf" id="1_h6a0n"]
+[ext_resource type="FontFile" uid="uid://bnnwxabllsohk" path="res://Common/Resources/Player/User Interface/Fonts/Springmarch/springmarch.roman.otf" id="1_l0hiw"]
 [ext_resource type="StyleBox" uid="uid://pj4u5nnckay4" path="res://Common/Resources/Player/User Interface/Prefabs/Themes/Base_Texture_Button_Hovered.tres" id="2_jf33x"]
 [ext_resource type="StyleBox" uid="uid://bn25qll74xn6f" path="res://Common/Resources/Player/User Interface/Prefabs/Themes/Base_Texture_Button_Hovered_Pressed.tres" id="3_n6dih"]
 [ext_resource type="StyleBox" uid="uid://d122wrnluff2q" path="res://Common/Resources/Player/User Interface/Prefabs/Themes/Base_Texture_Button_Normal.tres" id="3_tftbc"]
@@ -44,8 +45,8 @@ Button/constants/align_to_largest_stylebox = 1
 Button/constants/h_separation = 16
 Button/constants/icon_max_width = 0
 Button/constants/outline_size = 1
-Button/font_sizes/font_size = 16
-Button/fonts/font = ExtResource("1_h6a0n")
+Button/font_sizes/font_size = 14
+Button/fonts/font = ExtResource("1_l0hiw")
 Button/styles/disabled = SubResource("StyleBoxFlat_rmhqk")
 Button/styles/focus = ExtResource("3_n6dih")
 Button/styles/hover = ExtResource("2_jf33x")

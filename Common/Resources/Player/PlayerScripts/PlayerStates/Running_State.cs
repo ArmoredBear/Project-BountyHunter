@@ -105,7 +105,7 @@ public partial class Running_State : Player_State
 
 			else
 			{
-				Player_Animation.Play("Run_Up");
+				Player_Animation.Play("Run_Right");
 			}
 		}
 		
@@ -124,7 +124,7 @@ public partial class Running_State : Player_State
 
 			else
 			{
-				Player_Animation.Play("Run_Down");
+				Player_Animation.Play("Run_Left");
 			}
 
 		}
@@ -180,7 +180,7 @@ public partial class Running_State : Player_State
 
 			else
 			{
-				Player_Animation.Play("Run_Up");
+				Player_Animation.Play("Run_Right");
 			}
 		}
 
@@ -198,7 +198,7 @@ public partial class Running_State : Player_State
 
 			else
 			{
-				Player_Animation.Play("Run_Down");
+				Player_Animation.Play("Run_Left");
 			}
 		}
 

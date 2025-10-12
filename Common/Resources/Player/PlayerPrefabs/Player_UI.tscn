@@ -32,7 +32,6 @@ shader_parameter/Move_Speed = Vector2(0.2, 0)
 shader_parameter/Texture2D = ExtResource("9_e6ycs")
 
 [node name="Player_UI" type="CanvasLayer"]
-visible = false
 
 [node name="Status" type="Control" parent="."]
 layout_mode = 3
@@ -152,9 +151,7 @@ stretch_margin_bottom = 5
 texture_progress = ExtResource("9_2ool3")
 
 [node name="Inventory_UI" parent="." instance=ExtResource("12_2ppih")]
-offset_left = -40.0
-offset_top = 15.0
-offset_right = -40.0
-offset_bottom = 15.0
+visible = false
 
 [node name="DialogueUI" parent="." instance=ExtResource("13_st3ur")]
+visible = false

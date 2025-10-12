@@ -194,7 +194,6 @@ textures/decals/filter=0
 textures/light_projectors/filter=0
 environment/screen_space_reflection/roughness_quality=3
 environment/subsurface_scattering/subsurface_scattering_quality=3
-viewport/transparent_background=true
 viewport/hdr_2d=true
 2d/snap/snap_2d_transforms_to_pixel=true
 2d/sdf/scale=0
