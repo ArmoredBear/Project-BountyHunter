@@ -79,3 +79,7 @@ shape = SubResource("RectangleShape2D_81yyl")
 [node name="Enemy_Animation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_kw5ea")
 animation = &"Phantom_Idle"
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="AttackArea" type="Area2D" parent="."]
