@@ -212,9 +212,10 @@ height = 3335.0
 
 [node name="Enemys" type="Node2D" parent="."]
 
-[node name="Enemy" parent="Enemys" instance=ExtResource("7_ru6d5")]
+[node name="Enemy" parent="Enemys" node_paths=PackedStringArray("PatrolPoints") instance=ExtResource("7_ru6d5")]
 position = Vector2(-806, -143)
 scale = Vector2(5, 5)
+PatrolPoints = []
 
 [node name="Enviroment" type="Node2D" parent="."]
 

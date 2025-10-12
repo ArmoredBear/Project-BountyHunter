@@ -1,6 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://3lgotkdwmh7p"]
+[gd_scene load_steps=5 format=3 uid="uid://3lgotkdwmh7p"]
 
 [ext_resource type="TileSet" uid="uid://dg8c8oas8e06g" path="res://Common/Resources/Cenarios/Tilemap/Forest/Forest_Trees.tres" id="1_dwnof"]
+[ext_resource type="Texture2D" uid="uid://c23ar3pdmb640" path="res://Common/Resources/Cenarios/CenarioArt/Environment/Forest/Grass01.png" id="1_quom0"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gve6u"]
+texture = ExtResource("1_quom0")
+texture_region_size = Vector2i(128, 128)
+1:1/0 = 0
+2:1/0 = 0
+2:2/0 = 0
+1:2/0 = 0
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+3:1/0 = 0
+3:2/0 = 0
+3:3/0 = 0
+2:3/0 = 0
+1:3/0 = 0
+0:3/0 = 0
+0:2/0 = 0
+0:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ch1oj"]
+sources/0 = SubResource("TileSetAtlasSource_gve6u")
 
 [node name="Forest" type="Node2D"]
 
@@ -9,6 +33,8 @@
 [node name="Ground_Background_TileMapLayer" type="TileMapLayer" parent="Ground"]
 
 [node name="Ground_Grass_TileMapLayer" type="TileMapLayer" parent="Ground"]
+tile_set = SubResource("TileSet_ch1oj")
+rendering_quadrant_size = 128
 
 [node name="Ground_Rocks_TileMapLayer" type="TileMapLayer" parent="Ground"]
 

@@ -56,11 +56,12 @@ animations = [{
 "speed": 6.0
 }]
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("Animation_Sprite", "Agent")]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("Animation_Sprite", "Agent", "PatrolPoints")]
 motion_mode = 1
 script = ExtResource("1_nttci")
 Animation_Sprite = NodePath("Enemy_Animation")
 Agent = NodePath("NavigationAgent2D")
+PatrolPoints = []
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 50.0
