@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://ccwqnm8c8jwux"]
+[gd_scene load_steps=15 format=3 uid="uid://ccwqnm8c8jwux"]
 
 [ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/Enemy.cs" id="1_17m5a"]
 [ext_resource type="Texture2D" uid="uid://bqkpdvjj7du2w" path="res://Common/Resources/Enemys/Normal/Prefabs/Phantom.tres" id="2_oemhw"]
+[ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/EnemyStats.cs" id="3_13e01"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yr1pf"]
 size = Vector2(163, 378)
@@ -59,10 +60,18 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_81yyl"]
 size = Vector2(203, 466)
 
-[node name="Phantom" type="CharacterBody2D" node_paths=PackedStringArray("Agent")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8nlwm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eve5u"]
+
+[node name="Phantom" type="CharacterBody2D" node_paths=PackedStringArray("Agent", "DetectionArea", "AttackArea", "_stats", "PatrolPoints")]
 motion_mode = 1
 script = ExtResource("1_17m5a")
 Agent = NodePath("NavigationAgent2D")
+DetectionArea = NodePath("DetectionArea")
+AttackArea = NodePath("AttackArea")
+_stats = NodePath("EnemyStats")
+PatrolPoints = []
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -91,3 +100,20 @@ frame_progress = 0.592949
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(2.5, 8)
 shape = SubResource("RectangleShape2D_81yyl")
+
+[node name="EnemyStats" type="Node" parent="."]
+script = ExtResource("3_13e01")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+scale = Vector2(100, 100)
+shape = SubResource("RectangleShape2D_8nlwm")
+debug_color = Color(0.977897, 0, 0.400499, 0.42)
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+scale = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_eve5u")
+debug_color = Color(0.681901, 0.502732, 0, 0.42)
