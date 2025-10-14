@@ -24,7 +24,6 @@ namespace PlayerScript.PlayerInventory
 		// GETTERS
 		// -------------------------
 
-
 		public int GetUsedInventorySlots() => _usedSlots;
 
 		public int GetFreeSlots() => MaxInventorySlots - _usedSlots;
@@ -35,45 +34,97 @@ namespace PlayerScript.PlayerInventory
 		}
 
 		// -------------------------
-		// ADD / REMOVE
-		// -------------------------=
+		// SIGNALS
+		// -------------------------
 		[Signal] public delegate void ItemAddedEventHandler(ItemInstance item);
 		[Signal] public delegate void ItemRemovedEventHandler(ItemInstance item);
+		[Signal] public delegate void InventoryUpdatedEventHandler();
 
-		public bool CanAddItem(ItemInstance item)
+		// -------------------------
+		// ADD / REMOVE
+		// -------------------------
+
+		// -------------------------
+		// AJUSTE DE SLOTS
+		// -------------------------
+		private int GetSlotDelta(ItemInstance item, int quantityChange)
 		{
-			return (_usedSlots + item.GetTotalSlotUsage()) <= MaxInventorySlots;
+			return (item.Data?.SlotPerItem ?? 1) * quantityChange;
 		}
+
+		// -------------------------
+		// ADD ITEM
+		// -------------------------
 
 		public bool AddItem(ItemInstance item)
 		{
-			int newUsage = _usedSlots + item.GetTotalSlotUsage();
-			if (newUsage <= MaxInventorySlots)
+			// Primeiro, procura se já existe item igual
+			var existing = FindItem(i => i.Data.ItemID == item.Data.ItemID);
+
+			if (existing != null)
 			{
-				_inventoryByType[item.Data.Type].Add(item);
-				_usedSlots = newUsage;
-				EmitSignal(SignalName.ItemAdded, item);
+				// Proteção contra empilhar a mesma referência
+				if (ReferenceEquals(existing, item))
+				{
+					GD.PrintErr($"Tentando empilhar o mesmo objeto '{item.Data.Name}'! Crie uma nova instância.");
+					return false;
+				}
+
+				int additionalSlots = GetSlotDelta(item, item.Quantity);
+				if (_usedSlots + additionalSlots <= MaxInventorySlots)
+				{
+					existing.Quantity += item.Quantity;
+					_usedSlots += additionalSlots;
+					EmitSignal(SignalName.InventoryUpdated);
+					return true;
+				}
+				return false;
+			}
+
+			
+			int neededSlots = GetSlotDelta(item, item.Quantity);
+			if (_usedSlots + neededSlots <= MaxInventorySlots)
+			{
+				_inventoryByType[item.Data.Type].Add(item.Clone()); // garante nova instância
+				_usedSlots += neededSlots;
+				EmitSignal(SignalName.InventoryUpdated);
 				return true;
 			}
+
 			return false;
 		}
-		public bool RemoveItem(ItemInstance item)
+
+		// -------------------------
+		// REMOVE ITEM
+		// -------------------------
+
+		public bool RemoveItem(ItemInstance item, int quantity = 1)
 		{
-			if (_inventoryByType[item.Data.Type].Remove(item))
+			// Encontra a instância real no inventário
+			var storedItem = FindItem(i => ReferenceEquals(i, item) || i.Data.ItemID == item.Data.ItemID);
+			if (storedItem == null)
+				return false;
+
+			int removeQuantity = Math.Min(quantity, storedItem.Quantity);
+			int slotReduction = GetSlotDelta(storedItem, removeQuantity);
+
+			storedItem.Quantity -= removeQuantity;
+			_usedSlots -= slotReduction;
+
+			if (storedItem.Quantity <= 0)
 			{
-				_usedSlots -= item.GetTotalSlotUsage();
-				EmitSignal(SignalName.ItemRemoved, item);
-				return true;
+				_inventoryByType[storedItem.Data.Type].Remove(storedItem);
 			}
-			return false;
+
+
+			EmitSignal(SignalName.InventoryUpdated);
+			return true;
 		}
 
 		// -------------------------
 		// BUSCA GENÉRICA
 		// -------------------------
 
-		/// Procura o primeiro item que satisfaça a condição.
-		/// Exemplo: FindItem(i => i.Id == "potion_01");
 		public ItemInstance? FindItem(Predicate<ItemInstance> match)
 		{
 			foreach (var category in _inventoryByType.Values)
@@ -87,8 +138,6 @@ namespace PlayerScript.PlayerInventory
 			return null;
 		}
 
-		/// Procura todos os itens que satisfaçam a condição.
-		/// Exemplo: FindItems(i => i.Rarity == Rarity.Legendary);
 		public List<ItemInstance> FindItems(Predicate<ItemInstance> match)
 		{
 			List<ItemInstance> result = new();
@@ -119,6 +168,5 @@ namespace PlayerScript.PlayerInventory
 				}
 			}
 		}
-
 	}
 }

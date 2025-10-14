@@ -1,0 +1,8 @@
+[gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://26d8wrq6wkg2"]
+
+[ext_resource type="Texture2D" uid="uid://c7nlhcwf7weck" path="res://Common/Resources/Enemys/Normal/Art/Animation/Phantom_Monster_Pursuit.png" id="1_cghv3"]
+[ext_resource type="Texture2D" uid="uid://dqi2bvq5hfpmd" path="res://Common/Resources/Enemys/Normal/Art/NormalMaps/Phantom_Monster_Pursuit_n.png" id="2_k4nh5"]
+
+[resource]
+diffuse_texture = ExtResource("1_cghv3")
+normal_texture = ExtResource("2_k4nh5")

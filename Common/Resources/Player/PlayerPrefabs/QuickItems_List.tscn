@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cstb8svv5da71"]
 
-[node name="Player_Items" type="Node"]
+[node name="Player_Quick_Items" type="Node"]
 
 [node name="Fixed_Items" type="Node" parent="."]
 

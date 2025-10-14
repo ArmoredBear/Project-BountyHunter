@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://c7hn5y2vvc514"]
+
+[ext_resource type="Script" path="res://Common/Resources/Player/PlayerScripts/PlayerInventory/ItemData.cs" id="1_ags2q"]
+[ext_resource type="Texture2D" uid="uid://crwajgbxlk22q" path="res://_Debug/SwordTest.png" id="1_imiqs"]
+
+[resource]
+script = ExtResource("1_ags2q")
+ItemID = "1"
+Name = "Sword"
+Icon = ExtResource("1_imiqs")
+Type = 1
+SlotPerItem = 1

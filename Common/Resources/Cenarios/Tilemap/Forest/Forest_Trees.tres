@@ -1,0 +1,14 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dg8c8oas8e06g"]
+
+[ext_resource type="Texture2D" uid="uid://bdsnk0ub1w44c" path="res://Common/Resources/Cenarios/CenarioArt/Environment/Forest/PineTree1.png" id="1_r7ctp"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8dqpo"]
+texture = ExtResource("1_r7ctp")
+texture_region_size = Vector2i(128, 128)
+2:0/0 = 0
+0:0/size_in_atlas = Vector2i(2, 2)
+0:0/0 = 0
+
+[resource]
+tile_size = Vector2i(128, 128)
+sources/1 = SubResource("TileSetAtlasSource_8dqpo")

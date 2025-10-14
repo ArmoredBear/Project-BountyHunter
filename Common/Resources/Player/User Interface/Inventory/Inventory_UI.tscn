@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmapv7sbodtuk"]
+
+[ext_resource type="Theme" uid="uid://b7k1imxvkgx1" path="res://Common/Resources/Player/User Interface/Prefabs/Themes/Base_Theme.tres" id="1_eugq4"]
+[ext_resource type="Script" path="res://Common/Resources/Player/User Interface/Inventory/InventoryUI.cs" id="2_t3kt5"]
+[ext_resource type="Script" path="res://_Debug/AdditemTemp.cs" id="3_ma5u2"]
+
+[node name="Inventory_UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 257.0
+offset_top = 201.0
+offset_right = 1310.0
+offset_bottom = 1036.0
+theme = ExtResource("1_eugq4")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 142.0
+offset_top = 81.0
+offset_right = 546.0
+offset_bottom = 574.0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+script = ExtResource("2_t3kt5")
+
+[node name="ADD_ITEM_TEMP" type="Button" parent="Panel"]
+texture_filter = 1
+layout_mode = 2
+offset_left = 750.0
+offset_top = 96.0
+offset_right = 950.0
+offset_bottom = 146.0
+size_flags_horizontal = 5
+size_flags_vertical = 6
+theme = ExtResource("1_eugq4")
+theme_override_font_sizes/font_size = 30
+text = "Add Item"
+text_overrun_behavior = 1
+autowrap_mode = 3
+icon_alignment = 1
+language = "en"
+script = ExtResource("3_ma5u2")
+
+[connection signal="pressed" from="Panel/ADD_ITEM_TEMP" to="Panel/ADD_ITEM_TEMP" method="OnButtonPressed"]

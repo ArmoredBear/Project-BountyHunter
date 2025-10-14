@@ -105,7 +105,7 @@ public partial class Running_State : Player_State
 
 			else
 			{
-				Player_Animation.Play("Run_Up");
+				Player_Animation.Play("Run_Right");
 			}
 		}
 		
@@ -124,7 +124,7 @@ public partial class Running_State : Player_State
 
 			else
 			{
-				Player_Animation.Play("Run_Down");
+				Player_Animation.Play("Run_Left");
 			}
 
 		}
@@ -180,7 +180,7 @@ public partial class Running_State : Player_State
 
 			else
 			{
-				Player_Animation.Play("Run_Up");
+				Player_Animation.Play("Run_Right");
 			}
 		}
 
@@ -198,7 +198,7 @@ public partial class Running_State : Player_State
 
 			else
 			{
-				Player_Animation.Play("Run_Down");
+				Player_Animation.Play("Run_Left");
 			}
 		}
 
@@ -374,20 +374,33 @@ public partial class Running_State : Player_State
 
 	public void Movement()
 	{
-		
+
 		if (Input.IsActionPressed("Game_Pad_Run") || Input.IsActionPressed("Keyboard_Run"))
 		{
-			if (Player_Data_Autoload.Data.CURRENT_Stamina == 100)
+			if (Check_Pressed_Move_Control_Type() == 0)
 			{
-				Player.Instance.Player_State_P = Player_States.Running;
-				Player_FSM_P.TransitionToState("Running");
+				if (Player_Data_Autoload.Data.CURRENT_Stamina > 0)
+				{
+					Player.Instance.Player_State_P = Player_States.Running;
+					Player_FSM_P.TransitionToState("Running");
+				}
 			}
-		}	
-		
-		else if(!Input.IsActionJustReleased("Game_Pad_Run") || !Input.IsActionJustReleased("Keyboard_Run"))
+			
+			if (Check_Pressed_Move_Control_Type() == 1)
+			{
+				if (Player_Data_Autoload.Data.CURRENT_Stamina > 0)
+				{
+					Player.Instance.Player_State_P = Player_States.Running;
+					Player_FSM_P.TransitionToState("Running");
+				}
+			}
+			
+		}
+
+		else if (!Input.IsActionJustReleased("Game_Pad_Run") || !Input.IsActionJustReleased("Keyboard_Run"))
 		{
 			Player.Instance.Player_State_P = Player_States.Walking;
-            Player_FSM_P.TransitionToState("Walking");
+			Player_FSM_P.TransitionToState("Walking");
 		}
 
 		else

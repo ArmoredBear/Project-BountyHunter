@@ -1,93 +1,121 @@
-[gd_scene load_steps=12 format=3 uid="uid://ccwqnm8c8jwux"]
+[gd_scene load_steps=16 format=3 uid="uid://ccwqnm8c8jwux"]
 
-[ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/Enemy.cs" id="1_17m5a"]
-[ext_resource type="Texture2D" uid="uid://bqkpdvjj7du2w" path="res://Common/Resources/Enemys/Normal/Prefabs/Phantom.tres" id="2_oemhw"]
+[ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/Enemy.cs" id="1_25wfd"]
+[ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/EnemyStats.cs" id="2_ufs14"]
+[ext_resource type="Texture2D" uid="uid://bqkpdvjj7du2w" path="res://Common/Resources/Enemys/Normal/Prefabs/Phantom_Idle_Canvas_Texture.tres" id="3_8so8e"]
+[ext_resource type="Texture2D" uid="uid://26d8wrq6wkg2" path="res://Common/Resources/Enemys/Normal/Prefabs/Phantom_Pursuit_Canvas_Texture.tres" id="4_3q8xp"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yr1pf"]
-size = Vector2(163, 378)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xxs1g"]
+radius = 25.0
+height = 50.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bp6v8"]
-atlas = ExtResource("2_oemhw")
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgkcp"]
+atlas = ExtResource("3_8so8e")
 region = Rect2(0, 0, 144, 144)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s5yve"]
-atlas = ExtResource("2_oemhw")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypvl2"]
+atlas = ExtResource("3_8so8e")
 region = Rect2(144, 0, 144, 144)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8l6qd"]
-atlas = ExtResource("2_oemhw")
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5gsy"]
+atlas = ExtResource("3_8so8e")
 region = Rect2(288, 0, 144, 144)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0wtlb"]
-atlas = ExtResource("2_oemhw")
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xpmh"]
+atlas = ExtResource("3_8so8e")
 region = Rect2(432, 0, 144, 144)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jos20"]
-atlas = ExtResource("2_oemhw")
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfk2m"]
+atlas = ExtResource("3_8so8e")
 region = Rect2(576, 0, 144, 144)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bbi2f"]
-atlas = ExtResource("2_oemhw")
+[sub_resource type="AtlasTexture" id="AtlasTexture_0d1sw"]
+atlas = ExtResource("3_8so8e")
 region = Rect2(720, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4m3g"]
+atlas = ExtResource("4_3q8xp")
+region = Rect2(0, 0, 144, 144)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kw5ea"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bp6v8")
+"texture": SubResource("AtlasTexture_lgkcp")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_s5yve")
+"texture": SubResource("AtlasTexture_ypvl2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8l6qd")
+"texture": SubResource("AtlasTexture_b5gsy")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0wtlb")
+"texture": SubResource("AtlasTexture_1xpmh")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jos20")
+"texture": SubResource("AtlasTexture_pfk2m")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bbi2f")
+"texture": SubResource("AtlasTexture_0d1sw")
 }],
 "loop": true,
 "name": &"Phantom_Idle",
 "speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b4m3g")
+}],
+"loop": true,
+"name": &"Phantom_Pursuit",
+"speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_81yyl"]
-size = Vector2(203, 466)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3dpq5"]
+size = Vector2(700, 700)
 
-[node name="Phantom" type="CharacterBody2D" node_paths=PackedStringArray("Agent")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g25pt"]
+size = Vector2(100, 100)
+
+[node name="Phantom" type="CharacterBody2D" node_paths=PackedStringArray("Animation_Sprite", "Agent", "DetectionArea", "AttackArea", "_stats", "PatrolPoints")]
+scale = Vector2(5, 5)
 motion_mode = 1
-script = ExtResource("1_17m5a")
+script = ExtResource("1_25wfd")
+Animation_Sprite = NodePath("Enemy_Animation")
 Agent = NodePath("NavigationAgent2D")
+DetectionArea = NodePath("DetectionArea")
+AttackArea = NodePath("AttackArea")
+_stats = NodePath("EnemyStats")
+PatrolPoints = []
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(-3.5, 4)
-shape = SubResource("RectangleShape2D_yr1pf")
-disabled = true
+[node name="EnemyStats" type="Node2D" parent="."]
+script = ExtResource("2_ufs14")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 50.0
 target_desired_distance = 30.0
 path_postprocessing = 1
 max_speed = 500.0
+debug_enabled = true
+debug_use_custom = true
 debug_path_custom_point_size = 25.0
 debug_path_custom_line_width = 10.0
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_xxs1g")
+
 [node name="Enemy_Animation" type="AnimatedSprite2D" parent="."]
 z_index = 3
-scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_kw5ea")
-animation = &"Phantom_Idle"
-frame = 3
-frame_progress = 0.592949
+animation = &"Phantom_Pursuit"
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="DetectionArea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(2.5, 8)
-shape = SubResource("RectangleShape2D_81yyl")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("RectangleShape2D_3dpq5")
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("RectangleShape2D_g25pt")

@@ -1,8 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://bswa5xld6wyiu"]
+[gd_scene load_steps=22 format=3 uid="uid://bswa5xld6wyiu"]
 
 [ext_resource type="PackedScene" uid="uid://cstb8svv5da71" path="res://Common/Resources/Player/PlayerPrefabs/QuickItems_List.tscn" id="1_v8mnl"]
 [ext_resource type="Script" path="res://Common/Resources/Player/PlayerScripts/Player.cs" id="2_gnjcu"]
-[ext_resource type="PackedScene" uid="uid://ltev86bv3ovj" path="res://Common/Resources/Player/Collision/main_collider.tscn" id="2_imxp1"]
 [ext_resource type="SpriteFrames" uid="uid://cn2pxpvys21bk" path="res://Common/Resources/Player/PlayerPrefabs/PlayerAnimationSprites.tres" id="3_pf8kc"]
 [ext_resource type="Script" path="res://Common/Resources/Player/PlayerScripts/Player_FSM.cs" id="4_1x6g7"]
 [ext_resource type="Shader" uid="uid://daduoont25u0w" path="res://Common/Resources/Shaders/PlayerShader.tres" id="4_w7j57"]
@@ -16,6 +15,14 @@
 [ext_resource type="Script" path="res://Common/Resources/Player/PlayerScripts/PlayerStates/Evade_State.cs" id="10_ydvyn"]
 [ext_resource type="Texture2D" uid="uid://86173bnxxr3h" path="res://Common/Resources/Player/PlayerArt/LanternLight.png" id="11_8drmn"]
 [ext_resource type="Script" path="res://Common/Resources/Player/PlayerScripts/LightFlip.cs" id="11_imqv6"]
+[ext_resource type="Script" path="res://Common/Resources/Player/PlayerScripts/PlayerInventory/PlayerInventory.cs" id="17_ti6mo"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lhw6g"]
+radius = 30.0
+height = 120.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1vwxm"]
+size = Vector2(200, 400)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6ctx4"]
 shader = ExtResource("4_w7j57")
@@ -27,20 +34,28 @@ size = Vector2(321, 742)
 blend_mode = 1
 light_mode = 1
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_mtboj"]
-radius = 95.0003
-
-[node name="Player" type="Node2D"]
+[node name="Player" type="Node2D" groups=["player"]]
 z_index = 2
-position = Vector2(550, 300)
+position = Vector2(708, 900)
 
-[node name="Player_Body" type="CharacterBody2D" parent="."]
+[node name="Player_Body" type="CharacterBody2D" parent="." groups=["player"]]
 unique_name_in_owner = true
 light_mask = 3
 visibility_layer = 3
 motion_mode = 1
 platform_on_leave = 2
 script = ExtResource("2_gnjcu")
+
+[node name="Player_Physics_Collider" type="CollisionShape2D" parent="Player_Body"]
+position = Vector2(0, -20)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_lhw6g")
+
+[node name="Player_Interaction_Collider" type="Area2D" parent="Player_Body"]
+
+[node name="Player_Area2D_Collider_Shape" type="CollisionShape2D" parent="Player_Body/Player_Interaction_Collider"]
+position = Vector2(0, -150)
+shape = SubResource("RectangleShape2D_1vwxm")
 
 [node name="Camera2D" type="Camera2D" parent="Player_Body"]
 texture_filter = 1
@@ -64,7 +79,7 @@ material = SubResource("ShaderMaterial_6ctx4")
 position = Vector2(0, -185)
 scale = Vector2(5, 5)
 sprite_frames = ExtResource("3_pf8kc")
-animation = &"Idle_Right"
+animation = &"Walk_Right"
 
 [node name="Idle" type="Node2D" parent="Player_Body/Player_FSM" node_paths=PackedStringArray("Player_FSM_P", "Player_body_P")]
 unique_name_in_owner = true
@@ -137,12 +152,10 @@ scale = Vector2(0.75, 1.25)
 texture = ExtResource("11_8drmn")
 offset = Vector2(900, 0)
 
-[node name="Main_Collider" parent="Player_Body" instance=ExtResource("2_imxp1")]
-visible = false
-position = Vector2(0, -65.25)
-shape = SubResource("CircleShape2D_mtboj")
-
 [node name="Player_UI" parent="." instance=ExtResource("9_xt5uy")]
 unique_name_in_owner = true
 
 [node name="Player_Items" parent="." instance=ExtResource("1_v8mnl")]
+
+[node name="Inventory" type="Node" parent="."]
+script = ExtResource("17_ti6mo")
