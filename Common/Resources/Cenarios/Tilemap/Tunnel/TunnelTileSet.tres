@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=67 format=3 uid="uid://bm6068a5v0klm"]
+[gd_resource type="TileSet" load_steps=68 format=3 uid="uid://bm6068a5v0klm"]
 
 [ext_resource type="Material" uid="uid://blfv7v7ygffqn" path="res://Common/Resources/Cenarios/CenarioMaterials/TunnelMaterial.tres" id="1_cwukg"]
 [ext_resource type="Texture2D" uid="uid://x7e14kge5yui" path="res://Common/Resources/Cenarios/CenarioArt/Environment/Tunnel/CenarioTunnelSpriteSheet.png" id="1_lbto5"]
@@ -49,6 +49,12 @@ agent_radius = 0.0
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_sliuc"]
 polygon = PackedVector2Array(-64, -64, 0, -11, 64, 25, 64, 64, 26, 64, -14, -1)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_hktol"]
+vertices = PackedVector2Array(64, 64, -64, 64, -64, -64, 64, -64)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)])
+agent_radius = 0.0
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_fdrm5"]
 polygon = PackedVector2Array(22, -64, 64, -64, 64, 64, 22, 64)
@@ -677,7 +683,7 @@ texture_region_size = Vector2i(128, 128)
 2:17/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_iexuo")
 1:17/0 = 0
 1:17/0/material = ExtResource("1_cwukg")
-1:17/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_iexuo")
+1:17/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_hktol")
 8:15/0 = 0
 8:15/0/material = ExtResource("1_cwukg")
 8:15/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_d83ru")

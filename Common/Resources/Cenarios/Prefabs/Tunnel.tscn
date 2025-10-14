@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d1oou2y8ah1oo" path="res://Common/Resources/Cenarios/CenarioArt/Lighting/Cenario_Point_Light_Map.tres" id="5_omeb6"]
 [ext_resource type="Texture2D" uid="uid://bitqvnwe26177" path="res://Common/Resources/Cenarios/CenarioArt/Lighting/Door_LightMap.png" id="6_gi80c"]
 [ext_resource type="Texture2D" uid="uid://poh5e7lfq33h" path="res://Common/Resources/Cenarios/CenarioArt/Lighting/GodRay_LightMap.png" id="7_hnrfk"]
-[ext_resource type="PackedScene" uid="uid://4isaj33lvd0g" path="res://Common/Resources/Enemys/Normal/Enemy.tscn" id="7_ru6d5"]
+[ext_resource type="PackedScene" uid="uid://ccwqnm8c8jwux" path="res://Common/Resources/Enemys/Normal/Prefabs/Phantom.tscn" id="7_p8x1l"]
 [ext_resource type="Material" uid="uid://dd0284oj67vwv" path="res://Common/Resources/Cenarios/CenarioMaterials/GodRaysMaterial_2.tres" id="8_dp1p4"]
 [ext_resource type="Material" uid="uid://ci1n5svpvkdh8" path="res://Common/Resources/Cenarios/Props/PropsMaterials/PropsMaterial_Lamp_1.tres" id="9_k488q"]
 [ext_resource type="Texture2D" uid="uid://dwklhceod1aps" path="res://Common/Resources/Cenarios/Props/PropsArt/Lights/Lamp_1.png" id="10_alwai"]
@@ -212,10 +212,8 @@ height = 3335.0
 
 [node name="Enemys" type="Node2D" parent="."]
 
-[node name="Enemy" parent="Enemys" node_paths=PackedStringArray("PatrolPoints") instance=ExtResource("7_ru6d5")]
-position = Vector2(-806, -143)
-scale = Vector2(5, 5)
-PatrolPoints = []
+[node name="Phantom" parent="Enemys" instance=ExtResource("7_p8x1l")]
+position = Vector2(-1346, 198)
 
 [node name="Enviroment" type="Node2D" parent="."]
 

@@ -46,6 +46,10 @@ project/assembly_name="Project Bounty Hunter"
 
 enabled=PackedStringArray("res://addons/panku_console/plugin.cfg")
 
+[global_group]
+
+player="Player Group"
+
 [input]
 
 Game_Pad_Up={

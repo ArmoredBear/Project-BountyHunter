@@ -249,9 +249,9 @@ public partial class Enemy : CharacterBody2D
 		if (Animation_Sprite == null) return; 
 
 		if (newState == State.Attack) Animation_Sprite.Play("Phantom_Attack");
-		else if (newState == State.Chase) Animation_Sprite.Play("Phantom_Run");
-		else if (newState == State.Patrol) Animation_Sprite.Play("Phantom_Run");
-		else if (newState == State.Flee) Animation_Sprite.Play("Phantom_Run");
+		else if (newState == State.Chase) Animation_Sprite.Play("Phantom_Pursuit");
+		else if (newState == State.Patrol) Animation_Sprite.Play("Phantom_Pursuit");
+		else if (newState == State.Flee) Animation_Sprite.Play("Phantom_Pursuit");
 	}
 
 	private void MoveToTarget(Vector2 targetPosition, float speedMultiplier = 1.0f)
@@ -276,7 +276,7 @@ public partial class Enemy : CharacterBody2D
 		
 		if (Velocity.X != 0 && Animation_Sprite != null)
 		{
-			Animation_Sprite.FlipH = Velocity.X < 0;
+			Animation_Sprite.FlipH = Velocity.X > 0;
 		}
 	}
 
@@ -298,19 +298,20 @@ public partial class Enemy : CharacterBody2D
 		}
 
 		MoveToTarget(targetPosition, 0.5f); 
-		if (Animation_Sprite != null) Animation_Sprite.Play("Phantom_Run");
+		if (Animation_Sprite != null) Animation_Sprite.Play("Phantom_Pursuit");
 	}
 
 	private void HandleChase(float delta)
 	{
 		if (_player == null)
-		{
+        {
+            GD.Print("Player is null!!");
 			ChangeState(State.Patrol);
 			return;
 		}
 		
 		MoveToTarget(_player.GlobalPosition, 1.2f); 
-		if (Animation_Sprite != null) Animation_Sprite.Play("Phantom_Run");
+		if (Animation_Sprite != null) Animation_Sprite.Play("Phantom_Pursuit");
 	}
 
 	private void HandleAttack(float delta)
@@ -331,7 +332,7 @@ public partial class Enemy : CharacterBody2D
 		Vector2 safeTarget = GlobalPosition + fleeDirection * 500f; 
 		
 		MoveToTarget(safeTarget, 1.5f); 
-		if (Animation_Sprite != null) Animation_Sprite.Play("Phantom_Run");
+		if (Animation_Sprite != null) Animation_Sprite.Play("Phantom_Pursuit");
 
 		if (_distanceToPlayer > 600 || (_stats != null && _stats.CurrentHealth > FleeThreshold * 1.5f))
 		{
