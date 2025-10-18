@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://ccwqnm8c8jwux"]
 
-[ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/Enemy.cs" id="1_25wfd"]
+[ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/Phantom.cs" id="1_25wfd"]
 [ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/EnemyStats.cs" id="2_ufs14"]
 [ext_resource type="Texture2D" uid="uid://bqkpdvjj7du2w" path="res://Common/Resources/Enemys/Normal/Prefabs/Phantom_Idle_Canvas_Texture.tres" id="3_8so8e"]
 [ext_resource type="Texture2D" uid="uid://26d8wrq6wkg2" path="res://Common/Resources/Enemys/Normal/Prefabs/Phantom_Pursuit_Canvas_Texture.tres" id="4_3q8xp"]
@@ -90,6 +90,7 @@ PatrolPoints = []
 
 [node name="EnemyStats" type="Node2D" parent="."]
 script = ExtResource("2_ufs14")
+Attack = 5
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 50.0

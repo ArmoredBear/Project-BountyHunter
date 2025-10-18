@@ -3,15 +3,18 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-public partial class Enemy : CharacterBody2D
+// RENOMEADO para Boss para refletir o papel
+public partial class Boss : CharacterBody2D
 {
-	// --- ENUM: Estados da Máquina de Estados ---
+	// --- ENUM: Estados da Máquina de Estados (Boss) ---
 	public enum State
 	{
-		Patrol,      // Patrulha em um perímetro
-		Chase,       // Persegue o jogador
-		Attack,      // Ataca o jogador
-		Flee         // Fuga com vida baixa
+		Patrol,      	// Patrulha em um perímetro (usado como Recuo inicial)
+		Chase,       	// Persegue o jogador
+		MeleeAttack,   	// NOVO: Ataque físico de perto
+		RangedAttack,  	// NOVO: Ataque de projétil de longe
+		Flee,         	// Fuga com vida baixa
+		Retreat        	// NOVO: Recuo após ataque físico
 	}
 
 	//!---------------------------------------------------------------------------------------------------------
@@ -24,13 +27,15 @@ public partial class Enemy : CharacterBody2D
 	[Export] public Area2D DetectionArea;
 	[Export] public Area2D AttackArea;
 	
-	// CORREÇÃO: EnemyStats agora é exportado para conexão obrigatória no Inspector
+	// CORREÇÃO: EnemyStats (Sugestão de renomear para BossStats, mas mantido EnemyStats para compatibilidade)
 	[Export] private EnemyStats _stats; 
 
 	// PARÂMETROS DA IA E MOVIMENTO
 	[Export] public float Movement_Speed { get; set; } = 500f;
 	[Export] public float AttackRange { get; set; } = 50f;
 	[Export] public int FleeThreshold { get; set; } = 30;
+	
+	// PatrolPoints agora servem como pontos de Recuo/Estratégicos
 	[Export] public Node2D[] PatrolPoints { get; set; }
 
 	// REFERÊNCIAS INTERNAS
@@ -76,7 +81,8 @@ public partial class Enemy : CharacterBody2D
 		// Tenta iniciar a animação (apenas se a referência foi preenchida)
 		if (Animation_Sprite != null)
 		{
-			Animation_Sprite.Play("Phantom_Idle");
+			// ALTERAÇÃO: Usar nome de animação de Boss
+			Animation_Sprite.Play("Boss_Idle"); 
 		}
 		
 		// 4. CORREÇÃO NAVMESH: Garante que o setup de navegação aconteça após o primeiro frame de física.
@@ -110,7 +116,7 @@ public partial class Enemy : CharacterBody2D
 			ChangeState(nextState);
 		}
 
-		// 4. Execução do Estado Atual
+		// 4. Execução do Estado Atual (Switch atualizado para novos estados)
 		switch (_currentState)
 		{
 			case State.Patrol:
@@ -119,11 +125,17 @@ public partial class Enemy : CharacterBody2D
 			case State.Chase:
 				HandleChase((float)delta);
 				break;
-			case State.Attack:
-				HandleAttack((float)delta);
+			case State.MeleeAttack: // NOVO
+				HandleMeleeAttack((float)delta);
+				break;
+			case State.RangedAttack: // NOVO
+				HandleRangedAttack((float)delta);
 				break;
 			case State.Flee:
 				HandleFlee((float)delta);
+				break;
+			case State.Retreat: // NOVO
+				HandleRetreat((float)delta);
 				break;
 		}
 
@@ -191,23 +203,42 @@ public partial class Enemy : CharacterBody2D
 		return 1.0f - ((_distanceToPlayer - AttackRange) / (maxRelevantDistance - AttackRange));
 	}
 	
+	// Lógica Fuzzy revisada para priorizar RangedAttack em vida baixa
 	private State DetermineNextStateFuzzy()
 	{
-		// SEGURANÇA: Já verificamos em _Ready, mas garantimos aqui
+		// SEGURANÇA
 		if (_stats == null) return State.Patrol; 
 		
 		float lowHealth = GetLowHealthMembership();
 		float nearDistance = GetNearDistanceMembership();
+		// Distância Longe é o inverso de Distância Perto
+		float farDistance = 1.0f - nearDistance; 
+		
+		// O estado Retreat é ativado explicitamente, sempre prioridade 0 na tomada de decisão.
+		_statePriorities[State.Retreat] = 0f; 
 		
 		// --- REGRAS DE INFERÊNCIA FUZZY ---
 		
+		// 1. Fuga (Flee): (Vida Baixa)
 		_statePriorities[State.Flee] = lowHealth * 1.5f; 
 		
-		float attackPriority = Mathf.Min(nearDistance, 1.0f - lowHealth);
-		_statePriorities[State.Attack] = (AttackArea != null && AttackArea.HasOverlappingBodies()) ? attackPriority : 0f;
+		// 2. Ataque Físico (MeleeAttack): (Perto E NÃO Vida Baixa)
+		// O Boss evita o ataque de perto se a vida estiver muito baixa.
+		float meleePriority = Mathf.Min(nearDistance, 1.0f - lowHealth);
+		// Só ataca se estiver na área de ataque
+		_statePriorities[State.MeleeAttack] = (AttackArea != null && AttackArea.HasOverlappingBodies()) ? meleePriority : 0f;
 		
-		_statePriorities[State.Chase] = (_player != null) ? Mathf.Min(1.0f - nearDistance, 1.0f - lowHealth) : 0f;
+		// 3. Ataque de Projétil (RangedAttack): (Longe OU Vida Baixa)
+		// A prioridade aumenta com a distância e/ou com a vida baixa.
+		float lowHealthRangedBoost = lowHealth * 0.5f; // Bônus para ataque à distância quando com pouca vida
+		float rangedPriority = Mathf.Max(farDistance, lowHealth) + lowHealthRangedBoost; // MAX implementa a lógica "OU"
+		// Garante que a prioridade não exceda 1.5f (considerando o boost)
+		_statePriorities[State.RangedAttack] = Mathf.Min(rangedPriority, 1.5f); 
 		
+		// 4. Perseguição (Chase): (NÃO Perto E NÃO Vida Baixa)
+		_statePriorities[State.Chase] = (_player != null) ? Mathf.Min(farDistance, 1.0f - lowHealth) : 0f;
+		
+		// 5. Patrulha (Patrol): (Jogador Ausente OU Prioridade de Chase baixa)
 		_statePriorities[State.Patrol] = (_player == null || _statePriorities[State.Chase] < 0.1f) ? 1.0f : 0.0f;
 		
 		// --- DEFUZZIFICAÇÃO (Escolha do Estado com Maior Prioridade) ---
@@ -216,6 +247,9 @@ public partial class Enemy : CharacterBody2D
 
 		foreach (var entry in _statePriorities)
 		{
+			// Prioriza Flee sobre qualquer coisa se a condição for limite (Será checado abaixo)
+			if (entry.Key == State.Flee) continue; 
+			
 			if (entry.Value > maxPriority)
 			{
 				maxPriority = entry.Value;
@@ -223,8 +257,8 @@ public partial class Enemy : CharacterBody2D
 			}
 		}
 		
-		// Prioriza Fuga se a vida estiver no limite
-		if (_stats.CurrentHealth <= FleeThreshold && maxPriority < _statePriorities[State.Flee])
+		// Prioriza Fuga se a vida estiver no limite (a regra mais rígida)
+		if (_stats.CurrentHealth <= FleeThreshold && _statePriorities.ContainsKey(State.Flee) && maxPriority < _statePriorities[State.Flee])
 		{
 			return State.Flee;
 		}
@@ -248,10 +282,23 @@ public partial class Enemy : CharacterBody2D
 		// SEGURANÇA
 		if (Animation_Sprite == null) return; 
 
-		if (newState == State.Attack) Animation_Sprite.Play("Phantom_Attack");
-		else if (newState == State.Chase) Animation_Sprite.Play("Phantom_Pursuit");
-		else if (newState == State.Patrol) Animation_Sprite.Play("Phantom_Pursuit");
-		else if (newState == State.Flee) Animation_Sprite.Play("Phantom_Pursuit");
+		// ATUALIZAÇÃO: Animações específicas para Boss e novos estados
+		if (newState == State.MeleeAttack) 
+		{
+			Animation_Sprite.Play("Boss_Melee");
+		}
+		else if (newState == State.RangedAttack) 
+		{
+			Animation_Sprite.Play("Boss_Ranged");
+		}
+		else if (newState == State.Chase || newState == State.Patrol || newState == State.Flee || newState == State.Retreat)
+		{
+			Animation_Sprite.Play("Boss_Run");
+		}
+		else // Default
+		{
+			Animation_Sprite.Play("Boss_Idle");
+		}
 	}
 
 	private void MoveToTarget(Vector2 targetPosition, float speedMultiplier = 1.0f)
@@ -276,7 +323,7 @@ public partial class Enemy : CharacterBody2D
 		
 		if (Velocity.X != 0 && Animation_Sprite != null)
 		{
-			Animation_Sprite.FlipH = Velocity.X > 0;
+			Animation_Sprite.FlipH = Velocity.X < 0;
 		}
 	}
 
@@ -285,7 +332,7 @@ public partial class Enemy : CharacterBody2D
 		if (PatrolPoints == null || PatrolPoints.Length == 0)
 		{
 			Velocity = Vector2.Zero;
-			if (Animation_Sprite != null) Animation_Sprite.Play("Phantom_Idle");
+			if (Animation_Sprite != null) Animation_Sprite.Play("Boss_Idle");
 			return;
 		}
 		
@@ -298,26 +345,71 @@ public partial class Enemy : CharacterBody2D
 		}
 
 		MoveToTarget(targetPosition, 0.5f); 
-		if (Animation_Sprite != null) Animation_Sprite.Play("Phantom_Pursuit");
+		if (Animation_Sprite != null) Animation_Sprite.Play("Boss_Run");
 	}
 
 	private void HandleChase(float delta)
 	{
 		if (_player == null)
-        {
-            GD.Print("Player is null!!");
+		{
 			ChangeState(State.Patrol);
 			return;
 		}
 		
 		MoveToTarget(_player.GlobalPosition, 1.2f); 
-		if (Animation_Sprite != null) Animation_Sprite.Play("Phantom_Pursuit");
+		if (Animation_Sprite != null) Animation_Sprite.Play("Boss_Run");
 	}
 
-	private void HandleAttack(float delta)
+	// NOVO: Handler para ataque físico
+	private void HandleMeleeAttack(float delta)
 	{
 		Velocity = Vector2.Zero;
-		GD.Print("Inimigo: Golpe físico!");
+		GD.Print("Boss: Golpe físico realizado!");
+		
+		// * Implemente a lógica de dano aqui (ex: AttackArea.GetOverlappingBodies() e causar dano)
+		
+		// Após o ataque, transiciona para o Recuo (Retreat)
+		// CallDeferred garante que a transição de estado não interrompa o estado atual antes do fim do frame.
+		Callable.From(() => ChangeState(State.Retreat)).CallDeferred(); 
+	}
+
+	// NOVO: Handler para ataque de projétil
+	private void HandleRangedAttack(float delta)
+	{
+		Velocity = Vector2.Zero;
+		GD.Print("Boss: Lançamento de Projétil realizado!");
+		
+		// * Implemente a lógica de spawn de projétil aqui
+		
+		// O Boss fica parado enquanto ataca. A Lógica Fuzzy decide o próximo estado.
+	}
+
+	// NOVO: Handler para recuo estratégico
+	private void HandleRetreat(float delta)
+	{
+		if (PatrolPoints == null || PatrolPoints.Length == 0)
+		{
+			// Se não houver pontos de recuo, volta para Chase
+			ChangeState(State.Chase); 
+			return;
+		}
+		
+		// O Boss recua para o ponto atual da patrulha (que são os seus pontos de recuo)
+		Vector2 targetPosition = PatrolPoints[_currentPatrolPointIndex].GlobalPosition;
+		
+		// Move-se para o ponto de recuo
+		MoveToTarget(targetPosition, 0.8f); 
+		if (Animation_Sprite != null) Animation_Sprite.Play("Boss_Run");
+
+		// Verifica se o Boss chegou ao ponto de recuo (distância de 50 unidades)
+		if (GlobalPosition.DistanceTo(targetPosition) < 50) 
+		{
+			// Chegou ao ponto seguro. Agora retoma a agressividade (Chase)
+			ChangeState(State.Chase); 
+			
+			// Opcional: Avança para o próximo ponto de patrulha para o próximo recuo.
+			_currentPatrolPointIndex = (_currentPatrolPointIndex + 1) % PatrolPoints.Length;
+		}
 	}
 
 	private void HandleFlee(float delta)
@@ -332,7 +424,7 @@ public partial class Enemy : CharacterBody2D
 		Vector2 safeTarget = GlobalPosition + fleeDirection * 500f; 
 		
 		MoveToTarget(safeTarget, 1.5f); 
-		if (Animation_Sprite != null) Animation_Sprite.Play("Phantom_Pursuit");
+		if (Animation_Sprite != null) Animation_Sprite.Play("Boss_Run");
 
 		if (_distanceToPlayer > 600 || (_stats != null && _stats.CurrentHealth > FleeThreshold * 1.5f))
 		{
@@ -350,7 +442,7 @@ public partial class Enemy : CharacterBody2D
 	
 	private void OnHealthChanged(int newHealth)
 	{
-		GD.Print($"Vida do inimigo alterada para: {newHealth}");
+		GD.Print($"Vida do Boss alterada para: {newHealth}");
 	}
 	
 	private void OnDetectionAreaBodyEntered(Node2D body)
