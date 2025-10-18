@@ -1,13 +1,38 @@
-[gd_scene load_steps=16 format=3 uid="uid://ccwqnm8c8jwux"]
+[gd_scene load_steps=23 format=3 uid="uid://ccwqnm8c8jwux"]
 
 [ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/Enemy.cs" id="1_25wfd"]
 [ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/EnemyStats.cs" id="2_ufs14"]
 [ext_resource type="Texture2D" uid="uid://bqkpdvjj7du2w" path="res://Common/Resources/Enemys/Normal/Prefabs/Phantom_Idle_Canvas_Texture.tres" id="3_8so8e"]
+[ext_resource type="Texture2D" uid="uid://3tm3i21uergc" path="res://Common/Resources/Enemys/Normal/Prefabs/Phantom_Attack_Canvas_Texture.tres" id="3_ceu46"]
 [ext_resource type="Texture2D" uid="uid://26d8wrq6wkg2" path="res://Common/Resources/Enemys/Normal/Prefabs/Phantom_Pursuit_Canvas_Texture.tres" id="4_3q8xp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xxs1g"]
 radius = 25.0
 height = 50.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6nmgl"]
+atlas = ExtResource("3_ceu46")
+region = Rect2(0, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oj4tu"]
+atlas = ExtResource("3_ceu46")
+region = Rect2(144, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d88yy"]
+atlas = ExtResource("3_ceu46")
+region = Rect2(288, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yy5iu"]
+atlas = ExtResource("3_ceu46")
+region = Rect2(432, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vea8a"]
+atlas = ExtResource("3_ceu46")
+region = Rect2(576, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a010d"]
+atlas = ExtResource("3_ceu46")
+region = Rect2(720, 0, 144, 144)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lgkcp"]
 atlas = ExtResource("3_8so8e")
@@ -39,6 +64,29 @@ region = Rect2(0, 0, 144, 144)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kw5ea"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6nmgl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oj4tu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d88yy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yy5iu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vea8a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a010d")
+}],
+"loop": true,
+"name": &"Phantom_Attack",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_lgkcp")
@@ -108,7 +156,7 @@ shape = SubResource("CapsuleShape2D_xxs1g")
 [node name="Enemy_Animation" type="AnimatedSprite2D" parent="."]
 z_index = 3
 sprite_frames = SubResource("SpriteFrames_kw5ea")
-animation = &"Phantom_Pursuit"
+animation = &"Phantom_Attack"
 
 [node name="DetectionArea" type="Area2D" parent="."]
 

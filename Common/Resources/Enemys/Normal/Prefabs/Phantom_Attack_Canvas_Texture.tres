@@ -1,0 +1,8 @@
+[gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://3tm3i21uergc"]
+
+[ext_resource type="Texture2D" uid="uid://di5ajp3eglhse" path="res://Common/Resources/Enemys/Normal/Art/Animation/Phantom_Monster_Attack.png" id="1_xisha"]
+[ext_resource type="Texture2D" uid="uid://bkrfp1nnendul" path="res://Common/Resources/Enemys/Normal/Art/NormalMaps/Phantom_Monster_Attack_n.png" id="2_bygvf"]
+
+[resource]
+diffuse_texture = ExtResource("1_xisha")
+normal_texture = ExtResource("2_bygvf")
