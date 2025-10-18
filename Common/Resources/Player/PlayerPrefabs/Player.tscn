@@ -36,7 +36,7 @@ light_mode = 1
 
 [node name="Player" type="Node2D" groups=["player"]]
 z_index = 2
-position = Vector2(708, 900)
+position = Vector2(-10000, 200)
 
 [node name="Player_Body" type="CharacterBody2D" parent="." groups=["player"]]
 unique_name_in_owner = true

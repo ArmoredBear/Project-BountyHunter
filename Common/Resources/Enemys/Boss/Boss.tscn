@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://767a5k4n47oj"]
+
+[ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/Boss.cs" id="1_qyw2v"]
+[ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/EnemyStats.cs" id="2_lur1h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b1trr"]
+size = Vector2(300, 300)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e75fd"]
+size = Vector2(5000, 5000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_etsme"]
+size = Vector2(700, 700)
+
+[sub_resource type="Gradient" id="Gradient_6gvrr"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dfbii"]
+gradient = SubResource("Gradient_6gvrr")
+width = 300
+height = 300
+
+[node name="Boss" type="CharacterBody2D" node_paths=PackedStringArray("PatrolPoints", "Direction_Points")]
+script = ExtResource("1_qyw2v")
+PatrolPoints = []
+Direction_Points = [NodePath("Directions/Center"), NodePath("Directions/North"), NodePath("Directions/South"), NodePath("Directions/West"), NodePath("Directions/East")]
+
+[node name="EnemyStats" type="Node2D" parent="."]
+script = ExtResource("2_lur1h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_b1trr")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="DetectArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectArea"]
+shape = SubResource("RectangleShape2D_e75fd")
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("RectangleShape2D_etsme")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_dfbii")
+
+[node name="Directions" type="Node2D" parent="."]
+
+[node name="Center" type="Node2D" parent="Directions"]
+
+[node name="North" type="Node2D" parent="Directions"]
+position = Vector2(0, -500)
+
+[node name="South" type="Node2D" parent="Directions"]
+position = Vector2(0, 500)
+
+[node name="West" type="Node2D" parent="Directions"]
+position = Vector2(-500, 0)
+
+[node name="East" type="Node2D" parent="Directions"]
+position = Vector2(500, 0)

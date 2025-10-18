@@ -47,6 +47,10 @@ public partial class Boss : CharacterBody2D
 	private float _distanceToPlayer = float.MaxValue;
 	private readonly Dictionary<State, float> _statePriorities = new Dictionary<State, float>();
 
+	// Pontos de referencia para comportamento do BOSS
+
+	[Export] public Node2D[] Direction_Points { get; set; }
+
 	#endregion
 	//!---------------------------------------------------------------------------------------------------------
 
@@ -84,9 +88,15 @@ public partial class Boss : CharacterBody2D
 			// ALTERAÇÃO: Usar nome de animação de Boss
 			Animation_Sprite.Play("Boss_Idle"); 
 		}
-		
+
 		// 4. CORREÇÃO NAVMESH: Garante que o setup de navegação aconteça após o primeiro frame de física.
 		Callable.From(ActorSetup).CallDeferred();
+		
+
+		if(Direction_Points == null)
+        {
+			Direction_Points = new Node2D[4];
+        }
 	}
 
 	// CORREÇÃO NAVMESH: Espera a sincronização do servidor de navegação
@@ -94,10 +104,16 @@ public partial class Boss : CharacterBody2D
 	{
 		// Espera o primeiro frame de física para garantir que o NavigationServer sincronize.
 		await ToSignal(GetTree(), SceneTree.SignalName.PhysicsFrame);
-		
+
 		// O estado de patrulha pode ser iniciado agora.
-		ChangeState(State.Patrol); 
+		ChangeState(State.Patrol);
 	}
+
+    public override void _Process(double delta)
+    {
+		base._Process(delta);
+		// Pegar a posicao do player a cada intervalo de tempo, podendo ser 0.5s ou 1s.
+    }
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -265,7 +281,7 @@ public partial class Boss : CharacterBody2D
 
 		return bestState;
 	}
-	
+
 	#endregion
 	//!---------------------------------------------------------------------------------------------------------
 
@@ -273,21 +289,21 @@ public partial class Boss : CharacterBody2D
 	//!---------------------------------------------------------------------------------------------------------
 	#region State Machine and Movement Handlers
 	//!---------------------------------------------------------------------------------------------------------
-	
+
 	private void ChangeState(State newState)
 	{
 		GD.Print($"Transição: {_currentState} -> {newState}");
 		_currentState = newState;
-		
+
 		// SEGURANÇA
-		if (Animation_Sprite == null) return; 
+		if (Animation_Sprite == null) return;
 
 		// ATUALIZAÇÃO: Animações específicas para Boss e novos estados
-		if (newState == State.MeleeAttack) 
+		if (newState == State.MeleeAttack)
 		{
 			Animation_Sprite.Play("Boss_Melee");
 		}
-		else if (newState == State.RangedAttack) 
+		else if (newState == State.RangedAttack)
 		{
 			Animation_Sprite.Play("Boss_Ranged");
 		}
@@ -298,6 +314,32 @@ public partial class Boss : CharacterBody2D
 		else // Default
 		{
 			Animation_Sprite.Play("Boss_Idle");
+		}
+	}
+	
+	private void AttackTarget(Vector2 targetPosition, float speedMultiplier = 3.0f)
+	{
+		// SEGURANÇA
+		if (Agent == null) 
+		{
+			Velocity = Vector2.Zero;
+			return;
+		}
+		
+		Agent.TargetPosition = targetPosition;
+		
+		if (Agent.IsNavigationFinished())
+		{
+			Velocity = Vector2.Zero;
+			return;
+		}
+
+		Vector2 nextPathPosition = Agent.GetNextPathPosition();
+		//Velocity = GlobalPosition.DirectionTo(nextPathPosition) * Movement_Speed * speedMultiplier;
+		
+		if (Velocity.X != 0 && Animation_Sprite != null)
+		{
+			Animation_Sprite.FlipH = Velocity.X < 0;
 		}
 	}
 
@@ -350,6 +392,9 @@ public partial class Boss : CharacterBody2D
 
 	private void HandleChase(float delta)
 	{
+		// Colocar delay de 3~4 segundos para executar verificacao de distancia
+		// Calculate_Distance();
+		
 		if (_player == null)
 		{
 			ChangeState(State.Patrol);
@@ -419,18 +464,48 @@ public partial class Boss : CharacterBody2D
 			ChangeState(State.Patrol);
 			return;
 		}
-		
+
 		Vector2 fleeDirection = (GlobalPosition - _player.GlobalPosition).Normalized();
-		Vector2 safeTarget = GlobalPosition + fleeDirection * 500f; 
-		
-		MoveToTarget(safeTarget, 1.5f); 
+		Vector2 safeTarget = GlobalPosition + fleeDirection * 500f;
+
+		MoveToTarget(safeTarget, 1.5f);
 		if (Animation_Sprite != null) Animation_Sprite.Play("Boss_Run");
 
 		if (_distanceToPlayer > 600 || (_stats != null && _stats.CurrentHealth > FleeThreshold * 1.5f))
 		{
-			ChangeState(State.Patrol); 
+			ChangeState(State.Patrol);
 		}
 	}
+	
+
+	public void Calculate_Distance(Vector2 _last_player_position)
+	{
+		float _boss_distance_to_player = GlobalPosition.DistanceTo(_player.GlobalPosition);
+		float _boss_distance_to_point_north = GlobalPosition.DistanceTo(Direction_Points[1].Position);
+		float _boss_distance_to_point_south = GlobalPosition.DistanceTo(Direction_Points[2].Position);
+		float _boss_distance_to_point_west = GlobalPosition.DistanceTo(Direction_Points[3].Position);
+		float _boss_distance_to_point_east = GlobalPosition.DistanceTo(Direction_Points[4].Position);
+
+		if (_boss_distance_to_player > _boss_distance_to_point_north)
+		{
+			// Chase com ataque, movimento de ataque que move o Boss em linha reta ultima direcao registrada pelo player
+		}
+
+		if (_boss_distance_to_player > _boss_distance_to_point_south)
+		{
+			// Chase com ataque, movimento de ataque que move o Boss em linha reta ultima direcao registrada pelo player
+		}
+
+		if (_boss_distance_to_player > _boss_distance_to_point_west)
+		{
+			// Chase com ataque, movimento de ataque que move o Boss em linha reta ultima direcao registrada pelo player
+		}
+		
+		if(_boss_distance_to_player > _boss_distance_to_point_east)
+        {
+            // Chase com ataque, movimento de ataque que move o Boss em linha reta ultima direcao registrada pelo player
+        }
+    }
 
 	#endregion
 	//!---------------------------------------------------------------------------------------------------------
