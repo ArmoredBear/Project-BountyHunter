@@ -20,10 +20,12 @@ gradient = SubResource("Gradient_6gvrr")
 width = 300
 height = 300
 
-[node name="Boss" type="CharacterBody2D" node_paths=PackedStringArray("PatrolPoints", "Direction_Points")]
+[node name="Boss" type="CharacterBody2D" node_paths=PackedStringArray("DetectionArea", "AttackArea", "_stats", "PatrolPoints")]
 script = ExtResource("1_qyw2v")
-PatrolPoints = []
-Direction_Points = [NodePath("Directions/Center"), NodePath("Directions/North"), NodePath("Directions/South"), NodePath("Directions/West"), NodePath("Directions/East")]
+DetectionArea = NodePath("DetectArea")
+AttackArea = NodePath("AttackArea")
+_stats = NodePath("EnemyStats")
+PatrolPoints = [NodePath("Directions/Center"), NodePath("Directions/North"), NodePath("Directions/South"), NodePath("Directions/West"), NodePath("Directions/East")]
 
 [node name="EnemyStats" type="Node2D" parent="."]
 script = ExtResource("2_lur1h")
