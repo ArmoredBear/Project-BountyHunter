@@ -36,7 +36,7 @@ light_mode = 1
 
 [node name="Player" type="Node2D" groups=["player"]]
 z_index = 2
-position = Vector2(708, 900)
+position = Vector2(-10000, 250)
 
 [node name="Player_Body" type="CharacterBody2D" parent="." groups=["player"]]
 unique_name_in_owner = true
@@ -79,7 +79,7 @@ material = SubResource("ShaderMaterial_6ctx4")
 position = Vector2(0, -185)
 scale = Vector2(5, 5)
 sprite_frames = ExtResource("3_pf8kc")
-animation = &"Walk_Right"
+animation = &"Light_Attack"
 
 [node name="Idle" type="Node2D" parent="Player_Body/Player_FSM" node_paths=PackedStringArray("Player_FSM_P", "Player_body_P")]
 unique_name_in_owner = true
@@ -97,7 +97,6 @@ script = ExtResource("8_xs526")
 
 [node name="Attacking" type="Node2D" parent="Player_Body/Player_FSM" node_paths=PackedStringArray("Attack_Collider", "Player", "Player_FSM_P", "Player_body_P")]
 unique_name_in_owner = true
-visible = false
 script = ExtResource("9_tafg2")
 Attack_Collider = NodePath("Area2D/Attack_Collider")
 Player = NodePath("../..")
@@ -159,3 +158,5 @@ unique_name_in_owner = true
 
 [node name="Inventory" type="Node" parent="."]
 script = ExtResource("17_ti6mo")
+
+[connection signal="animation_finished" from="Player_Body/Player_FSM/Player_Animation" to="Player_Body/Player_FSM/Attacking" method="On_Player_Animation_Finished"]

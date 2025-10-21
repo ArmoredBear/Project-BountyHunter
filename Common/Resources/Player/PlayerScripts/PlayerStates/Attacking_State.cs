@@ -42,9 +42,8 @@ public partial class Attacking_State : Player_State
 
     public override void Enter()
     {
-        //GetNode<AnimationPlayer>(Player_Animation).Play("Attacking");
-        GD.Print(Name + ": Attacking State was entered") ;
-        Light_Attack(false);
+        Player_Animation.Play("Light_Attack");
+        Light_Attack(true);
     }
 
     public override void Exit()
@@ -64,16 +63,10 @@ public partial class Attacking_State : Player_State
 
     public override void HandleInput(InputEvent @event) 
     {
-       if(Input.IsActionJustPressed("Game_Pad_Light_Attack", false))
-	    {
+        if(Input.IsActionJustPressed("Game_Pad_Light_Attack", false))
+        {
 			Player_FSM_P.TransitionToState("Attacking"); 
 		}
-
-        else if(Input.IsActionJustReleased("Game_Pad_Light_Attack", false))
-        {
-            Light_Attack(true);
-            Player_FSM_P.TransitionToState("Idle");     
-        }
     }
 
     public void Input_Collector()
@@ -87,4 +80,11 @@ public partial class Attacking_State : Player_State
         Attack_Collider.Disabled = _trigger;
         GD.Print("Button pressed");
     }
+
+    public void On_Player_Animation_Finished()
+    {
+        Player_FSM_P.TransitionToState("Idle");
+    }
+
+    
 }
