@@ -20,12 +20,13 @@ gradient = SubResource("Gradient_6gvrr")
 width = 300
 height = 300
 
-[node name="Boss" type="CharacterBody2D" node_paths=PackedStringArray("DetectionArea", "AttackArea", "_stats", "PatrolPoints")]
+[node name="Boss" type="CharacterBody2D" node_paths=PackedStringArray("Agent", "DetectionArea", "AttackArea", "_stats", "PatrolPoints")]
 script = ExtResource("1_qyw2v")
+Agent = NodePath("NavigationAgent2D")
 DetectionArea = NodePath("DetectArea")
 AttackArea = NodePath("AttackArea")
 _stats = NodePath("EnemyStats")
-PatrolPoints = [NodePath("Directions/Center"), NodePath("Directions/North"), NodePath("Directions/South"), NodePath("Directions/West"), NodePath("Directions/East")]
+PatrolPoints = [NodePath("Direction/Center"), NodePath("Direction/North"), NodePath("Direction/South"), NodePath("Direction/East"), NodePath("Direction/West")]
 
 [node name="EnemyStats" type="Node2D" parent="."]
 script = ExtResource("2_lur1h")
@@ -46,20 +47,20 @@ shape = SubResource("RectangleShape2D_e75fd")
 shape = SubResource("RectangleShape2D_etsme")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
 texture = SubResource("GradientTexture2D_dfbii")
 
-[node name="Directions" type="Node2D" parent="."]
+[node name="Direction" type="Node" parent="."]
 
-[node name="Center" type="Node2D" parent="Directions"]
+[node name="Center" type="Marker2D" parent="Direction"]
 
-[node name="North" type="Node2D" parent="Directions"]
-position = Vector2(0, -500)
+[node name="North" type="Marker2D" parent="Direction"]
 
-[node name="South" type="Node2D" parent="Directions"]
-position = Vector2(0, 500)
+[node name="South" type="Marker2D" parent="Direction"]
 
-[node name="West" type="Node2D" parent="Directions"]
-position = Vector2(-500, 0)
+[node name="East" type="Marker2D" parent="Direction"]
 
-[node name="East" type="Node2D" parent="Directions"]
-position = Vector2(500, 0)
+[node name="West" type="Marker2D" parent="Direction"]
+
+[connection signal="body_entered" from="DetectArea" to="." method="OnDetectionAreaBodyEntered"]
+[connection signal="body_exited" from="DetectArea" to="." method="OnDetectionAreaBodyExited"]
