@@ -1,10 +1,13 @@
-[gd_scene load_steps=24 format=3 uid="uid://ccwqnm8c8jwux"]
+[gd_scene load_steps=28 format=3 uid="uid://ccwqnm8c8jwux"]
 
 [ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/Enemy.cs" id="1_25wfd"]
 [ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/EnemyStats.cs" id="2_ufs14"]
 [ext_resource type="Texture2D" uid="uid://bqkpdvjj7du2w" path="res://Common/Resources/Enemys/Normal/Prefabs/Phantom_Idle_Canvas_Texture.tres" id="3_8so8e"]
 [ext_resource type="Texture2D" uid="uid://3tm3i21uergc" path="res://Common/Resources/Enemys/Normal/Prefabs/Phantom_Attack_Canvas_Texture.tres" id="3_ceu46"]
 [ext_resource type="Texture2D" uid="uid://26d8wrq6wkg2" path="res://Common/Resources/Enemys/Normal/Prefabs/Phantom_Pursuit_Canvas_Texture.tres" id="4_3q8xp"]
+[ext_resource type="Texture2D" uid="uid://crtx14b8jptma" path="res://Common/Resources/Enemys/Normal/Art/UI/EnemyTempHealthBarBackground.png" id="6_ah50a"]
+[ext_resource type="Texture2D" uid="uid://iueo5m618e4c" path="res://Common/Resources/Enemys/Normal/Art/UI/EnemyTempHealthBar.png" id="7_kkoca"]
+[ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/EnemyHealthBar.cs" id="8_aig6m"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xxs1g"]
 radius = 25.0
@@ -128,6 +131,9 @@ size = Vector2(100, 100)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l7vg7"]
 size = Vector2(70, 90)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bxc0g"]
+light_mode = 1
+
 [node name="Phantom" type="CharacterBody2D" node_paths=PackedStringArray("Animation_Sprite", "Agent", "DetectionArea", "AttackArea", "DamageArea", "_stats", "PatrolPoints") groups=["enemy"]]
 scale = Vector2(5, 5)
 motion_mode = 1
@@ -141,6 +147,7 @@ _stats = NodePath("EnemyStats")
 PatrolPoints = []
 
 [node name="EnemyStats" type="Node2D" parent="."]
+unique_name_in_owner = true
 script = ExtResource("2_ufs14")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
@@ -178,5 +185,29 @@ shape = SubResource("RectangleShape2D_g25pt")
 [node name="Phantom_Damage_Collider_Shape" type="CollisionShape2D" parent="Phantom_Damage_Collider"]
 unique_name_in_owner = true
 shape = SubResource("RectangleShape2D_l7vg7")
+
+[node name="Control" type="Control" parent="."]
+clip_children = 1
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+offset_left = -18.2
+offset_top = -90.2
+offset_right = 21.8
+offset_bottom = -50.2
+
+[node name="Enemy_Health_Bar" type="TextureProgressBar" parent="Control"]
+z_index = 12
+material = SubResource("CanvasItemMaterial_bxc0g")
+layout_mode = 0
+offset_left = -29.0
+offset_top = 18.6
+offset_right = 66.0
+offset_bottom = 26.6
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("6_ah50a")
+texture_progress = ExtResource("7_kkoca")
+script = ExtResource("8_aig6m")
 
 [connection signal="area_entered" from="Phantom_Damage_Collider" to="." method="On_Phantom_Damage_Collider_Area_Entered"]
