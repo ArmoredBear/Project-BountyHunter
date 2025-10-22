@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bswa5xld6wyiu"]
+[gd_scene load_steps=23 format=3 uid="uid://bswa5xld6wyiu"]
 
 [ext_resource type="PackedScene" uid="uid://cstb8svv5da71" path="res://Common/Resources/Player/PlayerPrefabs/QuickItems_List.tscn" id="1_v8mnl"]
 [ext_resource type="Script" path="res://Common/Resources/Player/PlayerScripts/Player.cs" id="2_gnjcu"]
@@ -17,18 +17,20 @@
 [ext_resource type="Script" path="res://Common/Resources/Player/PlayerScripts/LightFlip.cs" id="11_imqv6"]
 [ext_resource type="Script" path="res://Common/Resources/Player/PlayerScripts/PlayerInventory/PlayerInventory.cs" id="17_ti6mo"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lhw6g"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_8vbci"]
 radius = 30.0
-height = 120.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7urto"]
+size = Vector2(250, 500)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1vwxm"]
-size = Vector2(200, 400)
+size = Vector2(300, 610)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6ctx4"]
 shader = ExtResource("4_w7j57")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hqqtb"]
-size = Vector2(321, 742)
+size = Vector2(748, 663)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_j0e33"]
 blend_mode = 1
@@ -49,12 +51,19 @@ script = ExtResource("2_gnjcu")
 [node name="Player_Physics_Collider" type="CollisionShape2D" parent="Player_Body"]
 position = Vector2(0, -20)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_lhw6g")
+shape = SubResource("CircleShape2D_8vbci")
+
+[node name="Player_Damage_Collider" type="Area2D" parent="Player_Body"]
+
+[node name="Player_Damage_Collider_Shape" type="CollisionShape2D" parent="Player_Body/Player_Damage_Collider"]
+position = Vector2(0, -190)
+shape = SubResource("RectangleShape2D_7urto")
 
 [node name="Player_Interaction_Collider" type="Area2D" parent="Player_Body"]
+position = Vector2(255, 0)
 
-[node name="Player_Area2D_Collider_Shape" type="CollisionShape2D" parent="Player_Body/Player_Interaction_Collider"]
-position = Vector2(0, -150)
+[node name="Player_Interaction_Collider_Shape" type="CollisionShape2D" parent="Player_Body/Player_Interaction_Collider"]
+position = Vector2(-41, -201)
 shape = SubResource("RectangleShape2D_1vwxm")
 
 [node name="Camera2D" type="Camera2D" parent="Player_Body"]
@@ -80,34 +89,44 @@ position = Vector2(0, -185)
 scale = Vector2(5, 5)
 sprite_frames = ExtResource("3_pf8kc")
 animation = &"Light_Attack"
+frame = 12
+frame_progress = 1.0
 
-[node name="Idle" type="Node2D" parent="Player_Body/Player_FSM" node_paths=PackedStringArray("Player_FSM_P", "Player_body_P")]
+[node name="Idle" type="Node2D" parent="Player_Body/Player_FSM" node_paths=PackedStringArray("Player", "Player_FSM_P", "Player_body_P")]
 unique_name_in_owner = true
 script = ExtResource("6_aasnl")
-Player_FSM_P = NodePath("..")
-Player_body_P = NodePath("../..")
-
-[node name="Walking" type="Node2D" parent="Player_Body/Player_FSM"]
-unique_name_in_owner = true
-script = ExtResource("7_wntvl")
-
-[node name="Running" type="Node2D" parent="Player_Body/Player_FSM"]
-unique_name_in_owner = true
-script = ExtResource("8_xs526")
-
-[node name="Attacking" type="Node2D" parent="Player_Body/Player_FSM" node_paths=PackedStringArray("Attack_Collider", "Player", "Player_FSM_P", "Player_body_P")]
-unique_name_in_owner = true
-script = ExtResource("9_tafg2")
-Attack_Collider = NodePath("Area2D/Attack_Collider")
 Player = NodePath("../..")
 Player_FSM_P = NodePath("..")
 Player_body_P = NodePath("../..")
 
-[node name="Area2D" type="Area2D" parent="Player_Body/Player_FSM/Attacking"]
-
-[node name="Attack_Collider" type="CollisionShape2D" parent="Player_Body/Player_FSM/Attacking/Area2D"]
+[node name="Walking" type="Node2D" parent="Player_Body/Player_FSM" node_paths=PackedStringArray("Player", "Player_FSM_P", "Player_body_P")]
 unique_name_in_owner = true
-position = Vector2(0, -262)
+script = ExtResource("7_wntvl")
+Player = NodePath("../..")
+Player_FSM_P = NodePath("..")
+Player_body_P = NodePath("../..")
+
+[node name="Running" type="Node2D" parent="Player_Body/Player_FSM" node_paths=PackedStringArray("Player", "Player_FSM_P", "Player_body_P")]
+unique_name_in_owner = true
+script = ExtResource("8_xs526")
+Player = NodePath("../..")
+Player_FSM_P = NodePath("..")
+Player_body_P = NodePath("../..")
+
+[node name="Attacking" type="Node2D" parent="Player_Body/Player_FSM" node_paths=PackedStringArray("Player_Animation", "Attack_Collider", "Player", "Player_FSM_P", "Player_body_P")]
+unique_name_in_owner = true
+script = ExtResource("9_tafg2")
+Player_Animation = NodePath("../Player_Animation")
+Attack_Collider = NodePath("Player_Attack_Collider/Player_Attack_Collider_Shape")
+Player = NodePath("../..")
+Player_FSM_P = NodePath("..")
+Player_body_P = NodePath("../..")
+
+[node name="Player_Attack_Collider" type="Area2D" parent="Player_Body/Player_FSM/Attacking" groups=["player_attack"]]
+
+[node name="Player_Attack_Collider_Shape" type="CollisionShape2D" parent="Player_Body/Player_FSM/Attacking/Player_Attack_Collider"]
+unique_name_in_owner = true
+position = Vector2(269, -115.5)
 shape = SubResource("RectangleShape2D_hqqtb")
 
 [node name="Evading" type="Node2D" parent="Player_Body/Player_FSM"]

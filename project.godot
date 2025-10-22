@@ -49,6 +49,8 @@ enabled=PackedStringArray("res://addons/panku_console/plugin.cfg")
 [global_group]
 
 player="Player Group"
+enemy=""
+player_attack=""
 
 [input]
 

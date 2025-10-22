@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ccwqnm8c8jwux"]
+[gd_scene load_steps=24 format=3 uid="uid://ccwqnm8c8jwux"]
 
 [ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/Enemy.cs" id="1_25wfd"]
 [ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/EnemyStats.cs" id="2_ufs14"]
@@ -125,7 +125,10 @@ size = Vector2(700, 700)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g25pt"]
 size = Vector2(100, 100)
 
-[node name="Phantom" type="CharacterBody2D" node_paths=PackedStringArray("Animation_Sprite", "Agent", "DetectionArea", "AttackArea", "_stats", "PatrolPoints")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l7vg7"]
+size = Vector2(70, 90)
+
+[node name="Phantom" type="CharacterBody2D" node_paths=PackedStringArray("Animation_Sprite", "Agent", "DetectionArea", "AttackArea", "DamageArea", "_stats", "PatrolPoints") groups=["enemy"]]
 scale = Vector2(5, 5)
 motion_mode = 1
 script = ExtResource("1_25wfd")
@@ -133,6 +136,7 @@ Animation_Sprite = NodePath("Enemy_Animation")
 Agent = NodePath("NavigationAgent2D")
 DetectionArea = NodePath("DetectionArea")
 AttackArea = NodePath("AttackArea")
+DamageArea = NodePath("Phantom_Damage_Collider/Phantom_Damage_Collider_Shape")
 _stats = NodePath("EnemyStats")
 PatrolPoints = []
 
@@ -166,4 +170,13 @@ shape = SubResource("RectangleShape2D_3dpq5")
 [node name="AttackArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(-88.8, 0)
 shape = SubResource("RectangleShape2D_g25pt")
+
+[node name="Phantom_Damage_Collider" type="Area2D" parent="." groups=["enemy"]]
+
+[node name="Phantom_Damage_Collider_Shape" type="CollisionShape2D" parent="Phantom_Damage_Collider"]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_l7vg7")
+
+[connection signal="area_entered" from="Phantom_Damage_Collider" to="." method="On_Phantom_Damage_Collider_Area_Entered"]

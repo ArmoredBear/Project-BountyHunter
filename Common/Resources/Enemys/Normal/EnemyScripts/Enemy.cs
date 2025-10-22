@@ -23,6 +23,7 @@ public partial class Enemy : CharacterBody2D
 	[Export] public NavigationAgent2D Agent;
 	[Export] public Area2D DetectionArea;
 	[Export] public Area2D AttackArea;
+	[Export] public CollisionShape2D DamageArea;
 	
 	// CORREÇÃO: EnemyStats agora é exportado para conexão obrigatória no Inspector
 	[Export] private EnemyStats _stats; 
@@ -78,9 +79,11 @@ public partial class Enemy : CharacterBody2D
 		{
 			Animation_Sprite.Play("Phantom_Idle");
 		}
-		
+
 		// 4. CORREÇÃO NAVMESH: Garante que o setup de navegação aconteça após o primeiro frame de física.
 		Callable.From(ActorSetup).CallDeferred();
+
+		DamageArea.Disabled = true;
 	}
 
 	// CORREÇÃO NAVMESH: Espera a sincronização do servidor de navegação
@@ -317,6 +320,7 @@ public partial class Enemy : CharacterBody2D
 	private void HandleAttack(float delta)
 	{
 		Velocity = Vector2.Zero;
+		DamageArea.Disabled = false;
 		GD.Print("Inimigo: Golpe físico!");
 	}
 
@@ -348,12 +352,12 @@ public partial class Enemy : CharacterBody2D
 	#region Signal Handlers (Detection)
 	//!---------------------------------------------------------------------------------------------------------
 	
-	private void OnHealthChanged(int newHealth)
+	public void OnHealthChanged(int newHealth)
 	{
 		GD.Print($"Vida do inimigo alterada para: {newHealth}");
 	}
 	
-	private void OnDetectionAreaBodyEntered(Node2D body)
+	public void OnDetectionAreaBodyEntered(Node2D body)
 	{
 		if (body is CharacterBody2D player && player.IsInGroup("player"))
 		{
@@ -361,13 +365,31 @@ public partial class Enemy : CharacterBody2D
 		}
 	}
 
-	private void OnDetectionAreaBodyExited(Node2D body)
+	public void OnDetectionAreaBodyExited(Node2D body)
 	{
 		if (body == _player)
 		{
 			_player = null;
 		}
 	}
+
+	public void On_Phantom_Damage_Collider_Area_Entered(Node2D _area)
+	{
+		if(_area.IsInGroup("player_attack") )
+        {
+			GD.Print("Inimigo atacado" + "Nome do collider: " + _area.Name);
+			if (_stats.TakeDamage(20) == false)
+			{
+				this.Visible = false;
+			}
+			
+			else
+            {
+				GD.Print("Inimigo toma " + 20 + " de dano");
+            }
+        }
+		
+    }
 
 	#endregion
 	//!---------------------------------------------------------------------------------------------------------

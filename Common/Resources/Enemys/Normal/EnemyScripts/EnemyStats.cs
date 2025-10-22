@@ -30,10 +30,28 @@ public partial class EnemyStats : Node
 			}
 		}
 	}
-	
+
 	// Simples método para receber dano
-	public void TakeDamage(int damage)
+	public bool TakeDamage(int damage)
 	{
-		CurrentHealth -= damage;
+		int _temp_health = CurrentHealth - damage;
+
+		if (_temp_health > 0)
+		{
+			CurrentHealth -= damage;
+			return true;
+		}
+
+		else if (_temp_health <= 0)
+		{
+			CurrentHealth = 0;
+			GD.Print("Enemy is dead");
+			return false;
+		}
+		
+		return true;
+		
 	}
+	
+	
 }

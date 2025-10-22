@@ -37,18 +37,19 @@ public partial class Attacking_State : Player_State
     public override void _Ready()
     {
         Player_Animation = GetNode<AnimatedSprite2D>("%Player_Animation");
-        Attack_Collider = GetNode<CollisionShape2D>("Area2D/%Attack_Collider");
+        Attack_Collider = GetNode<CollisionShape2D>("%Player_Attack_Collider_Shape");
     }
 
     public override void Enter()
     {
         Player_Animation.Play("Light_Attack");
-        Light_Attack(true);
+        Light_Attack(false);
+        
     }
 
     public override void Exit()
     {
-        
+        Light_Attack(true);
     }
 
     public override void Update(double delta)
@@ -63,10 +64,16 @@ public partial class Attacking_State : Player_State
 
     public override void HandleInput(InputEvent @event) 
     {
+        if (Input.IsActionJustPressed("Keyboard_Light_Attack", false))
+        {
+            Player_FSM_P.TransitionToState("Attacking");
+        }
+        
         if(Input.IsActionJustPressed("Game_Pad_Light_Attack", false))
         {
 			Player_FSM_P.TransitionToState("Attacking"); 
 		}
+
     }
 
     public void Input_Collector()
@@ -78,12 +85,13 @@ public partial class Attacking_State : Player_State
     private void Light_Attack(bool _trigger)
     {
         Attack_Collider.Disabled = _trigger;
-        GD.Print("Button pressed");
+        //GD.Print("Button pressed");
     }
 
     public void On_Player_Animation_Finished()
     {
         Player_FSM_P.TransitionToState("Idle");
+        Light_Attack(true);
     }
 
     

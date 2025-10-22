@@ -80,7 +80,7 @@ public partial class Running_State : Player_State
 
     public override void HandleInput(InputEvent @event) 
 	{
-
+		HandleAttack();
 	}
 
     public void Input_Collector()
@@ -385,7 +385,7 @@ public partial class Running_State : Player_State
 					Player_FSM_P.TransitionToState("Running");
 				}
 			}
-			
+
 			if (Check_Pressed_Move_Control_Type() == 1)
 			{
 				if (Player_Data_Autoload.Data.CURRENT_Stamina > 0)
@@ -394,7 +394,7 @@ public partial class Running_State : Player_State
 					Player_FSM_P.TransitionToState("Running");
 				}
 			}
-			
+
 		}
 
 		else if (!Input.IsActionJustReleased("Game_Pad_Run") || !Input.IsActionJustReleased("Keyboard_Run"))
@@ -407,6 +407,19 @@ public partial class Running_State : Player_State
 		{
 			Player_FSM_P.TransitionToState("Idle");
 		}
-		
+
 	}
+	
+	public void HandleAttack()
+    {
+        if (Input.IsActionJustPressed("Keyboard_Light_Attack", false))
+        {
+            Player_FSM_P.TransitionToState("Attacking");
+        }
+        
+        if(Input.IsActionJustPressed("Game_Pad_Light_Attack", false))
+        {
+			Player_FSM_P.TransitionToState("Attacking"); 
+		}
+    }
 }

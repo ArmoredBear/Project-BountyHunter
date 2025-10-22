@@ -66,7 +66,7 @@ public partial class Walking_State : Player_State
 
     public override void HandleInput(InputEvent @event) 
 	{
-		
+		HandleAttack();
 	}
 
     public void Input_Collector()
@@ -91,7 +91,7 @@ public partial class Walking_State : Player_State
 
 			else
 			{
-				Player_Animation.Play("Walk_Up");
+				Player_Animation.Play("Walk_Left");
 			}
 		}
 		
@@ -110,7 +110,7 @@ public partial class Walking_State : Player_State
 
 			else
 			{
-				Player_Animation.Play("Walk_Down");
+				Player_Animation.Play("Walk_Right");
 			}
 
 		}
@@ -166,7 +166,7 @@ public partial class Walking_State : Player_State
 
 			else
 			{
-				Player_Animation.Play("Walk_Up");
+				Player_Animation.Play("Walk_Left");
 			}
 		}
 
@@ -184,7 +184,7 @@ public partial class Walking_State : Player_State
 
 			else
 			{
-				Player_Animation.Play("Walk_Down");
+				Player_Animation.Play("Walk_Right");
 			}
 		}
 
@@ -359,12 +359,12 @@ public partial class Walking_State : Player_State
 				Player.Instance.Player_State_P = Player_States.Running;
 				Player_FSM_P.TransitionToState("Running");
 			}
-		}	
-		
+		}
 
-		else if(!Input.IsActionJustReleased("Game_Pad_Run") || !Input.IsActionJustReleased("Keyboard_Run"))
+
+		else if (!Input.IsActionJustReleased("Game_Pad_Run") || !Input.IsActionJustReleased("Keyboard_Run"))
 		{
-            Player_FSM_P.TransitionToState("Walking");
+			Player_FSM_P.TransitionToState("Walking");
 		}
 
 		else
@@ -372,4 +372,17 @@ public partial class Walking_State : Player_State
 			Player_FSM_P.TransitionToState("Idle");
 		}
 	}
+	
+	public void HandleAttack()
+    {
+        if (Input.IsActionJustPressed("Keyboard_Light_Attack", false))
+        {
+            Player_FSM_P.TransitionToState("Attacking");
+        }
+        
+        if(Input.IsActionJustPressed("Game_Pad_Light_Attack", false))
+        {
+			Player_FSM_P.TransitionToState("Attacking"); 
+		}
+    }
 }

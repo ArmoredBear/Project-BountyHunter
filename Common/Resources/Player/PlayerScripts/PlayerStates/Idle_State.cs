@@ -50,10 +50,16 @@ public partial class Idle_State : Player_State
 
     public override void HandleInput(InputEvent @event) 
 	{
+		if (Input.IsActionJustPressed("Keyboard_Light_Attack", false))
+		{
+			Player_FSM_P.TransitionToState("Attacking");
+			//GD.Print("Trigger");
+		}
+		
 		if(Input.IsActionJustPressed("Game_Pad_Light_Attack", false))
 		{
 			Player_FSM_P.TransitionToState("Attacking");
-			GD.Print("Trigger");
+			//GD.Print("Trigger");
 		}
 	}
 
