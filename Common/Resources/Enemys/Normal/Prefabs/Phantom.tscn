@@ -103,6 +103,7 @@ debug_path_custom_line_width = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
+scale = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_xxs1g")
 
 [node name="Enemy_Animation" type="AnimatedSprite2D" parent="."]
@@ -118,4 +119,5 @@ shape = SubResource("RectangleShape2D_3dpq5")
 [node name="AttackArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_g25pt")

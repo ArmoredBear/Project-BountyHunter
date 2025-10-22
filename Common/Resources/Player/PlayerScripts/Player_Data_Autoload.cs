@@ -97,7 +97,7 @@ public partial class Player_Data_Autoload : Node
 	public override void _Process(double delta)
 	{
 
-        
+		
 	}
 
 
@@ -114,13 +114,13 @@ public partial class Player_Data_Autoload : Node
 	public void Poison_Behavior()
 	{
 		Poison_Timer = new Timer
-        {
-            WaitTime = 1,
+		{
+			WaitTime = 1,
 			OneShot = false,
 			Autostart = false
-        };
+		};
 
-        AddChild(Poison_Timer);
+		AddChild(Poison_Timer);
 		
 		Poison_Timer.Timeout += () => GD.Print("Player Health: " + Data.CURRENT_Health);
 		Poison_Timer.Timeout += Check_Alive_Caller;

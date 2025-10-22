@@ -1,0 +1,123 @@
+[gd_scene load_steps=14 format=3 uid="uid://dduj374xbm2nn"]
+
+[ext_resource type="Script" path="res://Common/Resources/Enemys/Boss/ScriptBoss/Boss.cs" id="1_8sbdk"]
+[ext_resource type="Texture2D" uid="uid://bqkpdvjj7du2w" path="res://Common/Resources/Enemys/Normal/Prefabs/Phantom_Idle_Canvas_Texture.tres" id="1_cf48q"]
+[ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/EnemyStats.cs" id="2_r5rnb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vl0id"]
+atlas = ExtResource("1_cf48q")
+region = Rect2(0, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cosoy"]
+atlas = ExtResource("1_cf48q")
+region = Rect2(144, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gd5mq"]
+atlas = ExtResource("1_cf48q")
+region = Rect2(288, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xketd"]
+atlas = ExtResource("1_cf48q")
+region = Rect2(432, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1iy2"]
+atlas = ExtResource("1_cf48q")
+region = Rect2(576, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lf2ai"]
+atlas = ExtResource("1_cf48q")
+region = Rect2(720, 0, 144, 144)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wcfrn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vl0id")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cosoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gd5mq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xketd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1iy2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lf2ai")
+}],
+"loop": true,
+"name": &"Boss_Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4eyys"]
+radius = 19.3472
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rhx7w"]
+size = Vector2(700, 700)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gy6el"]
+size = Vector2(41.2, 91.8)
+
+[node name="Boss" type="CharacterBody2D" node_paths=PackedStringArray("Animation_Sprite", "Agent", "DetectionArea", "AttackArea", "_stats", "PatrolPoints", "Direction_Points")]
+scale = Vector2(5, 5)
+script = ExtResource("1_8sbdk")
+Animation_Sprite = NodePath("AnimatedSprite2D")
+Agent = NodePath("NavigationAgent2D")
+DetectionArea = NodePath("DetectionArea")
+AttackArea = NodePath("AttackArea")
+_stats = NodePath("Stats")
+PatrolPoints = [NodePath("Direction/Center"), NodePath("Direction/North"), NodePath("Direction/South"), NodePath("Direction/East"), NodePath("Direction/West")]
+Direction_Points = []
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -0.8)
+sprite_frames = SubResource("SpriteFrames_wcfrn")
+animation = &"Boss_Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.55, -5.1)
+scale = Vector2(1, 1)
+shape = SubResource("CircleShape2D_4eyys")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("RectangleShape2D_rhx7w")
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(-0.8, -6.7)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_gy6el")
+
+[node name="Stats" type="Node" parent="."]
+script = ExtResource("2_r5rnb")
+
+[node name="Direction" type="Node2D" parent="."]
+
+[node name="Center" type="Marker2D" parent="Direction"]
+position = Vector2(-0.599998, -3.2)
+gizmo_extents = 25.0
+
+[node name="North" type="Marker2D" parent="Direction"]
+position = Vector2(1.2, -412.6)
+gizmo_extents = 25.0
+
+[node name="South" type="Marker2D" parent="Direction"]
+position = Vector2(3.8, 399.8)
+gizmo_extents = 25.0
+
+[node name="East" type="Marker2D" parent="Direction"]
+position = Vector2(757.8, 3.6)
+
+[node name="West" type="Marker2D" parent="Direction"]
+position = Vector2(-540.6, 3.6)
+gizmo_extents = 25.0
