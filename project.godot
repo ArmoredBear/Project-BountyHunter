@@ -23,7 +23,6 @@ PlayerDataAutoload="*res://Common/Resources/Player/PlayerScripts/Player_Data_Aut
 Player="*res://Common/Resources/Player/PlayerPrefabs/Player.tscn"
 Messenger="*res://Common/Resources/General Scritps/Messenger.cs"
 Panku="*res://addons/panku_console/console.tscn"
-SaveSystem="*res://Common/SaveSystem.tscn"
 GameManager="*res://Common/Resources/General Scritps/GameManager.cs"
 
 [display]
