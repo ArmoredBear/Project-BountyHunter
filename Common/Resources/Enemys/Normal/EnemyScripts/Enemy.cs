@@ -24,6 +24,7 @@ public partial class Enemy : CharacterBody2D
 	[Export] public Area2D DetectionArea;
 	[Export] public Area2D AttackArea;
 	[Export] public CollisionShape2D DamageArea;
+	[Export] public AnimationPlayer HitFlash_Animation;
 	
 	// CORREÇÃO: EnemyStats agora é exportado para conexão obrigatória no Inspector
 	[Export] private EnemyStats _stats; 
@@ -378,9 +379,11 @@ public partial class Enemy : CharacterBody2D
 		if(_area.IsInGroup("player_attack") )
         {
 			GD.Print("Inimigo atacado" + "Nome do collider: " + _area.Name);
+			HitFlash_Animation.Play("Hit_Flash");
+			
 			if (_stats.TakeDamage(20) == false)
 			{
-				this.Visible = false;
+				GetTree().QueueDelete(this);
 			}
 			
 			else

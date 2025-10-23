@@ -106,24 +106,12 @@ layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 30
-text = "Continue"
-text_overrun_behavior = 1
-autowrap_mode = 3
-icon_alignment = 1
-language = "en"
-script = ExtResource("2_6lkvc")
-
-[node name="New_Game" type="Button" parent="Control/Panel/VBoxContainer"]
-texture_filter = 1
-layout_mode = 2
-size_flags_horizontal = 5
-size_flags_vertical = 6
-theme_override_font_sizes/font_size = 30
 text = "New Game"
 text_overrun_behavior = 1
 autowrap_mode = 3
 icon_alignment = 1
 language = "en"
+script = ExtResource("2_6lkvc")
 
 [node name="Load_Game" type="Button" parent="Control/Panel/VBoxContainer"]
 texture_filter = 1

@@ -1,9 +1,10 @@
-[gd_scene load_steps=28 format=3 uid="uid://ccwqnm8c8jwux"]
+[gd_scene load_steps=33 format=3 uid="uid://ccwqnm8c8jwux"]
 
 [ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/Enemy.cs" id="1_25wfd"]
 [ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/EnemyStats.cs" id="2_ufs14"]
 [ext_resource type="Texture2D" uid="uid://bqkpdvjj7du2w" path="res://Common/Resources/Enemys/Normal/Prefabs/Phantom_Idle_Canvas_Texture.tres" id="3_8so8e"]
 [ext_resource type="Texture2D" uid="uid://3tm3i21uergc" path="res://Common/Resources/Enemys/Normal/Prefabs/Phantom_Attack_Canvas_Texture.tres" id="3_ceu46"]
+[ext_resource type="Shader" uid="uid://bhow34kdxypg5" path="res://Common/Resources/Shaders/Phantom_Shader.tres" id="3_ti231"]
 [ext_resource type="Texture2D" uid="uid://26d8wrq6wkg2" path="res://Common/Resources/Enemys/Normal/Prefabs/Phantom_Pursuit_Canvas_Texture.tres" id="4_3q8xp"]
 [ext_resource type="Texture2D" uid="uid://crtx14b8jptma" path="res://Common/Resources/Enemys/Normal/Art/UI/EnemyTempHealthBarBackground.png" id="6_ah50a"]
 [ext_resource type="Texture2D" uid="uid://iueo5m618e4c" path="res://Common/Resources/Enemys/Normal/Art/UI/EnemyTempHealthBar.png" id="7_kkoca"]
@@ -12,6 +13,12 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xxs1g"]
 radius = 25.0
 height = 50.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5h38y"]
+resource_local_to_scene = true
+shader = ExtResource("3_ti231")
+shader_parameter/Enabled = false
+shader_parameter/Flash_Tint = Color(1, 1, 1, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6nmgl"]
 atlas = ExtResource("3_ceu46")
@@ -134,7 +141,44 @@ size = Vector2(70, 90)
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bxc0g"]
 light_mode = 1
 
-[node name="Phantom" type="CharacterBody2D" node_paths=PackedStringArray("Animation_Sprite", "Agent", "DetectionArea", "AttackArea", "DamageArea", "_stats", "PatrolPoints") groups=["enemy"]]
+[sub_resource type="Animation" id="Animation_a38dk"]
+resource_name = "Hit_Flash"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemy_Animation:material:shader_parameter/Enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_7rbhm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemy_Animation:material:shader_parameter/Enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b8ut6"]
+_data = {
+"Hit_Flash": SubResource("Animation_a38dk"),
+"RESET": SubResource("Animation_7rbhm")
+}
+
+[node name="Phantom" type="CharacterBody2D" node_paths=PackedStringArray("Animation_Sprite", "Agent", "DetectionArea", "AttackArea", "DamageArea", "HitFlash_Animation", "_stats", "PatrolPoints") groups=["enemy"]]
 scale = Vector2(5, 5)
 motion_mode = 1
 script = ExtResource("1_25wfd")
@@ -143,6 +187,7 @@ Agent = NodePath("NavigationAgent2D")
 DetectionArea = NodePath("DetectionArea")
 AttackArea = NodePath("AttackArea")
 DamageArea = NodePath("Phantom_Damage_Collider/Phantom_Damage_Collider_Shape")
+HitFlash_Animation = NodePath("Hit_Flash_Animation_Player")
 _stats = NodePath("EnemyStats")
 PatrolPoints = []
 
@@ -154,6 +199,7 @@ script = ExtResource("2_ufs14")
 path_desired_distance = 50.0
 target_desired_distance = 30.0
 path_postprocessing = 1
+simplify_path = true
 max_speed = 500.0
 debug_enabled = true
 debug_use_custom = true
@@ -166,6 +212,7 @@ shape = SubResource("CapsuleShape2D_xxs1g")
 
 [node name="Enemy_Animation" type="AnimatedSprite2D" parent="."]
 z_index = 3
+material = SubResource("ShaderMaterial_5h38y")
 sprite_frames = SubResource("SpriteFrames_kw5ea")
 animation = &"Phantom_Attack"
 
@@ -209,5 +256,10 @@ nine_patch_stretch = true
 texture_under = ExtResource("6_ah50a")
 texture_progress = ExtResource("7_kkoca")
 script = ExtResource("8_aig6m")
+
+[node name="Hit_Flash_Animation_Player" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_b8ut6")
+}
 
 [connection signal="area_entered" from="Phantom_Damage_Collider" to="." method="On_Phantom_Damage_Collider_Area_Entered"]
