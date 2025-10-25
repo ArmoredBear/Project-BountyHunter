@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://bswa5xld6wyiu"]
+[gd_scene load_steps=24 format=3 uid="uid://bswa5xld6wyiu"]
 
 [ext_resource type="PackedScene" uid="uid://cstb8svv5da71" path="res://Common/Resources/Player/PlayerPrefabs/QuickItems_List.tscn" id="1_v8mnl"]
 [ext_resource type="Script" path="res://Common/Resources/Player/PlayerScripts/Player.cs" id="2_gnjcu"]
+[ext_resource type="Script" path="res://Common/Resources/Player/PlayerScripts/Player_Damage.cs" id="2_qgaeo"]
 [ext_resource type="SpriteFrames" uid="uid://cn2pxpvys21bk" path="res://Common/Resources/Player/PlayerPrefabs/PlayerAnimationSprites.tres" id="3_pf8kc"]
 [ext_resource type="Script" path="res://Common/Resources/Player/PlayerScripts/Player_FSM.cs" id="4_1x6g7"]
 [ext_resource type="Shader" uid="uid://daduoont25u0w" path="res://Common/Resources/Shaders/PlayerShader.tres" id="4_w7j57"]
@@ -54,6 +55,7 @@ rotation = 1.5708
 shape = SubResource("CircleShape2D_8vbci")
 
 [node name="Player_Damage_Collider" type="Area2D" parent="Player_Body"]
+script = ExtResource("2_qgaeo")
 
 [node name="Player_Damage_Collider_Shape" type="CollisionShape2D" parent="Player_Body/Player_Damage_Collider"]
 position = Vector2(0, -190)
@@ -178,4 +180,5 @@ unique_name_in_owner = true
 [node name="Inventory" type="Node" parent="."]
 script = ExtResource("17_ti6mo")
 
+[connection signal="area_entered" from="Player_Body/Player_Damage_Collider" to="Player_Body" method="On_Player_Damage_Collider_Area_Entered"]
 [connection signal="animation_finished" from="Player_Body/Player_FSM/Player_Animation" to="Player_Body/Player_FSM/Attacking" method="On_Player_Animation_Finished"]

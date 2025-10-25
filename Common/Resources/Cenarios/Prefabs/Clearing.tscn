@@ -84,9 +84,9 @@ offset_top = -2126.0
 offset_right = 636.0
 offset_bottom = 401.0
 
-[node name="Boss" parent="." groups=["boss", "enemy"] instance=ExtResource("5_shfq0")]
+[node name="Boss" parent="." instance=ExtResource("5_shfq0")]
 position = Vector2(-5248, 256)
-scale = Vector2(5, 5)
+scale = Vector2(10, 10)
 
 [editable path="Doors/Door_East"]
 [editable path="Doors/Door_East/GodRays"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://q3n3phfj041k"
+path="res://.godot/imported/Vindsvept - The Youtube Collection - 06 Spirit of the Wind.ogg-12bb6f1bfef5169f322dc2c6a70470e8.oggvorbisstr"
+
+[deps]
+
+source_file="res://Common/Resources/SoundTracks/Vindsvept - The Youtube Collection - 06 Spirit of the Wind.ogg"
+dest_files=["res://.godot/imported/Vindsvept - The Youtube Collection - 06 Spirit of the Wind.ogg-12bb6f1bfef5169f322dc2c6a70470e8.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

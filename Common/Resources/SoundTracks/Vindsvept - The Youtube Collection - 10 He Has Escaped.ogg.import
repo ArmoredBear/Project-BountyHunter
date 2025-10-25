@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://xq0vcxygh0vs"
+path="res://.godot/imported/Vindsvept - The Youtube Collection - 10 He Has Escaped.ogg-a7b97393986bd75678b6e4c2858c5118.oggvorbisstr"
+
+[deps]
+
+source_file="res://Common/Resources/SoundTracks/Vindsvept - The Youtube Collection - 10 He Has Escaped.ogg"
+dest_files=["res://.godot/imported/Vindsvept - The Youtube Collection - 10 He Has Escaped.ogg-a7b97393986bd75678b6e4c2858c5118.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

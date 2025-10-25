@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://ccwqnm8c8jwux" path="res://Common/Resources/Enemys/Normal/Prefabs/Phantom.tscn" id="7_p8x1l"]
 [ext_resource type="Material" uid="uid://dd0284oj67vwv" path="res://Common/Resources/Cenarios/CenarioMaterials/Tunnel/GodRaysMaterial_2.tres" id="8_dp1p4"]
 [ext_resource type="PackedScene" uid="uid://bfyl05rrk0qpx" path="res://Common/Resources/Enemys/Normal/Prefabs/Skeleton.tscn" id="8_eg5a6"]
-[ext_resource type="Shader" uid="uid://bhow34kdxypg5" path="res://Common/Resources/Shaders/Phantom_Shader.tres" id="9_1ygmt"]
+[ext_resource type="Shader" uid="uid://1jrudh7tt67w" path="res://Common/Resources/Shaders/Phantom_Shader.tres" id="9_1ygmt"]
 [ext_resource type="Material" uid="uid://ci1n5svpvkdh8" path="res://Common/Resources/Cenarios/Props/PropsMaterials/PropsMaterial_Lamp_1.tres" id="9_k488q"]
 [ext_resource type="Texture2D" uid="uid://dwklhceod1aps" path="res://Common/Resources/Cenarios/Props/PropsArt/Lights/Lamp_1.png" id="10_alwai"]
 [ext_resource type="PackedScene" uid="uid://tyb2ogvaxl2d" path="res://Common/Resources/Cenarios/Props/Prefabs/god_rays.tscn" id="11_3q2v7"]
@@ -28,7 +28,7 @@
 resource_local_to_scene = true
 shader = ExtResource("9_1ygmt")
 shader_parameter/Enabled = true
-shader_parameter/Flash_Tint = Color(1, 1, 1, 1)
+shader_parameter/FlashTint = Color(1, 1, 1, 1)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nhg4h"]
 blend_mode = 3

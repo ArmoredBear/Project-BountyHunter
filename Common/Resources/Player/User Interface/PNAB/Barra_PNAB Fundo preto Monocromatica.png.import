@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://cjvxx3yde1qpp"
+path="res://.godot/imported/Barra_PNAB Fundo preto Monocromatica.png-c720b9f548681e1f6076564c97bf69cb.ctex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://Common/Resources/Player/User Interface/PNAB/Barra_PNAB Fundo preto Monocromatica.png"
+dest_files=["res://.godot/imported/Barra_PNAB Fundo preto Monocromatica.png-c720b9f548681e1f6076564c97bf69cb.ctex"]
+
+[params]
+
+compress/mode=0
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=false
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=1

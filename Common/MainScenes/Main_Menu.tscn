@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://b7x1o5b14fsu1"]
+[gd_scene load_steps=20 format=3 uid="uid://b7x1o5b14fsu1"]
 
+[ext_resource type="Script" path="res://Common/Resources/General Scritps/MainMenu/MainMenu.cs" id="1_oroun"]
 [ext_resource type="Theme" uid="uid://byfphwqv3j56s" path="res://Common/Resources/Player/User Interface/Prefabs/Themes/Base_Main_Menu_Theme.tres" id="1_w55jq"]
 [ext_resource type="Script" path="res://Common/Resources/General Scritps/Continue.cs" id="2_6lkvc"]
 [ext_resource type="Material" uid="uid://b6jkgq0ktik5a" path="res://Common/Resources/Player/User Interface/UI_Material_Test.tres" id="2_whdxq"]
@@ -61,7 +62,124 @@ damping_max = 16.828
 scale_min = 0.05
 scale_max = 0.1
 
-[node name="Main_Menu" type="CanvasLayer"]
+[sub_resource type="Animation" id="Animation_clocg"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/MenuPanel:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-635, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/MenuPanel:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(649, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_s75qm"]
+resource_name = "Slide_Up"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/MenuPanel:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-635, -0.25, 0, 0.25, 0, -635, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/MenuPanel:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(649, -0.25, 0, 0.25, 0, -282, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cfs07"]
+_data = {
+"RESET": SubResource("Animation_clocg"),
+"Slide_Up": SubResource("Animation_s75qm")
+}
+
+[sub_resource type="Animation" id="Animation_blk6s"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/LogoPanel:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-2254, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/LogoPanel:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-1092, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_hwpi6"]
+resource_name = "Slide_Down"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/LogoPanel:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-2254, -0.25, 0, 0.25, 0, -2254, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/LogoPanel:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-1092, -0.25, 0, 0.25, 0, -19, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x24s5"]
+_data = {
+"RESET": SubResource("Animation_blk6s"),
+"Slide_Down": SubResource("Animation_hwpi6")
+}
+
+[node name="Main_Menu" type="CanvasLayer" node_paths=PackedStringArray("Menu_Panel", "Logo_Panel", "Menu_Animation", "Logo_Animation")]
+script = ExtResource("1_oroun")
+Menu_Panel = NodePath("Control/MenuPanel")
+Logo_Panel = NodePath("Control/LogoPanel")
+Menu_Animation = NodePath("MenuAnimation")
+Logo_Animation = NodePath("LogoAnimation")
 metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -95,19 +213,20 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel" type="Panel" parent="Control"]
+[node name="MenuPanel" type="Panel" parent="Control"]
+unique_name_in_owner = true
 material = ExtResource("2_whdxq")
 layout_direction = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.25
-anchor_top = 2.075
+anchor_top = 2.125
 anchor_right = -0.25
-anchor_bottom = 2.075
+anchor_bottom = 2.125
 offset_left = -625.0
-offset_top = -367.0
+offset_top = 564.0
 offset_right = -25.0
-offset_bottom = 533.0
+offset_bottom = 1464.0
 grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -115,7 +234,17 @@ size_flags_vertical = 3
 theme = ExtResource("1_w55jq")
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel"]
+[node name="Bell_Texture" type="TextureRect" parent="Control/MenuPanel"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = -36.0
+offset_right = 546.0
+offset_bottom = 464.0
+texture = ExtResource("6_ivm71")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MenuPanel"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.53
@@ -129,69 +258,69 @@ offset_bottom = 321.16
 size_flags_stretch_ratio = 2.0
 alignment = 1
 
-[node name="Continue" type="Button" parent="Control/Panel/VBoxContainer"]
+[node name="Continue" type="Button" parent="Control/MenuPanel/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 30
-text = "New Game"
+text = "Novo Jogo"
 text_overrun_behavior = 1
 autowrap_mode = 3
 icon_alignment = 1
 language = "en"
 script = ExtResource("2_6lkvc")
 
-[node name="Load_Game" type="Button" parent="Control/Panel/VBoxContainer"]
+[node name="Load_Game" type="Button" parent="Control/MenuPanel/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 30
-text = "Load Game"
+text = "Carregar"
 text_overrun_behavior = 1
 autowrap_mode = 3
 icon_alignment = 1
 language = "en"
 
-[node name="Options" type="Button" parent="Control/Panel/VBoxContainer"]
+[node name="Options" type="Button" parent="Control/MenuPanel/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 30
-text = "Options"
+text = "Opções"
 text_overrun_behavior = 1
 autowrap_mode = 3
 icon_alignment = 1
 language = "en"
 
-[node name="Credits" type="Button" parent="Control/Panel/VBoxContainer"]
+[node name="Credits" type="Button" parent="Control/MenuPanel/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 30
-text = "Credits
+text = "Creditos
 "
 text_overrun_behavior = 1
 autowrap_mode = 3
 icon_alignment = 1
 language = "en"
 
-[node name="Quit" type="Button" parent="Control/Panel/VBoxContainer"]
+[node name="Quit" type="Button" parent="Control/MenuPanel/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 30
-text = "Quit"
+text = "Sair"
 text_overrun_behavior = 1
 autowrap_mode = 3
 icon_alignment = 1
 language = "en"
 
-[node name="Dialogue" type="Button" parent="Control/Panel/VBoxContainer"]
+[node name="Dialogue" type="Button" parent="Control/MenuPanel/VBoxContainer"]
 unique_name_in_owner = true
 visible = false
 texture_filter = 1
@@ -206,24 +335,17 @@ autowrap_mode = 3
 icon_alignment = 1
 language = "en"
 
-[node name="Bell_Texture" type="TextureRect" parent="."]
-offset_left = 1970.0
-offset_top = 140.0
-offset_right = 2470.0
-offset_bottom = 640.0
-texture = ExtResource("6_ivm71")
-expand_mode = 1
-stretch_mode = 4
-
-[node name="LogoPanel" type="Panel" parent="."]
-offset_left = 305.0
-offset_top = 460.0
-offset_right = 1669.0
-offset_bottom = 915.0
+[node name="LogoPanel" type="Panel" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -2254.0
+offset_top = -1092.0
+offset_right = -890.0
+offset_bottom = -637.0
 theme = ExtResource("1_w55jq")
 theme_override_styles/panel = SubResource("StyleBoxFlat_gjm4p")
 
-[node name="Panel2" type="Panel" parent="LogoPanel"]
+[node name="Panel2" type="Panel" parent="Control/LogoPanel"]
 layout_mode = 0
 offset_left = 20.0
 offset_top = -37.0
@@ -232,7 +354,7 @@ offset_bottom = 499.0
 theme = ExtResource("1_w55jq")
 theme_override_styles/panel = SubResource("StyleBoxTexture_okju8")
 
-[node name="Panel" type="Panel" parent="LogoPanel"]
+[node name="Panel" type="Panel" parent="Control/LogoPanel"]
 layout_mode = 0
 offset_left = 20.0
 offset_top = 20.0
@@ -241,7 +363,8 @@ offset_bottom = 435.0
 theme = ExtResource("1_w55jq")
 theme_override_styles/panel = SubResource("StyleBoxFlat_0si5h")
 
-[node name="Logo" type="TextureRect" parent="LogoPanel"]
+[node name="Logo" type="TextureRect" parent="Control/LogoPanel"]
+layout_mode = 0
 offset_left = 31.0
 offset_top = 23.0
 offset_right = 1329.0
@@ -270,4 +393,16 @@ texture = ExtResource("4_l1wja")
 lifetime = 10.0
 fixed_fps = 60
 
-[connection signal="pressed" from="Control/Panel/VBoxContainer/Continue" to="Control/Panel/VBoxContainer/Continue" method="OnButtonPressed"]
+[node name="MenuAnimation" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_cfs07")
+}
+
+[node name="LogoAnimation" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_x24s5")
+}
+
+[connection signal="pressed" from="Control/MenuPanel/VBoxContainer/Continue" to="Control/MenuPanel/VBoxContainer/Continue" method="OnButtonPressed"]

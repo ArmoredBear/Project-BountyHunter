@@ -14,8 +14,9 @@ config/name="Project Bounty Hunter"
 run/main_scene="res://Common/MainScenes/Main_Menu.tscn"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/image="res://Common/Resources/Player/User Interface/PNAB/Barra_PNAB Fundo preto Monocromatica.png"
 config/icon="res://icon.svg"
-boot_splash/minimum_display_time=2000
+boot_splash/minimum_display_time=5000
 
 [autoload]
 
