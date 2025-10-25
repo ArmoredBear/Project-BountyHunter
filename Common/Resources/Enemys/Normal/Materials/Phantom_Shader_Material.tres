@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://csfabemnnry20"]
+
+[ext_resource type="Shader" uid="uid://1jrudh7tt67w" path="res://Common/Resources/Shaders/Phantom_Shader.tres" id="1_cs4ue"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_cs4ue")
+shader_parameter/Enabled = true
+shader_parameter/FlashTint = Color(1, 1, 1, 1)

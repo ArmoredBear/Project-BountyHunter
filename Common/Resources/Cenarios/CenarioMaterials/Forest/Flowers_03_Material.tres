@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cc0mlk4p25qrh"]
+
+[ext_resource type="Shader" uid="uid://c3hlrawnaxxeu" path="res://Common/Resources/Shaders/CenarioForest_Shader.tres" id="1_a7hjq"]
+[ext_resource type="Texture2D" uid="uid://di3qdllv0gdne" path="res://Common/Resources/Cenarios/CenarioNormalMaps/Grass01_n.png" id="2_tncn2"]
+
+[resource]
+shader = ExtResource("1_a7hjq")
+shader_parameter/Normal_Map = ExtResource("2_tncn2")

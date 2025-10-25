@@ -1,0 +1,8 @@
+[gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://8exx0ge1mtvs"]
+
+[ext_resource type="Texture2D" uid="uid://1pdoedlf8h3j" path="res://Common/Resources/Enemys/Boss/Animation/BossIdle.png" id="1_8ax1u"]
+[ext_resource type="Texture2D" uid="uid://cop3dtk1g3osl" path="res://Common/Resources/Enemys/Boss/NormalMaps/BossIdle_n.png" id="2_wxds7"]
+
+[resource]
+diffuse_texture = ExtResource("1_8ax1u")
+normal_texture = ExtResource("2_wxds7")

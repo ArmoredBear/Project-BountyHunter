@@ -1,0 +1,8 @@
+[gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://b3ihbw0xm6w3q"]
+
+[ext_resource type="Texture2D" uid="uid://b3bps86cnknwk" path="res://Common/Resources/Enemys/Normal/Art/Animation/Skeleton_Idle.png" id="1_tcdmi"]
+[ext_resource type="Texture2D" uid="uid://dsem3velag4xe" path="res://Common/Resources/Enemys/Normal/Art/NormalMaps/Skeleton_Idle_n.png" id="2_unnh4"]
+
+[resource]
+diffuse_texture = ExtResource("1_tcdmi")
+normal_texture = ExtResource("2_unnh4")

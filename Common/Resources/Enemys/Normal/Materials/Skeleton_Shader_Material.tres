@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dldxk3r84mljr"]
+
+[ext_resource type="Shader" uid="uid://c5xolx0t3rjoc" path="res://Common/Resources/Shaders/Skeleton_Shader.tres" id="1_666xa"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_666xa")
+shader_parameter/Enabled = true
+shader_parameter/FlashTint = Color(1, 1, 1, 1)

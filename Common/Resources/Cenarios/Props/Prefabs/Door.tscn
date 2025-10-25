@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxf5llvkkgbn5"]
+
+[ext_resource type="Script" path="res://Common/Resources/Cenarios/Props/PropsScripts/Door.cs" id="1_s8qdo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i6p6k"]
+size = Vector2(300, 300)
+
+[node name="Door" type="Area2D" node_paths=PackedStringArray("Spawn")]
+script = ExtResource("1_s8qdo")
+Spawn = NodePath("Spawn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_i6p6k")
+
+[node name="Spawn" type="Marker2D" parent="."]
+unique_name_in_owner = true
+
+[connection signal="body_entered" from="." to="." method="On_Body_Entered"]

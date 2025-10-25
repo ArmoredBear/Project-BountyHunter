@@ -1,0 +1,8 @@
+[gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://cln8om5ywj0wl"]
+
+[ext_resource type="Texture2D" uid="uid://carwpixfpx31q" path="res://Common/Resources/Enemys/Normal/Art/Animation/Skeleton_Attack.png" id="1_xrkih"]
+[ext_resource type="Texture2D" uid="uid://n0ps46vu6gnq" path="res://Common/Resources/Enemys/Normal/Art/NormalMaps/Skeleton_Attack_n.png" id="2_mfsgl"]
+
+[resource]
+diffuse_texture = ExtResource("1_xrkih")
+normal_texture = ExtResource("2_mfsgl")

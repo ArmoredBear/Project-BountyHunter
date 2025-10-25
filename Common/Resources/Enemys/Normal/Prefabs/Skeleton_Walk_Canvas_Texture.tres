@@ -1,0 +1,8 @@
+[gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://cfebjlpeksk2b"]
+
+[ext_resource type="Texture2D" uid="uid://c7bmes1u8djf0" path="res://Common/Resources/Enemys/Normal/Art/Animation/Skeleton_Walk.png" id="1_gf1pn"]
+[ext_resource type="Texture2D" uid="uid://fc5olaf317o" path="res://Common/Resources/Enemys/Normal/Art/NormalMaps/Skeleton_Walk_n.png" id="2_tqo6v"]
+
+[resource]
+diffuse_texture = ExtResource("1_gf1pn")
+normal_texture = ExtResource("2_tqo6v")

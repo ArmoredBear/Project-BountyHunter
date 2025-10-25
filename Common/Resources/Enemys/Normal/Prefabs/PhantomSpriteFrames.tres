@@ -1,0 +1,114 @@
+[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://fxeocxgd1lfr"]
+
+[ext_resource type="Texture2D" uid="uid://3tm3i21uergc" path="res://Common/Resources/Enemys/Normal/Prefabs/Phantom_Attack_Canvas_Texture.tres" id="1_abl23"]
+[ext_resource type="Texture2D" uid="uid://bqkpdvjj7du2w" path="res://Common/Resources/Enemys/Normal/Prefabs/Phantom_Idle_Canvas_Texture.tres" id="2_djo62"]
+[ext_resource type="Texture2D" uid="uid://26d8wrq6wkg2" path="res://Common/Resources/Enemys/Normal/Prefabs/Phantom_Pursuit_Canvas_Texture.tres" id="3_r8p26"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bs7ea"]
+atlas = ExtResource("1_abl23")
+region = Rect2(0, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kp0er"]
+atlas = ExtResource("1_abl23")
+region = Rect2(144, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ei1ir"]
+atlas = ExtResource("1_abl23")
+region = Rect2(288, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ki6ax"]
+atlas = ExtResource("1_abl23")
+region = Rect2(432, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_twvnb"]
+atlas = ExtResource("1_abl23")
+region = Rect2(576, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_520k1"]
+atlas = ExtResource("1_abl23")
+region = Rect2(720, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3y6pj"]
+atlas = ExtResource("2_djo62")
+region = Rect2(0, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gyffr"]
+atlas = ExtResource("2_djo62")
+region = Rect2(144, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjqg5"]
+atlas = ExtResource("2_djo62")
+region = Rect2(288, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5xnt"]
+atlas = ExtResource("2_djo62")
+region = Rect2(432, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1e14p"]
+atlas = ExtResource("2_djo62")
+region = Rect2(576, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sr827"]
+atlas = ExtResource("2_djo62")
+region = Rect2(720, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8hct"]
+atlas = ExtResource("3_r8p26")
+region = Rect2(0, 0, 144, 144)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bs7ea")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kp0er")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ei1ir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ki6ax")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_twvnb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_520k1")
+}],
+"loop": true,
+"name": &"Phantom_Attack",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3y6pj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gyffr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjqg5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5xnt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1e14p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sr827")
+}],
+"loop": true,
+"name": &"Phantom_Idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8hct")
+}],
+"loop": true,
+"name": &"Phantom_Pursuit",
+"speed": 5.0
+}]

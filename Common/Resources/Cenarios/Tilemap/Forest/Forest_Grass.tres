@@ -1,0 +1,189 @@
+[gd_resource type="TileSet" load_steps=17 format=3 uid="uid://5qupvmr4kfvq"]
+
+[ext_resource type="Material" uid="uid://blu2dg4w51jy2" path="res://Common/Resources/Cenarios/CenarioMaterials/Forest/Grass_01_Material.tres" id="1_xw365"]
+[ext_resource type="Texture2D" uid="uid://c23ar3pdmb640" path="res://Common/Resources/Cenarios/CenarioArt/Environment/Forest/Grass01.png" id="2_2ojn5"]
+[ext_resource type="Material" uid="uid://bp2udfbfmvj60" path="res://Common/Resources/Cenarios/CenarioMaterials/Forest/Flowers_01_Material.tres" id="3_g1uom"]
+[ext_resource type="Texture2D" uid="uid://b4ucdf7ywcw2s" path="res://Common/Resources/Cenarios/CenarioArt/Environment/Forest/Flowers01.png" id="4_q3wf3"]
+[ext_resource type="Material" uid="uid://ccqp2wbju4l36" path="res://Common/Resources/Cenarios/CenarioMaterials/Forest/Flowers_02_Material.tres" id="5_i2qlu"]
+[ext_resource type="Texture2D" uid="uid://45s7s77ntl3l" path="res://Common/Resources/Cenarios/CenarioArt/Environment/Forest/Flowers02.png" id="6_fddju"]
+[ext_resource type="Material" uid="uid://cc0mlk4p25qrh" path="res://Common/Resources/Cenarios/CenarioMaterials/Forest/Flowers_03_Material.tres" id="7_s5jos"]
+[ext_resource type="Texture2D" uid="uid://c6uts2xcaku4y" path="res://Common/Resources/Cenarios/CenarioArt/Environment/Forest/Road01.png" id="8_50f8x"]
+[ext_resource type="Texture2D" uid="uid://dbsp54ibd6tcc" path="res://Common/Resources/Cenarios/CenarioArt/Environment/Forest/Flowers03.png" id="8_qte0a"]
+[ext_resource type="Material" uid="uid://bywmbw5aak7jl" path="res://Common/Resources/Cenarios/CenarioMaterials/Forest/Road_01_Material.tres" id="8_tftib"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_0bceq"]
+vertices = PackedVector2Array(64, 64, -64, 64, -64, -64, 64, -64)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)])
+agent_radius = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gve6u"]
+texture = ExtResource("2_2ojn5")
+texture_region_size = Vector2i(128, 128)
+1:1/0 = 0
+1:1/0/material = ExtResource("1_xw365")
+1:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0bceq")
+2:1/0 = 0
+2:1/0/material = ExtResource("1_xw365")
+2:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0bceq")
+2:2/0 = 0
+2:2/0/material = ExtResource("1_xw365")
+2:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0bceq")
+1:2/0 = 0
+1:2/0/material = ExtResource("1_xw365")
+1:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0bceq")
+0:0/0 = 0
+0:0/0/material = ExtResource("1_xw365")
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0bceq")
+1:0/0 = 0
+1:0/0/material = ExtResource("1_xw365")
+1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0bceq")
+2:0/0 = 0
+2:0/0/material = ExtResource("1_xw365")
+2:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0bceq")
+3:0/0 = 0
+3:0/0/material = ExtResource("1_xw365")
+3:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0bceq")
+3:1/0 = 0
+3:1/0/material = ExtResource("1_xw365")
+3:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0bceq")
+3:2/0 = 0
+3:2/0/material = ExtResource("1_xw365")
+3:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0bceq")
+3:3/0 = 0
+3:3/0/material = ExtResource("1_xw365")
+3:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0bceq")
+2:3/0 = 0
+2:3/0/material = ExtResource("1_xw365")
+2:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0bceq")
+1:3/0 = 0
+1:3/0/material = ExtResource("1_xw365")
+1:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0bceq")
+0:3/0 = 0
+0:3/0/material = ExtResource("1_xw365")
+0:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0bceq")
+0:2/0 = 0
+0:2/0/material = ExtResource("1_xw365")
+0:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0bceq")
+0:1/0 = 0
+0:1/0/material = ExtResource("1_xw365")
+0:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0bceq")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o3lw4"]
+texture = ExtResource("4_q3wf3")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/material = ExtResource("3_g1uom")
+1:1/0 = 0
+1:1/0/material = ExtResource("3_g1uom")
+2:2/0 = 0
+2:2/0/material = ExtResource("3_g1uom")
+3:3/0 = 0
+3:3/0/material = ExtResource("3_g1uom")
+1:0/0 = 0
+1:0/0/material = ExtResource("3_g1uom")
+2:0/0 = 0
+2:0/0/material = ExtResource("3_g1uom")
+3:0/0 = 0
+3:0/0/material = ExtResource("3_g1uom")
+3:1/0 = 0
+3:1/0/material = ExtResource("3_g1uom")
+3:2/0 = 0
+3:2/0/material = ExtResource("3_g1uom")
+0:1/0 = 0
+0:1/0/material = ExtResource("3_g1uom")
+0:2/0 = 0
+0:2/0/material = ExtResource("3_g1uom")
+0:3/0 = 0
+0:3/0/material = ExtResource("3_g1uom")
+1:3/0 = 0
+1:3/0/material = ExtResource("3_g1uom")
+2:3/0 = 0
+2:3/0/material = ExtResource("3_g1uom")
+1:2/0 = 0
+1:2/0/material = ExtResource("3_g1uom")
+2:1/0 = 0
+2:1/0/material = ExtResource("3_g1uom")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mn8jh"]
+texture = ExtResource("6_fddju")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/material = ExtResource("5_i2qlu")
+1:0/0 = 0
+1:0/0/material = ExtResource("5_i2qlu")
+2:0/0 = 0
+2:0/0/material = ExtResource("5_i2qlu")
+3:0/0 = 0
+3:0/0/material = ExtResource("5_i2qlu")
+1:1/0 = 0
+1:1/0/material = ExtResource("5_i2qlu")
+2:1/0 = 0
+2:1/0/material = ExtResource("5_i2qlu")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5hheh"]
+texture = ExtResource("8_qte0a")
+texture_region_size = Vector2i(128, 128)
+0:1/0 = 0
+0:1/0/material = ExtResource("7_s5jos")
+0:2/0 = 0
+0:2/0/material = ExtResource("7_s5jos")
+0:3/0 = 0
+0:3/0/material = ExtResource("7_s5jos")
+1:3/0 = 0
+1:3/0/material = ExtResource("7_s5jos")
+2:3/0 = 0
+2:3/0/material = ExtResource("7_s5jos")
+2:2/0 = 0
+2:2/0/material = ExtResource("7_s5jos")
+2:1/0 = 0
+2:1/0/material = ExtResource("7_s5jos")
+1:1/0 = 0
+1:1/0/material = ExtResource("7_s5jos")
+1:2/0 = 0
+1:2/0/material = ExtResource("7_s5jos")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jfore"]
+texture = ExtResource("8_50f8x")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/material = ExtResource("8_tftib")
+1:1/0 = 0
+1:1/0/material = ExtResource("8_tftib")
+1:2/0 = 0
+1:2/0/material = ExtResource("8_tftib")
+2:3/0 = 0
+2:3/0/material = ExtResource("8_tftib")
+3:3/0 = 0
+3:3/0/material = ExtResource("8_tftib")
+1:0/0 = 0
+1:0/0/material = ExtResource("8_tftib")
+2:0/0 = 0
+2:0/0/material = ExtResource("8_tftib")
+3:0/0 = 0
+3:0/0/material = ExtResource("8_tftib")
+3:1/0 = 0
+3:1/0/material = ExtResource("8_tftib")
+3:2/0 = 0
+3:2/0/material = ExtResource("8_tftib")
+2:1/0 = 0
+2:1/0/material = ExtResource("8_tftib")
+2:2/0 = 0
+2:2/0/material = ExtResource("8_tftib")
+0:1/0 = 0
+0:1/0/material = ExtResource("8_tftib")
+0:2/0 = 0
+0:2/0/material = ExtResource("8_tftib")
+0:3/0 = 0
+0:3/0/material = ExtResource("8_tftib")
+1:3/0 = 0
+1:3/0/material = ExtResource("8_tftib")
+
+[resource]
+tile_size = Vector2i(128, 128)
+navigation_layer_0/layers = 1
+sources/0 = SubResource("TileSetAtlasSource_gve6u")
+sources/1 = SubResource("TileSetAtlasSource_o3lw4")
+sources/2 = SubResource("TileSetAtlasSource_mn8jh")
+sources/3 = SubResource("TileSetAtlasSource_5hheh")
+sources/4 = SubResource("TileSetAtlasSource_jfore")

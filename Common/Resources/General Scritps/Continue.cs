@@ -13,6 +13,6 @@ public partial class Continue : Node
     {
         Player.Instance.Visible = true;
         Player.Instance.GetNode<CanvasLayer>("%Player_UI").Visible = true;
-        GetTree().ChangeSceneToFile("res://Common/MainScenes/Main.tscn");
+        GetTree().ChangeSceneToFile("res://Common/Resources/Cenarios/Prefabs/Tunnel.tscn");
     }
 }

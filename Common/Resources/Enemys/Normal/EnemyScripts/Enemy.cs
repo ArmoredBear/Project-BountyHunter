@@ -78,7 +78,7 @@ public partial class Enemy : CharacterBody2D
 		// Tenta iniciar a animação (apenas se a referência foi preenchida)
 		if (Animation_Sprite != null)
 		{
-			Animation_Sprite.Play("Phantom_Idle");
+			Animation_Sprite.Play("Skeleton_Idle");
 		}
 
 		// 4. CORREÇÃO NAVMESH: Garante que o setup de navegação aconteça após o primeiro frame de física.
@@ -252,10 +252,10 @@ public partial class Enemy : CharacterBody2D
 		// SEGURANÇA
 		if (Animation_Sprite == null) return; 
 
-		if (newState == State.Attack) Animation_Sprite.Play("Phantom_Attack");
-		else if (newState == State.Chase) Animation_Sprite.Play("Phantom_Pursuit");
-		else if (newState == State.Patrol) Animation_Sprite.Play("Phantom_Pursuit");
-		else if (newState == State.Flee) Animation_Sprite.Play("Phantom_Pursuit");
+		if (newState == State.Attack) Animation_Sprite.Play("Skeleton_Attack");
+		else if (newState == State.Chase) Animation_Sprite.Play("Skeleton_Walk");
+		else if (newState == State.Patrol) Animation_Sprite.Play("Skeleton_Walk");
+		else if (newState == State.Flee) Animation_Sprite.Play("Skeleton_Walk");
 	}
 
 	private void MoveToTarget(Vector2 targetPosition, float speedMultiplier = 1.0f)
@@ -280,7 +280,7 @@ public partial class Enemy : CharacterBody2D
 		
 		if (Velocity.X != 0 && Animation_Sprite != null)
 		{
-			Animation_Sprite.FlipH = Velocity.X > 0;
+			Animation_Sprite.FlipH = Velocity.X < 0;
 		}
 	}
 
@@ -289,7 +289,7 @@ public partial class Enemy : CharacterBody2D
 		if (PatrolPoints == null || PatrolPoints.Length == 0)
 		{
 			Velocity = Vector2.Zero;
-			if (Animation_Sprite != null) Animation_Sprite.Play("Phantom_Idle");
+			if (Animation_Sprite != null) Animation_Sprite.Play("Skeleton_Idle");
 			return;
 		}
 		
@@ -302,7 +302,7 @@ public partial class Enemy : CharacterBody2D
 		}
 
 		MoveToTarget(targetPosition, 0.5f); 
-		if (Animation_Sprite != null) Animation_Sprite.Play("Phantom_Pursuit");
+		if (Animation_Sprite != null) Animation_Sprite.Play("Skeleton_Walk");
 	}
 
 	private void HandleChase(float delta)
@@ -315,7 +315,7 @@ public partial class Enemy : CharacterBody2D
 		}
 		
 		MoveToTarget(_player.GlobalPosition, 1.2f); 
-		if (Animation_Sprite != null) Animation_Sprite.Play("Phantom_Pursuit");
+		if (Animation_Sprite != null) Animation_Sprite.Play("Skeleton_Walk");
 	}
 
 	private void HandleAttack(float delta)
@@ -337,7 +337,7 @@ public partial class Enemy : CharacterBody2D
 		Vector2 safeTarget = GlobalPosition + fleeDirection * 500f; 
 		
 		MoveToTarget(safeTarget, 1.5f); 
-		if (Animation_Sprite != null) Animation_Sprite.Play("Phantom_Pursuit");
+		if (Animation_Sprite != null) Animation_Sprite.Play("Skeleton_Walk");
 
 		if (_distanceToPlayer > 600 || (_stats != null && _stats.CurrentHealth > FleeThreshold * 1.5f))
 		{
@@ -374,14 +374,14 @@ public partial class Enemy : CharacterBody2D
 		}
 	}
 
-	public void On_Phantom_Damage_Collider_Area_Entered(Node2D _area)
+	public void On_Skeleton_Damage_Collider_Area_Entered(Node2D _area)
 	{
 		if(_area.IsInGroup("player_attack") )
         {
 			GD.Print("Inimigo atacado" + "Nome do collider: " + _area.Name);
 			HitFlash_Animation.Play("Hit_Flash");
 			
-			if (_stats.TakeDamage(20) == false)
+			if (_stats.TakeDamage(10) == false)
 			{
 				GetTree().QueueDelete(this);
 			}

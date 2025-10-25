@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://tyb2ogvaxl2d"]
+
+[ext_resource type="Material" uid="uid://dd0284oj67vwv" path="res://Common/Resources/Cenarios/CenarioMaterials/Tunnel/GodRaysMaterial_2.tres" id="1_xte6p"]
+[ext_resource type="Texture2D" uid="uid://poh5e7lfq33h" path="res://Common/Resources/Cenarios/CenarioArt/Lighting/GodRay_LightMap.png" id="2_fy7fn"]
+[ext_resource type="Texture2D" uid="uid://d1oou2y8ah1oo" path="res://Common/Resources/Cenarios/CenarioArt/Lighting/Cenario_Point_Light_Map.tres" id="3_q1jtt"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fp21b"]
+blend_mode = 3
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_t8bnh"]
+
+[node name="GodRays_2" type="ColorRect"]
+z_index = 2
+material = ExtResource("1_xte6p")
+offset_left = 2335.0
+offset_top = -2735.0
+offset_right = 3580.0
+offset_bottom = -208.0
+scale = Vector2(1.12226, 0.978613)
+metadata/_edit_use_anchors_ = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+light_mask = 7
+visibility_layer = 7
+position = Vector2(590, 1750)
+rotation = 1.5708
+color = Color(1, 0.992004, 0.488281, 1)
+energy = 8.0
+range_item_cull_mask = 3
+shadow_enabled = true
+texture = ExtResource("2_fy7fn")
+texture_scale = 2.0
+height = 80.0
+
+[node name="PointLight2D3" type="PointLight2D" parent="."]
+light_mask = 7
+visibility_layer = 7
+position = Vector2(577.406, 2211.29)
+color = Color(0.937561, 1, 0.636719, 1)
+energy = 6.0
+range_item_cull_mask = 3
+shadow_enabled = true
+texture = ExtResource("3_q1jtt")
+texture_scale = 3.0
+height = 80.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+show_behind_parent = true
+light_mask = 2
+visibility_layer = 2
+material = SubResource("CanvasItemMaterial_fp21b")
+position = Vector2(239.695, 1990.57)
+scale = Vector2(654.038, 378.088)
+texture = SubResource("CanvasTexture_t8bnh")

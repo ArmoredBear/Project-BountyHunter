@@ -1,0 +1,150 @@
+[gd_scene load_steps=16 format=3 uid="uid://bfyl05rrk0qpx"]
+
+[ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/Enemy.cs" id="1_judtr"]
+[ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/EnemyStats.cs" id="2_iva4n"]
+[ext_resource type="Material" uid="uid://dldxk3r84mljr" path="res://Common/Resources/Enemys/Normal/Materials/Skeleton_Shader_Material.tres" id="3_eidyw"]
+[ext_resource type="SpriteFrames" uid="uid://bq502tthp7e6n" path="res://Common/Resources/Enemys/Normal/Prefabs/SkeletonSpriteFrames.tres" id="4_qihwx"]
+[ext_resource type="Texture2D" uid="uid://crtx14b8jptma" path="res://Common/Resources/Enemys/Normal/Art/UI/EnemyTempHealthBarBackground.png" id="7_ahwy6"]
+[ext_resource type="Texture2D" uid="uid://iueo5m618e4c" path="res://Common/Resources/Enemys/Normal/Art/UI/EnemyTempHealthBar.png" id="8_sgfmd"]
+[ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/EnemyHealthBar.cs" id="9_n8tx1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xxs1g"]
+radius = 25.0
+height = 50.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3dpq5"]
+size = Vector2(700, 700)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g25pt"]
+size = Vector2(100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l7vg7"]
+size = Vector2(70, 90)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bxc0g"]
+light_mode = 1
+
+[sub_resource type="Animation" id="Animation_275m7"]
+resource_name = "Hit_Flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemy_Animation:material:shader_parameter/Enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_comuy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemy_Animation:material:shader_parameter/Enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_drhrp"]
+_data = {
+"Hit_Flash": SubResource("Animation_275m7"),
+"RESET": SubResource("Animation_comuy")
+}
+
+[node name="Skeleton" type="CharacterBody2D" node_paths=PackedStringArray("Animation_Sprite", "Agent", "DetectionArea", "AttackArea", "DamageArea", "HitFlash_Animation", "_stats", "PatrolPoints") groups=["enemy"]]
+scale = Vector2(5, 5)
+motion_mode = 1
+script = ExtResource("1_judtr")
+Animation_Sprite = NodePath("Enemy_Animation")
+Agent = NodePath("NavigationAgent2D")
+DetectionArea = NodePath("DetectionArea")
+AttackArea = NodePath("AttackArea")
+DamageArea = NodePath("Skeleton_Damage_Collider/Skeleton_Damage_Collider_Shape")
+HitFlash_Animation = NodePath("HitFlash_Animation")
+_stats = NodePath("EnemyStats")
+PatrolPoints = []
+
+[node name="EnemyStats" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_iva4n")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 50.0
+target_desired_distance = 30.0
+path_postprocessing = 1
+max_speed = 500.0
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_point_size = 25.0
+debug_path_custom_line_width = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_xxs1g")
+
+[node name="Enemy_Animation" type="AnimatedSprite2D" parent="."]
+z_index = 3
+material = ExtResource("3_eidyw")
+sprite_frames = ExtResource("4_qihwx")
+animation = &"Skeleton_Attack"
+frame_progress = 0.342135
+flip_h = true
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("RectangleShape2D_3dpq5")
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(-88.8, 0)
+shape = SubResource("RectangleShape2D_g25pt")
+
+[node name="Skeleton_Damage_Collider" type="Area2D" parent="." groups=["enemy"]]
+
+[node name="Skeleton_Damage_Collider_Shape" type="CollisionShape2D" parent="Skeleton_Damage_Collider"]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_l7vg7")
+
+[node name="Control" type="Control" parent="."]
+clip_children = 1
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+offset_left = -18.2
+offset_top = -90.2
+offset_right = 21.8
+offset_bottom = -50.2
+
+[node name="Enemy_Health_Bar" type="TextureProgressBar" parent="Control"]
+z_index = 12
+material = SubResource("CanvasItemMaterial_bxc0g")
+layout_mode = 0
+offset_left = -29.0
+offset_top = 18.6
+offset_right = 66.0
+offset_bottom = 26.6
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("7_ahwy6")
+texture_progress = ExtResource("8_sgfmd")
+script = ExtResource("9_n8tx1")
+
+[node name="HitFlash_Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_drhrp")
+}
+autoplay = "Hit_Flash"
+
+[connection signal="area_entered" from="Skeleton_Damage_Collider" to="." method="On_Skeleton_Damage_Collider_Area_Entered"]

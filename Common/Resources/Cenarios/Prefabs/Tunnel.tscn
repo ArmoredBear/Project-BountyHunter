@@ -1,16 +1,20 @@
-[gd_scene load_steps=40 format=4 uid="uid://dwbwgw8w70tm1"]
+[gd_scene load_steps=48 format=4 uid="uid://dwbwgw8w70tm1"]
 
 [ext_resource type="TileSet" uid="uid://bm6068a5v0klm" path="res://Common/Resources/Cenarios/Tilemap/Tunnel/TunnelTileSet.tres" id="1_8xi57"]
 [ext_resource type="TileSet" uid="uid://ciiacghrwpbvo" path="res://Common/Resources/Cenarios/Tilemap/Tunnel/GroundDetails.tres" id="2_u4jhw"]
 [ext_resource type="TileSet" uid="uid://bt106diw7wmug" path="res://Common/Resources/Cenarios/Tilemap/Tunnel/WallDetails.tres" id="3_csmwn"]
-[ext_resource type="Material" uid="uid://5kw1bkck3kdy" path="res://Common/Resources/Cenarios/CenarioMaterials/GodRaysMaterial_1.tres" id="4_0rvqq"]
+[ext_resource type="Material" uid="uid://5kw1bkck3kdy" path="res://Common/Resources/Cenarios/CenarioMaterials/Tunnel/GodRaysMaterial_1.tres" id="4_0rvqq"]
 [ext_resource type="Texture2D" uid="uid://d1oou2y8ah1oo" path="res://Common/Resources/Cenarios/CenarioArt/Lighting/Cenario_Point_Light_Map.tres" id="5_omeb6"]
 [ext_resource type="Texture2D" uid="uid://bitqvnwe26177" path="res://Common/Resources/Cenarios/CenarioArt/Lighting/Door_LightMap.png" id="6_gi80c"]
 [ext_resource type="Texture2D" uid="uid://poh5e7lfq33h" path="res://Common/Resources/Cenarios/CenarioArt/Lighting/GodRay_LightMap.png" id="7_hnrfk"]
+[ext_resource type="PackedScene" uid="uid://bxf5llvkkgbn5" path="res://Common/Resources/Cenarios/Props/Prefabs/Door.tscn" id="7_oan54"]
 [ext_resource type="PackedScene" uid="uid://ccwqnm8c8jwux" path="res://Common/Resources/Enemys/Normal/Prefabs/Phantom.tscn" id="7_p8x1l"]
-[ext_resource type="Material" uid="uid://dd0284oj67vwv" path="res://Common/Resources/Cenarios/CenarioMaterials/GodRaysMaterial_2.tres" id="8_dp1p4"]
+[ext_resource type="Material" uid="uid://dd0284oj67vwv" path="res://Common/Resources/Cenarios/CenarioMaterials/Tunnel/GodRaysMaterial_2.tres" id="8_dp1p4"]
+[ext_resource type="PackedScene" uid="uid://bfyl05rrk0qpx" path="res://Common/Resources/Enemys/Normal/Prefabs/Skeleton.tscn" id="8_eg5a6"]
+[ext_resource type="Shader" uid="uid://bhow34kdxypg5" path="res://Common/Resources/Shaders/Phantom_Shader.tres" id="9_1ygmt"]
 [ext_resource type="Material" uid="uid://ci1n5svpvkdh8" path="res://Common/Resources/Cenarios/Props/PropsMaterials/PropsMaterial_Lamp_1.tres" id="9_k488q"]
 [ext_resource type="Texture2D" uid="uid://dwklhceod1aps" path="res://Common/Resources/Cenarios/Props/PropsArt/Lights/Lamp_1.png" id="10_alwai"]
+[ext_resource type="PackedScene" uid="uid://tyb2ogvaxl2d" path="res://Common/Resources/Cenarios/Props/Prefabs/god_rays.tscn" id="11_3q2v7"]
 [ext_resource type="Material" uid="uid://tjmqekt683nl" path="res://Common/Resources/Cenarios/Props/PropsMaterials/PropsMaterial_Box_Paper_1.tres" id="11_kbqv6"]
 [ext_resource type="Texture2D" uid="uid://ydp4lbl23kr" path="res://Common/Resources/Cenarios/Props/PropsArt/Box_Paper_1.png" id="12_4nt6m"]
 [ext_resource type="Material" uid="uid://da7w0yfg2v414" path="res://Common/Resources/Cenarios/Props/PropsMaterials/PropsMaterial_Box_Paper_2.tres" id="13_rv5jk"]
@@ -19,6 +23,12 @@
 [ext_resource type="Texture2D" uid="uid://dyd5a6sgc0nll" path="res://Common/Resources/Cenarios/Props/PropsArt/Box_Wood_1.png" id="16_4l8sg"]
 [ext_resource type="Material" uid="uid://b7jsxw8ckcfhu" path="res://Common/Resources/Cenarios/Props/PropsMaterials/PropsMaterial_Barrel_Wood.tres" id="17_xmc55"]
 [ext_resource type="Texture2D" uid="uid://uxjphhnn38or" path="res://Common/Resources/Cenarios/Props/PropsArt/Barrel_Wood.png" id="18_3dj5q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_40you"]
+resource_local_to_scene = true
+shader = ExtResource("9_1ygmt")
+shader_parameter/Enabled = true
+shader_parameter/Flash_Tint = Color(1, 1, 1, 1)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nhg4h"]
 blend_mode = 3
@@ -77,6 +87,22 @@ size = Vector2(65, 1543)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ievab"]
 size = Vector2(1962, 50)
+
+[sub_resource type="Environment" id="Environment_ppfks"]
+background_mode = 3
+ambient_light_color = Color(0.214844, 0.214844, 0.214844, 1)
+tonemap_mode = 3
+tonemap_white = 2.0
+glow_enabled = true
+glow_intensity = 2.0
+glow_bloom = 1.0
+glow_hdr_threshold = 0.8
+adjustment_enabled = true
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_ykpds"]
+dof_blur_near_enabled = true
+
+[sub_resource type="Compositor" id="Compositor_7thlq"]
 
 [node name="Tunnel" type="Node2D"]
 
@@ -160,7 +186,7 @@ offset_right = 10504.0
 offset_bottom = -11996.0
 metadata/_edit_use_anchors_ = true
 
-[node name="Doors_TileMapLayer" type="TileMapLayer" parent="Doors"]
+[node name="Gates_TileMapLayer" type="TileMapLayer" parent="Doors"]
 z_index = 1
 tile_map_data = PackedByteArray("AABBAJz/AQAFABAAAABCAJD/AQAGAAQAAABCAJH/AQAGAAUAAABCAJL/AQAGAAYAAABCAJP/AQAGAAcAAABCAJT/AQAGAAgAAABCAJX/AQAGAAkAAABCAJb/AQAGAAoAAABCAJf/AQAGAAsAAABCAJj/AQAGAAwAAABCAJn/AQAGAA0AAABCAJr/AQAGAA4AAABCAJv/AQAGAA8AAABCAJz/AQAGABAAAABDAI//AQAHAAMAAABDAJD/AQAHAAQAAABDAJH/AQAHAAUAAABDAJL/AQAHAAYAAABDAJP/AQAHAAcAAABDAJT/AQAHAAgAAABDAJX/AQAHAAkAAABDAJb/AQAHAAoAAABDAJf/AQAHAAsAAABDAJj/AQAHAAwAAABDAJn/AQAHAA0AAABDAJr/AQAHAA4AAABDAJv/AQAHAA8AAABDAJz/AQAHABAAAABEAI//AQAIAAMAAABEAJD/AQAIAAQAAABEAJH/AQAIAAUAAABEAJL/AQAIAAYAAABEAJP/AQAIAAcAAABEAJT/AQAIAAgAAABEAJX/AQAIAAkAAABEAJb/AQAIAAoAAABEAJf/AQAIAAsAAABEAJn/AQAIAA0AAABEAJv/AQAIAA8AAABEAJz/AQAIABAAAABFAI7/AQAJAAIAAABFAI//AQAJAAMAAABFAJD/AQAJAAQAAABFAJH/AQAJAAUAAABFAJL/AQAJAAYAAABFAJP/AQAJAAcAAABFAJT/AQAJAAgAAABFAJX/AQAJAAkAAABFAJb/AQAJAAoAAABFAJf/AQAJAAsAAABFAJj/AQAJAAwAAABFAJn/AQAJAA0AAABFAJr/AQAJAA4AAABFAJv/AQAJAA8AAABFAJz/AQAJABAAAABGAI7/AQAKAAIAAABGAI//AQAKAAMAAABGAJD/AQAKAAQAAABGAJH/AQAKAAUAAABGAJL/AQAKAAYAAABGAJP/AQAKAAcAAABGAJT/AQAKAAgAAABGAJX/AQAKAAkAAABGAJb/AQAKAAoAAABGAJf/AQAKAAsAAABGAJj/AQAKAAwAAABGAJn/AQAKAA0AAABGAJr/AQAKAA4AAABGAJv/AQAKAA8AAABGAJz/AQAKABAAAABHAI3/AQALAAEAAABHAI7/AQALAAIAAABHAI//AQALAAMAAABHAJD/AQALAAQAAABHAJH/AQALAAUAAABHAJL/AQALAAYAAABHAJP/AQALAAcAAABHAJT/AQALAAgAAABIAI3/AQAMAAEAAABIAI7/AQAMAAIAAABIAI//AQAMAAMAAABIAJD/AQAMAAQAAABIAJH/AQAMAAUAAABIAJL/AQAMAAYAAABJAI3/AQANAAEAAABJAI7/AQANAAIAAABJAI//AQANAAMAAABJAJD/AQANAAQAAABJAJH/AQANAAUAAABKAI3/AQAOAAEAAABKAI7/AQAOAAIAAABKAI//AQAOAAMAAABKAJD/AQAOAAQAAABKAJH/AQAOAAUAAABLAI3/AQAPAAEAAABLAI7/AQAPAAIAAABLAI//AQAPAAMAAABLAJD/AQAPAAQAAABLAJH/AQAPAAUAAABMAI3/AQAQAAEAAABMAI7/AQAQAAIAAABMAI//AQAQAAMAAABMAJD/AQAQAAQAAABMAJH/AQAQAAUAAABNAI3/AQARAAEAAABNAI7/AQARAAIAAABNAI//AQARAAMAAABNAJD/AQARAAQAAABNAJH/AQARAAUAAABNAJL/AQARAAYAAABOAI3/AQASAAEAAABOAI7/AQASAAIAAABOAI//AQASAAMAAABOAJD/AQASAAQAAABOAJH/AQASAAUAAABOAJL/AQASAAYAAABOAJP/AQASAAcAAABOAJT/AQASAAgAAABPAI7/AQATAAIAAABPAI//AQATAAMAAABPAJD/AQATAAQAAABPAJH/AQATAAUAAABPAJL/AQATAAYAAABPAJP/AQATAAcAAABPAJT/AQATAAgAAABPAJX/AQATAAkAAABPAJb/AQATAAoAAABPAJf/AQATAAsAAABPAJj/AQATAAwAAABPAJn/AQATAA0AAABPAJr/AQATAA4AAABPAJv/AQATAA8AAABPAJz/AQATABAAAABQAI7/AQAUAAIAAABQAI//AQAUAAMAAABQAJD/AQAUAAQAAABQAJH/AQAUAAUAAABQAJL/AQAUAAYAAABQAJP/AQAUAAcAAABQAJT/AQAUAAgAAABQAJX/AQAUAAkAAABQAJb/AQAUAAoAAABQAJf/AQAUAAsAAABQAJj/AQAUAAwAAABQAJn/AQAUAA0AAABQAJr/AQAUAA4AAABQAJv/AQAUAA8AAABQAJz/AQAUABAAAABRAI//AQAVAAMAAABRAJD/AQAVAAQAAABRAJH/AQAVAAUAAABRAJL/AQAVAAYAAABRAJP/AQAVAAcAAABRAJT/AQAVAAgAAABRAJX/AQAVAAkAAABRAJb/AQAVAAoAAABRAJf/AQAVAAsAAABRAJj/AQAVAAwAAABRAJn/AQAVAA0AAABRAJr/AQAVAA4AAABRAJv/AQAVAA8AAABRAJz/AQAVABAAAABSAI//AQAWAAMAAABSAJD/AQAWAAQAAABSAJH/AQAWAAUAAABSAJL/AQAWAAYAAABSAJP/AQAWAAcAAABSAJT/AQAWAAgAAABSAJX/AQAWAAkAAABSAJb/AQAWAAoAAABSAJf/AQAWAAsAAABSAJj/AQAWAAwAAABSAJn/AQAWAA0AAABSAJr/AQAWAA4AAABSAJv/AQAWAA8AAABSAJz/AQAWABAAAABTAJD/AQAXAAQAAABTAJH/AQAXAAUAAABTAJL/AQAXAAYAAABTAJP/AQAXAAcAAABTAJT/AQAXAAgAAABTAJX/AQAXAAkAAABTAJb/AQAXAAoAAABTAJf/AQAXAAsAAABTAJj/AQAXAAwAAABTAJn/AQAXAA0AAABTAJr/AQAXAA4AAABTAJv/AQAXAA8AAABTAJz/AQAXABAAAABUAJz/AQAYABAAAABHAJX/AQALAAkAAABHAJb/AQALAAoAAABHAJf/AQALAAsAAABHAJj/AQALAAwAAABHAJn/AQALAA0AAABHAJr/AQALAA4AAABHAJv/AQALAA8AAABHAJz/AQALABAAAABHAJ3/AQALABEAAABIAJT/AQAMAAgAAABIAJX/AQAMAAkAAABIAJb/AQAMAAoAAABIAJf/AQAMAAsAAABIAJj/AQAMAAwAAABIAJn/AQAMAA0AAABIAJr/AQAMAA4AAABIAJv/AQAMAA8AAABIAJz/AQAMABAAAABIAJ3/AQAMABEAAABJAJT/AQANAAgAAABJAJX/AQANAAkAAABJAJb/AQANAAoAAABJAJf/AQANAAsAAABJAJj/AQANAAwAAABJAJn/AQANAA0AAABJAJr/AQANAA4AAABJAJv/AQANAA8AAABJAJz/AQANABAAAABJAJ3/AQANABEAAABKAJT/AQAOAAgAAABKAJX/AQAOAAkAAABKAJb/AQAOAAoAAABKAJf/AQAOAAsAAABKAJj/AQAOAAwAAABKAJn/AQAOAA0AAABKAJr/AQAOAA4AAABKAJv/AQAOAA8AAABKAJz/AQAOABAAAABKAJ3/AQAOABEAAABLAJT/AQAPAAgAAABLAJX/AQAPAAkAAABLAJb/AQAPAAoAAABLAJf/AQAPAAsAAABLAJj/AQAPAAwAAABLAJn/AQAPAA0AAABLAJr/AQAPAA4AAABLAJv/AQAPAA8AAABLAJz/AQAPABAAAABLAJ3/AQAPABEAAABMAJT/AQAQAAgAAABMAJX/AQAQAAkAAABMAJb/AQAQAAoAAABMAJf/AQAQAAsAAABMAJj/AQAQAAwAAABMAJn/AQAQAA0AAABMAJr/AQAQAA4AAABMAJv/AQAQAA8AAABMAJz/AQAQABAAAABMAJ3/AQAQABEAAABNAJT/AQARAAgAAABNAJX/AQARAAkAAABNAJb/AQARAAoAAABNAJf/AQARAAsAAABNAJj/AQARAAwAAABNAJn/AQARAA0AAABNAJr/AQARAA4AAABNAJv/AQARAA8AAABNAJz/AQARABAAAABNAJ3/AQARABEAAABOAJX/AQASAAkAAABOAJb/AQASAAoAAABOAJf/AQASAAsAAABOAJj/AQASAAwAAABOAJn/AQASAA0AAABOAJr/AQASAA4AAABOAJv/AQASAA8AAABOAJz/AQASABAAAABOAJ3/AQASABEAAABKAJL/AQAOAAYAAABKAJP/AQAOAAcAAABLAJL/AQAPAAYAAABLAJP/AQAPAAcAAABJAJP/AQANAAcAAABIAJP/AQAMAAcAAABMAJP/AQAQAAcAAABNAJP/AQARAAcAAABJAJL/AQANAAYAAABMAJL/AQAQAAYAAABEAJj/AQAIAAwAAABEAJr/AQAIAA4AAAA=")
 tile_set = ExtResource("1_8xi57")
@@ -216,10 +242,32 @@ offset = Vector2(1300, 0)
 texture_scale = 2.0
 height = 3335.0
 
+[node name="Door_West" parent="Doors" instance=ExtResource("7_oan54")]
+unique_name_in_owner = true
+position = Vector2(-10584, 290)
+Destination_Scene_Tag = "Forest"
+Destination_Door_Tag = "East"
+Spawn_Direction = "Right"
+
+[node name="Spawn" parent="Doors/Door_West" index="1"]
+position = Vector2(350, 0)
+
+[node name="Door_South" parent="Doors" instance=ExtResource("7_oan54")]
+position = Vector2(13952, 4734)
+Destination_Scene_Tag = "Clearing"
+Destination_Door_Tag = "South"
+Spawn_Direction = "Down"
+
+[node name="Spawn" parent="Doors/Door_South" index="1"]
+position = Vector2(350, 0)
+
 [node name="Enemys" type="Node2D" parent="."]
 
 [node name="Phantom" parent="Enemys" instance=ExtResource("7_p8x1l")]
 position = Vector2(-1346, 198)
+
+[node name="Enemy_Animation" parent="Enemys/Phantom" index="3"]
+material = SubResource("ShaderMaterial_40you")
 
 [node name="Phantom2" parent="Enemys" instance=ExtResource("7_p8x1l")]
 position = Vector2(2070, 630)
@@ -232,6 +280,21 @@ position = Vector2(16625, -1376)
 
 [node name="Phantom5" parent="Enemys" instance=ExtResource("7_p8x1l")]
 position = Vector2(9156, 559)
+
+[node name="Phantom6" parent="Enemys" instance=ExtResource("7_p8x1l")]
+position = Vector2(12119, 8850)
+
+[node name="Skeleton" parent="Enemys" instance=ExtResource("8_eg5a6")]
+position = Vector2(5053, 3948)
+
+[node name="Skeleton2" parent="Enemys" instance=ExtResource("8_eg5a6")]
+position = Vector2(7170, 7176)
+
+[node name="Skeleton3" parent="Enemys" instance=ExtResource("8_eg5a6")]
+position = Vector2(157, 7532)
+
+[node name="Skeleton4" parent="Enemys" instance=ExtResource("8_eg5a6")]
+position = Vector2(16250, 9044)
 
 [node name="Enviroment" type="Node2D" parent="."]
 
@@ -284,49 +347,7 @@ position = Vector2(382, 1750)
 scale = Vector2(871, 646)
 texture = SubResource("CanvasTexture_n67yc")
 
-[node name="GodRays_2" type="ColorRect" parent="Enviroment"]
-z_index = 2
-material = ExtResource("8_dp1p4")
-offset_left = 2335.0
-offset_top = -2735.0
-offset_right = 3580.0
-offset_bottom = -208.0
-scale = Vector2(1.12226, 0.978613)
-metadata/_edit_use_anchors_ = true
-
-[node name="PointLight2D" type="PointLight2D" parent="Enviroment/GodRays_2"]
-light_mask = 7
-visibility_layer = 7
-position = Vector2(590, 1750)
-rotation = 1.5708
-color = Color(1, 0.992004, 0.488281, 1)
-energy = 8.0
-range_item_cull_mask = 3
-shadow_enabled = true
-texture = ExtResource("7_hnrfk")
-texture_scale = 2.0
-height = 80.0
-
-[node name="PointLight2D3" type="PointLight2D" parent="Enviroment/GodRays_2"]
-light_mask = 7
-visibility_layer = 7
-position = Vector2(577.406, 2211.29)
-color = Color(0.937561, 1, 0.636719, 1)
-energy = 6.0
-range_item_cull_mask = 3
-shadow_enabled = true
-texture = ExtResource("5_omeb6")
-texture_scale = 3.0
-height = 80.0
-
-[node name="Sprite2D" type="Sprite2D" parent="Enviroment/GodRays_2"]
-show_behind_parent = true
-light_mask = 2
-visibility_layer = 2
-material = SubResource("CanvasItemMaterial_fp21b")
-position = Vector2(239.695, 1990.57)
-scale = Vector2(654.038, 378.088)
-texture = SubResource("CanvasTexture_t8bnh")
+[node name="GodRays_2" parent="Enviroment" instance=ExtResource("11_3q2v7")]
 
 [node name="GodRays_3" type="ColorRect" parent="Enviroment"]
 z_index = 2
@@ -771,3 +792,20 @@ position = Vector2(9624, -12713)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enviroment/TempStaticBody3"]
 position = Vector2(-32, 25)
 shape = SubResource("RectangleShape2D_ievab")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ppfks")
+camera_attributes = SubResource("CameraAttributesPractical_ykpds")
+compositor = SubResource("Compositor_7thlq")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+color = Color(0.234375, 0.234375, 0.234375, 1)
+energy = 0.3
+height = 1.0
+
+[editable path="Doors/Door_West"]
+[editable path="Doors/Door_South"]
+[editable path="Enemys/Phantom"]

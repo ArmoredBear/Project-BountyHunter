@@ -1,14 +1,43 @@
-[gd_scene load_steps=10 format=3 uid="uid://b7x1o5b14fsu1"]
+[gd_scene load_steps=13 format=3 uid="uid://b7x1o5b14fsu1"]
 
 [ext_resource type="Theme" uid="uid://byfphwqv3j56s" path="res://Common/Resources/Player/User Interface/Prefabs/Themes/Base_Main_Menu_Theme.tres" id="1_w55jq"]
 [ext_resource type="Script" path="res://Common/Resources/General Scritps/Continue.cs" id="2_6lkvc"]
 [ext_resource type="Material" uid="uid://b6jkgq0ktik5a" path="res://Common/Resources/Player/User Interface/UI_Material_Test.tres" id="2_whdxq"]
 [ext_resource type="Texture2D" uid="uid://bdwdlawohth3p" path="res://Common/Resources/Cenarios/CenarioArt/DrawnCenarios/Cenario_1.png" id="2_wv4su"]
 [ext_resource type="Texture2D" uid="uid://bikvub6t8p658" path="res://Common/Resources/ParticleEffects/pine_tree_leaves.png" id="4_l1wja"]
-[ext_resource type="Texture2D" uid="uid://scig84b6f03k" path="res://Common/Resources/Player/User Interface/UI_Art/Lamp.png" id="5_j4rh5"]
-[ext_resource type="Texture2D" uid="uid://86173bnxxr3h" path="res://Common/Resources/Player/PlayerArt/LanternLight.png" id="6_s7ywo"]
+[ext_resource type="Texture2D" uid="uid://dkkle61cheusy" path="res://Common/Resources/Player/User Interface/UI_Art/Panel2.png" id="6_amqa5"]
+[ext_resource type="Texture2D" uid="uid://pwn7f70287jh" path="res://Common/Resources/Player/User Interface/UI_Art/Bell_2.png" id="6_ivm71"]
+[ext_resource type="Texture2D" uid="uid://ttp5t78m5ium" path="res://Common/Resources/Player/User Interface/UI_Art/ECHO_TRACKER_LOGO_OFICIAL_1.png" id="7_1gvs1"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rpgvg"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gjm4p"]
+bg_color = Color(0.957031, 0.747885, 0.60936, 0.784314)
+draw_center = false
+border_width_left = 12
+border_width_top = 12
+border_width_right = 12
+border_width_bottom = 12
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0.705882)
+shadow_size = 40
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_okju8"]
+texture = ExtResource("6_amqa5")
+expand_margin_left = 50.0
+expand_margin_top = 150.0
+expand_margin_right = 50.0
+expand_margin_bottom = 150.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0si5h"]
+bg_color = Color(0.647059, 0.647059, 0.454902, 0.266667)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1boft"]
 lifetime_randomness = 0.5
@@ -177,29 +206,49 @@ autowrap_mode = 3
 icon_alignment = 1
 language = "en"
 
-[node name="TextureRect2" type="TextureRect" parent="Control"]
-material = SubResource("CanvasItemMaterial_rpgvg")
-layout_mode = 0
-offset_left = -447.0
-offset_top = -567.0
-offset_right = -17.0
-offset_bottom = -67.0
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("5_j4rh5")
+[node name="Bell_Texture" type="TextureRect" parent="."]
+offset_left = 1970.0
+offset_top = 140.0
+offset_right = 2470.0
+offset_bottom = 640.0
+texture = ExtResource("6_ivm71")
+expand_mode = 1
+stretch_mode = 4
 
-[node name="PointLight2D" type="PointLight2D" parent="Control/TextureRect2"]
-position = Vector2(222, 372)
-rotation = 1.5708
-color = Color(1, 0.902435, 0.457031, 1)
-energy = 4.0
-blend_mode = 2
-range_layer_min = 1
-range_layer_max = 1
-shadow_enabled = true
-shadow_color = Color(0, 0, 0, 1)
-shadow_filter = 2
-texture = ExtResource("6_s7ywo")
-offset = Vector2(900, 0)
+[node name="LogoPanel" type="Panel" parent="."]
+offset_left = 305.0
+offset_top = 460.0
+offset_right = 1669.0
+offset_bottom = 915.0
+theme = ExtResource("1_w55jq")
+theme_override_styles/panel = SubResource("StyleBoxFlat_gjm4p")
+
+[node name="Panel2" type="Panel" parent="LogoPanel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = -37.0
+offset_right = 1345.0
+offset_bottom = 499.0
+theme = ExtResource("1_w55jq")
+theme_override_styles/panel = SubResource("StyleBoxTexture_okju8")
+
+[node name="Panel" type="Panel" parent="LogoPanel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 1345.0
+offset_bottom = 435.0
+theme = ExtResource("1_w55jq")
+theme_override_styles/panel = SubResource("StyleBoxFlat_0si5h")
+
+[node name="Logo" type="TextureRect" parent="LogoPanel"]
+offset_left = 31.0
+offset_top = 23.0
+offset_right = 1329.0
+offset_bottom = 424.0
+texture = ExtResource("7_1gvs1")
+expand_mode = 1
+stretch_mode = 4
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(153, -83)

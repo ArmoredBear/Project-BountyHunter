@@ -127,10 +127,10 @@ public partial class Player : CharacterBody2D
 
     }
 
-    public override void _PhysicsProcess(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
-		
-    }
+
+	}
 
 
 	#endregion
@@ -142,6 +142,10 @@ public partial class Player : CharacterBody2D
 	#region Methods and Interfaces
 	//!---------------------------------------------------------------------------------------------------------
 	
+	public void Setup_Player_Position(Vector2 _position)
+	{
+		this.Position = _position;
+    }
 
 	#endregion
 	//!---------------------------------------------------------------------------------------------------------

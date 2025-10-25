@@ -1,15 +1,15 @@
 [gd_resource type="TileSet" load_steps=68 format=3 uid="uid://bm6068a5v0klm"]
 
-[ext_resource type="Material" uid="uid://blfv7v7ygffqn" path="res://Common/Resources/Cenarios/CenarioMaterials/TunnelMaterial.tres" id="1_cwukg"]
+[ext_resource type="Material" uid="uid://blfv7v7ygffqn" path="res://Common/Resources/Cenarios/CenarioMaterials/Tunnel/TunnelMaterial.tres" id="1_cwukg"]
 [ext_resource type="Texture2D" uid="uid://x7e14kge5yui" path="res://Common/Resources/Cenarios/CenarioArt/Environment/Tunnel/CenarioTunnelSpriteSheet.png" id="1_lbto5"]
-[ext_resource type="Material" uid="uid://blwde0wte3hk0" path="res://Common/Resources/Cenarios/CenarioMaterials/TunnelDoorsMaterial.tres" id="3_fktyg"]
+[ext_resource type="Material" uid="uid://blwde0wte3hk0" path="res://Common/Resources/Cenarios/CenarioMaterials/Tunnel/TunnelDoorsMaterial.tres" id="3_fktyg"]
 [ext_resource type="Texture2D" uid="uid://b6if1b2fph0ai" path="res://Common/Resources/Cenarios/CenarioArt/Environment/Tunnel/CenarioTunnelDoorsSpriteSheet.png" id="4_bxlma"]
-[ext_resource type="Material" uid="uid://djra01onx2tyb" path="res://Common/Resources/Cenarios/CenarioMaterials/TunnelRailsMaterial.tres" id="5_0keg6"]
+[ext_resource type="Material" uid="uid://djra01onx2tyb" path="res://Common/Resources/Cenarios/CenarioMaterials/Tunnel/TunnelRailsMaterial.tres" id="5_0keg6"]
 [ext_resource type="Texture2D" uid="uid://c1tqfs8t36y0f" path="res://Common/Resources/Cenarios/CenarioArt/Environment/Tunnel/CenarioTunnelRails.png" id="5_844y8"]
 [ext_resource type="Texture2D" uid="uid://dl11ab2d0wrc4" path="res://Common/Resources/Cenarios/CenarioArt/Environment/Tunnel/CenarioTunnelRailsConnections.png" id="6_saqc5"]
-[ext_resource type="Material" uid="uid://dpyde42ps2b6o" path="res://Common/Resources/Cenarios/CenarioMaterials/TunnelRailsConnectionsMaterial.tres" id="7_6aoio"]
+[ext_resource type="Material" uid="uid://dpyde42ps2b6o" path="res://Common/Resources/Cenarios/CenarioMaterials/Tunnel/TunnelRailsConnectionsMaterial.tres" id="7_6aoio"]
 [ext_resource type="Texture2D" uid="uid://c7i1x3n26qf6t" path="res://Common/Resources/Cenarios/CenarioArt/Environment/Tunnel/CenarioTunnelGravel.png" id="9_qe6md"]
-[ext_resource type="Material" uid="uid://blpw2ef3i6unl" path="res://Common/Resources/Cenarios/CenarioMaterials/TunnelGroundGravelMaterial.tres" id="9_ripiw"]
+[ext_resource type="Material" uid="uid://blpw2ef3i6unl" path="res://Common/Resources/Cenarios/CenarioMaterials/Tunnel/TunnelGroundGravelMaterial.tres" id="9_ripiw"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_b8m2i"]
 polygon = PackedVector2Array(-64, -64, 4, -11, 64, 64, -12, 5)
@@ -435,35 +435,27 @@ texture_region_size = Vector2i(128, 128)
 2:11/0 = 0
 2:11/0/material = ExtResource("1_cwukg")
 2:11/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_4vhbf")
-2:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 3:11/0 = 0
 3:11/0/material = ExtResource("1_cwukg")
 3:11/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_85hg2")
-3:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 3:12/0 = 0
 3:12/0/material = ExtResource("1_cwukg")
 3:12/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_m2rhj")
-3:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 2:12/0 = 0
 2:12/0/material = ExtResource("1_cwukg")
 2:12/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_dj208")
-2:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 5:11/0 = 0
 5:11/0/material = ExtResource("1_cwukg")
 5:11/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_b4mii")
-5:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 5:12/0 = 0
 5:12/0/material = ExtResource("1_cwukg")
 5:12/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_weeyj")
-5:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 6:12/0 = 0
 6:12/0/material = ExtResource("1_cwukg")
 6:12/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_5vxgw")
-6:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 6:11/0 = 0
 6:11/0/material = ExtResource("1_cwukg")
 6:11/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_emkph")
-6:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 8:11/0 = 0
 8:11/0/material = ExtResource("1_cwukg")
 8:11/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_xlgtl")
@@ -1599,10 +1591,8 @@ texture_region_size = Vector2i(128, 128)
 0:36/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -14.875, 64, -15.026, 64, 64, -64, 64)
 0:37/0 = 0
 0:37/0/material = ExtResource("1_cwukg")
-0:37/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 0:38/0 = 0
 0:38/0/material = ExtResource("1_cwukg")
-0:38/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 1:36/0 = 0
 1:36/0/material = ExtResource("1_cwukg")
 1:36/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -14.875, 64, -15.026, 64, 64, -64, 64)
@@ -1650,7 +1640,7 @@ texture_region_size = Vector2i(128, 128)
 12:33/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -15.7748, 64, 48.3495, 64, 64, -64, 64)
 13:33/0 = 0
 13:33/0/material = ExtResource("1_cwukg")
-13:33/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, 48.26, -32.5269, 64, -64, 64)
+13:33/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, 49, -32.5269, 64, -64, 64)
 13:34/0 = 0
 13:34/0/material = ExtResource("1_cwukg")
 13:34/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, -31.8496, -64, 64, -15.7331, 64, 64, -64, 64)
@@ -1664,13 +1654,13 @@ texture_region_size = Vector2i(128, 128)
 15:35/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, -31.8496, -64, 64, -15.7331, 64, 64, -64, 64)
 15:34/0 = 0
 15:34/0/material = ExtResource("1_cwukg")
-15:34/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, 48.26, -32.5269, 64, -64, 64)
+15:34/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, 49, -32.5269, 64, -64, 64)
 16:35/0 = 0
 16:35/0/material = ExtResource("1_cwukg")
 16:35/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -15.7748, 64, 48.3495, 64, 64, -64, 64)
 17:35/0 = 0
 17:35/0/material = ExtResource("1_cwukg")
-17:35/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, 48.26, -32.5269, 64, -64, 64)
+17:35/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, 49, -32.5269, 64, -64, 64)
 17:36/0 = 0
 17:36/0/material = ExtResource("1_cwukg")
 17:36/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, -31.8496, -64, 64, -15.7331, 64, 64, -64, 64)
@@ -1740,7 +1730,6 @@ texture_region_size = Vector2i(128, 128)
 16:36/0/material = ExtResource("1_cwukg")
 19:37/0 = 0
 19:37/0/material = ExtResource("1_cwukg")
-19:37/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 18:37/0 = 0
 18:37/0/material = ExtResource("1_cwukg")
 17:37/0 = 0
@@ -1815,19 +1804,14 @@ texture_region_size = Vector2i(128, 128)
 18:38/0/material = ExtResource("1_cwukg")
 19:38/0 = 0
 19:38/0/material = ExtResource("1_cwukg")
-19:38/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 19:32/0 = 0
 19:32/0/material = ExtResource("1_cwukg")
-19:32/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 19:33/0 = 0
 19:33/0/material = ExtResource("1_cwukg")
-19:33/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 19:34/0 = 0
 19:34/0/material = ExtResource("1_cwukg")
-19:34/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 14.875, -64, 15.026)
 20:34/0 = 0
 20:34/0/material = ExtResource("1_cwukg")
-20:34/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 14.875, -64, 15.026)
 21:34/0 = 0
 21:34/0/material = ExtResource("1_cwukg")
 22:35/0 = 0
@@ -1852,10 +1836,8 @@ texture_region_size = Vector2i(128, 128)
 27:36/0/material = ExtResource("1_cwukg")
 28:37/0 = 0
 28:37/0/material = ExtResource("1_cwukg")
-28:37/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 29:37/0 = 0
 29:37/0/material = ExtResource("1_cwukg")
-29:37/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 30:37/0 = 0
 30:37/0/material = ExtResource("1_cwukg")
 28:36/0 = 0
@@ -1884,16 +1866,12 @@ texture_region_size = Vector2i(128, 128)
 36:34/0/material = ExtResource("1_cwukg")
 37:34/0 = 0
 37:34/0/material = ExtResource("1_cwukg")
-37:34/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 15.0129, -64, 14.9616)
 38:34/0 = 0
 38:34/0/material = ExtResource("1_cwukg")
-38:34/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 15.0129, -64, 14.9616)
 38:33/0 = 0
 38:33/0/material = ExtResource("1_cwukg")
-38:33/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 38:32/0 = 0
 38:32/0/material = ExtResource("1_cwukg")
-38:32/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 21:32/0 = 0
 21:32/0/material = ExtResource("1_cwukg")
 22:32/0 = 0
@@ -1928,10 +1906,8 @@ texture_region_size = Vector2i(128, 128)
 36:32/0/material = ExtResource("1_cwukg")
 37:32/0 = 0
 37:32/0/material = ExtResource("1_cwukg")
-37:32/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 37:33/0 = 0
 37:33/0/material = ExtResource("1_cwukg")
-37:33/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 36:33/0 = 0
 36:33/0/material = ExtResource("1_cwukg")
 35:33/0 = 0
@@ -2024,10 +2000,8 @@ texture_region_size = Vector2i(128, 128)
 28:28/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_m2hhw")
 20:33/0 = 0
 20:33/0/material = ExtResource("1_cwukg")
-20:33/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 20:32/0 = 0
 20:32/0/material = ExtResource("1_cwukg")
-20:32/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 36:35/0 = 0
 36:35/0/material = ExtResource("1_cwukg")
 34:36/0 = 0

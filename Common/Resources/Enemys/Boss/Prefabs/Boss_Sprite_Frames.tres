@@ -1,0 +1,114 @@
+[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://bph7p115aexji"]
+
+[ext_resource type="Texture2D" uid="uid://i4nf52flf60m" path="res://Common/Resources/Enemys/Boss/Animation/BossAttack.png" id="1_s82g2"]
+[ext_resource type="Texture2D" uid="uid://8exx0ge1mtvs" path="res://Common/Resources/Enemys/Boss/Prefabs/Boss_Idle_Canvas_Texture.tres" id="2_43qrt"]
+[ext_resource type="Texture2D" uid="uid://cc81hekjpy3bw" path="res://Common/Resources/Enemys/Boss/Prefabs/Boss_Pursuit_Canvas_Texture.tres" id="3_hf3ma"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7fpo4"]
+atlas = ExtResource("1_s82g2")
+region = Rect2(0, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oswpu"]
+atlas = ExtResource("1_s82g2")
+region = Rect2(144, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dlaoq"]
+atlas = ExtResource("1_s82g2")
+region = Rect2(288, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nk6a5"]
+atlas = ExtResource("1_s82g2")
+region = Rect2(432, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpotq"]
+atlas = ExtResource("1_s82g2")
+region = Rect2(576, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1a5pr"]
+atlas = ExtResource("1_s82g2")
+region = Rect2(720, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0d8kj"]
+atlas = ExtResource("2_43qrt")
+region = Rect2(0, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81d4o"]
+atlas = ExtResource("2_43qrt")
+region = Rect2(144, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t8jxu"]
+atlas = ExtResource("2_43qrt")
+region = Rect2(288, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mgd82"]
+atlas = ExtResource("2_43qrt")
+region = Rect2(432, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y7khc"]
+atlas = ExtResource("2_43qrt")
+region = Rect2(576, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1704a"]
+atlas = ExtResource("2_43qrt")
+region = Rect2(720, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vd444"]
+atlas = ExtResource("3_hf3ma")
+region = Rect2(0, 0, 144, 144)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7fpo4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oswpu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dlaoq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nk6a5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rpotq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1a5pr")
+}],
+"loop": true,
+"name": &"Boss_Attack",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0d8kj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_81d4o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t8jxu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mgd82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y7khc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1704a")
+}],
+"loop": true,
+"name": &"Boss_Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vd444")
+}],
+"loop": true,
+"name": &"Boss_Pursuit",
+"speed": 5.0
+}]

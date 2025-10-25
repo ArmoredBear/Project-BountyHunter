@@ -22,8 +22,8 @@ boot_splash/minimum_display_time=2000
 PlayerDataAutoload="*res://Common/Resources/Player/PlayerScripts/Player_Data_Autoload.cs"
 Player="*res://Common/Resources/Player/PlayerPrefabs/Player.tscn"
 Messenger="*res://Common/Resources/General Scritps/Messenger.cs"
-Panku="*res://addons/panku_console/console.tscn"
 GameManager="*res://Common/Resources/General Scritps/GameManager.cs"
+Panku="*res://addons/panku_console/console.tscn"
 
 [display]
 
@@ -50,6 +50,7 @@ enabled=PackedStringArray("res://addons/panku_console/plugin.cfg")
 player="Player Group"
 enemy=""
 player_attack=""
+boss=""
 
 [input]
 
