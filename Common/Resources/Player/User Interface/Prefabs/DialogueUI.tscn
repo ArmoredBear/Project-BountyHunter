@@ -3,36 +3,46 @@
 [ext_resource type="Script" path="res://Common/DialogBox/ScriptsUI/DialogueUI.cs" id="1_3yg80"]
 [ext_resource type="Script" path="res://Common/DialogBox/ScriptsUI/DialogueManager.cs" id="2_ep5qb"]
 
-[node name="DialogueUI" type="CanvasLayer"]
+[node name="DialogueCanvas" type="CanvasLayer"]
+
+[node name="DialogueUI" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 script = ExtResource("1_3yg80")
 
-[node name="DialogueBox" type="PanelContainer" parent="."]
+[node name="DialogueBox" type="PanelContainer" parent="DialogueUI"]
+layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -387.0
-offset_bottom = -26.0
+offset_left = 16.0
+offset_top = 653.0
+offset_right = 2496.0
+offset_bottom = 1014.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="DialogueBox"]
+[node name="MarginContainer" type="MarginContainer" parent="DialogueUI/DialogueBox"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="VBoxContainer" type="VBoxContainer" parent="DialogueBox/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="DialogueUI/DialogueBox/MarginContainer"]
 layout_mode = 2
 
-[node name="NameLabel" type="Label" parent="DialogueBox/MarginContainer/VBoxContainer"]
+[node name="NameLabel" type="Label" parent="DialogueUI/DialogueBox/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Nome do Personagem
 "
 
-[node name="TextLabel" type="RichTextLabel" parent="DialogueBox/MarginContainer/VBoxContainer"]
+[node name="TextLabel" type="RichTextLabel" parent="DialogueUI/DialogueBox/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
@@ -41,4 +51,5 @@ text = "Lorem Ipsum is simply dummy text of the printing and typesetting industr
 fit_content = true
 
 [node name="Dialogue_Manager" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("2_ep5qb")

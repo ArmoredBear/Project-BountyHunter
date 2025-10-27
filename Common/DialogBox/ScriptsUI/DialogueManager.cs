@@ -8,12 +8,11 @@ public partial class DialogueManager : Node
 	[Signal]
 	public delegate void DialogueFinishedEventHandler();
 
-	private Queue<DialogueLine> _dialogueQueue = new Queue<DialogueLine>();
-	private DialogueUI _dialogueUI;
-	private bool _isDialogueActive = false;
+	public Queue<DialogueLine> _dialogueQueue = new Queue<DialogueLine>();
+	[Export] public  DialogueUI _dialogueUI;
+	[Export] public bool _isDialogueActive = false;
 
-	private Button _dialogueButton;
-	private DialogueManager _dialogueManager;
+	[Export] private DialogueManager _dialogueManager;
 
 	public override void _Ready()
 	{
@@ -22,7 +21,12 @@ public partial class DialogueManager : Node
 		// Carregamos a cena da UI de diálogo e a adicionamos como filha do manager.
 		// Assim, o manager controla totalmente a sua UI.
 
-		_dialogueUI = this.GetParent<DialogueUI>();
+		if(_dialogueUI == null)
+		{
+			GD.Print("Dialogue UI Null! Trying to reference it...");
+			_dialogueUI = GetNode<DialogueUI>("%DialogueUI");
+        }
+		
 		_dialogueUI.Hide(); // Começa escondida
 
 		
@@ -31,8 +35,6 @@ public partial class DialogueManager : Node
 	public void DialogueInitiation()
 	{
 		_dialogueManager = this;
-		_dialogueButton = GetNode("/root/Main_Menu/Control/Panel/VBoxContainer/Dialogue") as Button;
-		_dialogueButton.Pressed += OnDialogueButtonPressed;
 		_dialogueManager.DialogueFinished += OnDialogueFinished;
 
 	}
@@ -99,8 +101,6 @@ public partial class DialogueManager : Node
 	
 	private void OnDialogueButtonPressed()
 	{
-		// Desabilita o botão para não ser clicado novamente durante o diálogo
-		_dialogueButton.Disabled = true;
 		// Inicia o diálogo passando o caminho para o arquivo JSON
 		_dialogueManager.StartDialogue("res://Dialogue/intro_dialogue.json");
 	}
@@ -109,6 +109,5 @@ public partial class DialogueManager : Node
 	{
 		GD.Print("O diálogo terminou! O jogo pode continuar.");
 		// Reabilita o botão
-		_dialogueButton.Disabled = false;
 	}
 }

@@ -182,3 +182,6 @@ script = ExtResource("17_ti6mo")
 
 [connection signal="area_entered" from="Player_Body/Player_Damage_Collider" to="Player_Body" method="On_Player_Damage_Collider_Area_Entered"]
 [connection signal="animation_finished" from="Player_Body/Player_FSM/Player_Animation" to="Player_Body/Player_FSM/Attacking" method="On_Player_Animation_Finished"]
+
+[editable path="Player_UI"]
+[editable path="Player_UI/DialogueUI"]

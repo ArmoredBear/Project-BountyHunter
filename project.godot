@@ -24,7 +24,6 @@ PlayerDataAutoload="*res://Common/Resources/Player/PlayerScripts/Player_Data_Aut
 Player="*res://Common/Resources/Player/PlayerPrefabs/Player.tscn"
 Messenger="*res://Common/Resources/General Scritps/Messenger.cs"
 GameManager="*res://Common/Resources/General Scritps/GameManager.cs"
-Panku="*res://addons/panku_console/console.tscn"
 
 [display]
 
@@ -41,10 +40,6 @@ display_server/driver.linuxbsd="wayland"
 [dotnet]
 
 project/assembly_name="Project Bounty Hunter"
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/panku_console/plugin.cfg")
 
 [global_group]
 

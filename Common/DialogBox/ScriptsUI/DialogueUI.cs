@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public partial class DialogueUI : CanvasLayer
+public partial class DialogueUI : Control
 {
 	private Label _nameLabel;
 	private RichTextLabel _textLabel;
