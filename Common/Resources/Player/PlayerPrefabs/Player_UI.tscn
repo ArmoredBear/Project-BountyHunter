@@ -155,4 +155,3 @@ visible = false
 
 [node name="DialogueUI" parent="." instance=ExtResource("13_st3ur")]
 visible = false
-script = null

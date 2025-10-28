@@ -3,15 +3,60 @@ using System;
 
 public partial class Door : Node
 {
+    //! --------------------------------------------------------------------------------------------------------------------------------------------------------
+    #region Variables
+    //! --------------------------------------------------------------------------------------------------------------------------------------------------------
+
     [Export] public Marker2D Spawn { get; set; }
     [Export] public string Destination_Scene_Tag { get; set; }
     [Export] public string Destination_Door_Tag { get; set; }
     [Export] public string Spawn_Direction { get; set; }
 
+    #endregion
+    //! --------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+    //! --------------------------------------------------------------------------------------------------------------------------------------------------------
+    #region Initialization
+    //! --------------------------------------------------------------------------------------------------------------------------------------------------------
+
     public override void _Ready()
     {
         base._Ready();
+        Reference_If_Null();
+        
+    }
 
+    #endregion
+    //! --------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+    //! --------------------------------------------------------------------------------------------------------------------------------------------------------
+    #region Signals Methods
+    //! --------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    public void On_Body_Entered(CharacterBody2D _body)
+    {
+
+        if (_body.IsInGroup("player"))
+        {
+            GD.Print("Changed Scene...");
+            {
+                Select_Scene(Destination_Scene_Tag);
+            }
+        }
+    }
+
+    #endregion
+    //! --------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+    //! --------------------------------------------------------------------------------------------------------------------------------------------------------
+    #region Methods
+    //! --------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    private void Reference_If_Null()
+    {
         if (Spawn == null)
         {
             GD.Print("Spawn is null!!");
@@ -34,47 +79,26 @@ public partial class Door : Node
     }
 
 
-    public void On_Body_Entered(CharacterBody2D _body)
+    public void Select_Scene(string _scene_name)
     {
-
-        if (_body.IsInGroup("player"))
+        if (_scene_name == "Forest")
         {
-            GD.Print("Changed Scene...");
-            {
-                Verify_Scene(Destination_Scene_Tag);
-            }
+            Scene_Manager.Instance.Change_Scene(e_Game_Scenes.Forest);
+            Scene_Manager.Instance.Update_Player_Position(Spawn.Position);
+        }
+        if (_scene_name == "Tunnel")
+        {
+            Scene_Manager.Instance.Change_Scene(e_Game_Scenes.Tunnel);
+            Scene_Manager.Instance.Update_Player_Position(Spawn.Position);
+        }
+        if (_scene_name == "Clearing")
+        {
+            Scene_Manager.Instance.Change_Scene(e_Game_Scenes.Clearing);
+            Scene_Manager.Instance.Update_Player_Position(Spawn.Position);
         }
     }
 
-    public void Verify_Scene(string _scene_name)
-    {
-        string _scene_path = null;
-        
-        if(Destination_Scene_Tag == "Forest")
-        {
-            _scene_path = "res://Common/Resources/Cenarios/Prefabs/Forest.tscn";
-            Change_Scene(_scene_path);
-        }
-        if(Destination_Scene_Tag == "Tunnel")
-        {
-            _scene_path = "res://Common/Resources/Cenarios/Prefabs/Tunnel.tscn";
-            Change_Scene(_scene_path);
-        }
-        if(Destination_Scene_Tag == "Clearing")
-        {
-            _scene_path = "res://Common/Resources/Cenarios/Prefabs/Clearing.tscn";
-            Change_Scene(_scene_path);
-        }
-    }
-
-    public void Change_Scene(string _scene_path)
-    {
-        GetTree().ChangeSceneToFile(_scene_path);
-    }
-    
-    public void Set_Player_Spawn_Position()
-    {
-        Player.Instance.Position = Spawn.Position;
-    }
+    #endregion
+    //! --------------------------------------------------------------------------------------------------------------------------------------------------------
 
 }

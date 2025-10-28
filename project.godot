@@ -20,10 +20,11 @@ boot_splash/minimum_display_time=5000
 
 [autoload]
 
-PlayerDataAutoload="*res://Common/Resources/Player/PlayerScripts/Player_Data_Autoload.cs"
+Player_Data_Autoload="*res://Common/Resources/Player/PlayerScripts/Player_Data_Autoload.cs"
 Player="*res://Common/Resources/Player/PlayerPrefabs/Player.tscn"
 Messenger="*res://Common/Resources/General Scritps/Messenger.cs"
-GameManager="*res://Common/Resources/General Scritps/GameManager.cs"
+Game_Manager="*res://Common/Resources/General Scritps/GameManager.cs"
+Scene_Manager="*res://Common/MainScenes/Scene_Manager.tscn"
 
 [display]
 
@@ -40,6 +41,10 @@ display_server/driver.linuxbsd="wayland"
 [dotnet]
 
 project/assembly_name="Project Bounty Hunter"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/panku_console/plugin.cfg")
 
 [global_group]
 

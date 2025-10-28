@@ -1,6 +1,3 @@
-using Godot;
-using System;
-
 public enum Player_States
 {
     Idle,
@@ -12,7 +9,7 @@ public enum Player_States
 public enum Enemy_States
 {
     Idle,
-    Patroling,
+    Patrolling,
     Pursuing,
     Searching,
     Attacking,

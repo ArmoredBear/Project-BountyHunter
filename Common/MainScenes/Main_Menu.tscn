@@ -27,10 +27,12 @@ shadow_size = 40
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_okju8"]
 texture = ExtResource("6_amqa5")
+texture_margin_right = 100.0
 expand_margin_left = 50.0
 expand_margin_top = 150.0
 expand_margin_right = 50.0
 expand_margin_bottom = 150.0
+axis_stretch_horizontal = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0si5h"]
 bg_color = Color(0.647059, 0.647059, 0.454902, 0.266667)
@@ -213,6 +215,53 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="LogoPanel" type="Panel" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -2254.0
+offset_top = -1092.0
+offset_right = -890.0
+offset_bottom = -637.0
+theme = ExtResource("1_w55jq")
+theme_override_styles/panel = SubResource("StyleBoxFlat_gjm4p")
+
+[node name="Panel2" type="Panel" parent="Control/LogoPanel"]
+layout_mode = 0
+offset_left = -265.0
+offset_top = -37.0
+offset_right = 2666.0
+offset_bottom = 499.0
+theme = ExtResource("1_w55jq")
+theme_override_styles/panel = SubResource("StyleBoxTexture_okju8")
+
+[node name="Panel" type="Panel" parent="Control/LogoPanel"]
+layout_mode = 0
+offset_left = -243.0
+offset_top = 20.0
+offset_right = 1501.0
+offset_bottom = 435.0
+theme = ExtResource("1_w55jq")
+theme_override_styles/panel = SubResource("StyleBoxFlat_0si5h")
+
+[node name="Panel3" type="Panel" parent="Control/LogoPanel"]
+layout_mode = 0
+offset_left = 1576.0
+offset_top = 20.0
+offset_right = 2641.0
+offset_bottom = 435.0
+theme = ExtResource("1_w55jq")
+theme_override_styles/panel = SubResource("StyleBoxFlat_0si5h")
+
+[node name="Logo" type="TextureRect" parent="Control/LogoPanel"]
+layout_mode = 0
+offset_left = -21.0
+offset_top = 23.0
+offset_right = 1277.0
+offset_bottom = 424.0
+texture = ExtResource("7_1gvs1")
+expand_mode = 1
+stretch_mode = 4
+
 [node name="MenuPanel" type="Panel" parent="Control"]
 unique_name_in_owner = true
 material = ExtResource("2_whdxq")
@@ -334,44 +383,6 @@ text_overrun_behavior = 1
 autowrap_mode = 3
 icon_alignment = 1
 language = "en"
-
-[node name="LogoPanel" type="Panel" parent="Control"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = -2254.0
-offset_top = -1092.0
-offset_right = -890.0
-offset_bottom = -637.0
-theme = ExtResource("1_w55jq")
-theme_override_styles/panel = SubResource("StyleBoxFlat_gjm4p")
-
-[node name="Panel2" type="Panel" parent="Control/LogoPanel"]
-layout_mode = 0
-offset_left = 20.0
-offset_top = -37.0
-offset_right = 1345.0
-offset_bottom = 499.0
-theme = ExtResource("1_w55jq")
-theme_override_styles/panel = SubResource("StyleBoxTexture_okju8")
-
-[node name="Panel" type="Panel" parent="Control/LogoPanel"]
-layout_mode = 0
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 1345.0
-offset_bottom = 435.0
-theme = ExtResource("1_w55jq")
-theme_override_styles/panel = SubResource("StyleBoxFlat_0si5h")
-
-[node name="Logo" type="TextureRect" parent="Control/LogoPanel"]
-layout_mode = 0
-offset_left = 31.0
-offset_top = 23.0
-offset_right = 1329.0
-offset_bottom = 424.0
-texture = ExtResource("7_1gvs1")
-expand_mode = 1
-stretch_mode = 4
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(153, -83)

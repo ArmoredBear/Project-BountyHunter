@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhnwwkhmrt2rn"]
+
+[ext_resource type="Script" path="res://Common/Resources/General Scritps/Scene_Manager.cs" id="1_vuu81"]
+
+[node name="Scene_Manager" type="Node"]
+script = ExtResource("1_vuu81")
+
+[node name="World2D" type="Node2D" parent="."]
