@@ -82,7 +82,6 @@ color = Color(0, 0, 0, 1)
 [node name="Door_East" parent="Doors" instance=ExtResource("3_g35fp")]
 unique_name_in_owner = true
 position = Vector2(22085, -17)
-Destination_Scene_Tag = "Tunnel"
 Destination_Door_Tag = "West"
 Spawn_Direction = "Left"
 

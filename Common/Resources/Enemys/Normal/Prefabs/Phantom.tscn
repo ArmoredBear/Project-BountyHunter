@@ -61,7 +61,7 @@ _data = {
 "RESET": SubResource("Animation_5am2n")
 }
 
-[node name="Phantom" type="CharacterBody2D" node_paths=PackedStringArray("Animation_Sprite", "Agent", "DetectionArea", "AttackArea", "DamageArea", "HitFlash_Animation", "_stats", "PatrolPoints") groups=["enemy"]]
+[node name="Phantom" type="CharacterBody2D" node_paths=PackedStringArray("Animation_Sprite", "Agent", "DetectionArea", "AttackArea", "HitFlash_Animation", "_stats", "PatrolPoints") groups=["enemy"]]
 scale = Vector2(5, 5)
 motion_mode = 1
 script = ExtResource("1_xiwgt")
@@ -69,7 +69,6 @@ Animation_Sprite = NodePath("Enemy_Animation")
 Agent = NodePath("NavigationAgent2D")
 DetectionArea = NodePath("DetectionArea")
 AttackArea = NodePath("AttackArea")
-DamageArea = NodePath("Phantom_Damage_Collider/Phantom_Damage_Collider_Shape")
 HitFlash_Animation = NodePath("HitFlash_Animation")
 _stats = NodePath("EnemyStats")
 PatrolPoints = []

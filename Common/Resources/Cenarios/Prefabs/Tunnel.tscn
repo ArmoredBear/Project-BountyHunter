@@ -245,7 +245,6 @@ height = 3335.0
 [node name="Door_West" parent="Doors" instance=ExtResource("7_oan54")]
 unique_name_in_owner = true
 position = Vector2(-10584, 290)
-Destination_Scene_Tag = "Forest"
 Destination_Door_Tag = "East"
 Spawn_Direction = "Right"
 
@@ -254,7 +253,6 @@ position = Vector2(350, 0)
 
 [node name="Door_South" parent="Doors" instance=ExtResource("7_oan54")]
 position = Vector2(13952, 4734)
-Destination_Scene_Tag = "Clearing"
 Destination_Door_Tag = "South"
 Spawn_Direction = "Down"
 
