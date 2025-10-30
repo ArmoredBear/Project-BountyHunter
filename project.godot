@@ -48,6 +48,7 @@ player="Player Group"
 enemy=""
 player_attack=""
 boss=""
+enemy_attack=""
 
 [input]
 

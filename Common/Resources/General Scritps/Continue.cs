@@ -13,6 +13,6 @@ public partial class Continue : Node
     {
         Player.Instance.Visible = true;
         Player.Instance.GetNode<CanvasLayer>("%Player_UI").Visible = true;
-        Scene_Manager.Instance.Change_Scene(e_Game_Scenes.Forest);
+        Scene_Manager.Instance.Change_Scene(e_Game_Scenes.Tunnel);
     }
 }

@@ -17,17 +17,17 @@ public partial class Phantom : CharacterBody2D
 	//!---------------------------------------------------------------------------------------------------------
 	#region Exportable Properties and Node References
 	//!---------------------------------------------------------------------------------------------------------
-	
+
 	// NÓS DA CENA (Conectados via Inspector ou NodePath)
 	[Export] public AnimatedSprite2D Animation_Sprite;
 	[Export] public NavigationAgent2D Agent;
 	[Export] public Area2D DetectionArea;
 	[Export] public Area2D AttackArea;
-	[Export] public CollisionShape2D DamageArea;
+	[Export] public CollisionShape2D AttackAreaShape;
 	[Export] public AnimationPlayer HitFlash_Animation;
-	
+
 	// CORREÇÃO: EnemyStats agora é exportado para conexão obrigatória no Inspector
-	[Export] private EnemyStats _stats; 
+	[Export] private EnemyStats _stats;
 
 	// PARÂMETROS DA IA E MOVIMENTO
 	[Export] public float Movement_Speed { get; set; } = 500f;
@@ -36,10 +36,10 @@ public partial class Phantom : CharacterBody2D
 	[Export] public Node2D[] PatrolPoints { get; set; }
 
 	// REFERÊNCIAS INTERNAS
-	private CharacterBody2D _player; 
+	private CharacterBody2D _player;
 	private State _currentState = State.Patrol;
 	private int _currentPatrolPointIndex = 0;
-	
+
 	// LÓGICA FUZZY (Entradas)
 	private float _distanceToPlayer = float.MaxValue;
 	private readonly Dictionary<State, float> _statePriorities = new Dictionary<State, float>();
@@ -59,12 +59,12 @@ public partial class Phantom : CharacterBody2D
 		{
 			GD.PrintErr("ERRO FATAL: A propriedade '_stats' [Export] não foi conectada no Inspector. Conecte o nó 'EnemyStats' para continuar. Desativando IA.");
 			SetPhysicsProcess(false);
-			return; 
+			return;
 		}
 
 		// 2. Conexão de Signals (Só se _stats estiver OK)
 		_stats.HealthChanged += OnHealthChanged;
-		
+
 		// Conexão de Signals em áreas (apenas se as áreas estiverem conectadas)
 		if (DetectionArea != null)
 		{
@@ -74,7 +74,7 @@ public partial class Phantom : CharacterBody2D
 
 		// 3. Estado Inicial
 		_currentState = State.Patrol;
-		
+
 		// Tenta iniciar a animação (apenas se a referência foi preenchida)
 		if (Animation_Sprite != null)
 		{
@@ -84,7 +84,7 @@ public partial class Phantom : CharacterBody2D
 		// 4. CORREÇÃO NAVMESH: Garante que o setup de navegação aconteça após o primeiro frame de física.
 		Callable.From(ActorSetup).CallDeferred();
 
-		DamageArea.Disabled = true;
+		//AttackAreaShape.Disabled = true;
 	}
 
 	// CORREÇÃO NAVMESH: Espera a sincronização do servidor de navegação
@@ -92,19 +92,19 @@ public partial class Phantom : CharacterBody2D
 	{
 		// Espera o primeiro frame de física para garantir que o NavigationServer sincronize.
 		await ToSignal(GetTree(), SceneTree.SignalName.PhysicsFrame);
-		
+
 		// O estado de patrulha pode ser iniciado agora.
-		ChangeState(State.Patrol); 
+		ChangeState(State.Patrol);
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
 		// Garante que a IA não tente rodar se o setup falhou criticamente
-		if (_stats == null) return; 
+		if (_stats == null) return;
 
 		// 1. Atualiza Entradas Fuzzy
 		UpdateFuzzyInputs();
-		
+
 		// 2. Tomada de Decisão (Fuzzy Logic)
 		State nextState = DetermineNextStateFuzzy();
 
@@ -118,20 +118,17 @@ public partial class Phantom : CharacterBody2D
 		switch (_currentState)
 		{
 			case State.Patrol:
-				HandlePatrol((float)delta);
+				HandlePatrol();
 				break;
 			case State.Chase:
-				HandleChase((float)delta);
-				break;
-			case State.Attack:
-				HandleAttack((float)delta);
+				HandleChase();
 				break;
 			case State.Flee:
-				HandleFlee((float)delta);
+				HandleFlee();
 				break;
 		}
 
-		MoveAndSlide(); 
+		MoveAndSlide();
 	}
 
 	#endregion
@@ -153,27 +150,27 @@ public partial class Phantom : CharacterBody2D
 			_distanceToPlayer = float.MaxValue;
 		}
 	}
-	
+
 	private float GetLowHealthMembership()
 	{
 		// SEGURANÇA: Já verificamos em _Ready, mas garantimos aqui
 		if (_stats == null) return 0.0f;
-		
+
 		float healthFraction = (float)_stats.CurrentHealth / _stats.MaxHealth;
-		
-		if (healthFraction > 0.3f) return 0.0f; 
-		
+
+		if (healthFraction > 0.3f) return 0.0f;
+
 		return 1.0f - (healthFraction / 0.3f);
 	}
-	
+
 	private float GetNearDistanceMembership()
 	{
 		// SEGURANÇA: Se a área de detecção não estiver conectada
 		if (DetectionArea == null) return 0.0f;
-		
-		float maxRelevantDistance = 600f; 
-		
-		try 
+
+		float maxRelevantDistance = 600f;
+
+		try
 		{
 			// O cálculo da geometria depende de um CollisionShape2D filho EXATO
 			var collisionShape = DetectionArea.GetNode<CollisionShape2D>("CollisionShape2D");
@@ -188,33 +185,70 @@ public partial class Phantom : CharacterBody2D
 		{
 			// Falha silenciosa: usa o fallback
 		}
-		
-		if (_distanceToPlayer <= AttackRange) return 1.0f; 
-		if (_distanceToPlayer >= maxRelevantDistance) return 0.0f; 
-		
+
+		if (_distanceToPlayer <= AttackRange) return 1.0f;
+		if (_distanceToPlayer >= maxRelevantDistance) return 0.0f;
+
 		return 1.0f - ((_distanceToPlayer - AttackRange) / (maxRelevantDistance - AttackRange));
 	}
-	
+
 	private State DetermineNextStateFuzzy()
 	{
-		// SEGURANÇA: Já verificamos em _Ready, mas garantimos aqui
-		if (_stats == null) return State.Patrol; 
-		
+		// Safety check: Ensure the stats component is available
+		if (_stats == null)
+		{
+			return State.Patrol;
+		}
+
+		// --- FUZZY INPUTS (Fuzzification) ---
+
+		// Calculate membership values for fuzzy sets
 		float lowHealth = GetLowHealthMembership();
 		float nearDistance = GetNearDistanceMembership();
-		
-		// --- REGRAS DE INFERÊNCIA FUZZY ---
-		
-		_statePriorities[State.Flee] = lowHealth * 1.5f; 
-		
-		float attackPriority = Mathf.Min(nearDistance, 1.0f - lowHealth);
-		_statePriorities[State.Attack] = (AttackArea != null && AttackArea.HasOverlappingBodies()) ? attackPriority : 0f;
-		
-		_statePriorities[State.Chase] = (_player != null) ? Mathf.Min(1.0f - nearDistance, 1.0f - lowHealth) : 0f;
-		
-		_statePriorities[State.Patrol] = (_player == null || _statePriorities[State.Chase] < 0.1f) ? 1.0f : 0.0f;
-		
-		// --- DEFUZZIFICAÇÃO (Escolha do Estado com Maior Prioridade) ---
+
+		// --- INFERENCE RULES (Calculate State Priorities) ---
+
+		// Flee Priority: Higher when health is low. Uses a constant weight (1.5f).
+		_statePriorities[State.Flee] = lowHealth * 1.5f;
+
+		// Attack Priority: Min(Near, Not Low Health). Requires an existing target in the area.
+		float attackInference = Mathf.Min(nearDistance, 1.0f - lowHealth);
+
+		// REPLACED TERNARY:
+		if (AttackArea != null && AttackArea.HasOverlappingBodies())
+		{
+			_statePriorities[State.Attack] = attackInference;
+		}
+		else
+		{
+			_statePriorities[State.Attack] = 0f;
+		}
+
+		// Chase Priority: Min(Not Near, Not Low Health). Requires the player to be present.
+
+		// REPLACED TERNARY:
+		if (_player != null)
+		{
+			_statePriorities[State.Chase] = Mathf.Min(1.0f - nearDistance, 1.0f - lowHealth);
+		}
+		else
+		{
+			_statePriorities[State.Chase] = 0f;
+		}
+
+		// Patrol Priority: High if no player is present OR if the Chase priority is negligible.
+
+		// REPLACED TERNARY:
+		if (_player == null || _statePriorities[State.Chase] < 0.1f)
+		{
+			_statePriorities[State.Patrol] = 1.0f;
+		}
+		else
+		{
+			_statePriorities[State.Patrol] = 0.0f;
+		}
+
+		// --- DEFUZZIFICATION (Select State with Highest Priority) ---
 		State bestState = State.Patrol;
 		float maxPriority = 0f;
 
@@ -226,8 +260,9 @@ public partial class Phantom : CharacterBody2D
 				bestState = entry.Key;
 			}
 		}
-		
-		// Prioriza Fuga se a vida estiver no limite
+
+		// Hard Coded Override/Exception: Force Flee if health is critically low, 
+		// even if another state had a slightly higher calculated priority.
 		if (_stats.CurrentHealth <= FleeThreshold && maxPriority < _statePriorities[State.Flee])
 		{
 			return State.Flee;
@@ -235,7 +270,7 @@ public partial class Phantom : CharacterBody2D
 
 		return bestState;
 	}
-	
+
 	#endregion
 	//!---------------------------------------------------------------------------------------------------------
 
@@ -243,16 +278,19 @@ public partial class Phantom : CharacterBody2D
 	//!---------------------------------------------------------------------------------------------------------
 	#region State Machine and Movement Handlers
 	//!---------------------------------------------------------------------------------------------------------
-	
+
 	private void ChangeState(State newState)
 	{
-		GD.Print($"Transição: {_currentState} -> {newState}");
+		GD.Print($"SCRIPT - PHANTOM - : Transição: {_currentState} -> {newState}");
 		_currentState = newState;
-		
-		// SEGURANÇA
-		if (Animation_Sprite == null) return; 
 
-		if (newState == State.Attack) Animation_Sprite.Play("Phantom_Attack");
+		// SEGURANÇA
+		if (Animation_Sprite == null) return;
+
+		if (newState == State.Attack)
+        {
+			HandleAttack();
+        }
 		else if (newState == State.Chase) Animation_Sprite.Play("Phantom_Pursuit");
 		else if (newState == State.Patrol) Animation_Sprite.Play("Phantom_Pursuit");
 		else if (newState == State.Flee) Animation_Sprite.Play("Phantom_Pursuit");
@@ -261,14 +299,14 @@ public partial class Phantom : CharacterBody2D
 	private void MoveToTarget(Vector2 targetPosition, float speedMultiplier = 1.0f)
 	{
 		// SEGURANÇA
-		if (Agent == null) 
+		if (Agent == null)
 		{
 			Velocity = Vector2.Zero;
 			return;
 		}
-		
+
 		Agent.TargetPosition = targetPosition;
-		
+
 		if (Agent.IsNavigationFinished())
 		{
 			Velocity = Vector2.Zero;
@@ -277,14 +315,14 @@ public partial class Phantom : CharacterBody2D
 
 		Vector2 nextPathPosition = Agent.GetNextPathPosition();
 		Velocity = GlobalPosition.DirectionTo(nextPathPosition) * Movement_Speed * speedMultiplier;
-		
+
 		if (Velocity.X != 0 && Animation_Sprite != null)
 		{
 			Animation_Sprite.FlipH = Velocity.X > 0;
 		}
 	}
 
-	private void HandlePatrol(float delta)
+	private void HandlePatrol()
 	{
 		if (PatrolPoints == null || PatrolPoints.Length == 0)
 		{
@@ -292,72 +330,73 @@ public partial class Phantom : CharacterBody2D
 			if (Animation_Sprite != null) Animation_Sprite.Play("Phantom_Idle");
 			return;
 		}
-		
+
 		Vector2 targetPosition = PatrolPoints[_currentPatrolPointIndex].GlobalPosition;
-		
-		if (GlobalPosition.DistanceTo(targetPosition) < 20) 
+
+		if (GlobalPosition.DistanceTo(targetPosition) < 20)
 		{
 			_currentPatrolPointIndex = (_currentPatrolPointIndex + 1) % PatrolPoints.Length;
 			targetPosition = PatrolPoints[_currentPatrolPointIndex].GlobalPosition;
 		}
 
-		MoveToTarget(targetPosition, 0.5f); 
+		MoveToTarget(targetPosition, 0.5f);
 		if (Animation_Sprite != null) Animation_Sprite.Play("Phantom_Pursuit");
 	}
 
-	private void HandleChase(float delta)
+	private void HandleChase()
 	{
 		if (_player == null)
-        {
-            GD.Print("Player is null!!");
+		{
+			GD.Print("Player is null!!");
 			ChangeState(State.Patrol);
 			return;
 		}
-		
-		MoveToTarget(_player.GlobalPosition, 1.2f); 
+
+		MoveToTarget(_player.GlobalPosition, 1.2f);
 		if (Animation_Sprite != null) Animation_Sprite.Play("Phantom_Pursuit");
 	}
 
-	private void HandleAttack(float delta)
+	private void HandleAttack()
 	{
+		AttackAreaShape.Disabled = false;
 		Velocity = Vector2.Zero;
-		DamageArea.Disabled = false;
-		GD.Print("Inimigo: Golpe físico!");
+		Animation_Sprite.Play("Phantom_Attack");
+		GD.Print("SCRIPT - PHANTOM - : Golpe físico!");
 	}
 
-	private void HandleFlee(float delta)
+	private void HandleFlee()
 	{
 		if (_player == null)
 		{
 			ChangeState(State.Patrol);
 			return;
 		}
-		
+
 		Vector2 fleeDirection = (GlobalPosition - _player.GlobalPosition).Normalized();
-		Vector2 safeTarget = GlobalPosition + fleeDirection * 500f; 
-		
-		MoveToTarget(safeTarget, 1.5f); 
+		Vector2 safeTarget = GlobalPosition + fleeDirection * 500f;
+
+		MoveToTarget(safeTarget, 1.5f);
 		if (Animation_Sprite != null) Animation_Sprite.Play("Phantom_Pursuit");
 
 		if (_distanceToPlayer > 600 || (_stats != null && _stats.CurrentHealth > FleeThreshold * 1.5f))
 		{
-			ChangeState(State.Patrol); 
+			ChangeState(State.Patrol);
 		}
 	}
 
 	#endregion
 	//!---------------------------------------------------------------------------------------------------------
 
-	
+
 	//!---------------------------------------------------------------------------------------------------------
 	#region Signal Handlers (Detection)
 	//!---------------------------------------------------------------------------------------------------------
-	
+
 	public void OnHealthChanged(int newHealth)
 	{
-		GD.Print($"Vida do inimigo alterada para: {newHealth}");
+		GD.Print($"SCRIPT - PHANTOM - : Vida do inimigo alterada para: {newHealth}");
 	}
-	
+
 	public void OnDetectionAreaBodyEntered(Node2D body)
 	{
 		if (body is CharacterBody2D player && player.IsInGroup("player"))
@@ -376,23 +415,31 @@ public partial class Phantom : CharacterBody2D
 
 	public void On_Phantom_Damage_Collider_Area_Entered(Node2D _area)
 	{
-		if(_area.IsInGroup("player_attack") )
-        {
+		if (_area.IsInGroup("player_attack"))
+		{
 			GD.Print("Inimigo atacado" + "Nome do collider: " + _area.Name);
 			HitFlash_Animation.Play("Hit_Flash");
-			
+
 			if (_stats.TakeDamage(10) == false)
 			{
 				GetTree().QueueDelete(this);
 			}
-			
+
 			else
-            {
+			{
 				GD.Print("Inimigo toma " + 20 + " de dano");
-            }
-        }
-		
-    }
+			}
+		}
+
+	}
+
+	public void On_Attack_Area_Entered(Node2D _area)
+	{
+		if (_area.IsInGroup("player"))
+		{
+			GD.Print("SCRIPT - PHANTOM - : ATTACK!!!");
+		}
+	}
 
 	#endregion
 	//!---------------------------------------------------------------------------------------------------------

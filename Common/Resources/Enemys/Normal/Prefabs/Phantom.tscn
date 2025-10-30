@@ -16,7 +16,7 @@ height = 50.0
 size = Vector2(700, 700)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g25pt"]
-size = Vector2(100, 100)
+size = Vector2(300, 100)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l7vg7"]
 size = Vector2(70, 90)
@@ -61,7 +61,7 @@ _data = {
 "RESET": SubResource("Animation_5am2n")
 }
 
-[node name="Phantom" type="CharacterBody2D" node_paths=PackedStringArray("Animation_Sprite", "Agent", "DetectionArea", "AttackArea", "HitFlash_Animation", "_stats", "PatrolPoints") groups=["enemy"]]
+[node name="Phantom" type="CharacterBody2D" node_paths=PackedStringArray("Animation_Sprite", "Agent", "DetectionArea", "AttackArea", "AttackAreaShape", "HitFlash_Animation", "_stats", "PatrolPoints") groups=["enemy"]]
 scale = Vector2(5, 5)
 motion_mode = 1
 script = ExtResource("1_xiwgt")
@@ -69,6 +69,7 @@ Animation_Sprite = NodePath("Enemy_Animation")
 Agent = NodePath("NavigationAgent2D")
 DetectionArea = NodePath("DetectionArea")
 AttackArea = NodePath("AttackArea")
+AttackAreaShape = NodePath("AttackArea/CollisionShape2D")
 HitFlash_Animation = NodePath("HitFlash_Animation")
 _stats = NodePath("EnemyStats")
 PatrolPoints = []
@@ -102,15 +103,14 @@ animation = &"Phantom_Attack"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("RectangleShape2D_3dpq5")
 
-[node name="AttackArea" type="Area2D" parent="."]
+[node name="AttackArea" type="Area2D" parent="." groups=["enemy_attack"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(-88.8, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" groups=["enemy_attack"]]
 shape = SubResource("RectangleShape2D_g25pt")
 
 [node name="Phantom_Damage_Collider" type="Area2D" parent="." groups=["enemy"]]
 
-[node name="Phantom_Damage_Collider_Shape" type="CollisionShape2D" parent="Phantom_Damage_Collider"]
+[node name="Phantom_Damage_Collider_Shape" type="CollisionShape2D" parent="Phantom_Damage_Collider" groups=["enemy"]]
 unique_name_in_owner = true
 shape = SubResource("RectangleShape2D_l7vg7")
 
@@ -144,4 +144,5 @@ libraries = {
 }
 autoplay = "Hit_Flash"
 
+[connection signal="area_entered" from="AttackArea" to="." method="On_Attack_Area_Entered"]
 [connection signal="area_entered" from="Phantom_Damage_Collider" to="." method="On_Phantom_Damage_Collider_Area_Entered"]

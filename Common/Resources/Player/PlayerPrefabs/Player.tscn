@@ -54,10 +54,10 @@ position = Vector2(0, -20)
 rotation = 1.5708
 shape = SubResource("CircleShape2D_8vbci")
 
-[node name="Player_Damage_Collider" type="Area2D" parent="Player_Body"]
+[node name="Player_Damage_Collider" type="Area2D" parent="Player_Body" groups=["player"]]
 script = ExtResource("2_qgaeo")
 
-[node name="Player_Damage_Collider_Shape" type="CollisionShape2D" parent="Player_Body/Player_Damage_Collider"]
+[node name="Player_Damage_Collider_Shape" type="CollisionShape2D" parent="Player_Body/Player_Damage_Collider" groups=["player"]]
 position = Vector2(0, -190)
 shape = SubResource("RectangleShape2D_7urto")
 
@@ -126,7 +126,7 @@ Player_body_P = NodePath("../..")
 
 [node name="Player_Attack_Collider" type="Area2D" parent="Player_Body/Player_FSM/Attacking" groups=["player_attack"]]
 
-[node name="Player_Attack_Collider_Shape" type="CollisionShape2D" parent="Player_Body/Player_FSM/Attacking/Player_Attack_Collider"]
+[node name="Player_Attack_Collider_Shape" type="CollisionShape2D" parent="Player_Body/Player_FSM/Attacking/Player_Attack_Collider" groups=["player_attack"]]
 unique_name_in_owner = true
 position = Vector2(269, -115.5)
 shape = SubResource("RectangleShape2D_hqqtb")
@@ -180,7 +180,7 @@ unique_name_in_owner = true
 [node name="Inventory" type="Node" parent="."]
 script = ExtResource("17_ti6mo")
 
-[connection signal="area_entered" from="Player_Body/Player_Damage_Collider" to="Player_Body" method="On_Player_Damage_Collider_Area_Entered"]
+[connection signal="area_entered" from="Player_Body/Player_Damage_Collider" to="Player_Body/Player_Damage_Collider" method="On_Player_Damage_Collider_Area_Entered"]
 [connection signal="animation_finished" from="Player_Body/Player_FSM/Player_Animation" to="Player_Body/Player_FSM/Attacking" method="On_Player_Animation_Finished"]
 
 [editable path="Player_UI"]

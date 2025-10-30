@@ -77,7 +77,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_520k1")
 }],
-"loop": true,
+"loop": false,
 "name": &"Phantom_Attack",
 "speed": 6.0
 }, {
