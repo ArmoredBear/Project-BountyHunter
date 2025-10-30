@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ccwqnm8c8jwux"]
+[gd_scene load_steps=17 format=3 uid="uid://ccwqnm8c8jwux"]
 
 [ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/Phantom.cs" id="1_xiwgt"]
 [ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/EnemyStats.cs" id="2_ufs14"]
@@ -16,7 +16,10 @@ height = 50.0
 size = Vector2(700, 700)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g25pt"]
-size = Vector2(300, 100)
+size = Vector2(300, 300)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_24021"]
+size = Vector2(250, 250)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l7vg7"]
 size = Vector2(70, 90)
@@ -61,15 +64,16 @@ _data = {
 "RESET": SubResource("Animation_5am2n")
 }
 
-[node name="Phantom" type="CharacterBody2D" node_paths=PackedStringArray("Animation_Sprite", "Agent", "DetectionArea", "AttackArea", "AttackAreaShape", "HitFlash_Animation", "_stats", "PatrolPoints") groups=["enemy"]]
+[node name="Phantom" type="CharacterBody2D" node_paths=PackedStringArray("Animation_Sprite", "Agent", "DetectionArea", "AttackArea", "AttackHitbox", "AttackHitboxShape", "HitFlash_Animation", "_stats", "PatrolPoints") groups=["enemy"]]
 scale = Vector2(5, 5)
 motion_mode = 1
 script = ExtResource("1_xiwgt")
 Animation_Sprite = NodePath("Enemy_Animation")
 Agent = NodePath("NavigationAgent2D")
-DetectionArea = NodePath("DetectionArea")
-AttackArea = NodePath("AttackArea")
-AttackAreaShape = NodePath("AttackArea/CollisionShape2D")
+DetectionArea = NodePath("Chase_Detection_Area")
+AttackArea = NodePath("Attack_Detection_Area")
+AttackHitbox = NodePath("Attack_Hitbox_Area")
+AttackHitboxShape = NodePath("Attack_Hitbox_Area/CollisionShape2D")
 HitFlash_Animation = NodePath("HitFlash_Animation")
 _stats = NodePath("EnemyStats")
 PatrolPoints = []
@@ -91,6 +95,7 @@ debug_path_custom_line_width = 10.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_xxs1g")
+disabled = true
 
 [node name="Enemy_Animation" type="AnimatedSprite2D" parent="."]
 z_index = 3
@@ -98,15 +103,22 @@ material = ExtResource("3_sjrrk")
 sprite_frames = ExtResource("4_3xbcc")
 animation = &"Phantom_Attack"
 
-[node name="DetectionArea" type="Area2D" parent="."]
+[node name="Chase_Detection_Area" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chase_Detection_Area"]
 shape = SubResource("RectangleShape2D_3dpq5")
 
-[node name="AttackArea" type="Area2D" parent="." groups=["enemy_attack"]]
+[node name="Attack_Detection_Area" type="Area2D" parent="." groups=["enemy_attack"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" groups=["enemy_attack"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Detection_Area" groups=["enemy_attack"]]
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_g25pt")
+
+[node name="Attack_Hitbox_Area" type="Area2D" parent="." groups=["enemy_attack"]]
+scale = Vector2(1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Hitbox_Area" groups=["enemy_attack"]]
+shape = SubResource("RectangleShape2D_24021")
 
 [node name="Phantom_Damage_Collider" type="Area2D" parent="." groups=["enemy"]]
 
@@ -144,5 +156,6 @@ libraries = {
 }
 autoplay = "Hit_Flash"
 
-[connection signal="area_entered" from="AttackArea" to="." method="On_Attack_Area_Entered"]
+[connection signal="area_entered" from="Attack_Detection_Area" to="." method="On_Attack_Area_Entered"]
+[connection signal="area_entered" from="Attack_Hitbox_Area" to="." method="On_AttackHitbox_AreaEntered"]
 [connection signal="area_entered" from="Phantom_Damage_Collider" to="." method="On_Phantom_Damage_Collider_Area_Entered"]

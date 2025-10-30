@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Player_Damage : Node
+public partial class Player_Damage : Area2D
 {
     public void Damage_To_Player(int _value)
     {
@@ -18,11 +18,11 @@ public partial class Player_Damage : Node
         }
     }
 
-    public void On_Player_Damage_Collider_Area_Entered(Node2D _area)
+    public void On_Player_Damage_Collider_Area_Entered(Area2D _area)
     {
         if(_area.IsInGroup("enemy_attack"))
         {
-            Damage_To_Player(20);
+            Damage_To_Player(5);
         }
     }
 }
