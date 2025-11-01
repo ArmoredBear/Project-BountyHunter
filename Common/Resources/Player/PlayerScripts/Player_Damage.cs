@@ -3,18 +3,18 @@ using System;
 
 public partial class Player_Damage : Area2D
 {
-    public void Damage_To_Player(int _value)
+    public void Check_Damage_To_Player()
     {
         if (Player_Data_Autoload.Data.CURRENT_Health > 0)
         {
-            Player_Data_Autoload.Data.TakeDamage(_value);
-            GD.Print("SCRIPT - PLAYER DAMAGE - : Player attacked! Damage is: " + _value);
-            GD.Print("SCRIPT - PLAYER DAMAGE - : Player CURRENT HEALTH: " + Player_Data_Autoload.Data.CURRENT_Health);
+            GD.Print("SCRIPT - PLAYER DAMAGE: Damage to player was: " + Player_Data_Autoload.Instance.Current_Stored_Damage);
+            GD.Print("SCRIPT - PLAYER DAMAGE: Player Current Health: " + Player_Data_Autoload.Data.CURRENT_Health);
         }
 
         else if (Player_Data_Autoload.Data.CURRENT_Health <= 0)
         {
-            GD.Print("SCRIPT - PLAYER DAMAGE - : Player is Dead!");
+            Player_Data_Autoload.Data.Change_Alive();
+            Player_Data_Autoload.Instance.Check_Alive_Caller();
         }
     }
 
@@ -22,7 +22,8 @@ public partial class Player_Damage : Area2D
     {
         if(_area.IsInGroup("enemy_attack"))
         {
-            Damage_To_Player(5);
+            GD.Print("SCRIPT - PLAYER DAMAGE: Enemy hit the player! Enemy name:" + _area.Name);
+            Check_Damage_To_Player();
         }
     }
 }

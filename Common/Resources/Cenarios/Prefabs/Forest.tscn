@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=4 uid="uid://3lgotkdwmh7p"]
+[gd_scene load_steps=9 format=4 uid="uid://3lgotkdwmh7p"]
 
+[ext_resource type="Script" path="res://_Debug/SpawnRouter.cs" id="1_2b86l"]
 [ext_resource type="TileSet" uid="uid://5qupvmr4kfvq" path="res://Common/Resources/Cenarios/Tilemap/Forest/Forest_Grass.tres" id="1_2xox5"]
 [ext_resource type="TileSet" uid="uid://dg8c8oas8e06g" path="res://Common/Resources/Cenarios/Tilemap/Forest/Forest_Trees.tres" id="1_dwnof"]
 [ext_resource type="PackedScene" uid="uid://bxf5llvkkgbn5" path="res://Common/Resources/Cenarios/Props/Prefabs/Door.tscn" id="3_g35fp"]
@@ -20,6 +21,23 @@ dof_blur_near_enabled = true
 [sub_resource type="Compositor" id="Compositor_q1ypw"]
 
 [node name="Forest" type="Node2D"]
+script = ExtResource("1_2b86l")
+
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="Forest_East_Spawn" type="Marker2D" parent="Doors"]
+position = Vector2(21579, -3)
+
+[node name="Forest_East_Door" parent="Doors" instance=ExtResource("3_g35fp")]
+position = Vector2(22021, -7)
+Destination_Scene_Tag = 30
+Destination_Spawn_Tag = "Tunnel_West_Spawn"
+
+[node name="GodRays" parent="Doors" instance=ExtResource("4_gkkjg")]
+offset_left = 21476.0
+offset_top = -2143.0
+offset_right = 22721.0
+offset_bottom = 384.0
 
 [node name="Ground" type="Node2D" parent="."]
 
@@ -77,19 +95,5 @@ compositor = SubResource("Compositor_q1ypw")
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0, 0, 0, 1)
 
-[node name="Doors" type="Node2D" parent="."]
-
-[node name="Door_East" parent="Doors" instance=ExtResource("3_g35fp")]
-unique_name_in_owner = true
-position = Vector2(22085, -17)
-Destination_Door_Tag = "West"
-Spawn_Direction = "Left"
-
-[node name="GodRays" parent="Doors" instance=ExtResource("4_gkkjg")]
-offset_left = 21476.0
-offset_top = -2143.0
-offset_right = 22721.0
-offset_bottom = 384.0
-
-[editable path="Doors/Door_East"]
+[editable path="Doors/Forest_East_Door"]
 [editable path="Doors/GodRays"]

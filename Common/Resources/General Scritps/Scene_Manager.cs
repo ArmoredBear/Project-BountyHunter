@@ -18,6 +18,8 @@ public partial class Scene_Manager : Node
     private static String Forest_Scene_Path = "res://Common/Resources/Cenarios/Prefabs/Forest.tscn";
     private static String Clearing_Scene_Path = "res://Common/Resources/Cenarios/Prefabs/Clearing.tscn";
 
+
+
     public Dictionary<e_Game_Scenes, Scene_Data> Scenes_Dictionary = new Dictionary<e_Game_Scenes, Scene_Data>()
     {
         { e_Game_Scenes.MainMenu, new Scene_Data(MainMenu_Scene_Path,"Main Menu", false)},
@@ -90,31 +92,46 @@ public partial class Scene_Manager : Node
         }
     }
 
-    public void Change_Scene(e_Game_Scenes _scene_name)
+    public void SetTransition(string spawnName)
     {
-        // This changes scenes in the game
-        string path = Scenes_Dictionary[_scene_name].path;
+        if (string.IsNullOrEmpty(spawnName))
+        {
+            GD.PrintErr("SetTransition called with empty spawnName. Defaulting to Spawn_Default.");
+            Player_Data_Autoload.Instance.NextSpawnName = "Spawn_Default";
+        }
+        else
+        {
+            Player_Data_Autoload.Instance.NextSpawnName = spawnName;
+        }
+
+        GD.Print("Scene_Manager: NextSpawnName set to ", Player_Data_Autoload.Instance.NextSpawnName);
+    }
+
+    public void Change_Scene(e_Game_Scenes scene)
+    {
+        if (!Scenes_Dictionary.ContainsKey(scene))
+        {
+            GD.PrintErr("Scene_Manager: Scene not found in dictionary: ", scene);
+            return;
+        }
+
+        string path = Scenes_Dictionary[scene].path;
+        GD.Print("Scene_Manager: Changing scene to ", path, " with spawn ", Player_Data_Autoload.Instance.NextSpawnName);
+
         GetTree().ChangeSceneToFile(path);
     }
 
+
     #endregion
     //! --------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
 
 
     //! --------------------------------------------------------------------------------------------------------------------------------------------------------
     #region TEMPORARY TESTING
     //! --------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    public void Update_Player_Position(Vector2 _new_position)
-    {
-        Player.Instance.Position = _new_position;
-
-    }
-
-        #endregion
-        //! --------------------------------------------------------------------------------------------------------------------------------------------------------
+    #endregion
+    //! --------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-    }
+}

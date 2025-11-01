@@ -28,16 +28,32 @@ public partial class Player_Data_Autoload : Node
 	private Player_Healthbar_UI _player_heathbar;
 	private Timer _poison_timer;
 	private int _counter;
-	
-	
+	private int current_stored_damage;
+	private int previous_stored_damage;
+
 	#endregion
 
 	//!---------------------------------------------------------------------------------------------------------
 	#region Properties
 	//!---------------------------------------------------------------------------------------------------------
 
-	public static Player_Data_Autoload Instance;
+	[Export] public Timer Poison_Timer;
+
+	[Export] public Player_Healthbar_UI Player_Healthbar
+	{
+		get
+		{
+			return _player_heathbar;
+		}
+
+		set
+		{
+			_player_heathbar = value;
+		}
+	}
 	
+	public static Player_Data_Autoload Instance;
+
 	public static Player_Data Data
 	{
 		get
@@ -50,21 +66,24 @@ public partial class Player_Data_Autoload : Node
 			_player_data = value;
 		}
 	}
-	
-	[Export] public Timer Poison_Timer;
-	
-	public Player_Healthbar_UI Player_Healthbar
+
+	public int Current_Stored_Damage
 	{
 		get
 		{
-			return _player_heathbar;
-		}
-
-		set
-		{
-			_player_heathbar = value;
+			return current_stored_damage;
 		}
 	}
+
+	public int Previous_Stored_Damage
+	{
+		get
+		{
+			return previous_stored_damage;
+		}
+	}
+
+	public string NextSpawnName { get; set; } = "Spawn_Default";
 
 	#endregion
 
@@ -75,8 +94,8 @@ public partial class Player_Data_Autoload : Node
 	// Called when the node enters the scene tree for the first time.
 
 	public override void _Ready()
-	{	
-		if(Instance == null)
+	{
+		if (Instance == null)
 		{
 			Instance = this;
 		}
@@ -88,16 +107,16 @@ public partial class Player_Data_Autoload : Node
 
 		Data = new Player_Data(100, 1000, 100, true, false, false);
 		Player_Healthbar = GetNode<Player_Healthbar_UI>("/root/Player/Player_UI/Status/Health_Bar");
-			
-		
-		
+
+
+
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 
-        
+
 	}
 
 
@@ -106,7 +125,7 @@ public partial class Player_Data_Autoload : Node
 	//!---------------------------------------------------------------------------------------------------------
 	#region Methods and Interfaces
 	//!---------------------------------------------------------------------------------------------------------
-	
+
 	/**------------------------------------------------------------------------------------------------
 		 **               Main methods of interaction with Player Data
 	*------------------------------------------------------------------------------------------------**/
@@ -114,14 +133,14 @@ public partial class Player_Data_Autoload : Node
 	public void Poison_Behavior()
 	{
 		Poison_Timer = new Timer
-        {
-            WaitTime = 1,
+		{
+			WaitTime = 1,
 			OneShot = false,
 			Autostart = false
-        };
+		};
 
-        AddChild(Poison_Timer);
-		
+		AddChild(Poison_Timer);
+
 		Poison_Timer.Timeout += () => GD.Print("Player Health: " + Data.CURRENT_Health);
 		Poison_Timer.Timeout += Check_Alive_Caller;
 		Poison_Timer.Timeout += Poison_Caller;
@@ -146,9 +165,9 @@ public partial class Player_Data_Autoload : Node
 
 	public void Poison_Caller()
 	{
-		if(Data.Alive)
+		if (Data.Alive)
 		{
-			Data.Poison(10,20,0);
+			Data.Poison(10, 20, 0);
 		}
 
 		else
@@ -159,7 +178,7 @@ public partial class Player_Data_Autoload : Node
 
 	public void Check_Alive_Caller()
 	{
-		if(!Data.Alive)
+		if (!Data.Alive)
 		{
 			GD.Print("Player is dead...");
 		}
@@ -168,6 +187,25 @@ public partial class Player_Data_Autoload : Node
 		{
 			return;
 		}
+	}
+
+	public void Preserve_Damage(int _damage)
+	{
+		if (current_stored_damage == 0)
+		{
+			current_stored_damage = _damage;
+		}
+
+		else
+		{
+			previous_stored_damage = current_stored_damage;
+			current_stored_damage = _damage;
+		}
+	}
+
+	public void Update_Player_Health_UI(int _value)
+	{
+		Player_Healthbar.Change_Health(_value);
 	}
 
 	#endregion

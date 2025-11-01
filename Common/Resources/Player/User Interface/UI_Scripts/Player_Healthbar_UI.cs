@@ -65,7 +65,7 @@ public partial class Player_Healthbar_UI : Control
         Health_Monitor = GetNode<TextureProgressBar>("Health_Monitor");
         Lines = GetNode<TextureProgressBar>("Lines");
         Shader_P = (ShaderMaterial)Health_Monitor.Material;
-        Health_Monitor.Value = Player_Data_Autoload.Data.CURRENT_Health;
+        Health_Monitor.Value = Get_Player_Health();
 
     
     }
@@ -75,6 +75,11 @@ public partial class Player_Healthbar_UI : Control
         //await ToSignal(GetTree().CreateTimer(0.5f), SceneTreeTimer.SignalName.Timeout);
         Change_Fade_Shader();
         Change_Color();
+    }
+
+    public int Get_Player_Health()
+    {
+        return Player_Data_Autoload.Data.CURRENT_Health;
     }
 
 
@@ -98,7 +103,7 @@ public partial class Player_Healthbar_UI : Control
         var tween_lines = CreateTween();
         var tween_healthbar = CreateTween();
 
-        double _line_time = 1.5;
+        double _line_time = 1.0;
         double _healthbar_time = 0.5;
 
         tween_lines.TweenProperty(Lines, "value", value_to_change - change_value, _line_time);

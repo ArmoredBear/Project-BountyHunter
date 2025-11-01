@@ -20,6 +20,7 @@ public partial class Phantom : CharacterBody2D
 
 	// NÓS DA CENA (Conectados via Inspector ou NodePath)
 	[Export] public AnimatedSprite2D Animation_Sprite;
+	[Export] public AnimationPlayer Animation_Player;
 	[Export] public NavigationAgent2D Agent;
 	[Export] public Area2D DetectionArea;
 	[Export] public Area2D AttackArea;
@@ -88,9 +89,9 @@ public partial class Phantom : CharacterBody2D
 		// 4. CORREÇÃO NAVMESH: Garante que o setup de navegação aconteça após o primeiro frame de física.
 		Callable.From(ActorSetup).CallDeferred();
 
-		if (Animation_Sprite != null)
+		if (Animation_Player != null)
 		{
-			Animation_Sprite.AnimationFinished += On_Animation_Finished;
+			Animation_Player.AnimationFinished += OnAnimationPlayerFinished;
 		}
 
 	}
@@ -140,6 +141,7 @@ public partial class Phantom : CharacterBody2D
 		}
 
 		MoveAndSlide();
+
 	}
 
 	#endregion
@@ -301,26 +303,41 @@ public partial class Phantom : CharacterBody2D
 		GD.Print("SCRIPT - PHANTOM - : Transition: " + _currentState + " -> " + newState);
 		_currentState = newState;
 
-		if (Animation_Sprite == null) return;
-
 		if (newState == State.Attack)
 		{
-			_isAttacking = true; // lock into attack
-			HandleAttack(0);      // start attack immediately
+			_isAttacking = true;
+			GD.Print("Entered State Attack");
+			Velocity = Vector2.Zero;
+
+			if (Animation_Player != null)
+			{
+				GD.Print("CHANGE STATE -- Playing Phantom_Attack animation");
+				Animation_Player.Play("Phantom_Attack");
+			}
 		}
 		else if (newState == State.Chase)
 		{
-			Animation_Sprite.Play("Phantom_Pursuit");
+			if (Animation_Sprite != null)
+			{
+				Animation_Sprite.Play("Phantom_Pursuit");
+			}
 		}
 		else if (newState == State.Patrol)
 		{
-			Animation_Sprite.Play("Phantom_Pursuit");
+			if (Animation_Sprite != null)
+			{
+				Animation_Sprite.Play("Phantom_Pursuit");
+			}
 		}
 		else if (newState == State.Flee)
 		{
-			Animation_Sprite.Play("Phantom_Pursuit");
+			if (Animation_Sprite != null)
+			{
+				Animation_Sprite.Play("Phantom_Pursuit");
+			}
 		}
 	}
+
 
 
 	private void MoveToTarget(Vector2 targetPosition, float speedMultiplier = 1.0f)
@@ -386,18 +403,18 @@ public partial class Phantom : CharacterBody2D
 	private void HandleAttack(double delta)
 	{
 		_attackCooldown -= delta;
-		if (_attackCooldown <= 0)
+
+		if (_attackCooldown <= 0 && _isAttacking == false)
 		{
-			if (AttackHitboxShape != null)
+			_isAttacking = true;
+			Velocity = Vector2.Zero;
+
+			if (Animation_Player != null)
 			{
-				AttackHitboxShape.Disabled = false;
+				Animation_Player.Play("Phantom_Attack");
 			}
 
-			Velocity = Vector2.Zero;
-			Animation_Sprite.Play("Phantom_Attack");
-			GD.Print("SCRIPT - PHANTOM - : Golpe físico!");
-
-			_attackCooldown = 1.0; // 1 second between attacks
+			_attackCooldown = 1.0; // 1 second between attack starts
 		}
 	}
 
@@ -420,6 +437,32 @@ public partial class Phantom : CharacterBody2D
 			ChangeState(State.Patrol);
 		}
 	}
+
+	public void EnableHitbox()
+	{
+		if (AttackHitboxShape != null)
+		{
+			AttackHitboxShape.Disabled = false;
+			GD.Print("Hitbox enabled at impact frame!");
+		}
+	}
+
+	public void DisableHitbox()
+	{
+		if (AttackHitboxShape != null)
+		{
+			AttackHitboxShape.Disabled = true;
+			GD.Print("Hitbox disabled after impact window.");
+		}
+	}
+
+	public void EndAttack()
+	{
+		_isAttacking = false;
+		GD.Print("EndAttack called");
+		//DisableHitbox(); // safety reset
+	}
+
 
 	#endregion
 	//!---------------------------------------------------------------------------------------------------------
@@ -475,20 +518,19 @@ public partial class Phantom : CharacterBody2D
 		if (_area.IsInGroup("player"))
 		{
 			GD.Print("Phantom hit the player!");
+			Player_Data_Autoload.Data.TakeDamage(10);
+			Player_Data_Autoload.Instance.Preserve_Damage(10);
+			Player_Data_Autoload.Instance.Update_Player_Health_UI(10);
+
 			// Apply damage here
 		}
 	}
 
-	public void On_Animation_Finished()
+	private void OnAnimationPlayerFinished(StringName animName)
 	{
-		if (Animation_Sprite.Animation == "Phantom_Attack")
+		if (animName == "Phantom_Attack")
 		{
-			if (AttackHitboxShape != null)
-			{
-				AttackHitboxShape.Disabled = true;
-			}
-
-			_isAttacking = false; // unlock, fuzzy logic can decide again
+			EndAttack();
 		}
 	}
 

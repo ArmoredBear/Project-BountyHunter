@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=4 uid="uid://j5i0w33knuue"]
+[gd_scene load_steps=8 format=4 uid="uid://j5i0w33knuue"]
 
 [ext_resource type="TileSet" uid="uid://5qupvmr4kfvq" path="res://Common/Resources/Cenarios/Tilemap/Forest/Forest_Grass.tres" id="1_mdeuw"]
+[ext_resource type="Script" path="res://_Debug/SpawnRouter.cs" id="1_p5mhh"]
 [ext_resource type="TileSet" uid="uid://dg8c8oas8e06g" path="res://Common/Resources/Cenarios/Tilemap/Forest/Forest_Trees.tres" id="2_8wytx"]
-[ext_resource type="PackedScene" uid="uid://bxf5llvkkgbn5" path="res://Common/Resources/Cenarios/Props/Prefabs/Door.tscn" id="3_gk1nx"]
-[ext_resource type="PackedScene" uid="uid://tyb2ogvaxl2d" path="res://Common/Resources/Cenarios/Props/Prefabs/god_rays.tscn" id="4_6ae43"]
 [ext_resource type="PackedScene" uid="uid://c8p3ps4bx6scx" path="res://Common/Resources/Enemys/Boss/Prefabs/Boss.tscn" id="5_shfq0"]
 
 [sub_resource type="Environment" id="Environment_msvgy"]
@@ -21,6 +20,9 @@ dof_blur_near_enabled = true
 [sub_resource type="Compositor" id="Compositor_gbr1w"]
 
 [node name="Clearing" type="Node2D"]
+script = ExtResource("1_p5mhh")
+
+[node name="Doors" type="Node2D" parent="."]
 
 [node name="Ground" type="Node2D" parent="."]
 
@@ -69,23 +71,6 @@ compositor = SubResource("Compositor_gbr1w")
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0, 0, 0, 1)
 
-[node name="Doors" type="Node2D" parent="."]
-
-[node name="Door_East" parent="Doors" instance=ExtResource("3_gk1nx")]
-unique_name_in_owner = true
-position = Vector2(-15245, -106)
-Destination_Door_Tag = "West"
-Spawn_Direction = "Left"
-
-[node name="GodRays" parent="Doors/Door_East" instance=ExtResource("4_6ae43")]
-offset_left = -609.0
-offset_top = -2126.0
-offset_right = 636.0
-offset_bottom = 401.0
-
 [node name="Boss" parent="." instance=ExtResource("5_shfq0")]
 position = Vector2(-5248, 256)
 scale = Vector2(10, 10)
-
-[editable path="Doors/Door_East"]
-[editable path="Doors/Door_East/GodRays"]

@@ -5,5 +5,5 @@
 [resource]
 resource_local_to_scene = true
 shader = ExtResource("1_cs4ue")
-shader_parameter/Enabled = true
+shader_parameter/Enabled = false
 shader_parameter/FlashTint = Color(1, 1, 1, 1)

@@ -1,6 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://bfyl05rrk0qpx"]
+[gd_scene load_steps=20 format=3 uid="uid://bfyl05rrk0qpx"]
 
-[ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/Enemy.cs" id="1_judtr"]
+[ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/Skeleton.cs" id="1_bb2e6"]
 [ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/EnemyStats.cs" id="2_iva4n"]
 [ext_resource type="Material" uid="uid://dldxk3r84mljr" path="res://Common/Resources/Enemys/Normal/Materials/Skeleton_Shader_Material.tres" id="3_eidyw"]
 [ext_resource type="SpriteFrames" uid="uid://bq502tthp7e6n" path="res://Common/Resources/Enemys/Normal/Prefabs/SkeletonSpriteFrames.tres" id="4_qihwx"]
@@ -12,29 +12,98 @@
 radius = 25.0
 height = 50.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3dpq5"]
-size = Vector2(700, 700)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g25pt"]
-size = Vector2(100, 100)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l7vg7"]
-size = Vector2(70, 90)
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bxc0g"]
-light_mode = 1
-
-[sub_resource type="Animation" id="Animation_275m7"]
-resource_name = "Hit_Flash"
-length = 0.2
+[sub_resource type="Animation" id="Animation_q0hjn"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Enemy_Animation:material:shader_parameter/Enabled")
+tracks/0/path = NodePath("Skeleton_Sprite_Frames:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Skeleton_Attack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton_Sprite_Frames:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_3xyed"]
+resource_name = "Skeleton_Attack"
+length = 1.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton_Sprite_Frames:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Skeleton_Attack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton_Sprite_Frames:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.9, 1.4, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"EnableHitbox"
+}, {
+"args": [],
+"method": &"DisableHitbox"
+}, {
+"args": [],
+"method": &"EndAttack"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xtpq0"]
+_data = {
+"RESET": SubResource("Animation_q0hjn"),
+"Skeleton_Attack": SubResource("Animation_3xyed")
+}
+
+[sub_resource type="Animation" id="Animation_275m7"]
+resource_name = "Hit_Flash"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton_Sprite_Frames:material:shader_parameter/Enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -45,7 +114,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Enemy_Animation:material:shader_parameter/Enabled")
+tracks/0/path = NodePath("Skeleton_Sprite_Frames:material:shader_parameter/Enabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -61,15 +130,32 @@ _data = {
 "RESET": SubResource("Animation_comuy")
 }
 
-[node name="Skeleton" type="CharacterBody2D" node_paths=PackedStringArray("Animation_Sprite", "Agent", "DetectionArea", "AttackArea", "DamageArea", "HitFlash_Animation", "_stats", "PatrolPoints") groups=["enemy"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3dpq5"]
+size = Vector2(700, 700)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5df3u"]
+size = Vector2(300, 300)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n1vpb"]
+size = Vector2(150, 150)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l7vg7"]
+size = Vector2(70, 90)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bxc0g"]
+light_mode = 1
+
+[node name="Skeleton" type="CharacterBody2D" node_paths=PackedStringArray("Animation_Sprite", "Animation_Player", "Agent", "DetectionArea", "AttackArea", "AttackHitbox", "AttackHitboxShape", "HitFlash_Animation", "_stats", "PatrolPoints") groups=["enemy"]]
 scale = Vector2(5, 5)
 motion_mode = 1
-script = ExtResource("1_judtr")
-Animation_Sprite = NodePath("Enemy_Animation")
+script = ExtResource("1_bb2e6")
+Animation_Sprite = NodePath("Skeleton_Sprite_Frames")
+Animation_Player = NodePath("Skeleton_Animation")
 Agent = NodePath("NavigationAgent2D")
 DetectionArea = NodePath("DetectionArea")
-AttackArea = NodePath("AttackArea")
-DamageArea = NodePath("Skeleton_Damage_Collider/Skeleton_Damage_Collider_Shape")
+AttackArea = NodePath("Attack_Detection_Area")
+AttackHitbox = NodePath("Skeleton_Attack_Hitbox_Area")
+AttackHitboxShape = NodePath("Skeleton_Attack_Hitbox_Area/CollisionShape2D")
 HitFlash_Animation = NodePath("HitFlash_Animation")
 _stats = NodePath("EnemyStats")
 PatrolPoints = []
@@ -92,24 +178,38 @@ debug_path_custom_line_width = 10.0
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_xxs1g")
 
-[node name="Enemy_Animation" type="AnimatedSprite2D" parent="."]
+[node name="Skeleton_Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xtpq0")
+}
+
+[node name="HitFlash_Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_drhrp")
+}
+autoplay = "Hit_Flash"
+
+[node name="Skeleton_Sprite_Frames" type="AnimatedSprite2D" parent="."]
 z_index = 3
 material = ExtResource("3_eidyw")
 sprite_frames = ExtResource("4_qihwx")
 animation = &"Skeleton_Attack"
-frame_progress = 0.342135
-flip_h = true
+frame = 1
 
 [node name="DetectionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("RectangleShape2D_3dpq5")
 
-[node name="AttackArea" type="Area2D" parent="."]
+[node name="Attack_Detection_Area" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(-88.8, 0)
-shape = SubResource("RectangleShape2D_g25pt")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Detection_Area"]
+shape = SubResource("RectangleShape2D_5df3u")
+
+[node name="Skeleton_Attack_Hitbox_Area" type="Area2D" parent="." groups=["enemy_attack"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Skeleton_Attack_Hitbox_Area" groups=["enemy_attack"]]
+shape = SubResource("RectangleShape2D_n1vpb")
 
 [node name="Skeleton_Damage_Collider" type="Area2D" parent="." groups=["enemy"]]
 
@@ -141,10 +241,5 @@ texture_under = ExtResource("7_ahwy6")
 texture_progress = ExtResource("8_sgfmd")
 script = ExtResource("9_n8tx1")
 
-[node name="HitFlash_Animation" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_drhrp")
-}
-autoplay = "Hit_Flash"
-
+[connection signal="area_entered" from="Skeleton_Attack_Hitbox_Area" to="." method="On_AttackHitbox_AreaEntered"]
 [connection signal="area_entered" from="Skeleton_Damage_Collider" to="." method="On_Skeleton_Damage_Collider_Area_Entered"]

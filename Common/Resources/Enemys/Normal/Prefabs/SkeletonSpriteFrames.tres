@@ -242,6 +242,6 @@ animations = [{
 "texture": SubResource("AtlasTexture_k0bm3")
 }],
 "loop": true,
-"name": &"Skeleton_Walk",
+"name": &"Skeleton_Pursuit",
 "speed": 7.0
 }]

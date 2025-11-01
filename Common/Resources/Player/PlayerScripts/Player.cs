@@ -115,7 +115,7 @@ public partial class Player : CharacterBody2D
 		
 		Player_State_P = Player_States.Idle;
 
-		if(GetTree().CurrentScene.Name != "Main")
+		if(GetTree().CurrentScene.Name == "MainMenu")
 		{
 			this.Visible = false;
 		}
@@ -144,7 +144,7 @@ public partial class Player : CharacterBody2D
 	
 	public void Setup_Player_Position(Vector2 _position)
 	{
-		this.Position = _position;
+		this.GlobalPosition = _position;
     }
 
 	#endregion

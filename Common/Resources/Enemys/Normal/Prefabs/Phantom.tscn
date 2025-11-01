@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ccwqnm8c8jwux"]
+[gd_scene load_steps=20 format=3 uid="uid://ccwqnm8c8jwux"]
 
 [ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/Phantom.cs" id="1_xiwgt"]
 [ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/EnemyStats.cs" id="2_ufs14"]
@@ -12,6 +12,124 @@
 radius = 25.0
 height = 50.0
 
+[sub_resource type="Animation" id="Animation_l46p8"]
+resource_name = "Phantom_Attack"
+length = 0.5
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"EnableHitbox"
+}, {
+"args": [],
+"method": &"DisableHitbox"
+}, {
+"args": [],
+"method": &"EndAttack"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Phantom_Sprite_Frames:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Phantom_Sprite_Frames:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Phantom_Attack"]
+}
+
+[sub_resource type="Animation" id="Animation_g2a4j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Phantom_Sprite_Frames:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Phantom_Sprite_Frames:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Phantom_Attack"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jtu08"]
+_data = {
+"Phantom_Attack": SubResource("Animation_l46p8"),
+"RESET": SubResource("Animation_g2a4j")
+}
+
+[sub_resource type="Animation" id="Animation_pmy8c"]
+resource_name = "Hit_Flash"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Phantom_Sprite_Frames:material:shader_parameter/Enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_x4jvl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Phantom_Sprite_Frames:material:shader_parameter/Enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c543d"]
+_data = {
+"Hit_Flash": SubResource("Animation_pmy8c"),
+"RESET": SubResource("Animation_x4jvl")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3dpq5"]
 size = Vector2(700, 700)
 
@@ -19,7 +137,7 @@ size = Vector2(700, 700)
 size = Vector2(300, 300)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_24021"]
-size = Vector2(250, 250)
+size = Vector2(150, 150)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l7vg7"]
 size = Vector2(70, 90)
@@ -27,53 +145,17 @@ size = Vector2(70, 90)
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bxc0g"]
 light_mode = 1
 
-[sub_resource type="Animation" id="Animation_2lecd"]
-resource_name = "Hit_Flash"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Enemy_Animation:material:shader_parameter/Enabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_5am2n"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Enemy_Animation:material:shader_parameter/Enabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_vlits"]
-_data = {
-"Hit_Flash": SubResource("Animation_2lecd"),
-"RESET": SubResource("Animation_5am2n")
-}
-
-[node name="Phantom" type="CharacterBody2D" node_paths=PackedStringArray("Animation_Sprite", "Agent", "DetectionArea", "AttackArea", "AttackHitbox", "AttackHitboxShape", "HitFlash_Animation", "_stats", "PatrolPoints") groups=["enemy"]]
+[node name="Phantom" type="CharacterBody2D" node_paths=PackedStringArray("Animation_Sprite", "Animation_Player", "Agent", "DetectionArea", "AttackArea", "AttackHitbox", "AttackHitboxShape", "HitFlash_Animation", "_stats", "PatrolPoints") groups=["enemy"]]
 scale = Vector2(5, 5)
 motion_mode = 1
 script = ExtResource("1_xiwgt")
-Animation_Sprite = NodePath("Enemy_Animation")
+Animation_Sprite = NodePath("Phantom_Sprite_Frames")
+Animation_Player = NodePath("Phantom_Animation")
 Agent = NodePath("NavigationAgent2D")
 DetectionArea = NodePath("Chase_Detection_Area")
 AttackArea = NodePath("Attack_Detection_Area")
-AttackHitbox = NodePath("Attack_Hitbox_Area")
-AttackHitboxShape = NodePath("Attack_Hitbox_Area/CollisionShape2D")
+AttackHitbox = NodePath("Phantom_Attack_Hitbox_Area")
+AttackHitboxShape = NodePath("Phantom_Attack_Hitbox_Area/CollisionShape2D")
 HitFlash_Animation = NodePath("HitFlash_Animation")
 _stats = NodePath("EnemyStats")
 PatrolPoints = []
@@ -97,7 +179,17 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_xxs1g")
 disabled = true
 
-[node name="Enemy_Animation" type="AnimatedSprite2D" parent="."]
+[node name="Phantom_Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jtu08")
+}
+
+[node name="HitFlash_Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_c543d")
+}
+
+[node name="Phantom_Sprite_Frames" type="AnimatedSprite2D" parent="."]
 z_index = 3
 material = ExtResource("3_sjrrk")
 sprite_frames = ExtResource("4_3xbcc")
@@ -108,17 +200,16 @@ animation = &"Phantom_Attack"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chase_Detection_Area"]
 shape = SubResource("RectangleShape2D_3dpq5")
 
-[node name="Attack_Detection_Area" type="Area2D" parent="." groups=["enemy_attack"]]
+[node name="Attack_Detection_Area" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Detection_Area" groups=["enemy_attack"]]
-scale = Vector2(1, 1)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Detection_Area"]
 shape = SubResource("RectangleShape2D_g25pt")
 
-[node name="Attack_Hitbox_Area" type="Area2D" parent="." groups=["enemy_attack"]]
-scale = Vector2(1, 1)
+[node name="Phantom_Attack_Hitbox_Area" type="Area2D" parent="." groups=["enemy_attack"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Hitbox_Area" groups=["enemy_attack"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Phantom_Attack_Hitbox_Area" groups=["enemy_attack"]]
 shape = SubResource("RectangleShape2D_24021")
+disabled = true
 
 [node name="Phantom_Damage_Collider" type="Area2D" parent="." groups=["enemy"]]
 
@@ -150,12 +241,5 @@ texture_under = ExtResource("6_ah50a")
 texture_progress = ExtResource("7_kkoca")
 script = ExtResource("8_aig6m")
 
-[node name="HitFlash_Animation" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_vlits")
-}
-autoplay = "Hit_Flash"
-
-[connection signal="area_entered" from="Attack_Detection_Area" to="." method="On_Attack_Area_Entered"]
-[connection signal="area_entered" from="Attack_Hitbox_Area" to="." method="On_AttackHitbox_AreaEntered"]
+[connection signal="area_entered" from="Phantom_Attack_Hitbox_Area" to="." method="On_AttackHitbox_AreaEntered"]
 [connection signal="area_entered" from="Phantom_Damage_Collider" to="." method="On_Phantom_Damage_Collider_Area_Entered"]

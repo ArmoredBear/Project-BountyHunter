@@ -1,104 +1,58 @@
 using Godot;
-using System;
 
-public partial class Door : Node
+public partial class Door : Node2D
 {
-    //! --------------------------------------------------------------------------------------------------------------------------------------------------------
-    #region Variables
-    //! --------------------------------------------------------------------------------------------------------------------------------------------------------
-
-    [Export] public Marker2D Spawn { get; set; }
-    [Export] public string Destination_Scene_Tag { get; set; }
-    [Export] public string Destination_Door_Tag { get; set; }
-    [Export] public string Spawn_Direction { get; set; }
-
-    #endregion
-    //! --------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-    //! --------------------------------------------------------------------------------------------------------------------------------------------------------
-    #region Initialization
-    //! --------------------------------------------------------------------------------------------------------------------------------------------------------
+    [Export] public Marker2D Spawn;
+    [Export] public Area2D Portal;
+    [Export] public e_Game_Scenes Destination_Scene_Tag;
+    [Export] public string Destination_Spawn_Tag = ""; // leave blank to auto‑fill
 
     public override void _Ready()
     {
-        base._Ready();
-        Reference_If_Null();
-        
-    }
-
-    #endregion
-    //! --------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-    //! --------------------------------------------------------------------------------------------------------------------------------------------------------
-    #region Signals Methods
-    //! --------------------------------------------------------------------------------------------------------------------------------------------------------
-
-    public void On_Body_Entered(CharacterBody2D _body)
-    {
-
-        if (_body.IsInGroup("player"))
+        // Resolve Portal
+        if (Portal == null)
         {
-            GD.Print("Changed Scene...");
+            Portal = GetNodeOrNull<Area2D>("%Portal");
+            if (Portal == null)
             {
-                Select_Scene(Destination_Scene_Tag);
+                Portal = GetNodeOrNull<Area2D>("Portal");
             }
         }
-    }
+        if (Portal == null)
+        {
+            GD.PrintErr($"{Name}: Portal node not found.");
+            return;
+        }
 
-    #endregion
-    //! --------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-    //! --------------------------------------------------------------------------------------------------------------------------------------------------------
-    #region Methods
-    //! --------------------------------------------------------------------------------------------------------------------------------------------------------
-
-    private void Reference_If_Null()
-    {
+        // Resolve local spawn (optional)
         if (Spawn == null)
         {
-            GD.Print("Spawn is null!!");
+            Spawn = GetNodeOrNull<Marker2D>("%Spawn_Position");
+            if (Spawn == null)
+            {
+                Spawn = GetNodeOrNull<Marker2D>("Spawn_Position");
+            }
         }
 
-        if (Destination_Scene_Tag == null)
+        // Auto‑fill Destination_Spawn_Tag if left blank
+        if (string.IsNullOrEmpty(Destination_Spawn_Tag))
         {
-            GD.Print("Destination Scene Tag is null!!");
+            Destination_Spawn_Tag = Name; // use this node’s name
+            GD.Print($"{Name}: Auto‑filled Destination_Spawn_Tag = {Destination_Spawn_Tag}");
         }
 
-        if (Destination_Door_Tag == null)
-        {
-            GD.Print("Destination Door Tag is null!!");
-        }
-
-        if (Spawn_Direction == null)
-        {
-            GD.Print("Spawn Direction is null!!");
-        }
+        Portal.BodyEntered += On_Body_Entered;
     }
 
-
-    public void Select_Scene(string _scene_name)
+    private void On_Body_Entered(Node body)
     {
-        if (_scene_name == "Forest")
-        {
-            Scene_Manager.Instance.Change_Scene(e_Game_Scenes.Forest);
-            Scene_Manager.Instance.Update_Player_Position(Spawn.Position);
-        }
-        if (_scene_name == "Tunnel")
-        {
-            Scene_Manager.Instance.Change_Scene(e_Game_Scenes.Tunnel);
-            Scene_Manager.Instance.Update_Player_Position(Spawn.Position);
-        }
-        if (_scene_name == "Clearing")
-        {
-            Scene_Manager.Instance.Change_Scene(e_Game_Scenes.Clearing);
-            Scene_Manager.Instance.Update_Player_Position(Spawn.Position);
-        }
-    }
+        if (!body.IsInGroup("player"))
+            return;
 
-    #endregion
-    //! --------------------------------------------------------------------------------------------------------------------------------------------------------
+        GD.Print($"{Name}: Triggered. Destination scene: {Destination_Scene_Tag}, spawn tag: {Destination_Spawn_Tag}");
+
+        Scene_Manager.Instance.SetTransition(Destination_Spawn_Tag);
+        Scene_Manager.Instance.CallDeferred("Change_Scene", (int)Destination_Scene_Tag);
+    }
 
 }
