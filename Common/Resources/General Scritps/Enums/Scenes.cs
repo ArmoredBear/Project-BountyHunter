@@ -4,5 +4,6 @@ public enum e_Game_Scenes
     Forest = 20,
     Tunnel = 30,
     Clearing = 40,
+    GameOver = 50,
 
 }

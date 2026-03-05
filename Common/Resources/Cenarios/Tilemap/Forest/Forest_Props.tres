@@ -1,0 +1,94 @@
+[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://5uym7e1bjin3"]
+
+[ext_resource type="Texture2D" uid="uid://cdcqq684jqli2" path="res://Common/Resources/Cenarios/CenarioArt/Environment/Forest/Forest_Props.png" id="1_bkac2"]
+[ext_resource type="Material" uid="uid://bbol1qr4mucvd" path="res://Common/Resources/Cenarios/CenarioMaterials/Forest/Forest_Props_Material.tres" id="1_jafgy"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lrnp7"]
+texture = ExtResource("1_bkac2")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/material = ExtResource("1_jafgy")
+1:0/0 = 0
+1:0/0/material = ExtResource("1_jafgy")
+2:0/0 = 0
+2:0/0/material = ExtResource("1_jafgy")
+3:0/0 = 0
+3:0/0/material = ExtResource("1_jafgy")
+4:0/0 = 0
+4:0/0/material = ExtResource("1_jafgy")
+5:0/0 = 0
+5:0/0/material = ExtResource("1_jafgy")
+6:0/0 = 0
+6:0/0/material = ExtResource("1_jafgy")
+7:0/0 = 0
+7:0/0/material = ExtResource("1_jafgy")
+0:1/0 = 0
+0:1/0/material = ExtResource("1_jafgy")
+1:1/0 = 0
+1:1/0/material = ExtResource("1_jafgy")
+2:1/0 = 0
+2:1/0/material = ExtResource("1_jafgy")
+3:1/0 = 0
+3:1/0/material = ExtResource("1_jafgy")
+4:1/0 = 0
+4:1/0/material = ExtResource("1_jafgy")
+5:1/0 = 0
+5:1/0/material = ExtResource("1_jafgy")
+6:1/0 = 0
+6:1/0/material = ExtResource("1_jafgy")
+7:1/0 = 0
+7:1/0/material = ExtResource("1_jafgy")
+0:2/0 = 0
+0:2/0/material = ExtResource("1_jafgy")
+1:2/0 = 0
+1:2/0/material = ExtResource("1_jafgy")
+2:2/0 = 0
+2:2/0/material = ExtResource("1_jafgy")
+3:2/0 = 0
+3:2/0/material = ExtResource("1_jafgy")
+4:2/0 = 0
+4:2/0/material = ExtResource("1_jafgy")
+5:2/0 = 0
+5:2/0/material = ExtResource("1_jafgy")
+2:3/0 = 0
+2:3/0/material = ExtResource("1_jafgy")
+3:3/0 = 0
+3:3/0/material = ExtResource("1_jafgy")
+5:3/0 = 0
+5:3/0/material = ExtResource("1_jafgy")
+6:3/0 = 0
+6:3/0/material = ExtResource("1_jafgy")
+7:3/0 = 0
+7:3/0/material = ExtResource("1_jafgy")
+0:4/0 = 0
+0:4/0/material = ExtResource("1_jafgy")
+1:4/0 = 0
+1:4/0/material = ExtResource("1_jafgy")
+2:4/0 = 0
+2:4/0/material = ExtResource("1_jafgy")
+3:4/0 = 0
+3:4/0/material = ExtResource("1_jafgy")
+4:4/0 = 0
+4:4/0/material = ExtResource("1_jafgy")
+5:4/0 = 0
+5:4/0/material = ExtResource("1_jafgy")
+6:4/0 = 0
+6:4/0/material = ExtResource("1_jafgy")
+7:4/0 = 0
+7:4/0/material = ExtResource("1_jafgy")
+0:5/0 = 0
+0:5/0/material = ExtResource("1_jafgy")
+1:5/0 = 0
+1:5/0/material = ExtResource("1_jafgy")
+4:5/0 = 0
+4:5/0/material = ExtResource("1_jafgy")
+5:5/0 = 0
+5:5/0/material = ExtResource("1_jafgy")
+6:5/0 = 0
+6:5/0/material = ExtResource("1_jafgy")
+7:5/0 = 0
+7:5/0/material = ExtResource("1_jafgy")
+
+[resource]
+tile_size = Vector2i(128, 128)
+sources/0 = SubResource("TileSetAtlasSource_lrnp7")

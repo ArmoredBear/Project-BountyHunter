@@ -41,7 +41,8 @@ public partial class Save_Load_Control : Node
 		}
 	}
 
-	
+	public static Save_Load_Control Instance;
+
 	public override void _Ready()
 	{
 		_save_file_path = "user://SavedData/";
@@ -49,6 +50,18 @@ public partial class Save_Load_Control : Node
 		Data = Player_Data_Autoload.Data;
 
 		Verify_Directory(Save_File_Path);
+
+		//Singleton
+		if (Instance == null)
+		{
+			Instance = this;
+		}
+
+		else if (Instance != null && this != Instance)
+		{
+			Instance = null;
+			GetTree().QueueDelete(this);
+		}
 
 	}
 
@@ -59,15 +72,34 @@ public partial class Save_Load_Control : Node
 
 	public void Save_Game()
 	{
+		GD.Print("Attempting to save game data to disk...");
 		Player_Data_Autoload.Instance.Update_Data_To_Save();
-		ResourceSaver.Save(Data, Save_File_Path + Save_File_Name);
+		Error err = ResourceSaver.Save(Data, Save_File_Path + Save_File_Name);
+		if (err == Error.Ok)
+		{
+			GD.Print("Game data saved successfully to: " + Save_File_Path + Save_File_Name);
+		}
+		else
+		{
+			GD.PrintErr("Failed to save game data. Error: " + err);
+		}
 	}
 
 	public void Load_Game()
 	{
-		Data = (Player_Data)ResourceLoader.Load(Save_File_Path + Save_File_Name).Duplicate(true);
-		Player_Data_Autoload.Data = Data;
-		Player_Data_Autoload.Instance.Update_Loaded_Data();
+		GD.Print("Attempting to load game data from disk...");
+		var loaded = ResourceLoader.Load(Save_File_Path + Save_File_Name);
+		if (loaded != null)
+		{
+			Data = (Player_Data)loaded.Duplicate(true);
+			Player_Data_Autoload.Data = Data;
+			Player_Data_Autoload.Instance.Update_Loaded_Data();
+			GD.Print("Game data loaded successfully from: " + Save_File_Path + Save_File_Name);
+		}
+		else
+		{
+			GD.PrintErr("Failed to load game data from: " + Save_File_Path + Save_File_Name);
+		}
 	}
 
 
@@ -88,17 +120,5 @@ public partial class Save_Load_Control : Node
 			Load_Game();
 			GD.Print("Data Loaded!");
 		}
-	}
-
-	public void OnButtonPressed()
-	{
-		Save_Game();
-		GD.Print("Data Saved!");
-	}
-	
-	public void OnLoadGamePressed()
-	{
-		Load_Game();
-		GD.Print("Data Loaded!");
 	}
 }

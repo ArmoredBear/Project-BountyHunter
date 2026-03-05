@@ -59,6 +59,7 @@ public partial class Player_Data : Resource, IStatus
 	private bool _alive;
 	private bool _armored;
 	private bool _poisoned;
+	private Vector2 _position;
 
 
 	#endregion
@@ -92,6 +93,12 @@ public partial class Player_Data : Resource, IStatus
 	[Export] public bool Armored { get => _armored; set => _armored = value; }
 	[Export] public bool Poisoned { get => _poisoned; set => _poisoned = value; }
 
+	[ExportGroup("POSITION")]
+	[Export] public Vector2 Position { get => _position; set => _position = value; }
+
+	[ExportGroup("SCENE")]
+	[Export] public string CurrentScene { get; set; }
+
 	#endregion
 
 	//!---------------------------------------------------------------------------------------------------------
@@ -100,7 +107,7 @@ public partial class Player_Data : Resource, IStatus
 
 	public Player_Data() { }
 
-	public Player_Data(int m_health, int m_stamina, int m_em, bool alive, bool armored, bool poisoned)
+	public Player_Data(int m_health, int m_stamina, int m_em, bool alive, bool armored, bool poisoned, Vector2 position = default)
 	{
 		MAX_Health = m_health;
 		MAX_Stamina = m_stamina;
@@ -113,6 +120,8 @@ public partial class Player_Data : Resource, IStatus
 		Alive = alive;
 		Armored = armored;
 		Poisoned = poisoned;
+		Position = position;
+		CurrentScene = "";
 	}
 
     #endregion

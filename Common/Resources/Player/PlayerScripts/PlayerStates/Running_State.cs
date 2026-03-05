@@ -53,10 +53,11 @@ public partial class Running_State : Player_State
 		Run_Speed = Player_Base_Speed * Run_Speed_Modifier;
 	}
 
-	public override void Enter()
-	{
+  public override void Enter()
+  {
+		Player_Animation.FlipH = false;
 		
-    }
+  }
 
     public override void Exit()
     {
@@ -74,8 +75,8 @@ public partial class Running_State : Player_State
 
     public override void PhysicsUpdate(double delta)
     {
-        Run(Game_Pad_Directional_Input_Vector);
-        Run(Keyboard_Directional_Input_Vector);
+        Vector2 combinedInput = Game_Pad_Directional_Input_Vector + Keyboard_Directional_Input_Vector;
+        Run(combinedInput);
     }
 
     public override void HandleInput(InputEvent @event) 
@@ -87,6 +88,8 @@ public partial class Running_State : Player_State
 	{
 		Game_Pad_Directional_Input_Vector = Input.GetVector("Game_Pad_Left", "Game_Pad_Right", "Game_Pad_Up", "Game_Pad_Down");
 		Keyboard_Directional_Input_Vector = Input.GetVector("Keyboard_Left", "Keyboard_Right", "Keyboard_Up", "Keyboard_Down");
+		Player.Game_Pad_Directional_Input_Vector = Game_Pad_Directional_Input_Vector;
+		Player.Keyboard_Directional_Input_Vector = Keyboard_Directional_Input_Vector;
 	}
 	
 	public void Calculate_Run_Direction()

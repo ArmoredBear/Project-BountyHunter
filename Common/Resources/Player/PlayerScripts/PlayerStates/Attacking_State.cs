@@ -42,13 +42,59 @@ public partial class Attacking_State : Player_State
 
     public override void Enter()
     {
+        if (Player.Instance == null) return;
+
+        Input_Collector();
+        bool facingRight = Player.Instance.IsFacingRight;
+        if (Game_Pad_Directional_Input_Vector.X < 0 || Keyboard_Directional_Input_Vector.X < 0)
+        {
+            facingRight = false;
+        }
+        else if (Game_Pad_Directional_Input_Vector.X > 0 || Keyboard_Directional_Input_Vector.X > 0)
+        {
+            facingRight = true;
+        }
+        // else keep last
+
+        GD.Print("Attacking: Facing right? " + facingRight + " (input X: " + Game_Pad_Directional_Input_Vector.X + ", " + Keyboard_Directional_Input_Vector.X + ")");
         Player_Animation.Play("Light_Attack");
+        Player_Animation.FlipH = !facingRight;
+        GD.Print("Animation FlipH set to: " + Player_Animation.FlipH);
+
+        // Flip collider position based on facing
+        Vector2 colliderPos = Attack_Collider.Position;
+        GD.Print("Collider pos before: " + colliderPos);
+        if (!facingRight)
+        {
+            colliderPos.X = -Mathf.Abs(colliderPos.X);
+        }
+        else
+        {
+            colliderPos.X = Mathf.Abs(colliderPos.X);
+        }
+        Attack_Collider.Position = colliderPos;
+        GD.Print("Collider pos after: " + Attack_Collider.Position);
+
         Light_Attack(false);
-        
+
+        // Play sword swoosh sound only if not in MainMenu
+        if (GetTree().CurrentScene.Name != "Main_Menu")
+        {
+            AudioStreamPlayer2D swordPlayer = GetNode<AudioStreamPlayer2D>("Sword_Swoosh");
+            if (swordPlayer != null)
+            {
+                swordPlayer.Play();
+            }
+        }
     }
 
     public override void Exit()
     {
+        // Reset animation flip to movement facing
+        if (Player.Instance != null)
+        {
+            Player_Animation.FlipH = !Player.Instance.IsFacingRight;
+        }
         Light_Attack(true);
     }
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://dwbwgw8w70tm1"]
+[gd_scene load_steps=50 format=4 uid="uid://dwbwgw8w70tm1"]
 
 [ext_resource type="TileSet" uid="uid://bm6068a5v0klm" path="res://Common/Resources/Cenarios/Tilemap/Tunnel/TunnelTileSet.tres" id="1_8xi57"]
 [ext_resource type="Script" path="res://_Debug/SpawnRouter.cs" id="1_tfma2"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://dyd5a6sgc0nll" path="res://Common/Resources/Cenarios/Props/PropsArt/Box_Wood_1.png" id="16_4l8sg"]
 [ext_resource type="Material" uid="uid://b7jsxw8ckcfhu" path="res://Common/Resources/Cenarios/Props/PropsMaterials/PropsMaterial_Barrel_Wood.tres" id="17_xmc55"]
 [ext_resource type="Texture2D" uid="uid://uxjphhnn38or" path="res://Common/Resources/Cenarios/Props/PropsArt/Barrel_Wood.png" id="18_3dj5q"]
+[ext_resource type="AudioStream" uid="uid://by61ilg18bid0" path="res://Common/Resources/SoundTracks/Vindsvept - The Youtube Collection - 65 Hollow.ogg" id="25_nqwfs"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2x3db"]
 resource_local_to_scene = true
@@ -113,10 +114,18 @@ script = ExtResource("1_tfma2")
 [node name="Tunnel_West_Spawn" type="Marker2D" parent="Doors"]
 position = Vector2(-10065, 262)
 
+[node name="Tunnel_South_Spawn" type="Marker2D" parent="Doors"]
+position = Vector2(13951, 5395)
+
 [node name="Tunnel_West_Door" parent="Doors" instance=ExtResource("7_oan54")]
 position = Vector2(-10496, 256)
 Destination_Scene_Tag = 20
 Destination_Spawn_Tag = "Forest_East_Spawn"
+
+[node name="Tunnel_South_Door" parent="Doors" instance=ExtResource("7_oan54")]
+position = Vector2(13939, 4692)
+Destination_Scene_Tag = 40
+Destination_Spawn_Tag = "Clearing_East_Spawn"
 
 [node name="GodRays_Door" type="ColorRect" parent="Doors"]
 light_mask = 2
@@ -257,7 +266,7 @@ tile_set = ExtResource("1_8xi57")
 [node name="Phantom" parent="Enemys" instance=ExtResource("7_p8x1l")]
 position = Vector2(-1346, 198)
 
-[node name="Phantom_Sprite_Frames" parent="Enemys/Phantom" index="5"]
+[node name="Phantom_Sprite_Frames" parent="Enemys/Phantom" index="6"]
 material = SubResource("ShaderMaterial_2x3db")
 
 [node name="Phantom2" parent="Enemys" instance=ExtResource("7_p8x1l")]
@@ -279,7 +288,7 @@ position = Vector2(12119, 8850)
 position = Vector2(5053, 3948)
 
 [node name="Skeleton2" parent="Enemys" instance=ExtResource("8_eg5a6")]
-position = Vector2(7170, 7176)
+position = Vector2(5262, 9910)
 
 [node name="Skeleton3" parent="Enemys" instance=ExtResource("8_eg5a6")]
 position = Vector2(157, 7532)
@@ -464,6 +473,50 @@ texture_scale = 3.0
 height = 80.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Enviroment/GodRays_5"]
+show_behind_parent = true
+light_mask = 2
+visibility_layer = 2
+material = SubResource("CanvasItemMaterial_fp21b")
+position = Vector2(239.695, 1990.57)
+scale = Vector2(654.038, 378.088)
+texture = SubResource("CanvasTexture_t8bnh")
+
+[node name="GodRays_6" type="ColorRect" parent="Enviroment"]
+z_index = 2
+material = ExtResource("8_dp1p4")
+offset_left = 13288.0
+offset_top = 2791.0
+offset_right = 14533.0
+offset_bottom = 5318.0
+scale = Vector2(1.12226, 0.978613)
+metadata/_edit_use_anchors_ = true
+
+[node name="PointLight2D" type="PointLight2D" parent="Enviroment/GodRays_6"]
+light_mask = 7
+visibility_layer = 7
+position = Vector2(590, 1750)
+rotation = 1.5708
+color = Color(1, 0.992004, 0.488281, 1)
+energy = 8.0
+range_item_cull_mask = 3
+shadow_enabled = true
+texture = ExtResource("7_hnrfk")
+texture_scale = 2.0
+height = 80.0
+
+[node name="PointLight2D3" type="PointLight2D" parent="Enviroment/GodRays_6"]
+light_mask = 7
+visibility_layer = 7
+position = Vector2(577.406, 2211.29)
+color = Color(0.937561, 1, 0.636719, 1)
+energy = 6.0
+range_item_cull_mask = 3
+shadow_enabled = true
+texture = ExtResource("5_omeb6")
+texture_scale = 3.0
+height = 80.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Enviroment/GodRays_6"]
 show_behind_parent = true
 light_mask = 2
 visibility_layer = 2
@@ -797,5 +850,12 @@ color = Color(0.234375, 0.234375, 0.234375, 1)
 energy = 0.3
 height = 1.0
 
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("25_nqwfs")
+autoplay = true
+max_distance = 100000.0
+parameters/looping = true
+
 [editable path="Doors/Tunnel_West_Door"]
+[editable path="Doors/Tunnel_South_Door"]
 [editable path="Enemys/Phantom"]

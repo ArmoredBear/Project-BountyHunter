@@ -27,6 +27,7 @@ public partial class Skeleton : CharacterBody2D
     [Export] public Area2D AttackHitbox;
     [Export] public CollisionShape2D AttackHitboxShape;
     [Export] public AnimationPlayer HitFlash_Animation;
+    [Export] public AudioStreamPlayer2D HitSound;
 
     // CORREÇÃO: EnemyStats agora é exportado para conexão obrigatória no Inspector
     [Export] private EnemyStats _stats;
@@ -509,6 +510,7 @@ public partial class Skeleton : CharacterBody2D
             {
                 GD.Print("Inimigo toma " + 20 + " de dano");
             }
+            HitSound?.Play();
         }
 
     }

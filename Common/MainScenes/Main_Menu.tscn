@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b7x1o5b14fsu1"]
+[gd_scene load_steps=29 format=3 uid="uid://b7x1o5b14fsu1"]
 
 [ext_resource type="Script" path="res://Common/Resources/General Scritps/MainMenu/MainMenu.cs" id="1_oroun"]
 [ext_resource type="Theme" uid="uid://byfphwqv3j56s" path="res://Common/Resources/Player/User Interface/Prefabs/Themes/Base_Main_Menu_Theme.tres" id="1_w55jq"]
@@ -9,6 +9,14 @@
 [ext_resource type="Texture2D" uid="uid://dkkle61cheusy" path="res://Common/Resources/Player/User Interface/UI_Art/Panel2.png" id="6_amqa5"]
 [ext_resource type="Texture2D" uid="uid://pwn7f70287jh" path="res://Common/Resources/Player/User Interface/UI_Art/Bell_2.png" id="6_ivm71"]
 [ext_resource type="Texture2D" uid="uid://ttp5t78m5ium" path="res://Common/Resources/Player/User Interface/UI_Art/ECHO_TRACKER_LOGO_OFICIAL_1.png" id="7_1gvs1"]
+[ext_resource type="Script" path="res://Common/Resources/Player/User Interface/UI_Scripts/Quit.cs" id="9_b0ek2"]
+[ext_resource type="Script" path="res://Common/Resources/General Scritps/LoadGame.cs" id="9_l1guo"]
+[ext_resource type="Script" path="res://Common/Resources/Credits/Credits.cs" id="10_kewiu"]
+[ext_resource type="Texture2D" uid="uid://c4hp1kvjkjqt" path="res://Common/Resources/Credits/CreditsScreen.png" id="11_26cjw"]
+[ext_resource type="FontFile" uid="uid://bu05a731yav8" path="res://Common/Resources/Player/User Interface/Fonts/LibertinusSerif-Regular.ttf" id="12_cswed"]
+[ext_resource type="AudioStream" uid="uid://cm3h5cwfg8l7d" path="res://Common/Resources/SoundTracks/Vindsvept - The Youtube Collection - 51 The Siren's Cadence.ogg" id="15_cfeqk"]
+[ext_resource type="AudioStream" uid="uid://cwtjhuq3vcuy3" path="res://Common/Resources/Sounds/UI_Hover.wav" id="16_qmasd"]
+[ext_resource type="Script" path="res://Common/Resources/Sounds/Sound Scripts/MenuUiSound.cs" id="17_csyh4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gjm4p"]
 bg_color = Color(0.957031, 0.747885, 0.60936, 0.784314)
@@ -41,6 +49,9 @@ border_width_top = 10
 border_width_right = 10
 border_width_bottom = 10
 border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_q6l8v"]
+diffuse_texture = ExtResource("11_26cjw")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1boft"]
 lifetime_randomness = 0.5
@@ -324,6 +335,7 @@ text_overrun_behavior = 1
 autowrap_mode = 3
 icon_alignment = 1
 language = "en"
+script = ExtResource("9_l1guo")
 
 [node name="Options" type="Button" parent="Control/MenuPanel/VBoxContainer"]
 texture_filter = 1
@@ -336,7 +348,7 @@ autowrap_mode = 3
 icon_alignment = 1
 language = "en"
 
-[node name="Credits" type="Button" parent="Control/MenuPanel/VBoxContainer"]
+[node name="Credits" type="Button" parent="Control/MenuPanel/VBoxContainer" node_paths=PackedStringArray("Credits_Panel")]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 4
@@ -347,6 +359,8 @@ text_overrun_behavior = 1
 autowrap_mode = 3
 icon_alignment = 1
 language = "en"
+script = ExtResource("10_kewiu")
+Credits_Panel = NodePath("../../../CreditsPanel")
 
 [node name="Quit" type="Button" parent="Control/MenuPanel/VBoxContainer"]
 texture_filter = 1
@@ -358,21 +372,59 @@ text_overrun_behavior = 1
 autowrap_mode = 3
 icon_alignment = 1
 language = "en"
+script = ExtResource("9_b0ek2")
 
-[node name="Dialogue" type="Button" parent="Control/MenuPanel/VBoxContainer"]
-unique_name_in_owner = true
+[node name="CreditsPanel" type="TextureRect" parent="Control"]
 visible = false
-texture_filter = 1
-layout_mode = 2
-size_flags_horizontal = 5
-size_flags_vertical = 6
-theme_override_font_sizes/font_size = 30
-text = "Dialogue Test
-"
-text_overrun_behavior = 1
-autowrap_mode = 3
-icon_alignment = 1
-language = "en"
+layout_mode = 0
+offset_left = -2484.0
+offset_top = -468.0
+offset_right = -1829.0
+offset_bottom = 622.0
+texture = SubResource("CanvasTexture_q6l8v")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/CreditsPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -158.5
+offset_top = -516.0
+offset_right = 195.5
+offset_bottom = 544.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_w55jq")
+theme_override_colors/default_color = Color(1, 0.740845, 0.246094, 1)
+theme_override_constants/line_separation = 30
+theme_override_fonts/normal_font = ExtResource("12_cswed")
+theme_override_font_sizes/normal_font_size = 20
+text = "					   	 -- Game --
+ --- Two Towers Entertainment Studio ---
+
+		   Arthur Gonsalez Frutuoso
+		 Leonardo Pereira Rodrigues
+			 Alison Fabricio Silva
+   Gabriel Roberto Gonsalez Frutuoso
+			 Lucas Nogueira Policano
+
+		  -- Colaboração Voluntária --
+				  Guilherme Bruno
+
+					  -- Música --
+	Holy Poly / August and September
+				* - Jolynn J Chin - *
+
+			  The Siren's Cadence
+						Hollow
+				Light the Bonfire
+				  *- Vindsvept -*"
+fit_content = true
+scroll_active = false
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(153, -83)
@@ -406,4 +458,21 @@ libraries = {
 "": SubResource("AnimationLibrary_x24s5")
 }
 
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_cfeqk")
+autoplay = true
+parameters/looping = true
+
+[node name="MenuUISound" type="AudioStreamPlayer2D" parent="." node_paths=PackedStringArray("ContinueButton", "LoadGameButton", "OptionsButton", "CreditsButton", "QuitButton")]
+stream = ExtResource("16_qmasd")
+script = ExtResource("17_csyh4")
+ContinueButton = NodePath("../Control/MenuPanel/VBoxContainer/Continue")
+LoadGameButton = NodePath("../Control/MenuPanel/VBoxContainer/Load_Game")
+OptionsButton = NodePath("../Control/MenuPanel/VBoxContainer/Options")
+CreditsButton = NodePath("../Control/MenuPanel/VBoxContainer/Credits")
+QuitButton = NodePath("../Control/MenuPanel/VBoxContainer/Quit")
+
 [connection signal="pressed" from="Control/MenuPanel/VBoxContainer/Continue" to="Control/MenuPanel/VBoxContainer/Continue" method="OnButtonPressed"]
+[connection signal="pressed" from="Control/MenuPanel/VBoxContainer/Load_Game" to="Control/MenuPanel/VBoxContainer/Load_Game" method="OnButtonPressed"]
+[connection signal="pressed" from="Control/MenuPanel/VBoxContainer/Credits" to="Control/MenuPanel/VBoxContainer/Credits" method="OnButtonPressed"]
+[connection signal="pressed" from="Control/MenuPanel/VBoxContainer/Quit" to="Control/MenuPanel/VBoxContainer/Quit" method="On_Quit_Pressed"]

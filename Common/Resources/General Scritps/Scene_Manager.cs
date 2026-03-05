@@ -17,6 +17,7 @@ public partial class Scene_Manager : Node
     private static String Tunnel_Scene_Path = "res://Common/Resources/Cenarios/Prefabs/Tunnel.tscn";
     private static String Forest_Scene_Path = "res://Common/Resources/Cenarios/Prefabs/Forest.tscn";
     private static String Clearing_Scene_Path = "res://Common/Resources/Cenarios/Prefabs/Clearing.tscn";
+    private static String GameOver_Scene_Path = "res://Common/Resources/Player/PlayerPrefabs/Game_Over_Screen.tscn";
 
 
 
@@ -26,6 +27,7 @@ public partial class Scene_Manager : Node
         { e_Game_Scenes.Forest, new Scene_Data(Forest_Scene_Path,"Forest", false)},
         { e_Game_Scenes.Tunnel, new Scene_Data(Tunnel_Scene_Path,"Tunnel", false)},
         { e_Game_Scenes.Clearing, new Scene_Data(Clearing_Scene_Path,"Clearing", false)},
+        { e_Game_Scenes.GameOver, new Scene_Data(GameOver_Scene_Path,"Game Over", false)},
     };
 
 
@@ -70,6 +72,7 @@ public partial class Scene_Manager : Node
                 { e_Game_Scenes.Forest, new Scene_Data(Forest_Scene_Path,"Forest", false)},
                 { e_Game_Scenes.Tunnel, new Scene_Data(Tunnel_Scene_Path,"Tunnel", false)},
                 { e_Game_Scenes.Clearing, new Scene_Data(Clearing_Scene_Path,"Clearing", false)},
+                { e_Game_Scenes.GameOver, new Scene_Data(GameOver_Scene_Path,"Game Over", false)},
             };
         }
     }

@@ -24,16 +24,6 @@ public partial class Door : Node2D
             return;
         }
 
-        // Resolve local spawn (optional)
-        if (Spawn == null)
-        {
-            Spawn = GetNodeOrNull<Marker2D>("%Spawn_Position");
-            if (Spawn == null)
-            {
-                Spawn = GetNodeOrNull<Marker2D>("Spawn_Position");
-            }
-        }
-
         // Auto‑fill Destination_Spawn_Tag if left blank
         if (string.IsNullOrEmpty(Destination_Spawn_Tag))
         {

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://by61ilg18bid0"
+path="res://.godot/imported/Vindsvept - The Youtube Collection - 65 Hollow.ogg-67738dfb71b022b1bda9032c910ff3a2.oggvorbisstr"
+
+[deps]
+
+source_file="res://Common/Resources/SoundTracks/Vindsvept - The Youtube Collection - 65 Hollow.ogg"
+dest_files=["res://.godot/imported/Vindsvept - The Youtube Collection - 65 Hollow.ogg-67738dfb71b022b1bda9032c910ff3a2.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

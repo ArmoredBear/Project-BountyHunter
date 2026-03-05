@@ -14,7 +14,6 @@ config/name="Project Bounty Hunter"
 run/main_scene="res://Common/MainScenes/Main_Menu.tscn"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
-boot_splash/image="res://Common/Resources/Player/User Interface/PNAB/Barra_PNAB Fundo preto Monocromatica.png"
 config/icon="res://icon.svg"
 boot_splash/minimum_display_time=5000
 
@@ -25,6 +24,7 @@ Player="*res://Common/Resources/Player/PlayerPrefabs/Player.tscn"
 Messenger="*res://Common/Resources/General Scritps/Messenger.cs"
 Game_Manager="*res://Common/Resources/General Scritps/GameManager.cs"
 Scene_Manager="*res://Common/MainScenes/Scene_Manager.tscn"
+SaveLoadControl="*res://Common/Resources/General Scritps/Save_Load_Control.cs"
 
 [display]
 

@@ -25,6 +25,8 @@ public partial class Player : CharacterBody2D
 	private Vector2 _keyboard_directional_input_vector;
 	private Player_States _Player_State_P;
 	private bool _is_running;
+	private bool _isFacingRight = true;
+
     
 	#endregion
 	//!---------------------------------------------------------------------------------------------------------
@@ -78,6 +80,14 @@ public partial class Player : CharacterBody2D
 		}
 	}
 
+	public bool IsFacingRight
+	{
+		get
+		{
+			return _isFacingRight;
+		}
+	}
+
 
 	#endregion
 	//!---------------------------------------------------------------------------------------------------------
@@ -112,7 +122,13 @@ public partial class Player : CharacterBody2D
 		{
 			GD.PrintErr("ERROR!! Instance of Player already exist!!");
 		}
-		
+
+		if (Player_Data_Autoload.Instance.ShouldSetLoadedPosition)
+		{
+			this.GlobalPosition = Player_Data_Autoload.Instance.LoadedPosition;
+			Player_Data_Autoload.Instance.ShouldSetLoadedPosition = false;
+		}
+
 		Player_State_P = Player_States.Idle;
 
 		if(GetTree().CurrentScene.Name == "MainMenu")
@@ -129,7 +145,40 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		// Update facing direction based on input
+		if (Game_Pad_Directional_Input_Vector.X > 0 || Keyboard_Directional_Input_Vector.X > 0)
+		{
+			_isFacingRight = true;
+		}
+		else if (Game_Pad_Directional_Input_Vector.X < 0 || Keyboard_Directional_Input_Vector.X < 0)
+		{
+			_isFacingRight = false;
+		}
 
+		// Check for enemies in proximity
+		var enemies = GetTree().GetNodesInGroup("enemy");
+		bool enemyClose = false;
+		foreach (var enemy in enemies)
+		{
+			if (enemy is Node2D enemyNode)
+			{
+				float dist = GlobalPosition.DistanceTo(enemyNode.GlobalPosition);
+				if (dist < 1000)
+				{
+					enemyClose = true;
+					break;
+				}
+			}
+		}
+
+		if (enemyClose)
+		{
+			AudioManager.Instance?.SwitchToCombat();
+		}
+		else
+		{
+			AudioManager.Instance?.StartAmbientTimer();
+		}
 	}
 
 

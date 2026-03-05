@@ -28,6 +28,7 @@ public partial class Idle_State : Player_State
 	{
 		//GetNode<AnimationPlayer>(Player_Animation).Play("Idle");
 		Player_Animation.Play("Idle_Right");
+		Player_Animation.FlipH = false;
     }
 
     public override void Exit()

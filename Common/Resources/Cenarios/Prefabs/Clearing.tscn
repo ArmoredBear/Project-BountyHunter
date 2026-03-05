@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=4 uid="uid://j5i0w33knuue"]
+[gd_scene load_steps=10 format=4 uid="uid://j5i0w33knuue"]
 
 [ext_resource type="TileSet" uid="uid://5qupvmr4kfvq" path="res://Common/Resources/Cenarios/Tilemap/Forest/Forest_Grass.tres" id="1_mdeuw"]
 [ext_resource type="Script" path="res://_Debug/SpawnRouter.cs" id="1_p5mhh"]
 [ext_resource type="TileSet" uid="uid://dg8c8oas8e06g" path="res://Common/Resources/Cenarios/Tilemap/Forest/Forest_Trees.tres" id="2_8wytx"]
+[ext_resource type="PackedScene" uid="uid://tyb2ogvaxl2d" path="res://Common/Resources/Cenarios/Props/Prefabs/god_rays.tscn" id="4_6ae43"]
 [ext_resource type="PackedScene" uid="uid://c8p3ps4bx6scx" path="res://Common/Resources/Enemys/Boss/Prefabs/Boss.tscn" id="5_shfq0"]
+[ext_resource type="AudioStream" uid="uid://dej2a4buyy33v" path="res://Common/Resources/SoundTracks/HolyPoly_JolynnJChin_Vorbis.ogg" id="6_l1mhr"]
 
 [sub_resource type="Environment" id="Environment_msvgy"]
 ambient_light_color = Color(0.214844, 0.214844, 0.214844, 1)
@@ -23,6 +25,15 @@ dof_blur_near_enabled = true
 script = ExtResource("1_p5mhh")
 
 [node name="Doors" type="Node2D" parent="."]
+
+[node name="Clearing_East_Spawn" type="Marker2D" parent="Doors"]
+position = Vector2(-18426, 557)
+
+[node name="GodRays_2" parent="Doors/Clearing_East_Spawn" instance=ExtResource("4_6ae43")]
+offset_left = -595.0
+offset_top = -2071.0
+offset_right = 650.0
+offset_bottom = 456.0
 
 [node name="Ground" type="Node2D" parent="."]
 
@@ -74,3 +85,10 @@ color = Color(0, 0, 0, 1)
 [node name="Boss" parent="." instance=ExtResource("5_shfq0")]
 position = Vector2(-5248, 256)
 scale = Vector2(10, 10)
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-5168, 449)
+stream = ExtResource("6_l1mhr")
+autoplay = true
+max_distance = 100000.0
+parameters/looping = true

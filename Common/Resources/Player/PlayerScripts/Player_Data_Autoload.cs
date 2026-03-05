@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.IO;
 
 /**-----------------------------------------------------------------------------------------------------------------------
  *!                                              PLAYER DATA AUTOLOAD CLASS
@@ -85,6 +86,9 @@ public partial class Player_Data_Autoload : Node
 
 	public string NextSpawnName { get; set; } = "Spawn_Default";
 
+	public bool ShouldSetLoadedPosition { get; set; } = false;
+	public Vector2 LoadedPosition { get; set; }
+
 	#endregion
 
 	//!---------------------------------------------------------------------------------------------------------
@@ -105,7 +109,7 @@ public partial class Player_Data_Autoload : Node
 			GD.PrintErr("ERROR!! Instance of Player_Data_Autoload already exist!!");
 		}
 
-		Data = new Player_Data(100, 1000, 100, true, false, false);
+		Data = new Player_Data(100, 1000, 100, true, false, false, Vector2.Zero);
 		Player_Healthbar = GetNode<Player_Healthbar_UI>("/root/Player/Player_UI/Status/Health_Bar");
 
 
@@ -151,11 +155,44 @@ public partial class Player_Data_Autoload : Node
 	{
 		Player_Healthbar.Health_Monitor.Value = Data.CURRENT_Health;
 		Player_Healthbar.Lines.Value = Data.CURRENT_Health;
+		ShouldSetLoadedPosition = true;
+		LoadedPosition = Data.Position;
+		// Also set position immediately if player exists
+		GD.Print("Loaded position: " + Data.Position);
+		GD.Print("Loaded scene: " + Path.GetFileNameWithoutExtension(Data.CurrentScene));
+		var playerBody = GetNodeOrNull<CharacterBody2D>("/root/Player/Player_Body");
+		if (playerBody != null)
+		{
+			GD.Print("Player body found, current GlobalPosition: " + playerBody.GlobalPosition + ", setting to: " + Data.Position);
+			playerBody.GlobalPosition = Data.Position;
+			GD.Print("After set, GlobalPosition: " + playerBody.GlobalPosition);
+		}
+		else
+		{
+			GD.Print("Player body not found at /root/Player/Player_Body");
+		}
+
+		// Scene verification
+		string currentScenePath = GetTree().CurrentScene.SceneFilePath;
+		if (!string.IsNullOrEmpty(Data.CurrentScene) && currentScenePath != Data.CurrentScene)
+		{
+			GD.Print("Scene mismatch detected. Current scene: " + currentScenePath + ", Saved scene: " + Data.CurrentScene + ". Loading saved scene.");
+			GetTree().ChangeSceneToFile(Data.CurrentScene);
+		}
+		else
+		{
+			GD.Print("Scene verification passed. Current scene matches saved scene: " + currentScenePath);
+		}
 	}
 
 	public void Update_Data_To_Save()
 	{
 		Data.CURRENT_Health = (int)Player_Healthbar.Health_Monitor.Value;
+		var playerBody = GetNode<CharacterBody2D>("/root/Player/Player_Body");
+		Data.Position = playerBody.GlobalPosition;
+		Data.CurrentScene = GetTree().CurrentScene.SceneFilePath;
+		GD.Print("Saving position: " + Data.Position);
+		GD.Print("Saving scene: " + Path.GetFileNameWithoutExtension(Data.CurrentScene));
 	}
 
 	/**------------------------------------------------------------------------------------------------
@@ -181,6 +218,13 @@ public partial class Player_Data_Autoload : Node
 		if (!Data.Alive)
 		{
 			GD.Print("Player is dead...");
+			// Hide the player
+			if (Player.Instance != null)
+			{
+				Player.Instance.Visible = false;
+			}
+			// Load GameOver scene
+			Scene_Manager.Instance.Change_Scene(e_Game_Scenes.GameOver);
 		}
 
 		else

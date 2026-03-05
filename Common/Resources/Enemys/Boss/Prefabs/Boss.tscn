@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c8p3ps4bx6scx"]
+[gd_scene load_steps=20 format=3 uid="uid://c8p3ps4bx6scx"]
 
 [ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/EnemyStats.cs" id="1_crln0"]
 [ext_resource type="Script" path="res://Common/Resources/Enemys/Boss/BossScripts/Boss.cs" id="1_o8ixh"]
@@ -15,14 +15,74 @@ light_mode = 1
 radius = 25.0
 height = 50.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jddlw"]
-size = Vector2(700, 700)
+[sub_resource type="Animation" id="Animation_4678s"]
+resource_name = "Boss_Attack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Boss_Sprite_Frames:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Boss_Attack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Boss_Sprite_Frames:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"EnableHitbox"
+}, {
+"args": [],
+"method": &"DisableHitbox"
+}, {
+"args": [],
+"method": &"EndAttack"
+}]
+}
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nes7m"]
-size = Vector2(100, 100)
+[sub_resource type="Animation" id="Animation_m51ya"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Boss_Sprite_Frames:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vvxve"]
-size = Vector2(70, 90)
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_orxhh"]
+_data = {
+"Boss_Attack": SubResource("Animation_4678s"),
+"RESET": SubResource("Animation_m51ya")
+}
 
 [sub_resource type="Animation" id="Animation_aioyk"]
 resource_name = "Hit_Flash"
@@ -30,7 +90,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Boss_Animation:material:shader_parameter/Enabled")
+tracks/0/path = NodePath("Boss_Sprite_Frames:material:shader_parameter/Enabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -45,7 +105,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Boss_Animation:material:shader_parameter/Enabled")
+tracks/0/path = NodePath("Boss_Sprite_Frames:material:shader_parameter/Enabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -61,13 +121,27 @@ _data = {
 "RESET": SubResource("Animation_pvuxr")
 }
 
-[node name="Boss" type="CharacterBody2D" node_paths=PackedStringArray("Animation_Sprite", "Agent", "DetectionArea", "AttackArea", "DamageArea", "HitFlash_Animation", "_stats", "PatrolPoints") groups=["boss", "enemy"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jddlw"]
+size = Vector2(700, 700)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nes7m"]
+size = Vector2(300, 300)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ooqcb"]
+size = Vector2(150, 150)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vvxve"]
+size = Vector2(70, 90)
+
+[node name="Boss" type="CharacterBody2D" node_paths=PackedStringArray("Animation_Sprite", "Animation_Player", "Agent", "DetectionArea", "AttackArea", "AttackHitbox", "AttackHitboxShape", "HitFlash_Animation", "_stats", "PatrolPoints") groups=["boss", "enemy"]]
 script = ExtResource("1_o8ixh")
-Animation_Sprite = NodePath("Boss_Animation")
+Animation_Sprite = NodePath("Boss_Sprite_Frames")
+Animation_Player = NodePath("Boss_Animation")
 Agent = NodePath("NavigationAgent2D")
 DetectionArea = NodePath("DetectionArea")
-AttackArea = NodePath("AttackArea")
-DamageArea = NodePath("Boss_Damage_Collider/Boss_Damage_Collider_Shape")
+AttackArea = NodePath("Attack_Detection_Area")
+AttackHitbox = NodePath("Attack_HitBox_Area")
+AttackHitboxShape = NodePath("Attack_HitBox_Area/CollisionShape2D")
 HitFlash_Animation = NodePath("HitFlash_Animation")
 _stats = NodePath("BossStats")
 PatrolPoints = []
@@ -118,33 +192,43 @@ debug_path_custom_line_width = 10.0
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_c08df")
 
-[node name="Boss_Animation" type="AnimatedSprite2D" parent="."]
+[node name="Boss_Sprite_Frames" type="AnimatedSprite2D" parent="."]
 z_index = 3
 material = ExtResource("3_ct2p3")
 sprite_frames = ExtResource("4_c6sry")
-animation = &"Boss_Pursuit"
+animation = &"Boss_Attack"
+frame = 1
 
-[node name="DetectionArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-shape = SubResource("RectangleShape2D_jddlw")
-
-[node name="AttackArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(-88.8, 0)
-shape = SubResource("RectangleShape2D_nes7m")
-
-[node name="Boss_Damage_Collider" type="Area2D" parent="." groups=["boss", "enemy"]]
-
-[node name="Boss_Damage_Collider_Shape" type="CollisionShape2D" parent="Boss_Damage_Collider"]
-unique_name_in_owner = true
-shape = SubResource("RectangleShape2D_vvxve")
+[node name="Boss_Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_orxhh")
+}
 
 [node name="HitFlash_Animation" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_bnh1q")
 }
 autoplay = "Hit_Flash"
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("RectangleShape2D_jddlw")
+
+[node name="Attack_Detection_Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Detection_Area"]
+shape = SubResource("RectangleShape2D_nes7m")
+
+[node name="Attack_HitBox_Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_HitBox_Area" groups=["enemy_attack"]]
+shape = SubResource("RectangleShape2D_ooqcb")
+
+[node name="Boss_Damage_Collider" type="Area2D" parent="." groups=["boss", "enemy"]]
+
+[node name="Boss_Damage_Collider_Shape" type="CollisionShape2D" parent="Boss_Damage_Collider"]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_vvxve")
 
 [connection signal="area_entered" from="Boss_Damage_Collider" to="." method="On_Boss_Damage_Collider_Area_Entered"]

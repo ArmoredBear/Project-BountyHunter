@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bqojx1gwnybpn"]
+[gd_scene load_steps=19 format=3 uid="uid://bqojx1gwnybpn"]
 
 [ext_resource type="Script" path="res://Common/Resources/Player/User Interface/UI_Scripts/Player_Healthbar_UI.cs" id="1_2042d"]
 [ext_resource type="Texture2D" uid="uid://crhqsrd1pob0e" path="res://Common/Resources/Player/User Interface/UI_Art/Health_Monitor.png" id="2_sfdbi"]
@@ -13,6 +13,7 @@
 [ext_resource type="Shader" uid="uid://clqxhllh4phgs" path="res://Common/Resources/Shaders/Healthbar_Shader.tres" id="10_rrm7i"]
 [ext_resource type="PackedScene" uid="uid://bmapv7sbodtuk" path="res://Common/Resources/Player/User Interface/Inventory/Inventory_UI.tscn" id="12_2ppih"]
 [ext_resource type="PackedScene" uid="uid://bya6ubil8kdvn" path="res://Common/Resources/Player/User Interface/Prefabs/DialogueUI.tscn" id="13_st3ur"]
+[ext_resource type="PackedScene" uid="uid://cjxskbpx8621o" path="res://Common/Resources/Player/User Interface/Prefabs/Player_Menu.tscn" id="14_87th5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vccdo"]
 shader = ExtResource("3_hcd7x")
@@ -155,3 +156,5 @@ visible = false
 
 [node name="DialogueUI" parent="." instance=ExtResource("13_st3ur")]
 visible = false
+
+[node name="Player_Menu" parent="." instance=ExtResource("14_87th5")]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dut0r5tgblmxo"
+path="res://.godot/imported/Vindsvept - The Youtube Collection - 67 Into the Mind's Eye, part one.ogg-f6b1d1a1b9f186eeb29beae17c24981e.oggvorbisstr"
+
+[deps]
+
+source_file="res://Common/Resources/SoundTracks/Vindsvept - The Youtube Collection - 67 Into the Mind's Eye, part one.ogg"
+dest_files=["res://.godot/imported/Vindsvept - The Youtube Collection - 67 Into the Mind's Eye, part one.ogg-f6b1d1a1b9f186eeb29beae17c24981e.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

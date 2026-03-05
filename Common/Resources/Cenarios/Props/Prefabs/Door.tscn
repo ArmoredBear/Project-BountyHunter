@@ -5,9 +5,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pqiei"]
 size = Vector2(200, 200)
 
-[node name="Door" type="Node2D" node_paths=PackedStringArray("Spawn", "Portal")]
+[node name="Door" type="Node2D" node_paths=PackedStringArray("Portal")]
 script = ExtResource("1_s8qdo")
-Spawn = NodePath("")
 Portal = NodePath("Portal")
 
 [node name="Portal" type="Area2D" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bswa5xld6wyiu"]
+[gd_scene load_steps=25 format=3 uid="uid://bswa5xld6wyiu"]
 
 [ext_resource type="PackedScene" uid="uid://cstb8svv5da71" path="res://Common/Resources/Player/PlayerPrefabs/QuickItems_List.tscn" id="1_v8mnl"]
 [ext_resource type="Script" path="res://Common/Resources/Player/PlayerScripts/Player.cs" id="2_gnjcu"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dxgt2i8511f4q" path="res://Common/Resources/Player/PlayerArt/Lighting/Player_Point_Light_Map.tres" id="9_5xv4b"]
 [ext_resource type="Script" path="res://Common/Resources/Player/PlayerScripts/PlayerStates/Attacking_State.cs" id="9_tafg2"]
 [ext_resource type="PackedScene" uid="uid://bqojx1gwnybpn" path="res://Common/Resources/Player/PlayerPrefabs/Player_UI.tscn" id="9_xt5uy"]
+[ext_resource type="AudioStream" uid="uid://b63wlq25hs8yd" path="res://Common/Resources/Sounds/SwordSwoosh.wav" id="10_ekcxg"]
 [ext_resource type="Script" path="res://Common/Resources/Player/PlayerScripts/PlayerStates/Evade_State.cs" id="10_ydvyn"]
 [ext_resource type="Texture2D" uid="uid://86173bnxxr3h" path="res://Common/Resources/Player/PlayerArt/LanternLight.png" id="11_8drmn"]
 [ext_resource type="Script" path="res://Common/Resources/Player/PlayerScripts/LightFlip.cs" id="11_imqv6"]
@@ -129,6 +130,11 @@ Player_body_P = NodePath("../..")
 unique_name_in_owner = true
 position = Vector2(269, -115.5)
 shape = SubResource("RectangleShape2D_hqqtb")
+
+[node name="Sword_Swoosh" type="AudioStreamPlayer2D" parent="Player_Body/Player_FSM/Attacking"]
+unique_name_in_owner = true
+stream = ExtResource("10_ekcxg")
+max_distance = 5000.0
 
 [node name="Evading" type="Node2D" parent="Player_Body/Player_FSM"]
 unique_name_in_owner = true
