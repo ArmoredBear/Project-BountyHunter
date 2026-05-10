@@ -61,7 +61,7 @@ public partial class Running_State : Player_State
 
     public override void Exit()
     {
-       
+        Player_Animation.Stop();
     }
 
     public override void Update(double delta)

@@ -109,7 +109,7 @@ public partial class Player_Data_Autoload : Node
 			GD.PrintErr("ERROR!! Instance of Player_Data_Autoload already exist!!");
 		}
 
-		Data = new Player_Data(100, 1000, 100, true, false, false, Vector2.Zero);
+		Data = new Player_Data(100, 500, 100, true, false, false, Vector2.Zero);
 		Player_Healthbar = GetNode<Player_Healthbar_UI>("/root/Player/Player_UI/Status/Health_Bar");
 
 
@@ -153,6 +153,8 @@ public partial class Player_Data_Autoload : Node
 
 	public void Update_Loaded_Data()
 	{
+		GD.Print("Loading health from save: " + Data.CURRENT_Health);
+		GD.Print("Loading stamina from save: " + Data.CURRENT_Stamina);
 		Player_Healthbar.Health_Monitor.Value = Data.CURRENT_Health;
 		Player_Healthbar.Lines.Value = Data.CURRENT_Health;
 		ShouldSetLoadedPosition = true;
@@ -187,11 +189,12 @@ public partial class Player_Data_Autoload : Node
 
 	public void Update_Data_To_Save()
 	{
-		Data.CURRENT_Health = (int)Player_Healthbar.Health_Monitor.Value;
 		var playerBody = GetNode<CharacterBody2D>("/root/Player/Player_Body");
 		Data.Position = playerBody.GlobalPosition;
 		Data.CurrentScene = GetTree().CurrentScene.SceneFilePath;
 		GD.Print("Saving position: " + Data.Position);
+		GD.Print("Saving health: " + Data.CURRENT_Health);
+		GD.Print("Saving stamina: " + Data.CURRENT_Stamina);
 		GD.Print("Saving scene: " + Path.GetFileNameWithoutExtension(Data.CurrentScene));
 	}
 

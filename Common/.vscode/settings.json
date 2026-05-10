@@ -1,0 +1,6 @@
+{
+    "codeBlast.particles.color": "rgb(255,255,255)",
+    "codeBlast.particles.shape": "fire",
+    "codeBlast.enabled": false,
+    "powermode.enabled": true
+}

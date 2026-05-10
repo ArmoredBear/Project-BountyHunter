@@ -53,20 +53,20 @@ public partial class Player_Staminabar_UI : TextureProgressBar
 	{
 		if (Input.IsActionPressed("Game_Pad_Run") && Check_Running())
 		{
-			Stamina_Bar.Value -= 1;
-			Player_Data_Autoload.Data.CURRENT_Stamina = (int)Stamina_Bar.Value;
+			Player_Data_Autoload.Data.CURRENT_Stamina = Mathf.Max(0, Player_Data_Autoload.Data.CURRENT_Stamina - 1);
+			Stamina_Bar.Value = Player_Data_Autoload.Data.CURRENT_Stamina;
 		}
 
 		else if (Input.IsActionPressed("Keyboard_Run") && Check_Running())
 		{
-			Stamina_Bar.Value -= 1;
-			Player_Data_Autoload.Data.CURRENT_Stamina = (int)Stamina_Bar.Value;
+			Player_Data_Autoload.Data.CURRENT_Stamina = Mathf.Max(0, Player_Data_Autoload.Data.CURRENT_Stamina - 1);
+			Stamina_Bar.Value = Player_Data_Autoload.Data.CURRENT_Stamina;
 		}
 
 		else
 		{
-			Stamina_Bar.Value += Stamina_Regen;
-			Player_Data_Autoload.Data.CURRENT_Stamina = (int)Stamina_Bar.Value;
+			Player_Data_Autoload.Data.CURRENT_Stamina = Mathf.Min(Player_Data_Autoload.Data.MAX_Stamina, Player_Data_Autoload.Data.CURRENT_Stamina + Stamina_Regen);
+			Stamina_Bar.Value = Player_Data_Autoload.Data.CURRENT_Stamina;
 		}
 	}
 

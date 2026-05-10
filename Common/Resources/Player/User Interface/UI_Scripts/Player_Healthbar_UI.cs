@@ -85,17 +85,7 @@ public partial class Player_Healthbar_UI : Control
 
     public void Change_Health(double _damage)
     {
-        double old_value = Lines.Value;
-        
-        if(_damage > 0)
-        {
-            Catch_Up_Change(Lines.Value, _damage);
-        }
-
-        else if(_damage < 0)
-        {
-            Catch_Up_Change(Health_Monitor.Value, _damage);
-        }
+        Catch_Up_Change(Player_Data_Autoload.Data.CURRENT_Health, _damage);
     }
 
     public void Catch_Up_Change(double value_to_change, double change_value)
@@ -103,11 +93,13 @@ public partial class Player_Healthbar_UI : Control
         var tween_lines = CreateTween();
         var tween_healthbar = CreateTween();
 
-        double _line_time = 1.0;
-        double _healthbar_time = 0.5;
+        double _line_time = 0.5;
+        double _healthbar_time = 0.25;
 
-        tween_lines.TweenProperty(Lines, "value", value_to_change - change_value, _line_time);
-        tween_healthbar.TweenProperty(Health_Monitor, "value", value_to_change - change_value,_healthbar_time);
+        double new_value = Player_Data_Autoload.Data.CURRENT_Health;
+
+        tween_lines.TweenProperty(Lines, "value", new_value, _line_time);
+        tween_healthbar.TweenProperty(Health_Monitor, "value", new_value, _healthbar_time);
     }
 
 

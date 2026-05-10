@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bqojx1gwnybpn"]
+[gd_scene load_steps=21 format=3 uid="uid://bqojx1gwnybpn"]
 
 [ext_resource type="Script" path="res://Common/Resources/Player/User Interface/UI_Scripts/Player_Healthbar_UI.cs" id="1_2042d"]
 [ext_resource type="Texture2D" uid="uid://crhqsrd1pob0e" path="res://Common/Resources/Player/User Interface/UI_Art/Health_Monitor.png" id="2_sfdbi"]
@@ -6,7 +6,9 @@
 [ext_resource type="Shader" uid="uid://bgry4vid31342" path="res://Common/Resources/Shaders/Healthlines_Shader.tres" id="3_hcd7x"]
 [ext_resource type="Texture2D" uid="uid://dsi8vnmxm1kh4" path="res://Common/Resources/Player/User Interface/UI_Art/Health_Lines.png" id="4_7hy6p"]
 [ext_resource type="Texture2D" uid="uid://csuln21ai4cjl" path="res://Common/Resources/Player/User Interface/UI_Art/Vignette.png" id="4_avq2p"]
+[ext_resource type="FontFile" uid="uid://bnnwxabllsohk" path="res://Common/Resources/Player/User Interface/Fonts/Springmarch/springmarch.roman.otf" id="7_xceuv"]
 [ext_resource type="Script" path="res://Common/Resources/Player/User Interface/UI_Scripts/Player_Staminabar_UI.cs" id="8_8jq05"]
+[ext_resource type="Script" path="res://Common/Resources/Player/User Interface/UI_Scripts/Health_Percent.cs" id="8_egc6g"]
 [ext_resource type="Shader" uid="uid://cv66le7seyjq2" path="res://Common/Resources/Shaders/Staminabar_Shader.tres" id="8_p2cva"]
 [ext_resource type="Texture2D" uid="uid://y2j0ijuw8uh4" path="res://Common/Resources/Player/User Interface/UI_Art/Armor_Bar.png" id="9_2ool3"]
 [ext_resource type="Texture2D" uid="uid://owe8gguuup3t" path="res://Common/Resources/Player/User Interface/UI_Art/StaminaFogTexture.png" id="9_e6ycs"]
@@ -66,6 +68,38 @@ offset_bottom = 115.0
 texture = ExtResource("3_aoo3p")
 expand_mode = 1
 
+[node name="Background2" type="TextureRect" parent="Status/Health_Bar/Background"]
+modulate = Color(0.813258, 0.813258, 0.813258, 1)
+layout_mode = 1
+offset_left = 425.0
+offset_right = 526.0
+offset_bottom = 40.0
+texture = ExtResource("3_aoo3p")
+expand_mode = 1
+flip_h = true
+flip_v = true
+
+[node name="Health_Value_Percent" type="RichTextLabel" parent="Status/Health_Bar/Background/Background2"]
+self_modulate = Color(0, 1.5, 1, 1)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -16.5
+offset_bottom = 16.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("7_xceuv")
+theme_override_font_sizes/normal_font_size = 27
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+script = ExtResource("8_egc6g")
+
 [node name="Lines" type="TextureProgressBar" parent="Status/Health_Bar"]
 material = SubResource("ShaderMaterial_vccdo")
 layout_mode = 1
@@ -111,8 +145,8 @@ offset_top = 100.0
 offset_right = 450.0
 offset_bottom = 120.0
 grow_vertical = 2
-max_value = 1000.0
-value = 850.0
+max_value = 500.0
+value = 500.0
 nine_patch_stretch = true
 stretch_margin_left = 3
 stretch_margin_top = 3
@@ -158,3 +192,4 @@ visible = false
 visible = false
 
 [node name="Player_Menu" parent="." instance=ExtResource("14_87th5")]
+visible = false

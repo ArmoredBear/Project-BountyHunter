@@ -27,11 +27,11 @@ public partial class Player : CharacterBody2D
 	private bool _is_running;
 	private bool _isFacingRight = true;
 
-    
+
 	#endregion
 	//!---------------------------------------------------------------------------------------------------------
 
-	
+
 
 	//!---------------------------------------------------------------------------------------------------------
 	#region Properties
@@ -42,7 +42,7 @@ public partial class Player : CharacterBody2D
 	public Vector2 Game_Pad_Directional_Input_Vector
 	{
 		get
-		{
+	  {
 			return game_pad_directional_input_vector;
 
 		}
@@ -100,7 +100,7 @@ public partial class Player : CharacterBody2D
 
 	//[Signal]
 	//public delegate void Player_State_Changer_EventHandler();
-	
+
 	#endregion
 	//!---------------------------------------------------------------------------------------------------------
 
@@ -113,7 +113,7 @@ public partial class Player : CharacterBody2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		if(Instance == null)
+		if (Instance == null)
 		{
 			Instance = this;
 		}
@@ -131,17 +131,17 @@ public partial class Player : CharacterBody2D
 
 		Player_State_P = Player_States.Idle;
 
-		if(GetTree().CurrentScene.Name == "MainMenu")
+		if (GetTree().CurrentScene.Name == "MainMenu")
 		{
 			this.Visible = false;
 		}
 	}
 
-    public override void _Process(double delta)
-    {
-        
+	public override void _Process(double delta)
+	{
 
-    }
+
+	}
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -190,11 +190,11 @@ public partial class Player : CharacterBody2D
 	//!---------------------------------------------------------------------------------------------------------
 	#region Methods and Interfaces
 	//!---------------------------------------------------------------------------------------------------------
-	
+
 	public void Setup_Player_Position(Vector2 _position)
 	{
 		this.GlobalPosition = _position;
-    }
+	}
 
 	#endregion
 	//!---------------------------------------------------------------------------------------------------------

@@ -41,7 +41,6 @@ public partial class Walking_State : Player_State
   public override void Enter()
   {
 		Player_Animation.FlipH = false;
-		
   }
 
     public override void Exit()
@@ -356,7 +355,7 @@ public partial class Walking_State : Player_State
 	{
 		if (Input.IsActionPressed("Game_Pad_Run") || Input.IsActionPressed("Keyboard_Run"))
 		{
-			if (Player_Data_Autoload.Data.CURRENT_Stamina > 0)
+			if (Player_Data_Autoload.Data.CURRENT_Stamina >= 50)
 			{
 				Player.Instance.Player_State_P = Player_States.Running;
 				Player_FSM_P.TransitionToState("Running");
