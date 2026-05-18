@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://ccqp2wbju4l36"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://ccqp2wbju4l36"]
 
 [ext_resource type="Shader" uid="uid://c3hlrawnaxxeu" path="res://Common/Resources/Shaders/CenarioForest_Shader.tres" id="1_m2e4h"]
 [ext_resource type="Texture2D" uid="uid://e3fruxexp0bv" path="res://Common/Resources/Cenarios/CenarioNormalMaps/Flowers02_n.png" id="2_3pwro"]

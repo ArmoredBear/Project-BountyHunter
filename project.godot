@@ -12,7 +12,8 @@ config_version=5
 
 config/name="Project Bounty Hunter"
 run/main_scene="res://Common/MainScenes/Main_Menu.tscn"
-config/features=PackedStringArray("4.3", "C#", "Forward Plus")
+config/features=PackedStringArray("4.6", "C#", "Forward Plus")
+run/max_fps=60
 boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="res://icon.svg"
 boot_splash/minimum_display_time=5000
@@ -30,13 +31,9 @@ SaveLoadControl="*res://Common/Resources/General Scritps/Save_Load_Control.cs"
 
 window/size/viewport_width=2560
 window/size/viewport_height=1080
-window/size/mode=3
-window/size/initial_position_type=0
-window/size/borderless=true
 window/size/extend_to_title=true
 window/stretch/mode="viewport"
 window/per_pixel_transparency/allowed=true
-display_server/driver.linuxbsd="wayland"
 
 [dotnet]
 
@@ -189,6 +186,25 @@ Menu={
 ]
 }
 
+[internationalization]
+
+rendering/text_driver="ICU / HarfBuzz / Graphite (Built-in)"
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_navigation/layer_1="Enemies"
+2d_physics/layer_2="Enemies"
+2d_navigation/layer_2="Bosses"
+2d_physics/layer_3="Bosses"
+2d_physics/layer_4="Ground"
+2d_physics/layer_5="Walls"
+2d_physics/layer_6="NavChunks"
+
+[navigation]
+
+2d/merge_rasterizer_cell_scale=4
+
 [rendering]
 
 occlusion_culling/jitter_projection=false
@@ -200,11 +216,11 @@ textures/default_filters/anisotropic_filtering_level=4
 camera/depth_of_field/depth_of_field_bokeh_shape=0
 environment/ssao/quality=3
 environment/ssil/quality=3
+viewport/hdr_2d=true
 textures/decals/filter=0
 textures/light_projectors/filter=0
-environment/screen_space_reflection/roughness_quality=3
 environment/subsurface_scattering/subsurface_scattering_quality=3
-viewport/hdr_2d=true
 2d/snap/snap_2d_transforms_to_pixel=true
 2d/sdf/scale=0
+environment/screen_space_reflection/roughness_quality=3
 viewport/size/initial_position_type=1

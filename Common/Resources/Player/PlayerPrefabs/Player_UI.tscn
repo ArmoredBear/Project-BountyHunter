@@ -1,14 +1,14 @@
-[gd_scene load_steps=21 format=3 uid="uid://bqojx1gwnybpn"]
+[gd_scene format=3 uid="uid://bqojx1gwnybpn"]
 
-[ext_resource type="Script" path="res://Common/Resources/Player/User Interface/UI_Scripts/Player_Healthbar_UI.cs" id="1_2042d"]
+[ext_resource type="Script" uid="uid://d0n7lbhu0w7at" path="res://Common/Resources/Player/User Interface/UI_Scripts/Player_Healthbar_UI.cs" id="1_2042d"]
 [ext_resource type="Texture2D" uid="uid://crhqsrd1pob0e" path="res://Common/Resources/Player/User Interface/UI_Art/Health_Monitor.png" id="2_sfdbi"]
 [ext_resource type="Texture2D" uid="uid://dl8x3gdfx7ffe" path="res://Common/Resources/Player/User Interface/UI_Art/Healthbar_Background.png" id="3_aoo3p"]
 [ext_resource type="Shader" uid="uid://bgry4vid31342" path="res://Common/Resources/Shaders/Healthlines_Shader.tres" id="3_hcd7x"]
 [ext_resource type="Texture2D" uid="uid://dsi8vnmxm1kh4" path="res://Common/Resources/Player/User Interface/UI_Art/Health_Lines.png" id="4_7hy6p"]
 [ext_resource type="Texture2D" uid="uid://csuln21ai4cjl" path="res://Common/Resources/Player/User Interface/UI_Art/Vignette.png" id="4_avq2p"]
 [ext_resource type="FontFile" uid="uid://bnnwxabllsohk" path="res://Common/Resources/Player/User Interface/Fonts/Springmarch/springmarch.roman.otf" id="7_xceuv"]
-[ext_resource type="Script" path="res://Common/Resources/Player/User Interface/UI_Scripts/Player_Staminabar_UI.cs" id="8_8jq05"]
-[ext_resource type="Script" path="res://Common/Resources/Player/User Interface/UI_Scripts/Health_Percent.cs" id="8_egc6g"]
+[ext_resource type="Script" uid="uid://bh2w4mkx0024f" path="res://Common/Resources/Player/User Interface/UI_Scripts/Player_Staminabar_UI.cs" id="8_8jq05"]
+[ext_resource type="Script" uid="uid://cwidyxrfc27sl" path="res://Common/Resources/Player/User Interface/UI_Scripts/Health_Percent.cs" id="8_egc6g"]
 [ext_resource type="Shader" uid="uid://cv66le7seyjq2" path="res://Common/Resources/Shaders/Staminabar_Shader.tres" id="8_p2cva"]
 [ext_resource type="Texture2D" uid="uid://y2j0ijuw8uh4" path="res://Common/Resources/Player/User Interface/UI_Art/Armor_Bar.png" id="9_2ool3"]
 [ext_resource type="Texture2D" uid="uid://owe8gguuup3t" path="res://Common/Resources/Player/User Interface/UI_Art/StaminaFogTexture.png" id="9_e6ycs"]
@@ -23,8 +23,8 @@ shader = ExtResource("3_hcd7x")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cp1x7"]
 shader = ExtResource("10_rrm7i")
 shader_parameter/Move_Speed = Vector2(-0.2, 0)
-shader_parameter/Fade_Speed = -1.0
 shader_parameter/Basic_Texture = ExtResource("2_sfdbi")
+shader_parameter/Fade_Speed = -1.0
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_ggy1h"]
 
@@ -34,9 +34,9 @@ shader_parameter/FloatParameter = 5.0
 shader_parameter/Move_Speed = Vector2(0.2, 0)
 shader_parameter/Texture2D = ExtResource("9_e6ycs")
 
-[node name="Player_UI" type="CanvasLayer"]
+[node name="Player_UI" type="CanvasLayer" unique_id=1934308656]
 
-[node name="Status" type="Control" parent="."]
+[node name="Status" type="Control" parent="." unique_id=1059680170]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -40.0
@@ -44,7 +44,7 @@ offset_top = 15.0
 offset_right = 695.0
 offset_bottom = 235.0
 
-[node name="Health_Bar" type="Control" parent="Status"]
+[node name="Health_Bar" type="Control" parent="Status" unique_id=1320944934]
 texture_filter = 2
 texture_repeat = 2
 layout_mode = 1
@@ -58,7 +58,7 @@ offset_right = 550.31
 offset_bottom = 184.96
 script = ExtResource("1_2042d")
 
-[node name="Background" type="TextureRect" parent="Status/Health_Bar"]
+[node name="Background" type="TextureRect" parent="Status/Health_Bar" unique_id=226683421]
 modulate = Color(0.813258, 0.813258, 0.813258, 1)
 layout_mode = 1
 offset_left = 5.0
@@ -68,7 +68,7 @@ offset_bottom = 115.0
 texture = ExtResource("3_aoo3p")
 expand_mode = 1
 
-[node name="Background2" type="TextureRect" parent="Status/Health_Bar/Background"]
+[node name="Background2" type="TextureRect" parent="Status/Health_Bar/Background" unique_id=691333806]
 modulate = Color(0.813258, 0.813258, 0.813258, 1)
 layout_mode = 1
 offset_left = 425.0
@@ -79,7 +79,7 @@ expand_mode = 1
 flip_h = true
 flip_v = true
 
-[node name="Health_Value_Percent" type="RichTextLabel" parent="Status/Health_Bar/Background/Background2"]
+[node name="Health_Value_Percent" type="RichTextLabel" parent="Status/Health_Bar/Background/Background2" unique_id=1656673986]
 self_modulate = Color(0, 1.5, 1, 1)
 layout_mode = 1
 anchors_preset = 14
@@ -100,7 +100,7 @@ deselect_on_focus_loss_enabled = false
 drag_and_drop_selection_enabled = false
 script = ExtResource("8_egc6g")
 
-[node name="Lines" type="TextureProgressBar" parent="Status/Health_Bar"]
+[node name="Lines" type="TextureProgressBar" parent="Status/Health_Bar" unique_id=1417704689]
 material = SubResource("ShaderMaterial_vccdo")
 layout_mode = 1
 anchors_preset = 15
@@ -118,7 +118,7 @@ nine_patch_stretch = true
 texture_progress = ExtResource("4_7hy6p")
 tint_progress = Color(0, 1, 0.501961, 1)
 
-[node name="Health_Monitor" type="TextureProgressBar" parent="Status/Health_Bar"]
+[node name="Health_Monitor" type="TextureProgressBar" parent="Status/Health_Bar" unique_id=1187245404]
 texture_filter = 1
 texture_repeat = 2
 material = SubResource("ShaderMaterial_cp1x7")
@@ -135,7 +135,7 @@ tint_under = Color(1, 1, 1, 0)
 tint_over = Color(1, 1, 1, 0)
 tint_progress = Color(0, 1, 0.501961, 1)
 
-[node name="Stamina_Bar" type="TextureProgressBar" parent="Status" node_paths=PackedStringArray("Stamina_Bar")]
+[node name="Stamina_Bar" type="TextureProgressBar" parent="Status" unique_id=1279622893 node_paths=PackedStringArray("Stamina_Bar")]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_xrbfx")
 layout_mode = 1
@@ -160,7 +160,7 @@ tint_progress = Color(0.945312, 1, 0, 1)
 script = ExtResource("8_8jq05")
 Stamina_Bar = NodePath(".")
 
-[node name="Vignette" type="TextureRect" parent="Status"]
+[node name="Vignette" type="TextureRect" parent="Status" unique_id=1573125909]
 layout_mode = 0
 offset_left = 50.0
 offset_top = 10.0
@@ -169,7 +169,7 @@ offset_bottom = 130.0
 texture = ExtResource("4_avq2p")
 expand_mode = 1
 
-[node name="Armor_Bar" type="TextureProgressBar" parent="Status"]
+[node name="Armor_Bar" type="TextureProgressBar" parent="Status" unique_id=1896011648]
 visible = false
 self_modulate = Color(0.713726, 0.713726, 0.713726, 1)
 layout_mode = 0
@@ -185,11 +185,11 @@ stretch_margin_right = 50
 stretch_margin_bottom = 5
 texture_progress = ExtResource("9_2ool3")
 
-[node name="Inventory_UI" parent="." instance=ExtResource("12_2ppih")]
+[node name="Inventory_UI" parent="." unique_id=1074034316 instance=ExtResource("12_2ppih")]
 visible = false
 
-[node name="DialogueUI" parent="." instance=ExtResource("13_st3ur")]
+[node name="DialogueUI" parent="." unique_id=1201599085 instance=ExtResource("13_st3ur")]
 visible = false
 
-[node name="Player_Menu" parent="." instance=ExtResource("14_87th5")]
+[node name="Player_Menu" parent="." unique_id=1995535612 instance=ExtResource("14_87th5")]
 visible = false

@@ -1,6 +1,6 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dd0284oj67vwv"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dd0284oj67vwv"]
 
-[ext_resource type="Shader" path="res://Common/Resources/Shaders/GodRays.gdshader" id="1_0qbkf"]
+[ext_resource type="Shader" uid="uid://dcfdn4xv1towm" path="res://Common/Resources/Shaders/GodRays.gdshader" id="1_0qbkf"]
 
 [resource]
 shader = ExtResource("1_0qbkf")

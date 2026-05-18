@@ -1,23 +1,24 @@
-[gd_scene load_steps=25 format=3 uid="uid://bswa5xld6wyiu"]
+[gd_scene format=3 uid="uid://bswa5xld6wyiu"]
 
 [ext_resource type="PackedScene" uid="uid://cstb8svv5da71" path="res://Common/Resources/Player/PlayerPrefabs/QuickItems_List.tscn" id="1_v8mnl"]
-[ext_resource type="Script" path="res://Common/Resources/Player/PlayerScripts/Player.cs" id="2_gnjcu"]
-[ext_resource type="Script" path="res://Common/Resources/Player/PlayerScripts/Player_Damage.cs" id="2_qgaeo"]
+[ext_resource type="Script" uid="uid://dy10gqs0lmnw0" path="res://Common/Resources/Player/PlayerScripts/Player.cs" id="2_gnjcu"]
+[ext_resource type="Script" uid="uid://bflfe8ughjr1n" path="res://Common/Resources/Player/PlayerScripts/Player_Damage.cs" id="2_qgaeo"]
 [ext_resource type="SpriteFrames" uid="uid://cn2pxpvys21bk" path="res://Common/Resources/Player/PlayerPrefabs/PlayerAnimationSprites.tres" id="3_pf8kc"]
-[ext_resource type="Script" path="res://Common/Resources/Player/PlayerScripts/Player_FSM.cs" id="4_1x6g7"]
+[ext_resource type="Script" uid="uid://bg313y4mcjcol" path="res://Common/Resources/Player/PlayerScripts/Player_FSM.cs" id="4_1x6g7"]
 [ext_resource type="Shader" uid="uid://daduoont25u0w" path="res://Common/Resources/Shaders/PlayerShader.tres" id="4_w7j57"]
-[ext_resource type="Script" path="res://Common/Resources/Player/PlayerScripts/PlayerStates/Idle_State.cs" id="6_aasnl"]
-[ext_resource type="Script" path="res://Common/Resources/Player/PlayerScripts/PlayerStates/Walking_State.cs" id="7_wntvl"]
-[ext_resource type="Script" path="res://Common/Resources/Player/PlayerScripts/PlayerStates/Running_State.cs" id="8_xs526"]
+[ext_resource type="Script" uid="uid://cukvj1t0c6o4m" path="res://Common/Resources/Player/PlayerScripts/PlayerStates/Idle_State.cs" id="6_aasnl"]
+[ext_resource type="Script" uid="uid://bcx5wiecx3slb" path="res://Common/Resources/Player/PlayerScripts/PlayerStates/Walking_State.cs" id="7_wntvl"]
+[ext_resource type="Script" uid="uid://blkrgn1ls4go7" path="res://Common/Resources/Player/PlayerScripts/PlayerStates/Running_State.cs" id="8_xs526"]
 [ext_resource type="Texture2D" uid="uid://1knoiw4xlgsj" path="res://Common/Resources/Player/PlayerArt/Lighting/Lantern_LightMap.png" id="9_5p6cd"]
 [ext_resource type="Texture2D" uid="uid://dxgt2i8511f4q" path="res://Common/Resources/Player/PlayerArt/Lighting/Player_Point_Light_Map.tres" id="9_5xv4b"]
-[ext_resource type="Script" path="res://Common/Resources/Player/PlayerScripts/PlayerStates/Attacking_State.cs" id="9_tafg2"]
+[ext_resource type="Script" uid="uid://ct2uv6ugt6d7d" path="res://Common/Resources/Player/PlayerScripts/PlayerStates/Attacking_State.cs" id="9_tafg2"]
 [ext_resource type="PackedScene" uid="uid://bqojx1gwnybpn" path="res://Common/Resources/Player/PlayerPrefabs/Player_UI.tscn" id="9_xt5uy"]
 [ext_resource type="AudioStream" uid="uid://b63wlq25hs8yd" path="res://Common/Resources/Sounds/SwordSwoosh.wav" id="10_ekcxg"]
-[ext_resource type="Script" path="res://Common/Resources/Player/PlayerScripts/PlayerStates/Evade_State.cs" id="10_ydvyn"]
+[ext_resource type="Script" uid="uid://difvpd80ki2bp" path="res://Common/Resources/Player/PlayerScripts/PlayerStates/Evade_State.cs" id="10_ydvyn"]
 [ext_resource type="Texture2D" uid="uid://86173bnxxr3h" path="res://Common/Resources/Player/PlayerArt/LanternLight.png" id="11_8drmn"]
-[ext_resource type="Script" path="res://Common/Resources/Player/PlayerScripts/LightFlip.cs" id="11_imqv6"]
-[ext_resource type="Script" path="res://Common/Resources/Player/PlayerScripts/PlayerInventory/PlayerInventory.cs" id="17_ti6mo"]
+[ext_resource type="Script" uid="uid://oih788ormwbd" path="res://Common/Resources/Player/PlayerScripts/LightFlip.cs" id="11_imqv6"]
+[ext_resource type="Script" uid="uid://chd2ipukpg7hs" path="res://Common/Resources/Player/PlayerScripts/Performance/NavLayerDetector.cs" id="16_wseaa"]
+[ext_resource type="Script" uid="uid://cxb8yevokda33" path="res://Common/Resources/Player/PlayerScripts/PlayerInventory/PlayerInventory.cs" id="17_ti6mo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8vbci"]
 radius = 30.0
@@ -38,37 +39,41 @@ size = Vector2(748, 663)
 blend_mode = 1
 light_mode = 1
 
-[node name="Player" type="Node2D" groups=["player"]]
+[sub_resource type="CircleShape2D" id="CircleShape2D_srvgw"]
+radius = 5000.0
+
+[node name="Player" type="Node2D" unique_id=331921857 groups=["player"]]
 z_index = 2
 
-[node name="Player_Body" type="CharacterBody2D" parent="." groups=["player"]]
+[node name="Player_Body" type="CharacterBody2D" parent="." unique_id=316767381 groups=["player"]]
 unique_name_in_owner = true
 light_mask = 3
 visibility_layer = 3
+collision_mask = 16
 motion_mode = 1
 platform_on_leave = 2
 script = ExtResource("2_gnjcu")
 
-[node name="Player_Physics_Collider" type="CollisionShape2D" parent="Player_Body"]
+[node name="Player_Physics_Collider" type="CollisionShape2D" parent="Player_Body" unique_id=1887697034]
 position = Vector2(0, -20)
 rotation = 1.5708
 shape = SubResource("CircleShape2D_8vbci")
 
-[node name="Player_Damage_Collider" type="Area2D" parent="Player_Body" groups=["player"]]
+[node name="Player_Damage_Collider" type="Area2D" parent="Player_Body" unique_id=1570756071 groups=["player"]]
 script = ExtResource("2_qgaeo")
 
-[node name="Player_Damage_Collider_Shape" type="CollisionShape2D" parent="Player_Body/Player_Damage_Collider" groups=["player"]]
+[node name="Player_Damage_Collider_Shape" type="CollisionShape2D" parent="Player_Body/Player_Damage_Collider" unique_id=1370349704 groups=["player"]]
 position = Vector2(0, -190)
 shape = SubResource("RectangleShape2D_7urto")
 
-[node name="Player_Interaction_Collider" type="Area2D" parent="Player_Body"]
+[node name="Player_Interaction_Collider" type="Area2D" parent="Player_Body" unique_id=1591984532]
 position = Vector2(255, 0)
 
-[node name="Player_Interaction_Collider_Shape" type="CollisionShape2D" parent="Player_Body/Player_Interaction_Collider"]
+[node name="Player_Interaction_Collider_Shape" type="CollisionShape2D" parent="Player_Body/Player_Interaction_Collider" unique_id=496494262]
 position = Vector2(-41, -201)
 shape = SubResource("RectangleShape2D_1vwxm")
 
-[node name="Camera2D" type="Camera2D" parent="Player_Body"]
+[node name="Camera2D" type="Camera2D" parent="Player_Body" unique_id=1718478064]
 texture_filter = 1
 zoom = Vector2(0.45, 0.45)
 limit_smoothed = true
@@ -79,12 +84,12 @@ drag_vertical_enabled = true
 editor_draw_limits = true
 editor_draw_drag_margin = true
 
-[node name="Player_FSM" type="Node2D" parent="Player_Body"]
+[node name="Player_FSM" type="Node2D" parent="Player_Body" unique_id=27612971]
 unique_name_in_owner = true
 script = ExtResource("4_1x6g7")
 _initial_state = NodePath("Idle")
 
-[node name="Player_Animation" type="AnimatedSprite2D" parent="Player_Body/Player_FSM"]
+[node name="Player_Animation" type="AnimatedSprite2D" parent="Player_Body/Player_FSM" unique_id=826969494]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_6ctx4")
 position = Vector2(0, -185)
@@ -94,28 +99,28 @@ animation = &"Light_Attack"
 frame = 12
 frame_progress = 1.0
 
-[node name="Idle" type="Node2D" parent="Player_Body/Player_FSM" node_paths=PackedStringArray("Player", "Player_FSM_P", "Player_body_P")]
+[node name="Idle" type="Node2D" parent="Player_Body/Player_FSM" unique_id=232838359 node_paths=PackedStringArray("Player", "Player_FSM_P", "Player_body_P")]
 unique_name_in_owner = true
 script = ExtResource("6_aasnl")
 Player = NodePath("../..")
 Player_FSM_P = NodePath("..")
 Player_body_P = NodePath("../..")
 
-[node name="Walking" type="Node2D" parent="Player_Body/Player_FSM" node_paths=PackedStringArray("Player", "Player_FSM_P", "Player_body_P")]
+[node name="Walking" type="Node2D" parent="Player_Body/Player_FSM" unique_id=1763038511 node_paths=PackedStringArray("Player", "Player_FSM_P", "Player_body_P")]
 unique_name_in_owner = true
 script = ExtResource("7_wntvl")
 Player = NodePath("../..")
 Player_FSM_P = NodePath("..")
 Player_body_P = NodePath("../..")
 
-[node name="Running" type="Node2D" parent="Player_Body/Player_FSM" node_paths=PackedStringArray("Player", "Player_FSM_P", "Player_body_P")]
+[node name="Running" type="Node2D" parent="Player_Body/Player_FSM" unique_id=1373860911 node_paths=PackedStringArray("Player", "Player_FSM_P", "Player_body_P")]
 unique_name_in_owner = true
 script = ExtResource("8_xs526")
 Player = NodePath("../..")
 Player_FSM_P = NodePath("..")
 Player_body_P = NodePath("../..")
 
-[node name="Attacking" type="Node2D" parent="Player_Body/Player_FSM" node_paths=PackedStringArray("Player_Animation", "Attack_Collider", "Player", "Player_FSM_P", "Player_body_P")]
+[node name="Attacking" type="Node2D" parent="Player_Body/Player_FSM" unique_id=1715444886 node_paths=PackedStringArray("Player_Animation", "Attack_Collider", "Player", "Player_FSM_P", "Player_body_P")]
 unique_name_in_owner = true
 script = ExtResource("9_tafg2")
 Player_Animation = NodePath("../Player_Animation")
@@ -124,23 +129,23 @@ Player = NodePath("../..")
 Player_FSM_P = NodePath("..")
 Player_body_P = NodePath("../..")
 
-[node name="Player_Attack_Collider" type="Area2D" parent="Player_Body/Player_FSM/Attacking" groups=["player_attack"]]
+[node name="Player_Attack_Collider" type="Area2D" parent="Player_Body/Player_FSM/Attacking" unique_id=853087664 groups=["player_attack"]]
 
-[node name="Player_Attack_Collider_Shape" type="CollisionShape2D" parent="Player_Body/Player_FSM/Attacking/Player_Attack_Collider" groups=["player_attack"]]
+[node name="Player_Attack_Collider_Shape" type="CollisionShape2D" parent="Player_Body/Player_FSM/Attacking/Player_Attack_Collider" unique_id=745705889 groups=["player_attack"]]
 unique_name_in_owner = true
 position = Vector2(269, -115.5)
 shape = SubResource("RectangleShape2D_hqqtb")
 
-[node name="Sword_Swoosh" type="AudioStreamPlayer2D" parent="Player_Body/Player_FSM/Attacking"]
+[node name="Sword_Swoosh" type="AudioStreamPlayer2D" parent="Player_Body/Player_FSM/Attacking" unique_id=1616897543]
 unique_name_in_owner = true
 stream = ExtResource("10_ekcxg")
 max_distance = 5000.0
 
-[node name="Evading" type="Node2D" parent="Player_Body/Player_FSM"]
+[node name="Evading" type="Node2D" parent="Player_Body/Player_FSM" unique_id=1284065888]
 unique_name_in_owner = true
 script = ExtResource("10_ydvyn")
 
-[node name="PointLight2D_Light" type="PointLight2D" parent="Player_Body"]
+[node name="PointLight2D_Light" type="PointLight2D" parent="Player_Body" unique_id=53513344]
 light_mask = 3
 visibility_layer = 3
 color = Color(0.946045, 1, 0.46875, 1)
@@ -154,7 +159,7 @@ texture = ExtResource("9_5xv4b")
 texture_scale = 4.0
 height = 30.0
 
-[node name="SpotLight2D_w_Shadows" type="PointLight2D" parent="Player_Body"]
+[node name="SpotLight2D_w_Shadows" type="PointLight2D" parent="Player_Body" unique_id=88837110]
 light_mask = 3
 visibility_layer = 3
 position = Vector2(20, -245)
@@ -169,7 +174,7 @@ texture_scale = 2.0
 height = 60.0
 script = ExtResource("11_imqv6")
 
-[node name="Lantern_Light" type="Sprite2D" parent="Player_Body/SpotLight2D_w_Shadows"]
+[node name="Lantern_Light" type="Sprite2D" parent="Player_Body/SpotLight2D_w_Shadows" unique_id=795227865]
 modulate = Color(1, 1, 1, 0.980392)
 self_modulate = Color(0.952941, 1, 0.694118, 0.0117647)
 material = SubResource("CanvasItemMaterial_j0e33")
@@ -177,12 +182,19 @@ scale = Vector2(0.75, 1.25)
 texture = ExtResource("11_8drmn")
 offset = Vector2(900, 0)
 
-[node name="Player_UI" parent="." instance=ExtResource("9_xt5uy")]
+[node name="NavigationChunkDetector" type="Area2D" parent="Player_Body" unique_id=2105436205]
+collision_mask = 32
+script = ExtResource("16_wseaa")
+
+[node name="Navigation_Collider_Detector" type="CollisionShape2D" parent="Player_Body/NavigationChunkDetector" unique_id=1319378981]
+shape = SubResource("CircleShape2D_srvgw")
+
+[node name="Player_UI" parent="." unique_id=1462367415 instance=ExtResource("9_xt5uy")]
 unique_name_in_owner = true
 
-[node name="Player_Items" parent="." instance=ExtResource("1_v8mnl")]
+[node name="Player_Items" parent="." unique_id=364953077 instance=ExtResource("1_v8mnl")]
 
-[node name="Inventory" type="Node" parent="."]
+[node name="Inventory" type="Node" parent="." unique_id=431099094]
 script = ExtResource("17_ti6mo")
 
 [connection signal="area_entered" from="Player_Body/Player_Damage_Collider" to="Player_Body/Player_Damage_Collider" method="On_Player_Damage_Collider_Area_Entered"]

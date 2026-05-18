@@ -1,4 +1,4 @@
-[gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://d22l4cyvaq4e"]
+[gd_resource type="CanvasTexture" format=3 uid="uid://d22l4cyvaq4e"]
 
 [ext_resource type="Texture2D" uid="uid://i4nf52flf60m" path="res://Common/Resources/Enemys/Boss/Animation/BossAttack.png" id="1_ub4lu"]
 [ext_resource type="Texture2D" uid="uid://d2uhlibbevdmh" path="res://Common/Resources/Enemys/Boss/NormalMaps/BossAttack_n.png" id="2_7vcia"]

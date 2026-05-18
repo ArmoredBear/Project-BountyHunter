@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://cstb8svv5da71"]
 
-[node name="Player_Quick_Items" type="Node"]
+[node name="Player_Quick_Items" type="Node" unique_id=1247833697]
 
-[node name="Fixed_Items" type="Node" parent="."]
+[node name="Fixed_Items" type="Node" parent="." unique_id=959315512]
 
-[node name="Elixir_Tank" type="Node" parent="Fixed_Items"]
+[node name="Elixir_Tank" type="Node" parent="Fixed_Items" unique_id=391236751]
 
-[node name="Energy_Tank" type="Node" parent="Fixed_Items"]
+[node name="Energy_Tank" type="Node" parent="Fixed_Items" unique_id=770603502]
 
-[node name="Quick_Items" type="Node" parent="."]
+[node name="Quick_Items" type="Node" parent="." unique_id=1435222491]
 
-[node name="Usable_Item" type="Node" parent="Quick_Items"]
+[node name="Usable_Item" type="Node" parent="Quick_Items" unique_id=1597143582]

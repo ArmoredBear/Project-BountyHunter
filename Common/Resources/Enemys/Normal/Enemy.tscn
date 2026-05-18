@@ -1,8 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://4isaj33lvd0g"]
+[gd_scene format=3 uid="uid://4isaj33lvd0g"]
 
-[ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/Enemy.cs" id="1_nttci"]
+[ext_resource type="Script" uid="uid://bivev8i2ggd8g" path="res://Common/Resources/Enemys/Normal/EnemyScripts/Enemy.cs" id="1_nttci"]
 [ext_resource type="Texture2D" uid="uid://bqkpdvjj7du2w" path="res://Common/Resources/Enemys/Normal/Prefabs/Phantom_Idle_Canvas_Texture.tres" id="2_08bht"]
-[ext_resource type="Script" path="res://Common/Resources/Enemys/Normal/EnemyScripts/EnemyStats.cs" id="2_aktu7"]
+[ext_resource type="Script" uid="uid://dmpn1nb5ns4co" path="res://Common/Resources/Enemys/Normal/EnemyScripts/EnemyStats.cs" id="2_aktu7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_81yyl"]
 size = Vector2(27, 48)
@@ -68,7 +68,7 @@ size = Vector2(300, 300)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g25pt"]
 size = Vector2(100, 100)
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("Animation_Sprite", "Agent", "DetectionArea", "AttackArea", "_stats", "PatrolPoints")]
+[node name="Enemy" type="CharacterBody2D" unique_id=1681104062 node_paths=PackedStringArray("Animation_Sprite", "Agent", "DetectionArea", "AttackArea", "_stats", "PatrolPoints")]
 motion_mode = 1
 script = ExtResource("1_nttci")
 Animation_Sprite = NodePath("Enemy_Animation")
@@ -78,10 +78,10 @@ AttackArea = NodePath("AttackArea")
 _stats = NodePath("EnemyStats")
 PatrolPoints = []
 
-[node name="EnemyStats" type="Node2D" parent="."]
+[node name="EnemyStats" type="Node2D" parent="." unique_id=1254216141]
 script = ExtResource("2_aktu7")
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=755077662]
 path_desired_distance = 50.0
 target_desired_distance = 30.0
 path_postprocessing = 1
@@ -91,22 +91,22 @@ debug_use_custom = true
 debug_path_custom_point_size = 25.0
 debug_path_custom_line_width = 10.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2038647981]
 position = Vector2(-0.5, 2)
 shape = SubResource("RectangleShape2D_81yyl")
 
-[node name="Enemy_Animation" type="AnimatedSprite2D" parent="."]
+[node name="Enemy_Animation" type="AnimatedSprite2D" parent="." unique_id=131240267]
 sprite_frames = SubResource("SpriteFrames_kw5ea")
 animation = &"Phantom_Pursuit"
 
-[node name="DetectionArea" type="Area2D" parent="."]
+[node name="DetectionArea" type="Area2D" parent="." unique_id=1798192234]
 disable_mode = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=732537887]
 shape = SubResource("RectangleShape2D_3dpq5")
 
-[node name="AttackArea" type="Area2D" parent="."]
+[node name="AttackArea" type="Area2D" parent="." unique_id=1836214698]
 disable_mode = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=70474298]
 shape = SubResource("RectangleShape2D_g25pt")

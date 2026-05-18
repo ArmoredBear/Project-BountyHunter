@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cexxclnbka8wm"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cexxclnbka8wm"]
 
 [ext_resource type="Shader" uid="uid://bqa10udl80tvq" path="res://Common/Resources/Shaders/Boss_Shader.tres" id="1_05b0p"]
 

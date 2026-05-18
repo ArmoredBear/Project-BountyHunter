@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjxskbpx8621o"]
+[gd_scene format=3 uid="uid://cjxskbpx8621o"]
 
 [ext_resource type="Theme" uid="uid://b7k1imxvkgx1" path="res://Common/Resources/Player/User Interface/Prefabs/Themes/Base_Theme.tres" id="1_apck0"]
-[ext_resource type="Script" path="res://Common/Resources/Player/User Interface/UI_Scripts/PlayerMenu.cs" id="1_f540y"]
+[ext_resource type="Script" uid="uid://cdhwawfqs2bbs" path="res://Common/Resources/Player/User Interface/UI_Scripts/PlayerMenu.cs" id="1_f540y"]
 [ext_resource type="Texture2D" uid="uid://c7q1nrdhrpvla" path="res://Common/Resources/Player/User Interface/UI_Art/PlayerMenuPanel.png" id="2_isat3"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w1d1b"]
@@ -13,10 +13,10 @@ texture_margin_bottom = 40.0
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="Player_Menu" type="CanvasLayer"]
+[node name="Player_Menu" type="CanvasLayer" unique_id=925412078]
 script = ExtResource("1_f540y")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=517833893]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -24,14 +24,14 @@ offset_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel" type="Panel" parent="Control"]
+[node name="Panel" type="Panel" parent="Control" unique_id=592613391]
 layout_mode = 0
 offset_right = 2558.0
 offset_bottom = 180.0
 theme = ExtResource("1_apck0")
 theme_override_styles/panel = SubResource("StyleBoxTexture_w1d1b")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Panel" unique_id=333665692]
 custom_minimum_size = Vector2(325, 50)
 layout_mode = 0
 offset_left = 33.0
@@ -40,35 +40,35 @@ offset_right = 2525.0
 offset_bottom = 150.0
 alignment = 1
 
-[node name="Journal" type="Button" parent="Control/Panel/HBoxContainer"]
+[node name="Journal" type="Button" parent="Control/Panel/HBoxContainer" unique_id=1292588930]
 layout_mode = 2
 size_flags_horizontal = 13
 size_flags_vertical = 4
 theme = ExtResource("1_apck0")
 text = "Diário"
 
-[node name="Equipment" type="Button" parent="Control/Panel/HBoxContainer"]
+[node name="Equipment" type="Button" parent="Control/Panel/HBoxContainer" unique_id=1262744425]
 layout_mode = 2
 size_flags_horizontal = 13
 size_flags_vertical = 4
 theme = ExtResource("1_apck0")
 text = "Equipamento"
 
-[node name="Inventory" type="Button" parent="Control/Panel/HBoxContainer"]
+[node name="Inventory" type="Button" parent="Control/Panel/HBoxContainer" unique_id=1271439644]
 layout_mode = 2
 size_flags_horizontal = 13
 size_flags_vertical = 4
 theme = ExtResource("1_apck0")
 text = "Inventário"
 
-[node name="Options" type="Button" parent="Control/Panel/HBoxContainer"]
+[node name="Options" type="Button" parent="Control/Panel/HBoxContainer" unique_id=222150754]
 layout_mode = 2
 size_flags_horizontal = 13
 size_flags_vertical = 4
 theme = ExtResource("1_apck0")
 text = "Opções"
 
-[node name="Save_And_Quit" type="Button" parent="Control/Panel/HBoxContainer"]
+[node name="Save_And_Quit" type="Button" parent="Control/Panel/HBoxContainer" unique_id=120216533]
 layout_mode = 2
 size_flags_horizontal = 13
 size_flags_vertical = 4

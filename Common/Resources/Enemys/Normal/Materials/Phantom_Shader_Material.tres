@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://csfabemnnry20"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://csfabemnnry20"]
 
 [ext_resource type="Shader" uid="uid://1jrudh7tt67w" path="res://Common/Resources/Shaders/Phantom_Shader.tres" id="1_cs4ue"]
 

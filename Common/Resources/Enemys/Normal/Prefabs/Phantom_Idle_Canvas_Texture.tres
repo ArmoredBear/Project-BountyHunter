@@ -1,4 +1,4 @@
-[gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://bqkpdvjj7du2w"]
+[gd_resource type="CanvasTexture" format=3 uid="uid://bqkpdvjj7du2w"]
 
 [ext_resource type="Texture2D" uid="uid://b8uc8x31nuud" path="res://Common/Resources/Enemys/Normal/Art/NormalMaps/Phantom_Monster_n.png" id="1_vxdlw"]
 

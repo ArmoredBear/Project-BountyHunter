@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://b7k1imxvkgx1"]
+[gd_resource type="Theme" format=3 uid="uid://b7k1imxvkgx1"]
 
 [ext_resource type="FontFile" uid="uid://bnnwxabllsohk" path="res://Common/Resources/Player/User Interface/Fonts/Springmarch/springmarch.roman.otf" id="1_87w6g"]
 [ext_resource type="Texture2D" uid="uid://b8ojmf6qyhlq0" path="res://Common/Resources/Player/User Interface/UI_Art/Button_Normal.png" id="1_hudjb"]

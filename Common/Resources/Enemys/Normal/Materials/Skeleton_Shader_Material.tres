@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dldxk3r84mljr"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dldxk3r84mljr"]
 
 [ext_resource type="Shader" uid="uid://c5xolx0t3rjoc" path="res://Common/Resources/Shaders/Skeleton_Shader.tres" id="1_666xa"]
 

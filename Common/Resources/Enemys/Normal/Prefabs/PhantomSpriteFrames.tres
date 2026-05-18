@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://fxeocxgd1lfr"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://fxeocxgd1lfr"]
 
 [ext_resource type="Texture2D" uid="uid://3tm3i21uergc" path="res://Common/Resources/Enemys/Normal/Prefabs/Phantom_Attack_Canvas_Texture.tres" id="1_abl23"]
 [ext_resource type="Texture2D" uid="uid://bqkpdvjj7du2w" path="res://Common/Resources/Enemys/Normal/Prefabs/Phantom_Idle_Canvas_Texture.tres" id="2_djo62"]

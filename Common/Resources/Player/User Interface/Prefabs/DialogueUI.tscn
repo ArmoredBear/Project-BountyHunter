@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bya6ubil8kdvn"]
+[gd_scene format=3 uid="uid://bya6ubil8kdvn"]
 
-[ext_resource type="Script" path="res://Common/DialogBox/ScriptsUI/DialogueUI.cs" id="1_3yg80"]
-[ext_resource type="Script" path="res://Common/DialogBox/ScriptsUI/DialogueManager.cs" id="2_ep5qb"]
+[ext_resource type="Script" uid="uid://c3oyg0a2ft44x" path="res://Common/DialogBox/ScriptsUI/DialogueUI.cs" id="1_3yg80"]
+[ext_resource type="Script" uid="uid://metcr8c1t6pl" path="res://Common/DialogBox/ScriptsUI/DialogueManager.cs" id="2_ep5qb"]
 
-[node name="DialogueCanvas" type="CanvasLayer"]
+[node name="DialogueCanvas" type="CanvasLayer" unique_id=2125020545]
 
-[node name="DialogueUI" type="Control" parent="."]
+[node name="DialogueUI" type="Control" parent="." unique_id=1786264660]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
@@ -13,7 +13,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_3yg80")
 
-[node name="DialogueBox" type="PanelContainer" parent="DialogueUI"]
+[node name="DialogueBox" type="PanelContainer" parent="DialogueUI" unique_id=1578601171]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -26,23 +26,23 @@ offset_bottom = 1014.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="DialogueUI/DialogueBox"]
+[node name="MarginContainer" type="MarginContainer" parent="DialogueUI/DialogueBox" unique_id=1444872722]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="VBoxContainer" type="VBoxContainer" parent="DialogueUI/DialogueBox/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="DialogueUI/DialogueBox/MarginContainer" unique_id=2001763020]
 layout_mode = 2
 
-[node name="NameLabel" type="Label" parent="DialogueUI/DialogueBox/MarginContainer/VBoxContainer"]
+[node name="NameLabel" type="Label" parent="DialogueUI/DialogueBox/MarginContainer/VBoxContainer" unique_id=683281094]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Nome do Personagem
 "
 
-[node name="TextLabel" type="RichTextLabel" parent="DialogueUI/DialogueBox/MarginContainer/VBoxContainer"]
+[node name="TextLabel" type="RichTextLabel" parent="DialogueUI/DialogueBox/MarginContainer/VBoxContainer" unique_id=757393165]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
@@ -50,6 +50,6 @@ text = "Lorem Ipsum is simply dummy text of the printing and typesetting industr
 "
 fit_content = true
 
-[node name="Dialogue_Manager" type="Node" parent="."]
+[node name="Dialogue_Manager" type="Node" parent="." unique_id=934392131]
 unique_name_in_owner = true
 script = ExtResource("2_ep5qb")

@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=143 format=3 uid="uid://cn2pxpvys21bk"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://cn2pxpvys21bk"]
 
 [ext_resource type="Texture2D" uid="uid://conyhan6p1sdx" path="res://Common/Resources/Player/PlayerArt/Animation/TempIdleAnimationLeft.png" id="1_1rwyv"]
 [ext_resource type="Texture2D" uid="uid://f5p4ngut1dox" path="res://Common/Resources/Player/PlayerPrefabs/PlayerAttackSpriteandNormalMap.tres" id="1_oon00"]

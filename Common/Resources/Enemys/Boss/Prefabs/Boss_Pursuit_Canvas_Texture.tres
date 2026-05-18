@@ -1,4 +1,4 @@
-[gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://cc81hekjpy3bw"]
+[gd_resource type="CanvasTexture" format=3 uid="uid://cc81hekjpy3bw"]
 
 [ext_resource type="Texture2D" uid="uid://cpdaxrev6qo8w" path="res://Common/Resources/Enemys/Boss/Animation/BossPursuit.png" id="1_kc4jm"]
 [ext_resource type="Texture2D" uid="uid://cqg0j44ska25m" path="res://Common/Resources/Enemys/Boss/NormalMaps/BossPursuit_n.png" id="2_a17vb"]

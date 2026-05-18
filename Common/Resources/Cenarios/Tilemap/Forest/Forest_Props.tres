@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://5uym7e1bjin3"]
+[gd_resource type="TileSet" format=3 uid="uid://5uym7e1bjin3"]
 
 [ext_resource type="Texture2D" uid="uid://cdcqq684jqli2" path="res://Common/Resources/Cenarios/CenarioArt/Environment/Forest/Forest_Props.png" id="1_bkac2"]
 [ext_resource type="Material" uid="uid://bbol1qr4mucvd" path="res://Common/Resources/Cenarios/CenarioMaterials/Forest/Forest_Props_Material.tres" id="1_jafgy"]

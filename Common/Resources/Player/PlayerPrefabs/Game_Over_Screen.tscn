@@ -1,17 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://8bfcfpsm2n08"]
+[gd_scene format=3 uid="uid://8bfcfpsm2n08"]
 
 [ext_resource type="FontFile" uid="uid://bnnwxabllsohk" path="res://Common/Resources/Player/User Interface/Fonts/Springmarch/springmarch.roman.otf" id="1_njckt"]
-[ext_resource type="Script" path="res://Common/Resources/Player/PlayerScripts/GameOverScreen.cs" id="1_s5pay"]
+[ext_resource type="Script" uid="uid://c02foo0mwhplp" path="res://Common/Resources/Player/PlayerScripts/GameOverScreen.cs" id="1_s5pay"]
 
-[node name="GameOver_Screen" type="CanvasLayer"]
+[node name="GameOver_Screen" type="CanvasLayer" unique_id=318754115]
 script = ExtResource("1_s5pay")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=366597514]
 offset_right = 2560.0
 offset_bottom = 1080.0
 color = Color(0, 0, 0, 1)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=170298032]
 offset_left = 1032.0
 offset_top = 328.0
 offset_right = 1568.0

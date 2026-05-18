@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://b15pr7orgv3tv"]
+
+[ext_resource type="Shader" uid="uid://qeu2twhkeyrk" path="res://Common/Resources/Shaders/ParticleGlitch.gdshader" id="1_c0a0y"]
+
+[resource]
+shader = ExtResource("1_c0a0y")
+shader_parameter/glitch_intensity = 1.0
+shader_parameter/speed = 1.0
+shader_parameter/time_offset = 1.0
+shader_parameter/from_color = Color(1, 1, 1, 1)
+shader_parameter/to_color = Color(0, 0, 0, 1)

@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=36 format=3 uid="uid://bq502tthp7e6n"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://bq502tthp7e6n"]
 
 [ext_resource type="Texture2D" uid="uid://cln8om5ywj0wl" path="res://Common/Resources/Enemys/Normal/Prefabs/Skeleton_Attack_Canvas_Texture.tres" id="1_f6e04"]
 [ext_resource type="Texture2D" uid="uid://b3ihbw0xm6w3q" path="res://Common/Resources/Enemys/Normal/Prefabs/Skeleton_Idle_Canvas_Texture.tres" id="2_hg1eo"]

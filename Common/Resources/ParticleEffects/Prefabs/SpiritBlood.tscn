@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://vb8vu3dk5g8c"]
+
+[ext_resource type="Material" uid="uid://b15pr7orgv3tv" path="res://Common/Resources/ParticleEffects/Materials/SpiritBloodMaterial.tres" id="1_nqccd"]
+
+[sub_resource type="Curve" id="Curve_nl3nd"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 100), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mygto"]
+curve = SubResource("Curve_nl3nd")
+
+[sub_resource type="Curve" id="Curve_b56dj"]
+_limits = [0.99, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 2), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_qgy4g"]
+curve = SubResource("Curve_b56dj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h03i4"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+spread = 360.0
+initial_velocity_min = 200.0
+initial_velocity_max = 500.0
+angular_velocity_min = -500.0
+angular_velocity_max = 500.0
+gravity = Vector3(0, 100, 0)
+damping_min = 80.0
+damping_max = 200.0
+damping_curve = SubResource("CurveTexture_mygto")
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_qgy4g")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 1.0
+collision_use_scale = true
+
+[node name="SpiritBlood" type="GPUParticles2D" unique_id=1882301552]
+top_level = true
+z_index = 5
+material = ExtResource("1_nqccd")
+emitting = false
+amount = 150
+lifetime = 5.0
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_h03i4")

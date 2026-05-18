@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://dhnwwkhmrt2rn"]
+[gd_scene format=3 uid="uid://dhnwwkhmrt2rn"]
 
-[ext_resource type="Script" path="res://Common/Resources/General Scritps/Scene_Manager.cs" id="1_vuu81"]
+[ext_resource type="Script" uid="uid://c6i4tbe1r71fp" path="res://Common/Resources/General Scritps/Scene_Manager.cs" id="1_vuu81"]
 
-[node name="Scene_Manager" type="Node"]
+[node name="Scene_Manager" type="Node" unique_id=960544925]
 script = ExtResource("1_vuu81")
 
-[node name="World2D" type="Node2D" parent="."]
+[node name="World2D" type="Node2D" parent="." unique_id=1634683753]

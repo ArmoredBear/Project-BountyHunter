@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dg8c8oas8e06g"]
+[gd_resource type="TileSet" format=3 uid="uid://dg8c8oas8e06g"]
 
 [ext_resource type="Texture2D" uid="uid://bdsnk0ub1w44c" path="res://Common/Resources/Cenarios/CenarioArt/Environment/Forest/PineTree1.png" id="1_r7ctp"]
 

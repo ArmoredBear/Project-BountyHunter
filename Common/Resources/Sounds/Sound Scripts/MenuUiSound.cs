@@ -43,6 +43,9 @@ public partial class MenuUiSound : AudioStreamPlayer2D
 
     private void PlaySound()
     {
-        Play();
+        if (IsInsideTree() && Playing == false)
+        {
+            Play();
+        }
     }
 }
