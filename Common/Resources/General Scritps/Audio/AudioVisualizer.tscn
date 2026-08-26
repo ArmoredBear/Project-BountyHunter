@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c5r00wyopsd2s"]
+
+[ext_resource type="Script" uid="uid://wbl207eyxj44" path="res://Common/Resources/General Scritps/Audio/AudioVisualizer.cs" id="1_coppp"]
+
+[node name="AudioVisualizer" type="Node2D" unique_id=2011225160]
+script = ExtResource("1_coppp")

@@ -1,0 +1,10 @@
+[gd_resource type="CanvasTexture" format=3 uid="uid://hctyhldf8t0c"]
+
+[ext_resource type="Texture2D" uid="uid://lgxv7d2ebn0m" path="res://Common/Resources/Props/PropsArt/CheckpointBase.png" id="1_kfjnn"]
+[ext_resource type="Texture2D" uid="uid://dmgcurte74yta" path="res://Common/Resources/Props/PropsNormalMaps/CheckpointBase_n.png" id="2_uj7kg"]
+[ext_resource type="Texture2D" uid="uid://d3ige7ufvn6v6" path="res://Common/Resources/Props/PropsSpecularMaps/CheckpointBase_s.png" id="3_7nhlb"]
+
+[resource]
+diffuse_texture = ExtResource("1_kfjnn")
+normal_texture = ExtResource("2_uj7kg")
+specular_texture = ExtResource("3_7nhlb")

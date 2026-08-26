@@ -1,8 +1,23 @@
 using Godot;
 using System;
 
+/**-----------------------------------------------------------------------------------------------------------------------
+*!                                                   SPAWN ROUTER
+*-----------------------------------------------------------------------------------------------------------------------**/
+/**-----------------------------------------------------------------------------------------------------------------------
+	**                                                   PURPOSE
+	*  
+	**  1 - Places the player at the correct door spawn point when entering a new scene.
+	**  2 - Reads the spawn tag set by the last door from Player_Data_Autoload.
+	**  3 - Falls back to debug prints when the spawn point or player is unavailable.
+	*
+*-----------------------------------------------------------------------------------------------------------------------**/
 public partial class SpawnRouter : Node
 {
+    //!---------------------------------------------------------------------------------------------------------
+    #region Initialization and Processes
+    //!---------------------------------------------------------------------------------------------------------
+
     public override void _Ready()
     {
         // Scene is fully instanced here — safe to place the player
@@ -45,4 +60,7 @@ public partial class SpawnRouter : Node
         Player.Instance.GlobalPosition = spawn.GlobalPosition;
         GD.Print($"Player placed at {spawn.GlobalPosition} via Doors/{tag}");
     }
+
+    #endregion
+    //!---------------------------------------------------------------------------------------------------------
 }

@@ -62,6 +62,23 @@ public partial class Player_Data : Resource, IStatus
 	private Vector2 _position;
 
 
+	/**----------------------
+	 **    ARMOR SEGMENTS
+	*------------------------**/
+
+	private int _break_threshold = 50;
+	private int _armor_part_value = 25;
+	private int _accumulated_armor_damage;
+
+
+	/**----------------------
+	 **    PERSISTENCE
+	*------------------------**/
+
+	private string _next_spawn_name = "Spawn_Default";
+	private Godot.Collections.Array<ItemInstance> _inventory = new();
+
+
 	#endregion
 
 	//!---------------------------------------------------------------------------------------------------------
@@ -96,8 +113,17 @@ public partial class Player_Data : Resource, IStatus
 	[ExportGroup("POSITION")]
 	[Export] public Vector2 Position { get => _position; set => _position = value; }
 
+	[ExportGroup("ARMOR_SEGMENTS")]
+	[Export] public int Armor_Break_Threshold { get => _break_threshold; set => _break_threshold = value; }
+	[Export] public int Armor_Part_Value { get => _armor_part_value; set => _armor_part_value = value; }
+	[Export] public int Accumulated_Armor_Damage { get => _accumulated_armor_damage; set => _accumulated_armor_damage = value; }
+
 	[ExportGroup("SCENE")]
 	[Export] public string CurrentScene { get; set; }
+
+	[ExportGroup("PERSISTENCE")]
+	[Export] public string NextSpawnName { get => _next_spawn_name; set => _next_spawn_name = value; }
+	[Export] public Godot.Collections.Array<ItemInstance> Inventory { get => _inventory; set => _inventory = value; }
 
 	#endregion
 
@@ -124,6 +150,39 @@ public partial class Player_Data : Resource, IStatus
 		CurrentScene = "";
 	}
 
+	/// <summary>
+	/// Restores every field to the same defaults the constructor uses.
+	/// Called when starting a new game so no stale data carries over.
+	/// </summary>
+	public void Reset()
+	{
+		MAX_Health = 100;
+		MAX_Stamina = 500;
+		MAX_Energy = 100;
+		MAX_Armor = 100;
+
+		CURRENT_Health = MAX_Health;
+		CURRENT_Stamina = MAX_Stamina;
+		CURRENT_Energy = MAX_Energy;
+		CURRENT_Armor = MAX_Armor;
+
+		Attack = 0;
+		CriticalModifier = 0;
+
+		Alive = true;
+		Armored = true;
+		Poisoned = false;
+		Position = Vector2.Zero;
+
+		Armor_Break_Threshold = 50;
+		Armor_Part_Value = 25;
+		Accumulated_Armor_Damage = 0;
+
+		CurrentScene = "";
+		NextSpawnName = "Spawn_Default";
+		Inventory.Clear();
+	}
+
     #endregion
 
     //!---------------------------------------------------------------------------------------------------------
@@ -145,7 +204,10 @@ public partial class Player_Data : Resource, IStatus
 	{
 		if (Armored && CURRENT_Armor > 0)
 		{
-			ApplyArmorDamage(damage);
+			// Armor absorbs the hit: damage accumulates toward the break
+			// threshold. When it fills, one armor part breaks and the bar
+			// drops by Armor_Part_Value instantly (health takes nothing).
+			Accumulate_Armor_Damage(damage);
 		}
 		else
 		{
@@ -153,14 +215,23 @@ public partial class Player_Data : Resource, IStatus
 		}
 	}
 
-	private void ApplyArmorDamage(int damage)
+	private void Accumulate_Armor_Damage(int damage)
 	{
-		CURRENT_Armor -= damage;
+		_accumulated_armor_damage += damage;
+
+		if (_accumulated_armor_damage < _break_threshold)
+		{
+			return;
+		}
+
+		_accumulated_armor_damage -= _break_threshold;
+		CURRENT_Armor = Mathf.Max(0, CURRENT_Armor - _armor_part_value);
+
 		if (CURRENT_Armor <= 0)
 		{
 			CURRENT_Armor = 0;
 			Armored = false;
-			ApplyHealthDamage(Mathf.Abs(CURRENT_Armor));
+			_accumulated_armor_damage = 0;
 		}
 	}
 

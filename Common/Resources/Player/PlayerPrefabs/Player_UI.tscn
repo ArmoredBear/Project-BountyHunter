@@ -1,50 +1,125 @@
 [gd_scene format=3 uid="uid://bqojx1gwnybpn"]
 
 [ext_resource type="Script" uid="uid://d0n7lbhu0w7at" path="res://Common/Resources/Player/User Interface/UI_Scripts/Player_Healthbar_UI.cs" id="1_2042d"]
-[ext_resource type="Texture2D" uid="uid://crhqsrd1pob0e" path="res://Common/Resources/Player/User Interface/UI_Art/Health_Monitor.png" id="2_sfdbi"]
+[ext_resource type="Texture2D" uid="uid://dk5mlrb04a3d" path="res://Common/Resources/Player/User Interface/UI_Art/Panel3.png" id="3_1k77a"]
+[ext_resource type="Texture2D" uid="uid://dyqqyru3wuflp" path="res://Common/Resources/Player/User Interface/UI_Art/Damage_Armor_Screen.png" id="3_8s88g"]
 [ext_resource type="Texture2D" uid="uid://dl8x3gdfx7ffe" path="res://Common/Resources/Player/User Interface/UI_Art/Healthbar_Background.png" id="3_aoo3p"]
 [ext_resource type="Shader" uid="uid://bgry4vid31342" path="res://Common/Resources/Shaders/Healthlines_Shader.tres" id="3_hcd7x"]
+[ext_resource type="Script" uid="uid://bod52tlw7uw2n" path="res://Common/Resources/Player/User Interface/UI_Scripts/DamageArmorFlash.cs" id="4_2be78"]
 [ext_resource type="Texture2D" uid="uid://dsi8vnmxm1kh4" path="res://Common/Resources/Player/User Interface/UI_Art/Health_Lines.png" id="4_7hy6p"]
 [ext_resource type="Texture2D" uid="uid://csuln21ai4cjl" path="res://Common/Resources/Player/User Interface/UI_Art/Vignette.png" id="4_avq2p"]
 [ext_resource type="FontFile" uid="uid://bnnwxabllsohk" path="res://Common/Resources/Player/User Interface/Fonts/Springmarch/springmarch.roman.otf" id="7_xceuv"]
 [ext_resource type="Script" uid="uid://bh2w4mkx0024f" path="res://Common/Resources/Player/User Interface/UI_Scripts/Player_Staminabar_UI.cs" id="8_8jq05"]
 [ext_resource type="Script" uid="uid://cwidyxrfc27sl" path="res://Common/Resources/Player/User Interface/UI_Scripts/Health_Percent.cs" id="8_egc6g"]
-[ext_resource type="Shader" uid="uid://cv66le7seyjq2" path="res://Common/Resources/Shaders/Staminabar_Shader.tres" id="8_p2cva"]
+[ext_resource type="Script" uid="uid://bbigirls772r1" path="res://Common/Resources/Player/User Interface/UI_Scripts/Armor_Percent.cs" id="8_egc6h"]
 [ext_resource type="Texture2D" uid="uid://y2j0ijuw8uh4" path="res://Common/Resources/Player/User Interface/UI_Art/Armor_Bar.png" id="9_2ool3"]
 [ext_resource type="Texture2D" uid="uid://owe8gguuup3t" path="res://Common/Resources/Player/User Interface/UI_Art/StaminaFogTexture.png" id="9_e6ycs"]
-[ext_resource type="Shader" uid="uid://clqxhllh4phgs" path="res://Common/Resources/Shaders/Healthbar_Shader.tres" id="10_rrm7i"]
+[ext_resource type="Texture2D" uid="uid://mjblccotyd5n" path="res://Common/Resources/Player/User Interface/UI_Art/Armor_Bar_Background.png" id="10_sf1tw"]
+[ext_resource type="Texture2D" uid="uid://bit3h6x7xe0lt" path="res://Common/Resources/Player/User Interface/UI_Art/Armor_Bar_Lines.png" id="11_ob4y0"]
+[ext_resource type="PackedScene" uid="uid://fwrc3ihm35rd" path="res://Common/Resources/Player/PlayerPrefabs/Health_Monitor.tscn" id="11_v7kv0"]
 [ext_resource type="PackedScene" uid="uid://bmapv7sbodtuk" path="res://Common/Resources/Player/User Interface/Inventory/Inventory_UI.tscn" id="12_2ppih"]
 [ext_resource type="PackedScene" uid="uid://bya6ubil8kdvn" path="res://Common/Resources/Player/User Interface/Prefabs/DialogueUI.tscn" id="13_st3ur"]
 [ext_resource type="PackedScene" uid="uid://cjxskbpx8621o" path="res://Common/Resources/Player/User Interface/Prefabs/Player_Menu.tscn" id="14_87th5"]
+[ext_resource type="Shader" uid="uid://ciaus7mqx75ok" path="res://Common/Resources/Shaders/HeartFlare.gdshader" id="15_v7kv0"]
+[ext_resource type="Shader" uid="uid://daitelti4cjoj" path="res://Common/Resources/Shaders/ArmorBar_Shader.gdshader" id="16_1k77a"]
+[ext_resource type="Texture2D" uid="uid://bgth7utmp6cmt" path="res://Common/Resources/Player/User Interface/UI_Art/Decoration_1.png" id="17_f24em"]
+[ext_resource type="Texture2D" uid="uid://648djpxfnhhk" path="res://Common/Resources/Player/User Interface/UI_Art/Damage_Red_Screen.png" id="17_jjqpn"]
+[ext_resource type="Script" uid="uid://dwtpm22rx0t1v" path="res://Common/Resources/Player/User Interface/UI_Scripts/DamageFlash.cs" id="18_dmgfl"]
+[ext_resource type="Script" uid="uid://dm1wopy16ixjv" path="res://Common/Resources/Player/User Interface/UI_Scripts/Player_Armorbar_UI.cs" id="18_f24em"]
+[ext_resource type="Script" uid="uid://5sbu7y1k8qjg" path="res://Common/Resources/Player/User Interface/UI_Scripts/Heart_Flare.cs" id="20_55fln"]
+[ext_resource type="Material" uid="uid://dvovuci63be3t" path="res://Common/Resources/Shaders/Staminabar_Bars_Material.tres" id="21_bars_mat"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f24em"]
+shader = ExtResource("16_1k77a")
+shader_parameter/Glint_Speed = 1.0000000475
+shader_parameter/Glint_Intensity = 1.0
+shader_parameter/Glint_Angle = 0.0
+shader_parameter/Glint_Interval = 4.00000016625
+shader_parameter/Glint_Color = Color(1, 1, 1, 1)
+shader_parameter/Steel_Glow = 1.0
+shader_parameter/Glint_Enabled = 1.0
+shader_parameter/Scratch_Amount = 1.0
+shader_parameter/Edge_Wear = 1.0
+shader_parameter/Flash_Color = Color(0.95, 0.98, 1, 1)
+shader_parameter/Flash_Intensity = 2.0
+shader_parameter/Flash = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vccdo"]
 shader = ExtResource("3_hcd7x")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cp1x7"]
-shader = ExtResource("10_rrm7i")
-shader_parameter/Move_Speed = Vector2(-0.2, 0)
-shader_parameter/Basic_Texture = ExtResource("2_sfdbi")
-shader_parameter/Fade_Speed = -1.0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_55fln"]
+shader = ExtResource("15_v7kv0")
+shader_parameter/Flare_Pos = Vector2(0.5, 0.5)
+shader_parameter/Flare_Color = Color(1, 0.85, 0.95, 1)
+shader_parameter/Flare_Strength = 0.0
+shader_parameter/Flare_Size = 0.02
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_ggy1h"]
+[node name="CanvasLayer - Player_UI" type="CanvasLayer" unique_id=1934308656]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xrbfx"]
-shader = ExtResource("8_p2cva")
-shader_parameter/FloatParameter = 5.0
-shader_parameter/Move_Speed = Vector2(0.2, 0)
-shader_parameter/Texture2D = ExtResource("9_e6ycs")
+[node name="TextureRect - Damage_Red_Screen" type="TextureRect" parent="." unique_id=558457070]
+self_modulate = Color(0.28515625, 0, 0, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("17_jjqpn")
+script = ExtResource("18_dmgfl")
+Alpha_Limit_Normal = 1.0
+Alpha_Limit_Critical = 1.0
+Flash_Intensity_Normal = 1.0
+Flash_Intensity_Critical = 1.0
+Flash_Max_Alpha = 1.0
 
-[node name="Player_UI" type="CanvasLayer" unique_id=1934308656]
-
-[node name="Status" type="Control" parent="." unique_id=1059680170]
+[node name="Control - Status" type="Control" parent="." unique_id=1059680170]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -40.0
-offset_top = 15.0
-offset_right = 695.0
-offset_bottom = 235.0
+offset_top = 40.0
+offset_right = 735.0
+offset_bottom = 260.0
 
-[node name="Health_Bar" type="Control" parent="Status" unique_id=1320944934]
+[node name="Control - Decorations" type="Control" parent="Control - Status" unique_id=1397156171]
+layout_mode = 1
+anchor_top = -0.18200001
+anchor_bottom = -0.18200001
+offset_top = 0.040000916
+offset_right = 741.0
+offset_bottom = 295.04
+
+[node name="TextureRect - Decoration_1" type="TextureRect" parent="Control - Status/Control - Decorations" unique_id=292379484]
+self_modulate = Color(0.23529412, 0.19607843, 0.1764706, 1)
+layout_mode = 0
+offset_left = -113.0
+offset_top = -36.0
+offset_right = 633.0
+offset_bottom = 263.0
+texture = ExtResource("3_1k77a")
+expand_mode = 1
+
+[node name="TextureRect - Decoration_2" type="TextureRect" parent="Control - Status/Control - Decorations" unique_id=386580372]
+self_modulate = Color(0.8980392, 0.8392157, 0.6117647, 1)
+layout_mode = 0
+offset_left = -131.0
+offset_top = 3.0
+offset_right = 950.0
+offset_bottom = 57.0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("17_f24em")
+
+[node name="TextureRect - Decoration_3" type="TextureRect" parent="Control - Status/Control - Decorations" unique_id=1358697736]
+self_modulate = Color(0.8980392, 0.8392157, 0.6117647, 1)
+layout_mode = 0
+offset_left = -106.999985
+offset_top = 188.0
+offset_right = 974.0
+offset_bottom = 242.0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("17_f24em")
+flip_v = true
+
+[node name="Control - Health_Bar" type="Control" parent="Control - Status" unique_id=1320944934 node_paths=PackedStringArray("Monitor_Line")]
+unique_name_in_owner = true
 texture_filter = 2
 texture_repeat = 2
 layout_mode = 1
@@ -52,23 +127,26 @@ anchor_left = 0.054
 anchor_top = -0.068
 anchor_right = 0.054
 anchor_bottom = -0.068
-offset_left = 0.309998
+offset_left = -32.690002
 offset_top = 39.96
-offset_right = 550.31
+offset_right = 517.31
 offset_bottom = 184.96
 script = ExtResource("1_2042d")
+Monitor_Line = NodePath("Control - Heart_Monitor/Line2D - Monitor_Line")
+Beat_Interval_Normal = 1.0
+Variation_Amount = 3.0
 
-[node name="Background" type="TextureRect" parent="Status/Health_Bar" unique_id=226683421]
+[node name="TextureRect - Health_Background" type="TextureRect" parent="Control - Status/Control - Health_Bar" unique_id=226683421]
 modulate = Color(0.813258, 0.813258, 0.813258, 1)
 layout_mode = 1
 offset_left = 5.0
-offset_top = -15.0
+offset_top = -19.0
 offset_right = 415.0
-offset_bottom = 115.0
+offset_bottom = 111.0
 texture = ExtResource("3_aoo3p")
 expand_mode = 1
 
-[node name="Background2" type="TextureRect" parent="Status/Health_Bar/Background" unique_id=691333806]
+[node name="TextureRect - Percentage_Health" type="TextureRect" parent="Control - Status/Control - Health_Bar/TextureRect - Health_Background" unique_id=691333806]
 modulate = Color(0.813258, 0.813258, 0.813258, 1)
 layout_mode = 1
 offset_left = 425.0
@@ -79,15 +157,15 @@ expand_mode = 1
 flip_h = true
 flip_v = true
 
-[node name="Health_Value_Percent" type="RichTextLabel" parent="Status/Health_Bar/Background/Background2" unique_id=1656673986]
+[node name="RichTextLabel - Health_Value_Percent" type="RichTextLabel" parent="Control - Status/Control - Health_Bar/TextureRect - Health_Background/TextureRect - Percentage_Health" unique_id=1656673986]
 self_modulate = Color(0, 1.5, 1, 1)
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -16.5
-offset_bottom = 16.5
+offset_top = -15.0
+offset_bottom = 15.000008
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("7_xceuv")
@@ -100,50 +178,196 @@ deselect_on_focus_loss_enabled = false
 drag_and_drop_selection_enabled = false
 script = ExtResource("8_egc6g")
 
-[node name="Lines" type="TextureProgressBar" parent="Status/Health_Bar" unique_id=1417704689]
-material = SubResource("ShaderMaterial_vccdo")
+[node name="ReferenceRect - Health_Percentage_DecorationUI_1" type="ReferenceRect" parent="Control - Status/Control - Health_Bar/TextureRect - Health_Background/TextureRect - Percentage_Health" unique_id=2012220246]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -14.0
+offset_top = 47.0
+offset_right = -6.0
+offset_bottom = 70.0
+border_color = Color(0.003921569, 0.7882353, 0.39607844, 1)
+editor_only = false
+
+[node name="ReferenceRect - Health_Percentage_DecorationUI_2" type="ReferenceRect" parent="Control - Status/Control - Health_Bar/TextureRect - Health_Background/TextureRect - Percentage_Health" unique_id=894473209]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 101.0
+offset_bottom = 40.0
+border_color = Color(0.003921569, 0.7882353, 0.39607844, 1)
+editor_only = false
+
+[node name="ReferenceRect - Health_Percentage_DecorationUI_3" type="ReferenceRect" parent="Control - Status/Control - Health_Bar/TextureRect - Health_Background/TextureRect - Percentage_Health" unique_id=119194002]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 50.0
+offset_top = 40.0
+offset_right = 50.0
+offset_bottom = 54.0
+border_color = Color(0.003921569, 0.7882353, 0.39607844, 1)
+editor_only = false
+
+[node name="ReferenceRect - Health_Percentage_DecorationUI_4" type="ReferenceRect" parent="Control - Status/Control - Health_Bar/TextureRect - Health_Background/TextureRect - Percentage_Health" unique_id=2036377726]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -6.0
+offset_top = 54.0
+offset_right = 50.0
+offset_bottom = 54.0
+border_color = Color(0.003921569, 0.7882353, 0.39607844, 1)
+editor_only = false
+
+[node name="TextureRect - Percentage_Armor" type="TextureRect" parent="Control - Status/Control - Health_Bar/TextureRect - Health_Background" unique_id=1710994866]
+modulate = Color(0.813258, 0.813258, 0.813258, 1)
+layout_mode = 1
+offset_left = 425.0
+offset_top = 81.0
+offset_right = 526.0
+offset_bottom = 121.0
+texture = ExtResource("3_aoo3p")
+expand_mode = 1
+flip_h = true
+flip_v = true
+
+[node name="RichTextLabel - Armor_Value_Percent" type="RichTextLabel" parent="Control - Status/Control - Health_Bar/TextureRect - Health_Background/TextureRect - Percentage_Armor" unique_id=101272079]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -15.0
+offset_bottom = 15.000008
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("7_xceuv")
+theme_override_font_sizes/normal_font_size = 27
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+script = ExtResource("8_egc6h")
+
+[node name="ReferenceRect - Armor_Percentage_DecorationUI_1" type="ReferenceRect" parent="Control - Status/Control - Health_Bar/TextureRect - Health_Background/TextureRect - Percentage_Armor" unique_id=834700517]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -14.0
+offset_top = -61.0
+offset_right = -9.0
+offset_bottom = 16.0
+border_color = Color(1, 1, 1, 1)
+editor_only = false
+
+[node name="ReferenceRect - Armor_Percentage_DecorationUI_2" type="ReferenceRect" parent="Control - Status/Control - Health_Bar/TextureRect - Health_Background/TextureRect - Percentage_Armor" unique_id=616929648]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 101.0
+offset_bottom = 40.0
+border_color = Color(1, 1, 1, 1)
+editor_only = false
+
+[node name="ReferenceRect - Armor_Percentage_DecorationUI_3" type="ReferenceRect" parent="Control - Status/Control - Health_Bar/TextureRect - Health_Background/TextureRect - Percentage_Armor" unique_id=12550311]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 50.0
+offset_top = -15.0
+offset_right = 50.0
+border_color = Color(1, 1, 1, 1)
+editor_only = false
+
+[node name="ReferenceRect - Armor_Percentage_DecorationUI_4" type="ReferenceRect" parent="Control - Status/Control - Health_Bar/TextureRect - Health_Background/TextureRect - Percentage_Armor" unique_id=2080717438]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -9.0
+offset_top = -16.0
+offset_right = 50.0
+offset_bottom = -16.0
+border_color = Color(1, 1, 1, 1)
+editor_only = false
+
+[node name="TextureProgressBar - Armor_Bar" type="TextureProgressBar" parent="Control - Status/Control - Health_Bar" unique_id=1616747416]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_f24em")
+layout_mode = 0
+offset_left = 10.0
+offset_top = -12.0
+offset_right = 410.0
+offset_bottom = 118.0
+step = 0.0
+value = 100.0
+texture_under = ExtResource("10_sf1tw")
+texture_over = ExtResource("11_ob4y0")
+texture_progress = ExtResource("9_2ool3")
+tint_under = Color(0.21568628, 0.21568628, 0.21568628, 1)
+script = ExtResource("18_f24em")
+
+[node name="TextureProgressBar - Health_Lines_CatchUp" type="TextureProgressBar" parent="Control - Status/Control - Health_Bar" unique_id=1417704690]
+unique_name_in_owner = true
+self_modulate = Color(1.5720325, 1.5720325, 1.5720325, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 10.0
-offset_top = -15.0
+offset_top = 11.0
 offset_right = -140.0
-offset_bottom = -85.0
+offset_bottom = -79.0
 grow_horizontal = 2
 grow_vertical = 2
 step = 0.0
 value = 100.0
 nine_patch_stretch = true
 texture_progress = ExtResource("4_7hy6p")
-tint_progress = Color(0, 1, 0.501961, 1)
+tint_progress = Color(1, 1, 1, 0.6)
 
-[node name="Health_Monitor" type="TextureProgressBar" parent="Status/Health_Bar" unique_id=1187245404]
-texture_filter = 1
-texture_repeat = 2
-material = SubResource("ShaderMaterial_cp1x7")
+[node name="TextureProgressBar - Health_Lines" type="TextureProgressBar" parent="Control - Status/Control - Health_Bar" unique_id=1417704689]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_vccdo")
 layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = 10.0
-offset_top = -15.0
-offset_right = 410.0
-offset_bottom = 60.0
+offset_top = 11.0
+offset_right = -140.0
+offset_bottom = -79.0
+grow_horizontal = 2
+grow_vertical = 2
 step = 0.0
 value = 100.0
 nine_patch_stretch = true
-texture_progress = SubResource("CanvasTexture_ggy1h")
-tint_under = Color(1, 1, 1, 0)
-tint_over = Color(1, 1, 1, 0)
-tint_progress = Color(0, 1, 0.501961, 1)
+texture_progress = ExtResource("4_7hy6p")
+tint_progress = Color(0, 1.353256, 0.68865365, 1)
 
-[node name="Stamina_Bar" type="TextureProgressBar" parent="Status" unique_id=1279622893 node_paths=PackedStringArray("Stamina_Bar")]
+[node name="ReferenceRect - Health_Lines_DecorationUI_1" type="ReferenceRect" parent="Control - Status/Control - Health_Bar/TextureProgressBar - Health_Lines" unique_id=395966993]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -1.0
+offset_top = 10.0
+offset_right = 401.0
+offset_bottom = 47.0
+border_color = Color(0.003921569, 0.84313726, 0.42352942, 1)
+editor_only = false
+
+[node name="Control - Heart_Monitor" parent="Control - Status/Control - Health_Bar" unique_id=840436665 instance=ExtResource("11_v7kv0")]
+unique_name_in_owner = true
+clip_contents = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+offset_left = 15.0
+offset_top = 39.0
+offset_right = 15.0
+offset_bottom = 39.0
+
+[node name="TextureProgressBar - Stamina_Bar" type="TextureProgressBar" parent="Control - Status" unique_id=1279622893 node_paths=PackedStringArray("Stamina_Bar")]
 texture_repeat = 2
-material = SubResource("ShaderMaterial_xrbfx")
+material = ExtResource("21_bars_mat")
 layout_mode = 1
 anchors_preset = -1
-offset_left = 50.0
-offset_top = 100.0
-offset_right = 450.0
-offset_bottom = 120.0
+offset_left = 17.0
+offset_top = 120.0
+offset_right = 417.0
+offset_bottom = 128.0
 grow_vertical = 2
 max_value = 500.0
 value = 500.0
@@ -156,40 +380,78 @@ texture_under = ExtResource("9_e6ycs")
 texture_progress = ExtResource("9_e6ycs")
 tint_under = Color(0.292969, 0.292969, 0.292969, 1)
 tint_over = Color(0.164706, 0.164706, 0.164706, 1)
-tint_progress = Color(0.945312, 1, 0, 1)
+tint_progress = Color(0.9444444, 1, 0, 1)
 script = ExtResource("8_8jq05")
 Stamina_Bar = NodePath(".")
 
-[node name="Vignette" type="TextureRect" parent="Status" unique_id=1573125909]
+[node name="ReferenceRect - Stamina_Border" type="ReferenceRect" parent="Control - Status/TextureProgressBar - Stamina_Bar" unique_id=922425010]
 layout_mode = 0
-offset_left = 50.0
-offset_top = 10.0
-offset_right = 450.0
-offset_bottom = 130.0
+offset_right = 400.0
+offset_bottom = 8.0
+border_color = Color(1, 0.8671875, 0, 1)
+editor_only = false
+
+[node name="TextureRect - Vignette" type="TextureRect" parent="Control - Status" unique_id=1573125909]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 6.0
+offset_right = 422.0
+offset_bottom = 136.0
 texture = ExtResource("4_avq2p")
 expand_mode = 1
 
-[node name="Armor_Bar" type="TextureProgressBar" parent="Status" unique_id=1896011648]
-visible = false
-self_modulate = Color(0.713726, 0.713726, 0.713726, 1)
+[node name="ReferenceRect - HealthBorder 1" type="ReferenceRect" parent="Control - Status" unique_id=1937802299]
 layout_mode = 0
-offset_left = 50.0
-offset_top = 10.0
-offset_right = 450.0
-offset_bottom = 85.0
-value = 100.0
-nine_patch_stretch = true
-stretch_margin_left = 50
-stretch_margin_top = 5
-stretch_margin_right = 50
-stretch_margin_bottom = 5
-texture_progress = ExtResource("9_2ool3")
+offset_left = 14.0
+offset_top = 8.0
+offset_right = 420.0
+offset_bottom = 134.0
+border_color = Color(0.28515625, 0.25169668, 0.12698364, 1)
+editor_only = false
 
-[node name="Inventory_UI" parent="." unique_id=1074034316 instance=ExtResource("12_2ppih")]
+[node name="ReferenceRect - HealthBorder 2" type="ReferenceRect" parent="Control - Status" unique_id=466295199]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 5.0
+offset_right = 423.0
+offset_bottom = 137.0
+border_color = Color(0.28515625, 0.25169668, 0.12698364, 1)
+editor_only = false
+
+[node name="ColorRect - Heart_Flare" type="ColorRect" parent="." unique_id=1408861775 node_paths=PackedStringArray("Health_Bar")]
+material = SubResource("ShaderMaterial_55fln")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("20_55fln")
+Health_Bar = NodePath("../Control - Status/Control - Health_Bar")
+Flare_Size = 0.002
+Flare_Multiplier = 0.5
+Follow_Speed = 60.0
+
+[node name="TextureRect - Damage_Armor_Screen" type="TextureRect" parent="." unique_id=310940199]
+visible = false
+self_modulate = Color(1, 1, 1, 0.2)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_8s88g")
+script = ExtResource("4_2be78")
+
+[node name="Control - Inventory_UI" parent="." unique_id=1074034316 instance=ExtResource("12_2ppih")]
 visible = false
 
-[node name="DialogueUI" parent="." unique_id=1201599085 instance=ExtResource("13_st3ur")]
+[node name="CanvasLayer - DialogueUI" parent="." unique_id=1201599085 instance=ExtResource("13_st3ur")]
 visible = false
 
-[node name="Player_Menu" parent="." unique_id=1995535612 instance=ExtResource("14_87th5")]
+[node name="CanvasLayer - Player_Menu" parent="." unique_id=1995535612 instance=ExtResource("14_87th5")]
+unique_name_in_owner = true
 visible = false
+
+[editable path="Control - Status/Control - Health_Bar/Control - Heart_Monitor"]

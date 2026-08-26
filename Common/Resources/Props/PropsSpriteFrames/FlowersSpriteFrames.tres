@@ -1,0 +1,60 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://jvmpcuj34tlu"]
+
+[ext_resource type="Texture2D" uid="uid://bpe4b7gitiuuj" path="res://Common/Resources/Props/Props CanvasTextures/FlowerPatch_CanvasTexture.tres" id="1_tlo5n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lxlr"]
+atlas = ExtResource("1_tlo5n")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2se1n"]
+atlas = ExtResource("1_tlo5n")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jq66r"]
+atlas = ExtResource("1_tlo5n")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mw2sw"]
+atlas = ExtResource("1_tlo5n")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvvgg"]
+atlas = ExtResource("1_tlo5n")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_au017"]
+atlas = ExtResource("1_tlo5n")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dhelx"]
+atlas = ExtResource("1_tlo5n")
+region = Rect2(768, 0, 128, 128)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2lxlr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2se1n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jq66r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mw2sw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gvvgg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_au017")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dhelx")
+}],
+"loop": true,
+"name": &"WindFlower",
+"speed": 4.0
+}]

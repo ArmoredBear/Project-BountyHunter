@@ -2,17 +2,47 @@ using Godot;
 using System.Collections.Generic;
 using System.Text.Json; // Essencial para parsear o JSON
 
+/**-----------------------------------------------------------------------------------------------------------------------
+*!                                                   DIALOGUE MANAGER
+*-----------------------------------------------------------------------------------------------------------------------**/
+
+/**-----------------------------------------------------------------------------------------------------------------------
+	**                                                   PURPOSE
+	*  
+	**  1 - Loads and parses dialogue JSON files, queueing every line for playback.
+	**  2 - Drives the DialogueUI, handling input to advance lines, and emits a finished signal.
+	*
+*-----------------------------------------------------------------------------------------------------------------------**/
+
 public partial class DialogueManager : Node
 {
+	//!---------------------------------------------------------------------------------------------------------
+	#region Signals
+	//!---------------------------------------------------------------------------------------------------------
+
 	// Sinal emitido quando o diálogo termina. Outros nós podem ouvi-lo.
 	[Signal]
 	public delegate void DialogueFinishedEventHandler();
+
+	#endregion
+	//!---------------------------------------------------------------------------------------------------------
+
+	//!---------------------------------------------------------------------------------------------------------
+	#region Variables
+	//!---------------------------------------------------------------------------------------------------------
 
 	public Queue<DialogueLine> _dialogueQueue = new Queue<DialogueLine>();
 	[Export] public  DialogueUI _dialogueUI;
 	[Export] public bool _isDialogueActive = false;
 
 	[Export] private DialogueManager _dialogueManager;
+
+	#endregion
+	//!---------------------------------------------------------------------------------------------------------
+
+	//!---------------------------------------------------------------------------------------------------------
+	#region Initialization and Processes
+	//!---------------------------------------------------------------------------------------------------------
 
 	public override void _Ready()
 	{
@@ -49,6 +79,13 @@ public partial class DialogueManager : Node
 			DisplayNextLine();
 		}
 	}
+
+	#endregion
+	//!---------------------------------------------------------------------------------------------------------
+
+	//!---------------------------------------------------------------------------------------------------------
+	#region Methods and Interfaces
+	//!---------------------------------------------------------------------------------------------------------
 
 	public void StartDialogue(string dialoguePath)
 	{
@@ -110,4 +147,7 @@ public partial class DialogueManager : Node
 		GD.Print("O diálogo terminou! O jogo pode continuar.");
 		// Reabilita o botão
 	}
+
+	#endregion
+	//!---------------------------------------------------------------------------------------------------------
 }

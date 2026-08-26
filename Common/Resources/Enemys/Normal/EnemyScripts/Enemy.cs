@@ -3,6 +3,19 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+/**-----------------------------------------------------------------------------------------------------------------------
+*!                                                   ENEMY
+*-----------------------------------------------------------------------------------------------------------------------**/
+
+/**-----------------------------------------------------------------------------------------------------------------------
+	**                                                   PURPOSE
+	*  
+	**  1 - Base enemy controller implementing a fuzzy-logic driven state machine (Patrol, Chase, Attack, Flee).
+	**  2 - Handles navigation via NavigationAgent2D, damage colliders, and player detection signals.
+	**  3 - Connects stats and signals in _Ready with null-safety checks.
+	*
+*-----------------------------------------------------------------------------------------------------------------------**/
+
 public partial class Enemy : CharacterBody2D
 {
 	// --- ENUM: Estados da Máquina de Estados ---
@@ -208,11 +221,32 @@ public partial class Enemy : CharacterBody2D
 		_statePriorities[State.Flee] = lowHealth * 1.5f; 
 		
 		float attackPriority = Mathf.Min(nearDistance, 1.0f - lowHealth);
-		_statePriorities[State.Attack] = (AttackArea != null && AttackArea.HasOverlappingBodies()) ? attackPriority : 0f;
-		
-		_statePriorities[State.Chase] = (_player != null) ? Mathf.Min(1.0f - nearDistance, 1.0f - lowHealth) : 0f;
-		
-		_statePriorities[State.Patrol] = (_player == null || _statePriorities[State.Chase] < 0.1f) ? 1.0f : 0.0f;
+		if (AttackArea != null && AttackArea.HasOverlappingBodies())
+		{
+			_statePriorities[State.Attack] = attackPriority;
+		}
+		else
+		{
+			_statePriorities[State.Attack] = 0f;
+		}
+
+		if (_player != null)
+		{
+			_statePriorities[State.Chase] = Mathf.Min(1.0f - nearDistance, 1.0f - lowHealth);
+		}
+		else
+		{
+			_statePriorities[State.Chase] = 0f;
+		}
+
+		if (_player == null || _statePriorities[State.Chase] < 0.1f)
+		{
+			_statePriorities[State.Patrol] = 1.0f;
+		}
+		else
+		{
+			_statePriorities[State.Patrol] = 0.0f;
+		}
 		
 		// --- DEFUZZIFICAÇÃO (Escolha do Estado com Maior Prioridade) ---
 		State bestState = State.Patrol;

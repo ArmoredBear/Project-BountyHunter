@@ -1,0 +1,94 @@
+using Godot;
+
+public partial class PulsatingCircle : Node2D
+{
+    //!---------------------------------------------------------------------------------------------------------
+    #region Variables
+    //!---------------------------------------------------------------------------------------------------------
+
+    [ExportCategory("Timing")]
+    [Export(PropertyHint.Range, "0.1,10")] public float PulseInterval = 2.0f;
+
+    [Export(PropertyHint.Range, "0.1,10")] public float PulseDuration = 1.0f;
+
+    [Export(PropertyHint.Range, "0.0,10.0")] public float SpeedMultiplier = 1.0f;
+
+    [ExportCategory("Circles")]
+    [Export(PropertyHint.Range, "1,12")] public int CircleCount = 3;
+
+    [Export(PropertyHint.Range, "0.0,5.0")] public float TimeOffset = 0.3f;
+
+    [ExportCategory("Appearance")]
+    [Export(PropertyHint.Range, "1,1024")] public float MinRadius = 10f;
+
+    [Export(PropertyHint.Range, "1,2048")] public float MaxRadius = 200f;
+
+    [Export(PropertyHint.Range, "0.1,50")] public float LineWidth = 2f;
+
+    [Export] public Color CircleColor = Colors.Cyan;
+
+    [ExportCategory("Behavior")]
+    [Export] public bool Loop = true;
+
+    private float _timer = 0f;
+
+    #endregion
+    //!---------------------------------------------------------------------------------------------------------
+
+    //!---------------------------------------------------------------------------------------------------------
+    #region Initialization and Processes
+    //!---------------------------------------------------------------------------------------------------------
+
+    public override void _Process(double delta)
+    {
+        _timer += (float)delta * SpeedMultiplier;
+        if (Loop && _timer >= PulseInterval)
+            _timer -= PulseInterval;
+
+        QueueRedraw();
+    }
+
+    #endregion
+    //!---------------------------------------------------------------------------------------------------------
+
+    //!---------------------------------------------------------------------------------------------------------
+    #region Methods and Interfaces
+    //!---------------------------------------------------------------------------------------------------------
+
+    public override void _Draw()
+    {
+        if (LineWidth <= 0f) return;
+
+        for (int i = 0; i < CircleCount; i++)
+        {
+            float circleTimer = _timer + i * TimeOffset;
+            if (circleTimer >= PulseInterval)
+                circleTimer -= PulseInterval;
+
+            float radius;
+            float alpha;
+
+            if (circleTimer <= PulseDuration)
+            {
+                float progress = circleTimer / PulseDuration;
+                float eased = progress * progress * (3f - 2f * progress);
+                radius = Mathf.Lerp(MinRadius, MaxRadius, eased);
+                alpha = 1f - progress;
+            }
+            else
+            {
+                radius = MaxRadius;
+                alpha = 0f;
+            }
+
+            if (radius <= 0f || alpha <= 0f) continue;
+
+            Color drawColor = new Color(CircleColor.R, CircleColor.G, CircleColor.B, alpha);
+
+            DrawCircle(Vector2.Zero, radius, drawColor, false, LineWidth);
+        }
+    }
+
+    #endregion
+    //!---------------------------------------------------------------------------------------------------------
+}

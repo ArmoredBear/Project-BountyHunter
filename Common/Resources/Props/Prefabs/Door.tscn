@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bxf5llvkkgbn5"]
+
+[ext_resource type="Script" uid="uid://yjxtujhir2gd" path="res://Common/Resources/Props/PropsScripts/Door.cs" id="1_s8qdo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pqiei"]
+size = Vector2(200, 200)
+
+[node name="Door" type="Node2D" unique_id=1860694349 node_paths=PackedStringArray("Portal")]
+script = ExtResource("1_s8qdo")
+Portal = NodePath("Portal")
+
+[node name="Portal" type="Area2D" parent="." unique_id=1304236229]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Portal" unique_id=1423999350]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_pqiei")

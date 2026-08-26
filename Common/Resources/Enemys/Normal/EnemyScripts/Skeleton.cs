@@ -3,6 +3,19 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+/**-----------------------------------------------------------------------------------------------------------------------
+*!                                                   SKELETON
+*-----------------------------------------------------------------------------------------------------------------------**/
+
+/**-----------------------------------------------------------------------------------------------------------------------
+	**                                                   PURPOSE
+	*  
+	**  1 - Skeleton enemy controller implementing a fuzzy-logic driven state machine (Patrol, Chase, Attack, Flee).
+	**  2 - Manages navigation, combat hitboxes, attack cooldowns, and player damage signals.
+	**  3 - Plays hit sound and hit flash when damaged.
+	*
+*-----------------------------------------------------------------------------------------------------------------------**/
+
 public partial class Skeleton : CharacterBody2D
 {
     // --- ENUM: Estados da Máquina de Estados ---

@@ -1,13 +1,34 @@
 using Godot;
 using System;
 
+/**-----------------------------------------------------------------------------------------------------------------------
+*!                                                   MAINMENU
+*-----------------------------------------------------------------------------------------------------------------------**/
+
+/**-----------------------------------------------------------------------------------------------------------------------
+	**                                                   PURPOSE
+	*  
+	**  1 - Main menu overlay displayed over the game scene.
+	**  2 - Shows/hides the menu panel and references it when null.
+	*
+*-----------------------------------------------------------------------------------------------------------------------**/
+
 public partial class MainMenu : CanvasLayer
 {
+    //!---------------------------------------------------------------------------------------------------------
+    #region Properties
+    //!---------------------------------------------------------------------------------------------------------
+
     [Export] public Panel Menu_Panel { get; set; }
-    [Export] public Panel Logo_Panel { get; set; }
-    [Export] public AnimationPlayer Menu_Animation { get; set; }
-    [Export] public AnimationPlayer Logo_Animation { get; set; }
+
     [Export] public bool Menu_is_Shown { get; set; } = false;
+
+    #endregion
+    //!---------------------------------------------------------------------------------------------------------
+
+    //!---------------------------------------------------------------------------------------------------------
+    #region Initialization and Processes
+    //!---------------------------------------------------------------------------------------------------------
 
     public override void _Ready()
     {
@@ -24,12 +45,18 @@ public partial class MainMenu : CanvasLayer
         {
             if (Input.IsAnythingPressed())
             {
-                Menu_Animation.Play("Slide_Up");
-                Logo_Animation.Play("Slide_Down");
+
                 Menu_is_Shown = true;
             }
         }
     }
+
+    #endregion
+    //!---------------------------------------------------------------------------------------------------------
+
+    //!---------------------------------------------------------------------------------------------------------
+    #region Methods
+    //!---------------------------------------------------------------------------------------------------------
 
     public void Reference_If_Null()
     {
@@ -47,49 +74,9 @@ public partial class MainMenu : CanvasLayer
 
             }
         }
-        if (Logo_Panel == null)
-        {
-            GD.Print("Logo Panel is NULL!! Trying to reference it..");
-            try
-            {
-                Logo_Panel = GetNode<Panel>("%LogoPanel");
-                GD.Print("Sucess! Reference is: " + Logo_Panel.Name);
-            }
-            catch (Exception ex)
-            {
-                GD.Print(ex.Message);
-
-            }
-        }
-        if (Menu_Animation == null)
-        {
-            GD.Print("Menu Animation is NULL!! Trying to reference it..");
-            try
-            {
-                Logo_Panel = GetNode<Panel>("%MenuAnimation");
-                GD.Print("Sucess! Reference is: " + Menu_Animation.Name);
-            }
-            catch (Exception ex)
-            {
-                GD.Print(ex.Message);
-
-            }
-        }
-        if (Logo_Animation == null)
-        {
-            GD.Print("Logo Animation is NULL!! Trying to reference it..");
-            try
-            {
-                Logo_Panel = GetNode<Panel>("%LogoAnimation");
-                GD.Print("Sucess! Reference is: " + Logo_Animation.Name);
-            }
-            catch (Exception ex)
-            {
-                GD.Print(ex.Message);
-
-            }
-        }
     }
 
+    #endregion
+    //!---------------------------------------------------------------------------------------------------------
 
 }

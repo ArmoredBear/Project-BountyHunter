@@ -1,0 +1,53 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://1fmvng3xnr6x"]
+
+[ext_resource type="Texture2D" uid="uid://hctyhldf8t0c" path="res://Common/Resources/Props/Props CanvasTextures/CheckPoint_CanvasTexture.tres" id="1_h20fp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5tn3"]
+atlas = ExtResource("1_h20fp")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5sf0"]
+atlas = ExtResource("1_h20fp")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_383ip"]
+atlas = ExtResource("1_h20fp")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dska"]
+atlas = ExtResource("1_h20fp")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dxmnm"]
+atlas = ExtResource("1_h20fp")
+region = Rect2(1024, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pikb3"]
+atlas = ExtResource("1_h20fp")
+region = Rect2(1280, 0, 256, 256)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5tn3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5sf0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_383ip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5dska")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dxmnm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pikb3")
+}],
+"loop": false,
+"name": &"Break",
+"speed": 5.0
+}]

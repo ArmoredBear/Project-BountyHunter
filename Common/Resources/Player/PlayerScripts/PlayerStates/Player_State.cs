@@ -1,6 +1,18 @@
 using Godot;
 using System;
 
+/**-----------------------------------------------------------------------------------------------------------------------
+*!                                                   PLAYER_STATE
+*-----------------------------------------------------------------------------------------------------------------------**/
+
+/**-----------------------------------------------------------------------------------------------------------------------
+	**                                                   PURPOSE
+	*  
+	**  1 - Base class for the player finite state machine states.
+	**  2 - Provides shared references (Player, Player body, Player FSM) and defines the virtual lifecycle methods overridden by sub-states.
+	*
+*-----------------------------------------------------------------------------------------------------------------------**/
+
 public partial class Player_State : Node
 {
     private Player _player;

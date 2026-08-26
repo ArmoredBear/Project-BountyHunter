@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cstb8svv5da71" path="res://Common/Resources/Player/PlayerPrefabs/QuickItems_List.tscn" id="1_v8mnl"]
 [ext_resource type="Script" uid="uid://dy10gqs0lmnw0" path="res://Common/Resources/Player/PlayerScripts/Player.cs" id="2_gnjcu"]
 [ext_resource type="Script" uid="uid://bflfe8ughjr1n" path="res://Common/Resources/Player/PlayerScripts/Player_Damage.cs" id="2_qgaeo"]
+[ext_resource type="Script" uid="uid://de3qbv4qx4tox" path="res://Common/Resources/Player/PlayerScripts/CameraShake.cs" id="3_damwb"]
 [ext_resource type="SpriteFrames" uid="uid://cn2pxpvys21bk" path="res://Common/Resources/Player/PlayerPrefabs/PlayerAnimationSprites.tres" id="3_pf8kc"]
 [ext_resource type="Script" uid="uid://bg313y4mcjcol" path="res://Common/Resources/Player/PlayerScripts/Player_FSM.cs" id="4_1x6g7"]
 [ext_resource type="Shader" uid="uid://daduoont25u0w" path="res://Common/Resources/Shaders/PlayerShader.tres" id="4_w7j57"]
@@ -83,6 +84,10 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 editor_draw_limits = true
 editor_draw_drag_margin = true
+script = ExtResource("3_damwb")
+Intensity_Multiplier = 2.0
+Max_Intensity = 40.0
+Armor_Hit_Scale = 0.5
 
 [node name="Player_FSM" type="Node2D" parent="Player_Body" unique_id=27612971]
 unique_name_in_owner = true
@@ -140,6 +145,7 @@ shape = SubResource("RectangleShape2D_hqqtb")
 unique_name_in_owner = true
 stream = ExtResource("10_ekcxg")
 max_distance = 5000.0
+bus = &"SFX"
 
 [node name="Evading" type="Node2D" parent="Player_Body/Player_FSM" unique_id=1284065888]
 unique_name_in_owner = true
@@ -201,4 +207,5 @@ script = ExtResource("17_ti6mo")
 [connection signal="animation_finished" from="Player_Body/Player_FSM/Player_Animation" to="Player_Body/Player_FSM/Attacking" method="On_Player_Animation_Finished"]
 
 [editable path="Player_UI"]
-[editable path="Player_UI/DialogueUI"]
+[editable path="Player_UI/Control - Status/Control - Health_Bar/Control - Heart_Monitor"]
+[editable path="Player_UI/CanvasLayer - DialogueUI"]

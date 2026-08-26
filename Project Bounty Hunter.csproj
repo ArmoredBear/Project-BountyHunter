@@ -2,6 +2,8 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591;CS1587;CS8632;CS1570</NoWarn>
     <RootNamespace>ProjectBountyHunter</RootNamespace>
   </PropertyGroup>
   <ItemGroup>

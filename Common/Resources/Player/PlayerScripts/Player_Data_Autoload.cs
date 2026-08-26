@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.IO;
+using PlayerScript.PlayerInventory;
 
 /**-----------------------------------------------------------------------------------------------------------------------
  *!                                              PLAYER DATA AUTOLOAD CLASS
@@ -27,6 +28,7 @@ public partial class Player_Data_Autoload : Node
 	private static Player _player;
 	private static Player_Data _player_data;
 	private Player_Healthbar_UI _player_heathbar;
+	private Player_Armorbar_UI _player_armorbar;
 	private Timer _poison_timer;
 	private int _counter;
 	private int current_stored_damage;
@@ -40,7 +42,7 @@ public partial class Player_Data_Autoload : Node
 
 	[Export] public Timer Poison_Timer;
 
-	[Export] public Player_Healthbar_UI Player_Healthbar
+	public Player_Healthbar_UI Player_Healthbar
 	{
 		get
 		{
@@ -50,6 +52,19 @@ public partial class Player_Data_Autoload : Node
 		set
 		{
 			_player_heathbar = value;
+		}
+	}
+
+	public Player_Armorbar_UI Player_Armorbar
+	{
+		get
+		{
+			return _player_armorbar;
+		}
+
+		set
+		{
+			_player_armorbar = value;
 		}
 	}
 	
@@ -110,7 +125,11 @@ public partial class Player_Data_Autoload : Node
 		}
 
 		Data = new Player_Data(100, 500, 100, true, false, false, Vector2.Zero);
-		Player_Healthbar = GetNode<Player_Healthbar_UI>("/root/Player/Player_UI/Status/Health_Bar");
+		Data.MAX_Armor = 100;
+		Data.CURRENT_Armor = 100;
+		Data.Armored = true;
+		Player_Healthbar = GetNode<Player_Healthbar_UI>("/root/Player/Player_UI/Control - Status/Control - Health_Bar");
+		Player_Armorbar = GetNode<Player_Armorbar_UI>("/root/Player/Player_UI/Control - Status/Control - Health_Bar/TextureProgressBar - Armor_Bar");
 
 
 
@@ -153,12 +172,41 @@ public partial class Player_Data_Autoload : Node
 
 	public void Update_Loaded_Data()
 	{
+		// Hide any open menus so the player spawns straight into gameplay
+		var menu = GetNodeOrNull<CanvasLayer>("/root/Player/Player_UI/CanvasLayer - Player_Menu");
+		if (menu != null)
+		{
+			menu.Visible = false;
+		}
+
 		GD.Print("Loading health from save: " + Data.CURRENT_Health);
 		GD.Print("Loading stamina from save: " + Data.CURRENT_Stamina);
-		Player_Healthbar.Health_Monitor.Value = Data.CURRENT_Health;
 		Player_Healthbar.Lines.Value = Data.CURRENT_Health;
+		if (Player_Healthbar.Lines_CatchUp != null) Player_Healthbar.Lines_CatchUp.Value = Data.CURRENT_Health;
 		ShouldSetLoadedPosition = true;
 		LoadedPosition = Data.Position;
+		NextSpawnName = Data.NextSpawnName;
+
+		// Restore inventory
+		var inventory = GetNodeOrNull<PlayerInventory>("/root/Player/Inventory");
+		if (inventory != null)
+		{
+			inventory.Clear();
+			foreach (var item in Data.Inventory)
+			{
+				inventory.AddItem(item);
+			}
+		}
+
+		// Restart poison timer if player was poisoned when saved
+		if (Data.Poisoned && Poison_Timer != null)
+		{
+			if (Poison_Timer.IsStopped())
+			{
+				Poison_Timer.Start();
+			}
+		}
+
 		// Also set position immediately if player exists
 		GD.Print("Loaded position: " + Data.Position);
 		GD.Print("Loaded scene: " + Path.GetFileNameWithoutExtension(Data.CurrentScene));
@@ -192,6 +240,22 @@ public partial class Player_Data_Autoload : Node
 		var playerBody = GetNode<CharacterBody2D>("/root/Player/Player_Body");
 		Data.Position = playerBody.GlobalPosition;
 		Data.CurrentScene = GetTree().CurrentScene.SceneFilePath;
+		Data.NextSpawnName = NextSpawnName;
+
+		// Serialize inventory into the save resource
+		var inventory = GetNodeOrNull<PlayerInventory>("/root/Player/Inventory");
+		if (inventory != null)
+		{
+			Data.Inventory.Clear();
+			foreach (var type in new[] { ItemType.Consumable, ItemType.Weapon, ItemType.Armor, ItemType.Tool })
+			{
+				foreach (var item in inventory.GetItemsByType(type))
+				{
+					Data.Inventory.Add(item);
+				}
+			}
+		}
+
 		GD.Print("Saving position: " + Data.Position);
 		GD.Print("Saving health: " + Data.CURRENT_Health);
 		GD.Print("Saving stamina: " + Data.CURRENT_Stamina);
@@ -253,6 +317,51 @@ public partial class Player_Data_Autoload : Node
 	public void Update_Player_Health_UI(int _value)
 	{
 		Player_Healthbar.Change_Health(_value);
+	}
+
+	public void Update_Player_Armor_UI()
+	{
+		Player_Armorbar.Update_Armor_Bar();
+	}
+
+	/// <summary>
+	/// Full state reset for starting a new game.
+	/// Restores Player_Data to defaults, clears inventory, and resets all autoload state.
+	/// </summary>
+	public void Reset()
+	{
+		Data.Reset();
+
+		current_stored_damage = 0;
+		previous_stored_damage = 0;
+		NextSpawnName = "Spawn_Default";
+		ShouldSetLoadedPosition = false;
+		LoadedPosition = Vector2.Zero;
+
+		// Clear inventory
+		var inventory = GetNodeOrNull<PlayerInventory>("/root/Player/Inventory");
+		if (inventory != null)
+		{
+			inventory.Clear();
+		}
+
+		// Stop poison timer if active
+		if (Poison_Timer != null && Poison_Timer.TimeLeft > 0)
+		{
+			Poison_Timer.Stop();
+		}
+
+		// Sync UI so the health bar, color, and monitor trace reflect the fresh state
+		if (Player_Healthbar != null)
+		{
+			Player_Healthbar.Lines.Value = Data.CURRENT_Health;
+			if (Player_Healthbar.Lines_CatchUp != null) Player_Healthbar.Lines_CatchUp.Value = Data.CURRENT_Health;
+		}
+
+		if (Player_Armorbar != null)
+		{
+			Player_Armorbar.Update_Armor_Bar();
+		}
 	}
 
 	#endregion

@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cpgruv21d0k3m"]
+
+[ext_resource type="Shader" uid="uid://c6c4b1yyc03r4" path="res://Common/Resources/Shaders/Rain.gdshader" id="1_ylqyu"]
+
+[resource]
+shader = ExtResource("1_ylqyu")
+shader_parameter/rain_color = Color(0.44313726, 0.44313726, 0.44313726, 1)
+shader_parameter/brightness = 1.00000004424012
+shader_parameter/speed = 1.2000000563014799
+shader_parameter/wind = 0.15000003087500002
+shader_parameter/near_density = 500.0
+shader_parameter/near_compression = 1.0
+shader_parameter/near_trail = 50.0
+shader_parameter/near_opacity = 0.70000003325
+shader_parameter/far_density = 500.0
+shader_parameter/far_compression = 0.70000002999012
+shader_parameter/far_trail = 30.0
+shader_parameter/far_opacity = 0.70000003325
+shader_parameter/far_speed_scale = 2.0
+shader_parameter/flash_strength = 1.0
+shader_parameter/flash_glow = 3.0

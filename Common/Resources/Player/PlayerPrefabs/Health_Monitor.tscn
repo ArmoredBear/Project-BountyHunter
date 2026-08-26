@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://fwrc3ihm35rd"]
+
+[ext_resource type="Shader" uid="uid://di6rkkusdam25" path="res://Common/Resources/Shaders/HeartMonitor_Line.gdshader" id="1_silv8"]
+[ext_resource type="Texture2D" uid="uid://cw8rwen7xe6or" path="res://Common/Resources/Player/User Interface/UI_Art/Line2DTexture.png" id="2_silv8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cxyfn"]
+shader = ExtResource("1_silv8")
+shader_parameter/Glint_Speed = 0.35
+shader_parameter/Line_Length = 792.0
+shader_parameter/Glint_Interval = 3.0
+shader_parameter/Glint_Intensity = 0.6
+shader_parameter/Base_Brightness = 0.25
+shader_parameter/Glow_Strength = 0.25
+shader_parameter/Bloom_Threshold = 0.35
+shader_parameter/Tremor_Amount = 0.0
+shader_parameter/Flash_Strength = 0.0
+shader_parameter/Flash_Color = Color(1, 0.4, 0.7, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_silv8"]
+shader = ExtResource("1_silv8")
+shader_parameter/Glint_Speed = 1.4000000665
+shader_parameter/Line_Length = 792.0
+shader_parameter/Glint_Interval = 2.00000007125
+shader_parameter/Glint_Intensity = 2.0
+shader_parameter/Base_Brightness = 0.50000002375
+shader_parameter/Glow_Strength = 20.0
+shader_parameter/Bloom_Threshold = 1.0
+shader_parameter/Tremor_Amount = 0.0
+shader_parameter/Flash_Strength = 0.0
+shader_parameter/Flash_Color = Color(1, 0.4, 0.7, 1)
+
+[sub_resource type="Curve" id="Curve_silv8"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+bake_resolution = 1000
+_data = [Vector2(0, 1.0033028), 0.0, 1.9976841, 0, 1, Vector2(0.4971857, 1.9965228), 0.0, 0.0, 0, 0, Vector2(1, 0.99525166), -1.9913338, 0.0, 1, 0]
+point_count = 3
+
+[node name="Control - Heart_Monitor" type="Control" unique_id=840436665]
+material = SubResource("ShaderMaterial_cxyfn")
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Line2D - Monitor_Line" type="Line2D" parent="." unique_id=750937298]
+material = SubResource("ShaderMaterial_silv8")
+scale = Vector2(0.5, 0.5)
+width = 2.0
+width_curve = SubResource("Curve_silv8")
+default_color = Color(0, 1, 0.735357, 1)
+texture = ExtResource("2_silv8")
+texture_mode = 2

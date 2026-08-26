@@ -1,13 +1,21 @@
 [gd_resource type="VisualShader" format=3 uid="uid://dd5dgn3t5k8bv"]
 
 [sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_qf6i5"]
-parameter_name = "Normal_Mapwyldheart"
+parameter_name = "Normal_Map"
 texture_type = 2
 texture_filter = 1
 texture_repeat = 2
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_68f2x"]
 source = 5
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_arb7x"]
+source = 5
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_jh674"]
+parameter_name = "SpecularMap"
+texture_type = 1
+texture_filter = 1
 
 [resource]
 mode = 1
@@ -18,4 +26,9 @@ nodes/fragment/2/position = Vector2(300, 120)
 nodes/fragment/6/node = SubResource("VisualShaderNodeTexture_68f2x")
 nodes/fragment/6/position = Vector2(700, 220)
 nodes/fragment/connections = PackedInt32Array(2, 0, 6, 2, 6, 0, 0, 3)
-nodes/light/0/position = Vector2(820, 100)
+nodes/light/0/position = Vector2(1100, 120)
+nodes/light/2/node = SubResource("VisualShaderNodeTexture_arb7x")
+nodes/light/2/position = Vector2(640, 0)
+nodes/light/3/node = SubResource("VisualShaderNodeTexture2DParameter_jh674")
+nodes/light/3/position = Vector2(220, 0)
+nodes/light/connections = PackedInt32Array(3, 0, 2, 2)

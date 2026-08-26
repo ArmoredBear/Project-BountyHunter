@@ -1,0 +1,20 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dvovuci63be3t"]
+
+[ext_resource type="Shader" uid="uid://dbdmdaoqiljgn" path="res://Common/Resources/Shaders/Staminabar_Bars.gdshader" id="1_shader"]
+[ext_resource type="Texture2D" uid="uid://owe8gguuup3t" path="res://Common/Resources/Player/User Interface/UI_Art/StaminaFogTexture.png" id="2_fog"]
+
+[resource]
+shader = ExtResource("1_shader")
+shader_parameter/Bar_Count = 50
+shader_parameter/Gap_Width = 0.0030000001425
+shader_parameter/Outer_Gap_X = 0.0
+shader_parameter/Outer_Gap_Y = 0.0800000038
+shader_parameter/Fog_Texture = ExtResource("2_fog")
+shader_parameter/Fog_Scale = 2.0000000475
+shader_parameter/Fog_Speed = 0.15
+shader_parameter/Fog_Intensity = 1.5000000712500001
+shader_parameter/Glow_Intensity = 0.3
+shader_parameter/Full_Color = Color(0.94117653, 1, 0, 1)
+shader_parameter/Empty_Color = Color(0, 0, 0, 1)
+shader_parameter/Glow_Color = Color(1, 1, 0, 1)
+shader_parameter/Progress = 1.0

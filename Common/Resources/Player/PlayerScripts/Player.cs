@@ -163,7 +163,7 @@ public partial class Player : CharacterBody2D
 			if (enemy is Node2D enemyNode)
 			{
 				float dist = GlobalPosition.DistanceTo(enemyNode.GlobalPosition);
-				if (dist < 1000)
+				if (dist < 2500)
 				{
 					enemyClose = true;
 					break;
@@ -173,11 +173,17 @@ public partial class Player : CharacterBody2D
 
 		if (enemyClose)
 		{
-			AudioManager.Instance?.SwitchToCombat();
+			if (AudioManager.Instance != null && GodotObject.IsInstanceValid(AudioManager.Instance))
+			{
+				AudioManager.Instance.SwitchToCombat();
+			}
 		}
 		else
 		{
-			AudioManager.Instance?.StartAmbientTimer();
+			if (AudioManager.Instance != null && GodotObject.IsInstanceValid(AudioManager.Instance))
+			{
+				AudioManager.Instance.StartAmbientTimer();
+			}
 		}
 	}
 

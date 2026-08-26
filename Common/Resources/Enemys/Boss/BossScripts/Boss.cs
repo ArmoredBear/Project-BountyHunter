@@ -3,6 +3,19 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+/**-----------------------------------------------------------------------------------------------------------------------
+*!                                                   BOSS
+*-----------------------------------------------------------------------------------------------------------------------**/
+
+/**-----------------------------------------------------------------------------------------------------------------------
+	**                                                   PURPOSE
+	*  
+	**  1 - Boss enemy controller implementing a fuzzy-logic driven state machine (Patrol, Chase, Attack, Flee).
+	**  2 - Manages navigation via NavigationAgent2D, combat hitboxes, and player damage signals.
+	**  3 - Connects stats and signals in _Ready with null-safety checks.
+	*
+*-----------------------------------------------------------------------------------------------------------------------**/
+
 public partial class Boss : CharacterBody2D
 {
 	// --- ENUM: Estados da Máquina de Estados ---

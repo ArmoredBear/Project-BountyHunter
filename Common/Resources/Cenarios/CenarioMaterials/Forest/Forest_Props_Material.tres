@@ -1,8 +1,0 @@
-[gd_resource type="ShaderMaterial" format=3 uid="uid://bbol1qr4mucvd"]
-
-[ext_resource type="Shader" uid="uid://c3hlrawnaxxeu" path="res://Common/Resources/Shaders/CenarioForest_Shader.tres" id="1_r85bj"]
-[ext_resource type="Texture2D" uid="uid://dsb8siylm3gbb" path="res://Common/Resources/Cenarios/CenarioNormalMaps/Forest_Props_n.png" id="2_j2ppd"]
-
-[resource]
-shader = ExtResource("1_r85bj")
-shader_parameter/Normal_Map = ExtResource("2_j2ppd")

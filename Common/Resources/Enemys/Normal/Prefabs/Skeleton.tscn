@@ -188,6 +188,7 @@ libraries/ = SubResource("AnimationLibrary_drhrp")
 autoplay = &"Hit_Flash"
 
 [node name="Hit_Sound" type="AudioStreamPlayer2D" parent="." unique_id=437931601]
+bus = &"SFX"
 stream = ExtResource("10_hit")
 max_distance = 5000.0
 

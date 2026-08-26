@@ -8,25 +8,24 @@
 [ext_resource type="Texture2D" uid="uid://d1oou2y8ah1oo" path="res://Common/Resources/Cenarios/CenarioArt/Lighting/Cenario_Point_Light_Map.tres" id="5_omeb6"]
 [ext_resource type="Texture2D" uid="uid://bitqvnwe26177" path="res://Common/Resources/Cenarios/CenarioArt/Lighting/Door_LightMap.png" id="6_gi80c"]
 [ext_resource type="Texture2D" uid="uid://poh5e7lfq33h" path="res://Common/Resources/Cenarios/CenarioArt/Lighting/GodRay_LightMap.png" id="7_hnrfk"]
-[ext_resource type="PackedScene" uid="uid://bxf5llvkkgbn5" path="res://Common/Resources/Cenarios/Props/Prefabs/Door.tscn" id="7_oan54"]
+[ext_resource type="PackedScene" uid="uid://bxf5llvkkgbn5" path="res://Common/Resources/Props/Prefabs/Door.tscn" id="7_oan54"]
 [ext_resource type="PackedScene" uid="uid://ccwqnm8c8jwux" path="res://Common/Resources/Enemys/Normal/Prefabs/Phantom.tscn" id="7_p8x1l"]
 [ext_resource type="Material" uid="uid://dd0284oj67vwv" path="res://Common/Resources/Cenarios/CenarioMaterials/Tunnel/GodRaysMaterial_2.tres" id="8_dp1p4"]
 [ext_resource type="PackedScene" uid="uid://bfyl05rrk0qpx" path="res://Common/Resources/Enemys/Normal/Prefabs/Skeleton.tscn" id="8_eg5a6"]
 [ext_resource type="Shader" uid="uid://1jrudh7tt67w" path="res://Common/Resources/Shaders/Phantom_Shader.tres" id="9_1ygmt"]
-[ext_resource type="Material" uid="uid://ci1n5svpvkdh8" path="res://Common/Resources/Cenarios/Props/PropsMaterials/PropsMaterial_Lamp_1.tres" id="9_k488q"]
-[ext_resource type="Texture2D" uid="uid://dwklhceod1aps" path="res://Common/Resources/Cenarios/Props/PropsArt/Lights/Lamp_1.png" id="10_alwai"]
-[ext_resource type="PackedScene" uid="uid://tyb2ogvaxl2d" path="res://Common/Resources/Cenarios/Props/Prefabs/god_rays.tscn" id="11_3q2v7"]
-[ext_resource type="Material" uid="uid://tjmqekt683nl" path="res://Common/Resources/Cenarios/Props/PropsMaterials/PropsMaterial_Box_Paper_1.tres" id="11_kbqv6"]
-[ext_resource type="Texture2D" uid="uid://ydp4lbl23kr" path="res://Common/Resources/Cenarios/Props/PropsArt/Box_Paper_1.png" id="12_4nt6m"]
-[ext_resource type="Material" uid="uid://da7w0yfg2v414" path="res://Common/Resources/Cenarios/Props/PropsMaterials/PropsMaterial_Box_Paper_2.tres" id="13_rv5jk"]
-[ext_resource type="Texture2D" uid="uid://clpceitcpppyc" path="res://Common/Resources/Cenarios/Props/PropsArt/Box_Paper_2.png" id="14_nfjfh"]
-[ext_resource type="Material" uid="uid://bxmgxtrx8ihy3" path="res://Common/Resources/Cenarios/Props/PropsMaterials/PropsMaterial_Box_Wood.tres" id="15_lksis"]
-[ext_resource type="Texture2D" uid="uid://dyd5a6sgc0nll" path="res://Common/Resources/Cenarios/Props/PropsArt/Box_Wood_1.png" id="16_4l8sg"]
-[ext_resource type="Material" uid="uid://b7jsxw8ckcfhu" path="res://Common/Resources/Cenarios/Props/PropsMaterials/PropsMaterial_Barrel_Wood.tres" id="17_xmc55"]
-[ext_resource type="Texture2D" uid="uid://uxjphhnn38or" path="res://Common/Resources/Cenarios/Props/PropsArt/Barrel_Wood.png" id="18_3dj5q"]
-[ext_resource type="AudioStream" uid="uid://by61ilg18bid0" path="res://Common/Resources/SoundTracks/Vindsvept - The Youtube Collection - 65 Hollow.ogg" id="25_nqwfs"]
+[ext_resource type="Material" uid="uid://ci1n5svpvkdh8" path="res://Common/Resources/Props/PropsMaterials/PropsMaterial_Lamp_1.tres" id="9_k488q"]
+[ext_resource type="Texture2D" uid="uid://dwklhceod1aps" path="res://Common/Resources/Props/Lights/Lamp_1.png" id="10_alwai"]
+[ext_resource type="PackedScene" uid="uid://tyb2ogvaxl2d" path="res://Common/Resources/Props/Prefabs/god_rays.tscn" id="11_3q2v7"]
+[ext_resource type="Material" uid="uid://tjmqekt683nl" path="res://Common/Resources/Props/PropsMaterials/PropsMaterial_Box_Paper_1.tres" id="11_kbqv6"]
+[ext_resource type="Texture2D" uid="uid://ydp4lbl23kr" path="res://Common/Resources/Props/PropsArt/Box_Paper_1.png" id="12_4nt6m"]
+[ext_resource type="Material" uid="uid://da7w0yfg2v414" path="res://Common/Resources/Props/PropsMaterials/PropsMaterial_Box_Paper_2.tres" id="13_rv5jk"]
+[ext_resource type="Texture2D" uid="uid://clpceitcpppyc" path="res://Common/Resources/Props/PropsArt/Box_Paper_2.png" id="14_nfjfh"]
+[ext_resource type="Material" uid="uid://bxmgxtrx8ihy3" path="res://Common/Resources/Props/PropsMaterials/PropsMaterial_Box_Wood.tres" id="15_lksis"]
+[ext_resource type="Texture2D" uid="uid://dyd5a6sgc0nll" path="res://Common/Resources/Props/PropsArt/Box_Wood_1.png" id="16_4l8sg"]
+[ext_resource type="Material" uid="uid://b7jsxw8ckcfhu" path="res://Common/Resources/Props/PropsMaterials/PropsMaterial_Barrel_Wood.tres" id="17_xmc55"]
+[ext_resource type="Texture2D" uid="uid://uxjphhnn38or" path="res://Common/Resources/Props/PropsArt/Barrel_Wood.png" id="18_3dj5q"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yahv3"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lu00r"]
 resource_local_to_scene = true
 shader = ExtResource("9_1ygmt")
 shader_parameter/Enabled = false
@@ -269,7 +268,7 @@ tile_set = ExtResource("1_8xi57")
 position = Vector2(-1346, 198)
 
 [node name="Phantom_Sprite_Frames" parent="Enemys/Phantom" index="6" unique_id=679599635]
-material = SubResource("ShaderMaterial_yahv3")
+material = SubResource("ShaderMaterial_lu00r")
 
 [node name="Phantom2" parent="Enemys" unique_id=271623465 instance=ExtResource("7_p8x1l")]
 position = Vector2(2070, 630)
@@ -853,10 +852,8 @@ energy = 0.3
 height = 1.0
 
 [node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=1921375431]
-stream = ExtResource("25_nqwfs")
-autoplay = true
 max_distance = 100000.0
-parameters/looping = true
+bus = &"Music"
 
 [editable path="Doors/Tunnel_West_Door"]
 [editable path="Doors/Tunnel_South_Door"]

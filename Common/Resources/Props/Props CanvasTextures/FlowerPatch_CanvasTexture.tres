@@ -1,0 +1,10 @@
+[gd_resource type="CanvasTexture" format=3 uid="uid://bpe4b7gitiuuj"]
+
+[ext_resource type="Texture2D" uid="uid://dcstbdehgewi1" path="res://Common/Resources/Props/PropsArt/SacredFlowers.png" id="1_1y3tq"]
+[ext_resource type="Texture2D" uid="uid://bsvgpf12f1jbm" path="res://Common/Resources/Props/PropsNormalMaps/SacredFlowers_n.png" id="2_sgpeg"]
+[ext_resource type="Texture2D" uid="uid://b3e1h57bqjmh2" path="res://Common/Resources/Props/PropsSpecularMaps/SacredFlowers_s.png" id="3_c4vcc"]
+
+[resource]
+diffuse_texture = ExtResource("1_1y3tq")
+normal_texture = ExtResource("2_sgpeg")
+specular_texture = ExtResource("3_c4vcc")

@@ -3,213 +3,275 @@
 [ext_resource type="Script" uid="uid://b1b2rcybnplf7" path="res://Common/Resources/General Scritps/MainMenu/MainMenu.cs" id="1_oroun"]
 [ext_resource type="Theme" uid="uid://byfphwqv3j56s" path="res://Common/Resources/Player/User Interface/Prefabs/Themes/Base_Main_Menu_Theme.tres" id="1_w55jq"]
 [ext_resource type="Script" uid="uid://vfe4rsig371w" path="res://Common/Resources/General Scritps/Continue.cs" id="2_6lkvc"]
+[ext_resource type="Script" uid="uid://ben57gruc7cac" path="res://Common/Resources/Misc/Effects/WeatherChooser.cs" id="2_qr2lj"]
 [ext_resource type="Material" uid="uid://b6jkgq0ktik5a" path="res://Common/Resources/Player/User Interface/UI_Material_Test.tres" id="2_whdxq"]
-[ext_resource type="Texture2D" uid="uid://bdwdlawohth3p" path="res://Common/Resources/Cenarios/CenarioArt/DrawnCenarios/Cenario_1.png" id="2_wv4su"]
-[ext_resource type="Texture2D" uid="uid://bikvub6t8p658" path="res://Common/Resources/ParticleEffects/pine_tree_leaves.png" id="4_l1wja"]
-[ext_resource type="Texture2D" uid="uid://dkkle61cheusy" path="res://Common/Resources/Player/User Interface/UI_Art/Panel2.png" id="6_amqa5"]
-[ext_resource type="Texture2D" uid="uid://pwn7f70287jh" path="res://Common/Resources/Player/User Interface/UI_Art/Bell_2.png" id="6_ivm71"]
-[ext_resource type="Texture2D" uid="uid://ttp5t78m5ium" path="res://Common/Resources/Player/User Interface/UI_Art/ECHO_TRACKER_LOGO_OFICIAL_1.png" id="7_1gvs1"]
+[ext_resource type="Shader" uid="uid://bg2shqbn8mqfe" path="res://Common/Resources/Shaders/LightningFlash.gdshader" id="2_xcj4t"]
+[ext_resource type="Texture2D" uid="uid://tyhdrqvs4p53" path="res://Common/Resources/Misc/Effects/Other/OtherTextures/NoisePlaceholder.tres" id="3_nthcj"]
+[ext_resource type="Script" uid="uid://ddt4kvjopo15r" path="res://Common/Resources/Misc/Effects/LightningEffect.cs" id="3_obmtt"]
+[ext_resource type="Texture2D" uid="uid://cjvyg2jdtv351" path="res://Common/Resources/Player/User Interface/UI_Art/ECHO_TRACKER_LOGO_OFICIAL_7.png" id="3_uo8uj"]
+[ext_resource type="Material" uid="uid://cpgruv21d0k3m" path="res://Common/Resources/Misc/Effects/Other/OtherMaterials/RainMaterial.tres" id="3_wtra2"]
+[ext_resource type="Script" uid="uid://di31wokv3on3" path="res://Common/Resources/Misc/Effects/PulsatingCircle.cs" id="4_nthcj"]
+[ext_resource type="Texture2D" uid="uid://bgth7utmp6cmt" path="res://Common/Resources/Player/User Interface/UI_Art/Decoration_1.png" id="6_0raye"]
+[ext_resource type="Shader" uid="uid://bailx8twy6k85" path="res://Common/Resources/Shaders/PassingMist.gdshader" id="6_e543h"]
+[ext_resource type="Material" uid="uid://dcb22ixxk4on5" path="res://Common/Resources/Misc/Effects/Other/OtherMaterials/CloudsMaterial.tres" id="6_pt4oh"]
+[ext_resource type="Material" uid="uid://bh41v4gvbpqc" path="res://Common/Resources/Misc/Effects/Other/OtherMaterials/SnowParticleMaterial.tres" id="8_qr2lj"]
 [ext_resource type="Script" uid="uid://bew5eemlw0u7u" path="res://Common/Resources/Player/User Interface/UI_Scripts/Quit.cs" id="9_b0ek2"]
 [ext_resource type="Script" uid="uid://c47djscgjx4l4" path="res://Common/Resources/General Scritps/LoadGame.cs" id="9_l1guo"]
 [ext_resource type="Script" uid="uid://bgqhbgpctpshg" path="res://Common/Resources/Credits/Credits.cs" id="10_kewiu"]
-[ext_resource type="Texture2D" uid="uid://c4hp1kvjkjqt" path="res://Common/Resources/Credits/CreditsScreen.png" id="11_26cjw"]
-[ext_resource type="FontFile" uid="uid://bu05a731yav8" path="res://Common/Resources/Player/User Interface/Fonts/LibertinusSerif-Regular.ttf" id="12_cswed"]
-[ext_resource type="AudioStream" uid="uid://cm3h5cwfg8l7d" path="res://Common/Resources/SoundTracks/Vindsvept - The Youtube Collection - 51 The Siren's Cadence.ogg" id="15_cfeqk"]
+[ext_resource type="Script" uid="uid://uoi20o56xn6o" path="res://Common/Resources/Misc/Effects/LightFlicker.cs" id="11_m5ukh"]
+[ext_resource type="Script" uid="uid://chwwd3b0p6ff3" path="res://Common/Resources/General Scritps/Options/OptionsButton.cs" id="13_0d3ci"]
+[ext_resource type="PackedScene" uid="uid://c5r00wyopsd2s" path="res://Common/Resources/General Scritps/Audio/AudioVisualizer.tscn" id="15_uo8uj"]
+[ext_resource type="Script" uid="uid://fvf2xxcud8o" path="res://Common/Resources/General Scritps/Options/OptionsMenu.cs" id="16_0raye"]
+[ext_resource type="Shader" uid="uid://c2plm0uv8bl6v" path="res://Common/Resources/Shaders/NoiseShader.gdshader" id="16_cvul1"]
+[ext_resource type="StyleBox" uid="uid://v11gptuotb7j" path="res://Common/Resources/Player/User Interface/Prefabs/PanelTextureStyleBox.tres" id="16_pt4oh"]
 [ext_resource type="AudioStream" uid="uid://cwtjhuq3vcuy3" path="res://Common/Resources/Sounds/UI_Hover.wav" id="16_qmasd"]
-[ext_resource type="Script" uid="uid://cbj7ml5q7yakc" path="res://Common/Resources/Sounds/Sound Scripts/MenuUiSound.cs" id="17_csyh4"]
+[ext_resource type="Script" uid="uid://cbj7ml5q7yakc" path="res://Common/Resources/General Scritps/Audio/Sound Scripts/MenuUiSound.cs" id="17_csyh4"]
+[ext_resource type="FontFile" uid="uid://bnnwxabllsohk" path="res://Common/Resources/Player/User Interface/Fonts/Springmarch/springmarch.roman.otf" id="17_e0r6h"]
+[ext_resource type="Material" path="res://Common/Resources/Misc/Effects/Other/OtherMaterials/SnowFlakeCanvasMaterial.tres" id="18_canvas"]
+[ext_resource type="Texture2D" uid="uid://bb7yww6kfb0gp" path="res://Common/Resources/Misc/Effects/Other/OtherTextures/flakes_atlas.png" id="18_flakes"]
+[ext_resource type="Script" uid="uid://lo2ty3h2g2h" path="res://Common/Resources/General Scritps/Options/ControlsPage.cs" id="19_4smg1"]
+[ext_resource type="Script" uid="uid://cs5cjy2xn8bj1" path="res://Common/Resources/General Scritps/Options/LanguagePage.cs" id="22_xcj4t"]
+[ext_resource type="Shader" uid="uid://boumfhns0fnoe" path="res://Common/Resources/Shaders/Vignette.gdshader" id="26_4asu5"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gjm4p"]
-bg_color = Color(0.957031, 0.747885, 0.60936, 0.784314)
-draw_center = false
-border_width_left = 12
-border_width_top = 12
-border_width_right = 12
-border_width_bottom = 12
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-shadow_color = Color(0, 0, 0, 0.705882)
-shadow_size = 40
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_obmtt"]
+shader = ExtResource("2_xcj4t")
+shader_parameter/flash_color = Color(0.78431374, 0.8627451, 1, 0.039215688)
+shader_parameter/flash_strength = 0.02000000095
+shader_parameter/white_amount = 1.0
+shader_parameter/flicker_amount = 0.50000002375
+shader_parameter/flicker_speed = 40.0000018525
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_okju8"]
-texture = ExtResource("6_amqa5")
-texture_margin_right = 100.0
-expand_margin_left = 50.0
-expand_margin_top = 150.0
-expand_margin_right = 50.0
-expand_margin_bottom = 150.0
-axis_stretch_horizontal = 1
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_nthcj"]
+seed = 23
+frequency = 0.0011
+offset = Vector3(100, -200, 0)
+domain_warp_enabled = true
+domain_warp_type = 2
+domain_warp_fractal_type = 2
+domain_warp_fractal_octaves = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0si5h"]
-bg_color = Color(0.647059, 0.647059, 0.454902, 0.266667)
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color(0, 0, 0, 1)
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0raye"]
+noise = SubResource("FastNoiseLite_nthcj")
+seamless = true
+seamless_blend_skirt = 0.5
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_q6l8v"]
-diffuse_texture = ExtResource("11_26cjw")
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_e0r6h"]
+frequency = 0.001
+offset = Vector3(-250, 0, 0)
+domain_warp_enabled = true
+domain_warp_type = 2
+domain_warp_fractal_type = 2
+domain_warp_fractal_octaves = 10
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1boft"]
-lifetime_randomness = 0.5
-particle_flag_disable_z = true
-emission_shape = 3
-emission_box_extents = Vector3(1, 1, 1)
-angle_min = 45.0
-angle_max = 135.1
-flatness = 0.602
-initial_velocity_min = 127.55
-initial_velocity_max = 320.61
-angular_velocity_min = 27.96
-angular_velocity_max = 139.81
-radial_velocity_min = 38.83
-radial_velocity_max = 38.83
-gravity = Vector3(-98, 98, 0)
-linear_accel_min = 3.88
-linear_accel_max = 14.24
-damping_min = 16.828
-damping_max = 16.828
-scale_min = 0.05
-scale_max = 0.1
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0d3ci"]
+noise = SubResource("FastNoiseLite_e0r6h")
+seamless = true
+seamless_blend_skirt = 0.5
 
-[sub_resource type="Animation" id="Animation_clocg"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Control/MenuPanel:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-635, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Control/MenuPanel:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(649, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e0r6h"]
+shader = ExtResource("16_cvul1")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_0raye")
+shader_parameter/density = 0.050000002375
+shader_parameter/speed = Vector2(0.02, 0.01)
+shader_parameter/fog_color = Color(0.21568628, 0.21568628, 0.21568628, 1)
+shader_parameter/uv_scale = 0.01199999987148
+shader_parameter/noise_texture_2 = SubResource("NoiseTexture2D_0d3ci")
+shader_parameter/density_2 = 0.050000002375
+shader_parameter/speed_2 = Vector2(-0.015, 0.008)
+shader_parameter/fog_color_2 = Color(0.21568628, 0.21568628, 0.21568628, 1)
+shader_parameter/uv_scale_2 = 0.00999999977648
+shader_parameter/fade_speed = 0.3
+shader_parameter/fade_variation = 10.0
+shader_parameter/fade_uv_scale = 0.00999999977648
+shader_parameter/fade_speed_uv = Vector2(0.01, -0.007)
+shader_parameter/blend_strength = 0.5
 
-[sub_resource type="Animation" id="Animation_s75qm"]
-resource_name = "Slide_Up"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Control/MenuPanel:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(-635, -0.25, 0, 0.25, 0, -635, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Control/MenuPanel:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(649, -0.25, 0, 0.25, 0, -282, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
-}
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_nwh73"]
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_cfs07"]
-_data = {
-&"RESET": SubResource("Animation_clocg"),
-&"Slide_Up": SubResource("Animation_s75qm")
-}
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_pt4oh"]
+noise = SubResource("FastNoiseLite_nwh73")
+seamless = true
+normalize = false
 
-[sub_resource type="Animation" id="Animation_blk6s"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Control/LogoPanel:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-2254, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Control/LogoPanel:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-1092, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rh3ee"]
 
-[sub_resource type="Animation" id="Animation_hwpi6"]
-resource_name = "Slide_Down"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Control/LogoPanel:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(-2254, -0.25, 0, 0.25, 0, -2254, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Control/LogoPanel:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(-1092, -0.25, 0, 0.25, 0, -19, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
-}
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5bm1l"]
+noise = SubResource("FastNoiseLite_rh3ee")
+seamless = true
+normalize = false
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_x24s5"]
-_data = {
-&"RESET": SubResource("Animation_blk6s"),
-&"Slide_Down": SubResource("Animation_hwpi6")
-}
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w5isc"]
+shader = ExtResource("6_e543h")
+shader_parameter/noise_1 = SubResource("NoiseTexture2D_pt4oh")
+shader_parameter/color_1 = Color(0.265625, 0.265625, 0.265625, 1)
+shader_parameter/alpha_1 = 0.25
+shader_parameter/speed_1 = Vector2(0.03, 0.005)
+shader_parameter/scale_1 = 1.0
+shader_parameter/noise_2 = SubResource("NoiseTexture2D_5bm1l")
+shader_parameter/color_2 = Color(0.21568628, 0.21568628, 0.21568628, 1)
+shader_parameter/alpha_2 = 0.18
+shader_parameter/speed_2 = Vector2(-0.02, 0.003)
+shader_parameter/scale_2 = 1.5
+shader_parameter/edge_fade = 0.15
+shader_parameter/flash_strength = 0.0
+shader_parameter/flash_glow = 1.5
 
-[node name="Main_Menu" type="CanvasLayer" unique_id=856812317 node_paths=PackedStringArray("Menu_Panel", "Logo_Panel", "Menu_Animation", "Logo_Animation")]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fypy1"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_m5ukh"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4asu5"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3oe1g"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wtra2"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_obmtt"]
+
+[sub_resource type="Gradient" id="Gradient_4asu5"]
+offsets = PackedFloat32Array(0, 0.91803277)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m5ukh"]
+gradient = SubResource("Gradient_4asu5")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Curve" id="Curve_m5ukh"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m5ukh"]
+shader = ExtResource("26_4asu5")
+shader_parameter/vignette_color = Color(0, 0, 0, 1)
+shader_parameter/vignette_intensity = 1.0
+shader_parameter/vignette_radius = 0.650000030875
+shader_parameter/vignette_softness = 0.800000038
+shader_parameter/vignette_roundness = 0.70000003325
+
+[sub_resource type="LabelSettings" id="LabelSettings_0d3ci"]
+font = ExtResource("17_e0r6h")
+font_size = 30
+font_color = Color(0, 0, 0, 1)
+outline_size = 2
+outline_color = Color(0.9098039, 0.8745098, 0.73333335, 1)
+shadow_color = Color(0, 0, 0, 0.09803922)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4smg1"]
+font = ExtResource("17_e0r6h")
+font_size = 26
+font_color = Color(0, 0, 0, 1)
+outline_size = 2
+outline_color = Color(0.9098039, 0.8745098, 0.73333335, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fx7ah"]
+font = ExtResource("17_e0r6h")
+font_size = 26
+font_color = Color(0, 0, 0, 1)
+outline_size = 2
+outline_color = Color(0.9098039, 0.8745098, 0.73333335, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_npx8l"]
+font = ExtResource("17_e0r6h")
+font_size = 26
+font_color = Color(0, 0, 0, 1)
+outline_size = 2
+outline_color = Color(0.9098039, 0.8745098, 0.73333335, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_obmtt"]
+font = ExtResource("17_e0r6h")
+font_size = 30
+font_color = Color(0, 0, 0, 1)
+outline_size = 2
+outline_color = Color(0.9098039, 0.8745098, 0.73333335, 1)
+
+[node name="Main_Menu" type="CanvasLayer" unique_id=856812317 node_paths=PackedStringArray("Menu_Panel")]
 script = ExtResource("1_oroun")
-Menu_Panel = NodePath("Control/MenuPanel")
-Logo_Panel = NodePath("Control/LogoPanel")
-Menu_Animation = NodePath("MenuAnimation")
-Logo_Animation = NodePath("LogoAnimation")
+Menu_Panel = NodePath("Control - Menu and Logic/OptionsPanel")
 metadata/_edit_use_anchors_ = true
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=116228978]
-offset_left = -2597.0
-offset_top = -1963.0
-offset_right = 4439.0
-offset_bottom = 2822.0
+[node name="ColoreRect - MenuBackground" type="ColorRect" parent="." unique_id=116228978]
+offset_left = -2685.0
+offset_top = -1899.0
+offset_right = 4351.0
+offset_bottom = 2886.0
 color = Color(0, 0, 0, 1)
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1459097094]
-offset_right = 1920.0
-offset_bottom = 1080.0
-texture = ExtResource("2_wv4su")
-expand_mode = 2
-stretch_mode = 4
+[node name="Control - Background Effects" type="Control" parent="." unique_id=1653232414 node_paths=PackedStringArray("RainRect", "SnowParticles")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_qr2lj")
+RainRect = NodePath("ColorRect - Rain")
+SnowParticles = NodePath("GPUParticles2D - Snow")
 
-[node name="Control" type="Control" parent="." unique_id=2084864707]
+[node name="ColorRect - LightningFlash" type="ColorRect" parent="Control - Background Effects" unique_id=295951374]
+material = SubResource("ShaderMaterial_obmtt")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect - Rain" type="ColorRect" parent="Control - Background Effects" unique_id=1032664059]
+material = ExtResource("3_wtra2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Node2D - LightningEffect" type="Node2D" parent="Control - Background Effects" unique_id=19446547 node_paths=PackedStringArray("FlashRect", "FlashParticleNodes")]
+script = ExtResource("3_obmtt")
+FlashRect = NodePath("../ColorRect - LightningFlash")
+FlashExtraMaterials = Array[ShaderMaterial]([ExtResource("3_wtra2"), ExtResource("6_pt4oh")])
+FlashParticleNodes = [NodePath("../GPUParticles2D - Snow")]
+BoltCount = 8
+BoltGlowWidth = 5.0
+BoltGlowAlpha = 1.0
+BoltColor = Color(1, 1, 1, 1)
+
+[node name="Sprite2D - Clouds" type="Sprite2D" parent="Control - Background Effects" unique_id=1048058021]
+material = SubResource("ShaderMaterial_e0r6h")
+position = Vector2(1280, 540)
+texture = ExtResource("3_nthcj")
+
+[node name="TextureRect - Clouds" type="TextureRect" parent="Control - Background Effects" unique_id=1873118865]
+material = SubResource("ShaderMaterial_w5isc")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_fypy1")
+
+[node name="GPUParticles2D - Snow" type="GPUParticles2D" parent="Control - Background Effects" unique_id=1115426997]
+material = ExtResource("18_canvas")
+position = Vector2(1280, 0)
+amount = 8000
+texture = ExtResource("18_flakes")
+lifetime = 18.0
+preprocess = 18.0
+speed_scale = 0.7
+randomness = 1.0
+fixed_fps = 90
+visibility_rect = Rect2(-1280, 0, 2560, 1080)
+local_coords = true
+process_material = ExtResource("8_qr2lj")
+
+[node name="ColorRect - LogoBackground" type="ColorRect" parent="." unique_id=269267948]
+offset_top = 226.0
+offset_right = 2560.0
+offset_bottom = 578.0
+color = Color(0, 0, 0, 0.5882353)
+
+[node name="Control - LogoEffects" type="Control" parent="." unique_id=2084864707]
 layout_direction = 1
 layout_mode = 3
 anchors_preset = 6
@@ -226,95 +288,171 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="LogoPanel" type="Panel" parent="Control" unique_id=1562544804]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = -2254.0
-offset_top = -1092.0
-offset_right = -890.0
-offset_bottom = -637.0
-theme = ExtResource("1_w55jq")
-theme_override_styles/panel = SubResource("StyleBoxFlat_gjm4p")
+[node name="PulseEffect" type="Node2D" parent="Control - LogoEffects" unique_id=798295690]
+material = SubResource("CanvasItemMaterial_m5ukh")
+position = Vector2(-1591, -137)
+script = ExtResource("4_nthcj")
+PulseInterval = 1.0
+CircleCount = 5
+MinRadius = 1.0
+MaxRadius = 1000.0
+CircleColor = Color(0.8980392, 0.8392157, 0.6117647, 0.5882353)
+BassBoost = 10.0
+RadiusBoost = 5.0
+Sensitivity = 2.0
+KickStrength = 5.0
+KickDecay = 30.0
 
-[node name="Panel2" type="Panel" parent="Control/LogoPanel" unique_id=1328065523]
-layout_mode = 0
-offset_left = -265.0
-offset_top = -37.0
-offset_right = 2666.0
-offset_bottom = 499.0
-theme = ExtResource("1_w55jq")
-theme_override_styles/panel = SubResource("StyleBoxTexture_okju8")
+[node name="AudioVisualizer" parent="Control - LogoEffects" unique_id=2011225160 instance=ExtResource("15_uo8uj")]
+material = SubResource("CanvasItemMaterial_4asu5")
+position = Vector2(-2867, -600)
+BarColor = Color(0.8980392, 0.8392157, 0.6117647, 0.5882353)
+BarSpacing = 0.0
+DecaySpeed = 15.0
+PointRatio = 2.0
+GlowExpand = 20.0
+GlowColor = Color(0.26953125, 0.24558279, 0.16775022, 0.39215687)
+InnerGlowShrink = 1.0
+InnerGlowColor = Color(1, 0.9764706, 0.8784314, 0.50980395)
+InnerGlowHeightRatio = 0.3
+CenterLineColor = Color(0.8980392, 0.8392157, 0.6117647, 0.5882353)
+CenterLineWidth = 3.0
+CenterGlowWidth = 3.0
+CenterGlowExpand = 3.0
+CenterGlowColor = Color(1, 0.972549, 0.90588236, 0.5882353)
+CenterGap = 30.0
 
-[node name="Panel" type="Panel" parent="Control/LogoPanel" unique_id=144266514]
+[node name="ReferenceRect" type="ReferenceRect" parent="Control - LogoEffects" unique_id=1716073428]
 layout_mode = 0
-offset_left = -243.0
-offset_top = 20.0
-offset_right = 1501.0
-offset_bottom = 435.0
-theme = ExtResource("1_w55jq")
-theme_override_styles/panel = SubResource("StyleBoxFlat_0si5h")
+offset_left = -2621.0
+offset_top = -85.0
+offset_right = 40.0
+offset_bottom = -35.0
+border_color = Color(0.91015625, 0.8736292, 0.73239136, 1)
+border_width = 2.0
+editor_only = false
 
-[node name="Panel3" type="Panel" parent="Control/LogoPanel" unique_id=354738051]
-layout_mode = 0
-offset_left = 1576.0
-offset_top = 20.0
-offset_right = 2641.0
-offset_bottom = 435.0
-theme = ExtResource("1_w55jq")
-theme_override_styles/panel = SubResource("StyleBoxFlat_0si5h")
+[node name="Control - Decorations" type="Control" parent="." unique_id=1558294461]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="Logo" type="TextureRect" parent="Control/LogoPanel" unique_id=1589412524]
+[node name="Panel - Decoration_1" type="Panel" parent="Control - Decorations" unique_id=1491809998]
 layout_mode = 0
-offset_left = -21.0
-offset_top = 23.0
-offset_right = 1277.0
-offset_bottom = 424.0
-texture = ExtResource("7_1gvs1")
+offset_left = -73.0
+offset_top = 756.0
+offset_right = 1627.0
+offset_bottom = 977.0
+theme_override_styles/panel = ExtResource("16_pt4oh")
+
+[node name="Texture - Decoration_2" type="TextureRect" parent="Control - Decorations" unique_id=455419924]
+self_modulate = Color(0.9098039, 0.8745098, 0.73333335, 1)
+material = SubResource("CanvasItemMaterial_3oe1g")
+layout_mode = 0
+offset_left = -24.0
+offset_top = 209.0
+offset_right = 2557.0
+offset_bottom = 263.0
+texture = ExtResource("6_0raye")
 expand_mode = 1
-stretch_mode = 4
+stretch_mode = 1
 
-[node name="MenuPanel" type="Panel" parent="Control" unique_id=412942293]
-unique_name_in_owner = true
-material = ExtResource("2_whdxq")
-layout_direction = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.25
-anchor_top = 2.125
-anchor_right = -0.25
-anchor_bottom = 2.125
-offset_left = -625.0
-offset_top = 564.0
-offset_right = -25.0
-offset_bottom = 1464.0
-grow_horizontal = 0
+[node name="Texture - Decoration_3" type="TextureRect" parent="Control - Decorations" unique_id=1535809006]
+self_modulate = Color(0.9098039, 0.8745098, 0.73333335, 1)
+material = SubResource("CanvasItemMaterial_wtra2")
+layout_mode = 0
+offset_left = -24.0
+offset_top = 548.0
+offset_right = 2556.0
+offset_bottom = 602.0
+texture = ExtResource("6_0raye")
+expand_mode = 1
+stretch_mode = 1
+flip_v = true
+
+[node name="Texture - Decoration_4" type="TextureRect" parent="Control - Decorations" unique_id=402292771]
+self_modulate = Color(0.9098039, 0.8745098, 0.73333335, 1)
+material = SubResource("CanvasItemMaterial_3oe1g")
+layout_mode = 0
+offset_left = -6.0
+offset_top = 1048.0
+offset_right = 2575.0
+offset_bottom = 1102.0
+texture = ExtResource("6_0raye")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Control - Logo" type="Control" parent="." unique_id=1645308336]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect - Logo" type="TextureRect" parent="Control - Logo" unique_id=1280866507]
+self_modulate = Color(0.9098039, 0.8745098, 0.73333335, 1)
+material = SubResource("CanvasItemMaterial_obmtt")
+layout_mode = 0
+offset_left = 172.0
+offset_top = -10.0
+offset_right = 1967.5
+offset_bottom = 611.0
+texture = ExtResource("3_uo8uj")
+expand_mode = 1
+
+[node name="PointLight2D - Logo Light" type="PointLight2D" parent="Control - Logo" unique_id=1357526719]
+position = Vector2(970, 320)
+energy = 1.5
+range_layer_max = 10
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+shadow_filter = 2
+texture = SubResource("GradientTexture2D_m5ukh")
+offset = Vector2(1, 1)
+texture_scale = 30.0
+script = ExtResource("11_m5ukh")
+MinIntensity = 1.0
+MaxIntensity = 3.0
+IntensityCurve = SubResource("Curve_m5ukh")
+
+[node name="ColorRect - Vignette" type="ColorRect" parent="." unique_id=1071746335]
+material = SubResource("ShaderMaterial_m5ukh")
+clip_contents = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("1_w55jq")
-metadata/_edit_use_anchors_ = true
 
-[node name="Bell_Texture" type="TextureRect" parent="Control/MenuPanel" unique_id=2142988960]
-layout_mode = 0
-offset_left = 46.0
-offset_top = -36.0
-offset_right = 546.0
-offset_bottom = 464.0
-texture = ExtResource("6_ivm71")
-expand_mode = 1
-stretch_mode = 4
+[node name="Control - Menu and Logic" type="Control" parent="." unique_id=1151742208]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/MenuPanel" unique_id=234975685]
+[node name="Menu" type="BoxContainer" parent="Control - Menu and Logic" unique_id=355485373]
+custom_minimum_size = Vector2(200, 60)
+layout_direction = 2
 layout_mode = 1
-offset_left = 215.0
-offset_top = 480.0
-offset_right = 390.0
-offset_bottom = 805.0
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 425.0
+offset_top = 810.0
+offset_right = 1465.0
+offset_bottom = 870.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_stretch_ratio = 2.0
+theme = ExtResource("1_w55jq")
+theme_override_constants/separation = 20
 alignment = 1
 
-[node name="Continue" type="Button" parent="Control/MenuPanel/VBoxContainer" unique_id=1926283793]
+[node name="Continue" type="Button" parent="Control - Menu and Logic/Menu" unique_id=1926283793]
 texture_filter = 1
+custom_minimum_size = Vector2(200, 60)
+layout_direction = 2
 layout_mode = 2
 size_flags_vertical = 12
 theme_override_font_sizes/font_size = 30
@@ -322,48 +460,51 @@ text = "Novo Jogo"
 text_overrun_behavior = 1
 autowrap_mode = 3
 icon_alignment = 1
-language = "en"
 script = ExtResource("2_6lkvc")
 
-[node name="Load_Game" type="Button" parent="Control/MenuPanel/VBoxContainer" unique_id=851437664]
+[node name="Load_Game" type="Button" parent="Control - Menu and Logic/Menu" unique_id=851437664]
 texture_filter = 1
+custom_minimum_size = Vector2(200, 60)
+layout_direction = 2
 layout_mode = 2
-size_flags_vertical = 4
+size_flags_vertical = 12
 theme_override_font_sizes/font_size = 30
 text = "Carregar"
 text_overrun_behavior = 1
 autowrap_mode = 3
 icon_alignment = 1
-language = "en"
 script = ExtResource("9_l1guo")
 
-[node name="Options" type="Button" parent="Control/MenuPanel/VBoxContainer" unique_id=662255086]
+[node name="Options" type="Button" parent="Control - Menu and Logic/Menu" unique_id=662255086 node_paths=PackedStringArray("Options_Panel")]
 texture_filter = 1
+custom_minimum_size = Vector2(200, 60)
+layout_direction = 2
 layout_mode = 2
-size_flags_vertical = 4
+size_flags_vertical = 12
 theme_override_font_sizes/font_size = 30
 text = "Opções"
-text_overrun_behavior = 1
-autowrap_mode = 3
 icon_alignment = 1
-language = "en"
+script = ExtResource("13_0d3ci")
+Options_Panel = NodePath("../../OptionsPanel")
 
-[node name="Credits" type="Button" parent="Control/MenuPanel/VBoxContainer" unique_id=244063159 node_paths=PackedStringArray("Credits_Panel")]
+[node name="Credits" type="Button" parent="Control - Menu and Logic/Menu" unique_id=244063159 node_paths=PackedStringArray("Credits_Panel")]
 texture_filter = 1
+custom_minimum_size = Vector2(200, 60)
+layout_direction = 2
 layout_mode = 2
-size_flags_vertical = 4
+size_flags_vertical = 12
 theme_override_font_sizes/font_size = 30
-text = "Creditos
-"
+text = "Créditos"
 text_overrun_behavior = 1
 autowrap_mode = 3
 icon_alignment = 1
-language = "en"
 script = ExtResource("10_kewiu")
-Credits_Panel = NodePath("../../../CreditsPanel")
+Credits_Panel = NodePath("../../CreditsPanel")
 
-[node name="Quit" type="Button" parent="Control/MenuPanel/VBoxContainer" unique_id=840708463]
+[node name="Quit" type="Button" parent="Control - Menu and Logic/Menu" unique_id=840708463]
 texture_filter = 1
+custom_minimum_size = Vector2(200, 60)
+layout_direction = 2
 layout_mode = 2
 size_flags_vertical = 12
 theme_override_font_sizes/font_size = 30
@@ -371,104 +512,430 @@ text = "Sair"
 text_overrun_behavior = 1
 autowrap_mode = 3
 icon_alignment = 1
-language = "en"
 script = ExtResource("9_b0ek2")
 
-[node name="CreditsPanel" type="TextureRect" parent="Control" unique_id=1731302735]
+[node name="OptionsPanel" type="Panel" parent="Control - Menu and Logic" unique_id=412942293 node_paths=PackedStringArray("TabBar", "Content", "MasterSlider", "MusicSlider", "SfxSlider", "ResolutionOption", "WindowModeOption", "VsyncCheck")]
+unique_name_in_owner = true
+visible = false
+self_modulate = Color(0.9098039, 0.8745098, 0.73333335, 1)
+material = ExtResource("2_whdxq")
+custom_minimum_size = Vector2(150, 60)
+layout_direction = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -25.55
+anchor_right = 0.625
+anchor_bottom = -20.975
+offset_left = 1934.0
+offset_top = 1024.0
+offset_right = 2534.0
+offset_bottom = 1924.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_w55jq")
+script = ExtResource("16_0raye")
+TabBar = NodePath("Panel/TabBar")
+Content = NodePath("Control - Content")
+MasterSlider = NodePath("Control - Content/Control - AudioPage/Box - AudioList/Box - MasterRow/Slider - Master")
+MusicSlider = NodePath("Control - Content/Control - AudioPage/Box - AudioList/Box - MusicRow/Slider - Music")
+SfxSlider = NodePath("Control - Content/Control - AudioPage/Box - AudioList/Box - SFXRow/Slider - SFX")
+ResolutionOption = NodePath("Control - Content/Control - VideoPage/Box - VideoList/Box - ResolutionRow/Option - ResolutionOption")
+WindowModeOption = NodePath("Control - Content/Control - VideoPage/Box - VideoList/Box - WindowModeRow/Option - WindowModeOption")
+VsyncCheck = NodePath("Control - Content/Control - VideoPage/Box - VideoList/Box - VsyncRow/VsyncCheck")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="Control - Menu and Logic/OptionsPanel" unique_id=2144881494]
+layout_mode = 0
+offset_left = -249.0
+offset_top = 610.0
+offset_right = 44.0
+offset_bottom = 1092.0
+theme_override_styles/panel = ExtResource("16_pt4oh")
+
+[node name="TabBar" type="BoxContainer" parent="Control - Menu and Logic/OptionsPanel/Panel" unique_id=1280770059]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 0
+offset_left = 61.0
+offset_top = -7.0
+offset_right = 239.0
+offset_bottom = 470.0
+theme_override_constants/separation = 30
+alignment = 1
+vertical = true
+
+[node name="Audio" type="Button" parent="Control - Menu and Logic/OptionsPanel/Panel/TabBar" unique_id=562169068]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Audio"
+
+[node name="Video" type="Button" parent="Control - Menu and Logic/OptionsPanel/Panel/TabBar" unique_id=802323479]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Video"
+
+[node name="Controls" type="Button" parent="Control - Menu and Logic/OptionsPanel/Panel/TabBar" unique_id=1572008762]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Controles"
+
+[node name="Language" type="Button" parent="Control - Menu and Logic/OptionsPanel/Panel/TabBar" unique_id=1299613037]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Idioma"
+
+[node name="Control - Content" type="Control" parent="Control - Menu and Logic/OptionsPanel" unique_id=541989859]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Control - AudioPage" type="Control" parent="Control - Menu and Logic/OptionsPanel/Control - Content" unique_id=49353792]
+visible = false
+anchors_preset = 0
+offset_left = 153.0
+offset_top = 134.0
+offset_right = 470.0
+offset_bottom = 1011.0
+
+[node name="Box - AudioList" type="BoxContainer" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - AudioPage" unique_id=1264927259]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 43.0
+offset_top = 24.0
+offset_right = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+vertical = true
+
+[node name="Box - MasterRow" type="BoxContainer" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - AudioPage/Box - AudioList" unique_id=364167566]
+layout_mode = 2
+alignment = 1
+vertical = true
+
+[node name="Label - Master" type="Label" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - AudioPage/Box - AudioList/Box - MasterRow" unique_id=672051988]
+layout_mode = 2
+text = "Master"
+label_settings = SubResource("LabelSettings_0d3ci")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slider - Master" type="HSlider" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - AudioPage/Box - AudioList/Box - MasterRow" unique_id=1127443666]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("1_w55jq")
+max_value = 1.0
+step = 0.01
+value = 0.5
+tick_count = 10
+ticks_on_borders = true
+ticks_position = 2
+
+[node name="Box - MusicRow" type="BoxContainer" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - AudioPage/Box - AudioList" unique_id=487490250]
+layout_mode = 2
+alignment = 1
+vertical = true
+
+[node name="Label - Music" type="Label" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - AudioPage/Box - AudioList/Box - MusicRow" unique_id=1773762669]
+layout_mode = 2
+text = "Música"
+label_settings = SubResource("LabelSettings_0d3ci")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slider - Music" type="HSlider" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - AudioPage/Box - AudioList/Box - MusicRow" unique_id=1294282647]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+value = 0.5
+tick_count = 10
+ticks_on_borders = true
+ticks_position = 2
+
+[node name="Box - SFXRow" type="BoxContainer" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - AudioPage/Box - AudioList" unique_id=599148309]
+layout_mode = 2
+alignment = 1
+vertical = true
+
+[node name="Label - SFX" type="Label" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - AudioPage/Box - AudioList/Box - SFXRow" unique_id=2129564520]
+layout_mode = 2
+text = "Som"
+label_settings = SubResource("LabelSettings_0d3ci")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slider - SFX" type="HSlider" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - AudioPage/Box - AudioList/Box - SFXRow" unique_id=848842811]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+value = 0.5
+tick_count = 10
+ticks_on_borders = true
+ticks_position = 2
+
+[node name="Control - VideoPage" type="Control" parent="Control - Menu and Logic/OptionsPanel/Control - Content" unique_id=547083535]
+visible = false
+anchors_preset = 0
+offset_left = 153.0
+offset_top = 134.0
+offset_right = 470.0
+offset_bottom = 1011.0
+
+[node name="Box - VideoList" type="BoxContainer" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - VideoPage" unique_id=41050640]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 43.0
+offset_top = 24.0
+offset_right = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+alignment = 1
+vertical = true
+
+[node name="Box - ResolutionRow" type="BoxContainer" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - VideoPage/Box - VideoList" unique_id=1938638553]
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+alignment = 1
+vertical = true
+
+[node name="Resolution" type="Label" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - VideoPage/Box - VideoList/Box - ResolutionRow" unique_id=1479584090]
+layout_mode = 2
+text = "Resolução"
+label_settings = SubResource("LabelSettings_4smg1")
+horizontal_alignment = 1
+
+[node name="Option - ResolutionOption" type="OptionButton" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - VideoPage/Box - VideoList/Box - ResolutionRow" unique_id=1811796955]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("1_w55jq")
+theme_override_fonts/font = ExtResource("17_e0r6h")
+theme_override_font_sizes/font_size = 24
+theme_override_constants/arrow_margin = 20
+theme_override_constants/modulate_arrow = 1
+alignment = 1
+allow_reselect = true
+
+[node name="Box - WindowModeRow" type="BoxContainer" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - VideoPage/Box - VideoList" unique_id=823090735]
+layout_mode = 2
+alignment = 1
+vertical = true
+
+[node name="WindowMode" type="Label" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - VideoPage/Box - VideoList/Box - WindowModeRow" unique_id=785414560]
+layout_mode = 2
+text = "Modo de Janela"
+label_settings = SubResource("LabelSettings_fx7ah")
+horizontal_alignment = 1
+
+[node name="Option - WindowModeOption" type="OptionButton" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - VideoPage/Box - VideoList/Box - WindowModeRow" unique_id=890040674]
+layout_mode = 2
+theme = ExtResource("1_w55jq")
+theme_override_fonts/font = ExtResource("17_e0r6h")
+theme_override_font_sizes/font_size = 24
+theme_override_constants/arrow_margin = 20
+theme_override_constants/modulate_arrow = 1
+alignment = 1
+allow_reselect = true
+
+[node name="Box - VsyncRow" type="BoxContainer" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - VideoPage/Box - VideoList" unique_id=2068946375]
+layout_mode = 2
+alignment = 1
+vertical = true
+
+[node name="VsyncCheck" type="CheckBox" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - VideoPage/Box - VideoList/Box - VsyncRow" unique_id=1648560951]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 24
+text = "Vsync"
+alignment = 1
+
+[node name="Control - ControlsPage" type="Control" parent="Control - Menu and Logic/OptionsPanel/Control - Content" unique_id=739790866 node_paths=PackedStringArray("KeyboardList", "GamepadList", "ResetButton")]
+anchors_preset = 0
+offset_left = 153.0
+offset_top = 134.0
+offset_right = 470.0
+offset_bottom = 971.0
+script = ExtResource("19_4smg1")
+KeyboardList = NodePath("ScrollContainer - Bindings/BoxContainer - Bindings/KeyboardList")
+GamepadList = NodePath("ScrollContainer - Bindings/BoxContainer - Bindings/GamePadList")
+ResetButton = NodePath("ResetButton")
+LabelFont = ExtResource("17_e0r6h")
+ButtonFont = ExtResource("17_e0r6h")
+
+[node name="ScrollContainer - Bindings" type="ScrollContainer" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - ControlsPage" unique_id=1604187659]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 25.0
+offset_bottom = -37.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BoxContainer - Bindings" type="BoxContainer" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - ControlsPage/ScrollContainer - Bindings" unique_id=1353960937]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_constants/separation = 25
+alignment = 1
+vertical = true
+
+[node name="Label - Section Divider - Keyboard" type="Label" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - ControlsPage/ScrollContainer - Bindings/BoxContainer - Bindings" unique_id=520795687]
+layout_mode = 2
+text = "Teclado"
+label_settings = SubResource("LabelSettings_npx8l")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KeyboardList" type="BoxContainer" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - ControlsPage/ScrollContainer - Bindings/BoxContainer - Bindings" unique_id=1952592293]
+layout_mode = 2
+alignment = 1
+vertical = true
+
+[node name="Label - Section Divider - GamePad" type="Label" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - ControlsPage/ScrollContainer - Bindings/BoxContainer - Bindings" unique_id=1617872071]
+layout_mode = 2
+text = "Controle"
+label_settings = SubResource("LabelSettings_npx8l")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GamePadList" type="BoxContainer" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - ControlsPage/ScrollContainer - Bindings/BoxContainer - Bindings" unique_id=1871362876]
+layout_mode = 2
+alignment = 1
+vertical = true
+
+[node name="ResetButton" type="Button" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - ControlsPage" unique_id=1323727878]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 807.0
+offset_right = 254.0
+offset_bottom = 851.0
+theme_override_font_sizes/font_size = 20
+text = "Restaurar Padrões"
+
+[node name="Control - LanguagePage" type="Control" parent="Control - Menu and Logic/OptionsPanel/Control - Content" unique_id=1879007454 node_paths=PackedStringArray("LanguageOption")]
+visible = false
+anchors_preset = 0
+offset_left = 153.0
+offset_top = 134.0
+offset_right = 470.0
+offset_bottom = 1011.0
+script = ExtResource("22_xcj4t")
+LanguageOption = NodePath("Box - LanguageRow/Option - LanguageOption")
+
+[node name="Box - LanguageList" type="BoxContainer" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - LanguagePage" unique_id=656104037]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+alignment = 1
+vertical = true
+
+[node name="Box - LanguageRow" type="BoxContainer" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - LanguagePage" unique_id=1457403714]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+vertical = true
+
+[node name="Label - Language" type="Label" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - LanguagePage/Box - LanguageRow" unique_id=132646802]
+layout_mode = 2
+text = "Idioma"
+label_settings = SubResource("LabelSettings_obmtt")
+horizontal_alignment = 1
+
+[node name="Option - LanguageOption" type="OptionButton" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - LanguagePage/Box - LanguageRow" unique_id=412122265]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("17_e0r6h")
+theme_override_font_sizes/font_size = 24
+alignment = 1
+
+[node name="CreditsPanel" type="Panel" parent="Control - Menu and Logic" unique_id=1643969186]
 visible = false
 layout_mode = 0
-offset_left = -2484.0
-offset_top = -468.0
-offset_right = -1829.0
-offset_bottom = 622.0
-texture = SubResource("CanvasTexture_q6l8v")
-expand_mode = 1
-stretch_mode = 1
+offset_left = 1741.0
+offset_top = -8.0
+offset_right = 2396.0
+offset_bottom = 1082.0
+theme_override_styles/panel = ExtResource("16_pt4oh")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Control/CreditsPanel" unique_id=1973153655]
+[node name="ColorRect" type="ColorRect" parent="Control - Menu and Logic/CreditsPanel" unique_id=136326141]
+layout_mode = 0
+offset_left = 122.0
+offset_top = 64.0
+offset_right = 533.0
+offset_bottom = 1016.0
+color = Color(0, 0, 0, 0.75000006)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control - Menu and Logic/CreditsPanel" unique_id=1973153655]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -158.5
-offset_top = -516.0
-offset_right = 195.5
-offset_bottom = 544.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_w55jq")
-theme_override_colors/default_color = Color(1, 0.740845, 0.246094, 1)
-theme_override_constants/line_separation = 30
-theme_override_fonts/normal_font = ExtResource("12_cswed")
+theme_override_colors/default_color = Color(0.9098039, 0.8745098, 0.73333335, 1)
+theme_override_constants/line_separation = 10
 theme_override_font_sizes/normal_font_size = 20
-text = "					   	 -- Game --
- --- Two Towers Entertainment Studio ---
+text = "-- Game --
+--- Two Towers Entertainment Studio ---
 
-		   Arthur Gonsalez Frutuoso
-		 Leonardo Pereira Rodrigues
-			 Alison Fabricio Silva
-   Gabriel Roberto Gonsalez Frutuoso
-			 Lucas Nogueira Policano
+ Arthur Gonsalez Frutuoso
+Leonardo Pereira Rodrigues
+Alison Fabricio Silva
+Gabriel Roberto Gonsalez Frutuoso
+Lucas Nogueira Policano
 
-		  -- Colaboração Voluntária --
-				  Guilherme Bruno
+-- Colaboração Voluntária --
+Guilherme Bruno
 
-					  -- Música --
-	Holy Poly / August and September
-				* - Jolynn J Chin - *
+-- Música --
+Holy Poly / August and September
+* - Jolynn J Chin - *
 
-			  The Siren's Cadence
-						Hollow
-				Light the Bonfire
-				  *- Vindsvept -*"
+The Siren's Cadence
+Hollow
+Light the Bonfire
+*- Vindsvept -*"
 fit_content = true
-scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1583641494]
-position = Vector2(153, -83)
-amount = 128
-amount_ratio = 0.5
-sub_emitter = NodePath(".")
-texture = ExtResource("4_l1wja")
-lifetime = 10.0
-fixed_fps = 60
-process_material = SubResource("ParticleProcessMaterial_1boft")
-
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="." unique_id=1760271024]
-position = Vector2(1781, -83)
-amount = 128
-amount_ratio = 0.5
-sub_emitter = NodePath(".")
-texture = ExtResource("4_l1wja")
-lifetime = 10.0
-fixed_fps = 60
-process_material = SubResource("ParticleProcessMaterial_1boft")
-
-[node name="MenuAnimation" type="AnimationPlayer" parent="." unique_id=649676985]
-unique_name_in_owner = true
-libraries/ = SubResource("AnimationLibrary_cfs07")
-
-[node name="LogoAnimation" type="AnimationPlayer" parent="." unique_id=366409866]
-unique_name_in_owner = true
-libraries/ = SubResource("AnimationLibrary_x24s5")
-
-[node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=1072898956]
-stream = ExtResource("15_cfeqk")
-autoplay = true
-parameters/looping = true
-
-[node name="MenuUISound" type="AudioStreamPlayer2D" parent="." unique_id=917959346 node_paths=PackedStringArray("ContinueButton", "LoadGameButton", "OptionsButton", "CreditsButton", "QuitButton")]
+[node name="MenuUISound" type="AudioStreamPlayer" parent="." unique_id=917959346 node_paths=PackedStringArray("ContinueButton", "LoadGameButton", "OptionsButton", "CreditsButton", "QuitButton", "HoverSources")]
 stream = ExtResource("16_qmasd")
 script = ExtResource("17_csyh4")
-ContinueButton = NodePath("../Control/MenuPanel/VBoxContainer/Continue")
-LoadGameButton = NodePath("../Control/MenuPanel/VBoxContainer/Load_Game")
-OptionsButton = NodePath("../Control/MenuPanel/VBoxContainer/Options")
-CreditsButton = NodePath("../Control/MenuPanel/VBoxContainer/Credits")
-QuitButton = NodePath("../Control/MenuPanel/VBoxContainer/Quit")
+ContinueButton = NodePath("../Control - Menu and Logic/Menu/Continue")
+LoadGameButton = NodePath("../Control - Menu and Logic/Menu/Load_Game")
+OptionsButton = NodePath("../Control - Menu and Logic/Menu/Options")
+CreditsButton = NodePath("../Control - Menu and Logic/Menu/Credits")
+QuitButton = NodePath("../Control - Menu and Logic/Menu/Quit")
+HoverSources = [NodePath("../Control - Menu and Logic/OptionsPanel")]
 
-[connection signal="pressed" from="Control/MenuPanel/VBoxContainer/Continue" to="Control/MenuPanel/VBoxContainer/Continue" method="OnButtonPressed"]
-[connection signal="pressed" from="Control/MenuPanel/VBoxContainer/Load_Game" to="Control/MenuPanel/VBoxContainer/Load_Game" method="OnButtonPressed"]
-[connection signal="pressed" from="Control/MenuPanel/VBoxContainer/Credits" to="Control/MenuPanel/VBoxContainer/Credits" method="OnButtonPressed"]
-[connection signal="pressed" from="Control/MenuPanel/VBoxContainer/Quit" to="Control/MenuPanel/VBoxContainer/Quit" method="On_Quit_Pressed"]
+[connection signal="pressed" from="Control - Menu and Logic/Menu/Continue" to="Control - Menu and Logic/Menu/Continue" method="OnButtonPressed"]
+[connection signal="pressed" from="Control - Menu and Logic/Menu/Load_Game" to="Control - Menu and Logic/Menu/Load_Game" method="OnButtonPressed"]
+[connection signal="pressed" from="Control - Menu and Logic/Menu/Options" to="Control - Menu and Logic/Menu/Options" method="OnButtonPressed"]
+[connection signal="pressed" from="Control - Menu and Logic/Menu/Credits" to="Control - Menu and Logic/Menu/Credits" method="OnButtonPressed"]
+[connection signal="pressed" from="Control - Menu and Logic/Menu/Quit" to="Control - Menu and Logic/Menu/Quit" method="On_Quit_Pressed"]

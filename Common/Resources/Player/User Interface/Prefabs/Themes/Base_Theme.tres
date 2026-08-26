@@ -15,12 +15,12 @@ texture_margin_bottom = 10.0
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v5flr"]
 texture = ExtResource("1_mcrv8")
 texture_margin_left = 50.0
-texture_margin_top = 55.0
+texture_margin_top = 78.86732
 texture_margin_right = 50.0
-texture_margin_bottom = 65.0
-axis_stretch_horizontal = 1
+texture_margin_bottom = 126.4156
 axis_stretch_vertical = 1
 region_rect = Rect2(16, 219, 1882, 659)
+modulate_color = Color(0.91015625, 0.8736292, 0.73239136, 1)
 
 [resource]
 default_font = ExtResource("1_87w6g")

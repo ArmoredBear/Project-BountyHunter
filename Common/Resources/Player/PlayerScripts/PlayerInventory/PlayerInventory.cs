@@ -4,11 +4,34 @@ using System.Collections.Generic;
 
 #nullable enable
 
+/**-----------------------------------------------------------------------------------------------------------------------
+*!                                                   PLAYERINVENTORY
+*-----------------------------------------------------------------------------------------------------------------------**/
+
+/**-----------------------------------------------------------------------------------------------------------------------
+	**                                                   PURPOSE
+	*  
+	**  1 - Manages the player's item inventory by type, tracking used and free slots.
+	**  2 - Provides add, remove, query, and debug helpers, and emits signals on inventory updates.
+	*
+*-----------------------------------------------------------------------------------------------------------------------**/
+
 namespace PlayerScript.PlayerInventory
 {
 	public partial class PlayerInventory : Node
 	{
+		//!---------------------------------------------------------------------------------------------------------
+		#region Properties
+		//!---------------------------------------------------------------------------------------------------------
+
 		[Export] public int MaxInventorySlots { get; set; } = 20;
+
+		#endregion
+		//!---------------------------------------------------------------------------------------------------------
+
+		//!---------------------------------------------------------------------------------------------------------
+		#region Variables
+		//!---------------------------------------------------------------------------------------------------------
 
 		private readonly Dictionary<ItemType, Godot.Collections.Array<ItemInstance>> _inventoryByType = new()
 		{
@@ -19,6 +42,13 @@ namespace PlayerScript.PlayerInventory
 		};
 
 		private int _usedSlots = 0;
+
+		#endregion
+		//!---------------------------------------------------------------------------------------------------------
+
+		//!---------------------------------------------------------------------------------------------------------
+		#region Methods
+		//!---------------------------------------------------------------------------------------------------------
 
 		// -------------------------
 		// GETTERS
@@ -168,5 +198,22 @@ namespace PlayerScript.PlayerInventory
 				}
 			}
 		}
+
+		/// <summary>
+		/// Removes all items from every category and resets the slot counter.
+		/// </summary>
+		public void Clear()
+		{
+			foreach (var category in _inventoryByType.Values)
+			{
+				category.Clear();
+			}
+
+			_usedSlots = 0;
+			EmitSignal(SignalName.InventoryUpdated);
+		}
+
+		#endregion
+		//!---------------------------------------------------------------------------------------------------------
 	}
 }

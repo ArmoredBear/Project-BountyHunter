@@ -2,42 +2,72 @@
 
 [ext_resource type="Theme" uid="uid://b7k1imxvkgx1" path="res://Common/Resources/Player/User Interface/Prefabs/Themes/Base_Theme.tres" id="1_apck0"]
 [ext_resource type="Script" uid="uid://cdhwawfqs2bbs" path="res://Common/Resources/Player/User Interface/UI_Scripts/PlayerMenu.cs" id="1_f540y"]
-[ext_resource type="Texture2D" uid="uid://c7q1nrdhrpvla" path="res://Common/Resources/Player/User Interface/UI_Art/PlayerMenuPanel.png" id="2_isat3"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w1d1b"]
-texture = ExtResource("2_isat3")
-texture_margin_left = 40.0
-texture_margin_top = 40.0
-texture_margin_right = 40.0
-texture_margin_bottom = 40.0
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
+[ext_resource type="Texture2D" uid="uid://dk5mlrb04a3d" path="res://Common/Resources/Player/User Interface/UI_Art/Panel3.png" id="2_2m8kv"]
+[ext_resource type="StyleBox" uid="uid://v11gptuotb7j" path="res://Common/Resources/Player/User Interface/Prefabs/PanelTextureStyleBox.tres" id="3_of6so"]
 
 [node name="Player_Menu" type="CanvasLayer" unique_id=925412078]
 script = ExtResource("1_f540y")
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=672106491]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
 [node name="Control" type="Control" parent="." unique_id=517833893]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Panel" type="Panel" parent="Control" unique_id=592613391]
-layout_mode = 0
-offset_right = 2558.0
-offset_bottom = 180.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -808.5
+offset_top = -129.0
+offset_right = 808.5
+offset_bottom = 129.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("1_apck0")
-theme_override_styles/panel = SubResource("StyleBoxTexture_w1d1b")
+theme_override_styles/panel = ExtResource("3_of6so")
+
+[node name="TextureRect" type="TextureRect" parent="Control/Panel" unique_id=2121627077]
+visible = false
+self_modulate = Color(0.23529412, 0.19607843, 0.1764706, 1)
+layout_mode = 0
+offset_left = 502.0
+offset_top = 61.0
+offset_right = 2062.0
+offset_bottom = 187.0
+texture = ExtResource("2_2m8kv")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/Panel" unique_id=333665692]
 custom_minimum_size = Vector2(325, 50)
-layout_mode = 0
-offset_left = 33.0
-offset_top = 30.0
-offset_right = 2525.0
-offset_bottom = 150.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 alignment = 1
 
 [node name="Journal" type="Button" parent="Control/Panel/HBoxContainer" unique_id=1292588930]

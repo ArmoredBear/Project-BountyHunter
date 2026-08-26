@@ -3,6 +3,19 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+/**-----------------------------------------------------------------------------------------------------------------------
+*!                                                   PHANTOM
+*-----------------------------------------------------------------------------------------------------------------------**/
+
+/**-----------------------------------------------------------------------------------------------------------------------
+	**                                                   PURPOSE
+	*  
+	**  1 - Phantom enemy controller implementing a fuzzy-logic driven state machine (Patrol, Chase, Attack, Flee).
+	**  2 - Manages navigation, combat hitboxes, attack cooldowns, and player damage signals.
+	**  3 - Spawns spirit blood particle effects when hit.
+	*
+*-----------------------------------------------------------------------------------------------------------------------**/
+
 public partial class Phantom : CharacterBody2D
 {
     // --- ENUM: Estados da Máquina de Estados ---
