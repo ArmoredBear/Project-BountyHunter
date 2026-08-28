@@ -1,0 +1,13 @@
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://cfdpojmgqv8nb"]
+
+[ext_resource type="Texture2D" uid="uid://bgylpnfkgpayt" path="res://Common/Resources/Player/User Interface/UI_Art/Button_2_Hovered.png" id="1_j23jp"]
+
+[resource]
+content_margin_left = 75.0
+content_margin_top = 25.0
+content_margin_right = 75.0
+content_margin_bottom = 25.0
+texture = ExtResource("1_j23jp")
+texture_margin_left = 20.0
+texture_margin_right = 20.0
+modulate_color = Color(0.91015625, 0.8736292, 0.73239136, 1)

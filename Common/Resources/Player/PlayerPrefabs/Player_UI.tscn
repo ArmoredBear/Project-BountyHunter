@@ -29,6 +29,10 @@
 [ext_resource type="Script" uid="uid://5sbu7y1k8qjg" path="res://Common/Resources/Player/User Interface/UI_Scripts/Heart_Flare.cs" id="20_55fln"]
 [ext_resource type="Material" uid="uid://dvovuci63be3t" path="res://Common/Resources/Shaders/Staminabar_Bars_Material.tres" id="21_bars_mat"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8s88g"]
+texture = ExtResource("3_1k77a")
+modulate_color = Color(0.18039216, 0.17254902, 0.13725491, 1)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f24em"]
 shader = ExtResource("16_1k77a")
 shader_parameter/Glint_Speed = 1.0000000475
@@ -55,70 +59,87 @@ shader_parameter/Flare_Strength = 0.0
 shader_parameter/Flare_Size = 0.02
 
 [node name="CanvasLayer - Player_UI" type="CanvasLayer" unique_id=1934308656]
+follow_viewport_scale = 2.0
 
-[node name="TextureRect - Damage_Red_Screen" type="TextureRect" parent="." unique_id=558457070]
-self_modulate = Color(0.28515625, 0, 0, 1)
+[node name="Control - PlayerStatus" type="Control" parent="." unique_id=359875487]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 844.0
+offset_right = -1633.0
+offset_bottom = 162.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control - Decorations" type="Control" parent="Control - PlayerStatus" unique_id=1397156171]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-texture = ExtResource("17_jjqpn")
-script = ExtResource("18_dmgfl")
-Alpha_Limit_Normal = 1.0
-Alpha_Limit_Critical = 1.0
-Flash_Intensity_Normal = 1.0
-Flash_Intensity_Critical = 1.0
-Flash_Max_Alpha = 1.0
 
-[node name="Control - Status" type="Control" parent="." unique_id=1059680170]
-layout_mode = 3
-anchors_preset = 0
-offset_top = 40.0
-offset_right = 735.0
-offset_bottom = 260.0
-
-[node name="Control - Decorations" type="Control" parent="Control - Status" unique_id=1397156171]
+[node name="Panel - Decoration_1" type="Panel" parent="Control - PlayerStatus/Control - Decorations" unique_id=483013679]
+self_modulate = Color(0.91015625, 0.8736292, 0.73239136, 1)
 layout_mode = 1
-anchor_top = -0.18200001
-anchor_bottom = -0.18200001
-offset_top = 0.040000916
-offset_right = 741.0
-offset_bottom = 295.04
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 41.0
+offset_right = -123.0
+offset_bottom = -210.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_8s88g")
 
-[node name="TextureRect - Decoration_1" type="TextureRect" parent="Control - Status/Control - Decorations" unique_id=292379484]
-self_modulate = Color(0.23529412, 0.19607843, 0.1764706, 1)
+[node name="TextureRect - Decoration_4" type="TextureRect" parent="Control - PlayerStatus/Control - Decorations" unique_id=1051627963]
+self_modulate = Color(0.91015625, 0.8736292, 0.73239136, 1)
 layout_mode = 0
-offset_left = -113.0
-offset_top = -36.0
-offset_right = 633.0
-offset_bottom = 263.0
-texture = ExtResource("3_1k77a")
+offset_left = 787.0
+offset_top = 196.59332
+offset_right = 1015.904
+offset_bottom = 228.59332
+rotation = -1.5707964
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("17_f24em")
 expand_mode = 1
-
-[node name="TextureRect - Decoration_2" type="TextureRect" parent="Control - Status/Control - Decorations" unique_id=386580372]
-self_modulate = Color(0.8980392, 0.8392157, 0.6117647, 1)
-layout_mode = 0
-offset_left = -131.0
-offset_top = 3.0
-offset_right = 950.0
-offset_bottom = 57.0
-scale = Vector2(0.7, 0.7)
-texture = ExtResource("17_f24em")
-
-[node name="TextureRect - Decoration_3" type="TextureRect" parent="Control - Status/Control - Decorations" unique_id=1358697736]
-self_modulate = Color(0.8980392, 0.8392157, 0.6117647, 1)
-layout_mode = 0
-offset_left = -106.999985
-offset_top = 188.0
-offset_right = 974.0
-offset_bottom = 242.0
-scale = Vector2(0.7, 0.7)
-texture = ExtResource("17_f24em")
+stretch_mode = 1
 flip_v = true
 
-[node name="Control - Health_Bar" type="Control" parent="Control - Status" unique_id=1320944934 node_paths=PackedStringArray("Monitor_Line")]
+[node name="TextureRect - Decoration_2" type="TextureRect" parent="Control - PlayerStatus/Control - Decorations" unique_id=386580372]
+self_modulate = Color(0.91015625, 0.8736292, 0.73239136, 1)
+layout_mode = 0
+offset_left = -131.00002
+offset_top = 19.000011
+offset_right = 1257.571
+offset_bottom = 51.00001
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("17_f24em")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="TextureRect - Decoration_3" type="TextureRect" parent="Control - PlayerStatus/Control - Decorations" unique_id=1358697736]
+self_modulate = Color(0.91015625, 0.8736292, 0.73239136, 1)
+layout_mode = 0
+offset_left = -130.00002
+offset_top = 187.0
+offset_right = 1260.0
+offset_bottom = 219.0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("17_f24em")
+expand_mode = 1
+stretch_mode = 1
+flip_v = true
+
+[node name="Control - Status" type="Control" parent="Control - PlayerStatus" unique_id=1059680170]
+anchors_preset = 0
+offset_left = 245.0
+offset_top = 43.0
+offset_right = 980.0
+offset_bottom = 263.0
+
+[node name="Control - Health_Bar" type="Control" parent="Control - PlayerStatus/Control - Status" unique_id=1320944934 node_paths=PackedStringArray("Monitor_Line")]
 unique_name_in_owner = true
 texture_filter = 2
 texture_repeat = 2
@@ -136,7 +157,7 @@ Monitor_Line = NodePath("Control - Heart_Monitor/Line2D - Monitor_Line")
 Beat_Interval_Normal = 1.0
 Variation_Amount = 3.0
 
-[node name="TextureRect - Health_Background" type="TextureRect" parent="Control - Status/Control - Health_Bar" unique_id=226683421]
+[node name="TextureRect - Health_Background" type="TextureRect" parent="Control - PlayerStatus/Control - Status/Control - Health_Bar" unique_id=226683421]
 modulate = Color(0.813258, 0.813258, 0.813258, 1)
 layout_mode = 1
 offset_left = 5.0
@@ -146,7 +167,7 @@ offset_bottom = 111.0
 texture = ExtResource("3_aoo3p")
 expand_mode = 1
 
-[node name="TextureRect - Percentage_Health" type="TextureRect" parent="Control - Status/Control - Health_Bar/TextureRect - Health_Background" unique_id=691333806]
+[node name="TextureRect - Percentage_Health" type="TextureRect" parent="Control - PlayerStatus/Control - Status/Control - Health_Bar/TextureRect - Health_Background" unique_id=691333806]
 modulate = Color(0.813258, 0.813258, 0.813258, 1)
 layout_mode = 1
 offset_left = 425.0
@@ -157,7 +178,7 @@ expand_mode = 1
 flip_h = true
 flip_v = true
 
-[node name="RichTextLabel - Health_Value_Percent" type="RichTextLabel" parent="Control - Status/Control - Health_Bar/TextureRect - Health_Background/TextureRect - Percentage_Health" unique_id=1656673986]
+[node name="RichTextLabel - Health_Value_Percent" type="RichTextLabel" parent="Control - PlayerStatus/Control - Status/Control - Health_Bar/TextureRect - Health_Background/TextureRect - Percentage_Health" unique_id=1656673986]
 self_modulate = Color(0, 1.5, 1, 1)
 layout_mode = 1
 anchors_preset = 14
@@ -178,7 +199,7 @@ deselect_on_focus_loss_enabled = false
 drag_and_drop_selection_enabled = false
 script = ExtResource("8_egc6g")
 
-[node name="ReferenceRect - Health_Percentage_DecorationUI_1" type="ReferenceRect" parent="Control - Status/Control - Health_Bar/TextureRect - Health_Background/TextureRect - Percentage_Health" unique_id=2012220246]
+[node name="ReferenceRect - Health_Percentage_DecorationUI_1" type="ReferenceRect" parent="Control - PlayerStatus/Control - Status/Control - Health_Bar/TextureRect - Health_Background/TextureRect - Percentage_Health" unique_id=2012220246]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = -14.0
@@ -188,7 +209,7 @@ offset_bottom = 70.0
 border_color = Color(0.003921569, 0.7882353, 0.39607844, 1)
 editor_only = false
 
-[node name="ReferenceRect - Health_Percentage_DecorationUI_2" type="ReferenceRect" parent="Control - Status/Control - Health_Bar/TextureRect - Health_Background/TextureRect - Percentage_Health" unique_id=894473209]
+[node name="ReferenceRect - Health_Percentage_DecorationUI_2" type="ReferenceRect" parent="Control - PlayerStatus/Control - Status/Control - Health_Bar/TextureRect - Health_Background/TextureRect - Percentage_Health" unique_id=894473209]
 unique_name_in_owner = true
 layout_mode = 0
 offset_right = 101.0
@@ -196,7 +217,7 @@ offset_bottom = 40.0
 border_color = Color(0.003921569, 0.7882353, 0.39607844, 1)
 editor_only = false
 
-[node name="ReferenceRect - Health_Percentage_DecorationUI_3" type="ReferenceRect" parent="Control - Status/Control - Health_Bar/TextureRect - Health_Background/TextureRect - Percentage_Health" unique_id=119194002]
+[node name="ReferenceRect - Health_Percentage_DecorationUI_3" type="ReferenceRect" parent="Control - PlayerStatus/Control - Status/Control - Health_Bar/TextureRect - Health_Background/TextureRect - Percentage_Health" unique_id=119194002]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 50.0
@@ -206,7 +227,7 @@ offset_bottom = 54.0
 border_color = Color(0.003921569, 0.7882353, 0.39607844, 1)
 editor_only = false
 
-[node name="ReferenceRect - Health_Percentage_DecorationUI_4" type="ReferenceRect" parent="Control - Status/Control - Health_Bar/TextureRect - Health_Background/TextureRect - Percentage_Health" unique_id=2036377726]
+[node name="ReferenceRect - Health_Percentage_DecorationUI_4" type="ReferenceRect" parent="Control - PlayerStatus/Control - Status/Control - Health_Bar/TextureRect - Health_Background/TextureRect - Percentage_Health" unique_id=2036377726]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = -6.0
@@ -216,7 +237,7 @@ offset_bottom = 54.0
 border_color = Color(0.003921569, 0.7882353, 0.39607844, 1)
 editor_only = false
 
-[node name="TextureRect - Percentage_Armor" type="TextureRect" parent="Control - Status/Control - Health_Bar/TextureRect - Health_Background" unique_id=1710994866]
+[node name="TextureRect - Percentage_Armor" type="TextureRect" parent="Control - PlayerStatus/Control - Status/Control - Health_Bar/TextureRect - Health_Background" unique_id=1710994866]
 modulate = Color(0.813258, 0.813258, 0.813258, 1)
 layout_mode = 1
 offset_left = 425.0
@@ -228,7 +249,7 @@ expand_mode = 1
 flip_h = true
 flip_v = true
 
-[node name="RichTextLabel - Armor_Value_Percent" type="RichTextLabel" parent="Control - Status/Control - Health_Bar/TextureRect - Health_Background/TextureRect - Percentage_Armor" unique_id=101272079]
+[node name="RichTextLabel - Armor_Value_Percent" type="RichTextLabel" parent="Control - PlayerStatus/Control - Status/Control - Health_Bar/TextureRect - Health_Background/TextureRect - Percentage_Armor" unique_id=101272079]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -248,7 +269,7 @@ deselect_on_focus_loss_enabled = false
 drag_and_drop_selection_enabled = false
 script = ExtResource("8_egc6h")
 
-[node name="ReferenceRect - Armor_Percentage_DecorationUI_1" type="ReferenceRect" parent="Control - Status/Control - Health_Bar/TextureRect - Health_Background/TextureRect - Percentage_Armor" unique_id=834700517]
+[node name="ReferenceRect - Armor_Percentage_DecorationUI_1" type="ReferenceRect" parent="Control - PlayerStatus/Control - Status/Control - Health_Bar/TextureRect - Health_Background/TextureRect - Percentage_Armor" unique_id=834700517]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = -14.0
@@ -258,7 +279,7 @@ offset_bottom = 16.0
 border_color = Color(1, 1, 1, 1)
 editor_only = false
 
-[node name="ReferenceRect - Armor_Percentage_DecorationUI_2" type="ReferenceRect" parent="Control - Status/Control - Health_Bar/TextureRect - Health_Background/TextureRect - Percentage_Armor" unique_id=616929648]
+[node name="ReferenceRect - Armor_Percentage_DecorationUI_2" type="ReferenceRect" parent="Control - PlayerStatus/Control - Status/Control - Health_Bar/TextureRect - Health_Background/TextureRect - Percentage_Armor" unique_id=616929648]
 unique_name_in_owner = true
 layout_mode = 0
 offset_right = 101.0
@@ -266,7 +287,7 @@ offset_bottom = 40.0
 border_color = Color(1, 1, 1, 1)
 editor_only = false
 
-[node name="ReferenceRect - Armor_Percentage_DecorationUI_3" type="ReferenceRect" parent="Control - Status/Control - Health_Bar/TextureRect - Health_Background/TextureRect - Percentage_Armor" unique_id=12550311]
+[node name="ReferenceRect - Armor_Percentage_DecorationUI_3" type="ReferenceRect" parent="Control - PlayerStatus/Control - Status/Control - Health_Bar/TextureRect - Health_Background/TextureRect - Percentage_Armor" unique_id=12550311]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 50.0
@@ -275,7 +296,7 @@ offset_right = 50.0
 border_color = Color(1, 1, 1, 1)
 editor_only = false
 
-[node name="ReferenceRect - Armor_Percentage_DecorationUI_4" type="ReferenceRect" parent="Control - Status/Control - Health_Bar/TextureRect - Health_Background/TextureRect - Percentage_Armor" unique_id=2080717438]
+[node name="ReferenceRect - Armor_Percentage_DecorationUI_4" type="ReferenceRect" parent="Control - PlayerStatus/Control - Status/Control - Health_Bar/TextureRect - Health_Background/TextureRect - Percentage_Armor" unique_id=2080717438]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = -9.0
@@ -285,7 +306,7 @@ offset_bottom = -16.0
 border_color = Color(1, 1, 1, 1)
 editor_only = false
 
-[node name="TextureProgressBar - Armor_Bar" type="TextureProgressBar" parent="Control - Status/Control - Health_Bar" unique_id=1616747416]
+[node name="TextureProgressBar - Armor_Bar" type="TextureProgressBar" parent="Control - PlayerStatus/Control - Status/Control - Health_Bar" unique_id=1616747416]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_f24em")
 layout_mode = 0
@@ -301,7 +322,7 @@ texture_progress = ExtResource("9_2ool3")
 tint_under = Color(0.21568628, 0.21568628, 0.21568628, 1)
 script = ExtResource("18_f24em")
 
-[node name="TextureProgressBar - Health_Lines_CatchUp" type="TextureProgressBar" parent="Control - Status/Control - Health_Bar" unique_id=1417704690]
+[node name="TextureProgressBar - Health_Lines_CatchUp" type="TextureProgressBar" parent="Control - PlayerStatus/Control - Status/Control - Health_Bar" unique_id=1417704690]
 unique_name_in_owner = true
 self_modulate = Color(1.5720325, 1.5720325, 1.5720325, 1)
 layout_mode = 1
@@ -320,7 +341,7 @@ nine_patch_stretch = true
 texture_progress = ExtResource("4_7hy6p")
 tint_progress = Color(1, 1, 1, 0.6)
 
-[node name="TextureProgressBar - Health_Lines" type="TextureProgressBar" parent="Control - Status/Control - Health_Bar" unique_id=1417704689]
+[node name="TextureProgressBar - Health_Lines" type="TextureProgressBar" parent="Control - PlayerStatus/Control - Status/Control - Health_Bar" unique_id=1417704689]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_vccdo")
 layout_mode = 1
@@ -339,7 +360,7 @@ nine_patch_stretch = true
 texture_progress = ExtResource("4_7hy6p")
 tint_progress = Color(0, 1.353256, 0.68865365, 1)
 
-[node name="ReferenceRect - Health_Lines_DecorationUI_1" type="ReferenceRect" parent="Control - Status/Control - Health_Bar/TextureProgressBar - Health_Lines" unique_id=395966993]
+[node name="ReferenceRect - Health_Lines_DecorationUI_1" type="ReferenceRect" parent="Control - PlayerStatus/Control - Status/Control - Health_Bar/TextureProgressBar - Health_Lines" unique_id=395966993]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = -1.0
@@ -349,7 +370,7 @@ offset_bottom = 47.0
 border_color = Color(0.003921569, 0.84313726, 0.42352942, 1)
 editor_only = false
 
-[node name="Control - Heart_Monitor" parent="Control - Status/Control - Health_Bar" unique_id=840436665 instance=ExtResource("11_v7kv0")]
+[node name="Control - Heart_Monitor" parent="Control - PlayerStatus/Control - Status/Control - Health_Bar" unique_id=840436665 instance=ExtResource("11_v7kv0")]
 unique_name_in_owner = true
 clip_contents = false
 custom_minimum_size = Vector2(100, 0)
@@ -359,7 +380,7 @@ offset_top = 39.0
 offset_right = 15.0
 offset_bottom = 39.0
 
-[node name="TextureProgressBar - Stamina_Bar" type="TextureProgressBar" parent="Control - Status" unique_id=1279622893 node_paths=PackedStringArray("Stamina_Bar")]
+[node name="TextureProgressBar - Stamina_Bar" type="TextureProgressBar" parent="Control - PlayerStatus/Control - Status" unique_id=1279622893 node_paths=PackedStringArray("Stamina_Bar")]
 texture_repeat = 2
 material = ExtResource("21_bars_mat")
 layout_mode = 1
@@ -384,14 +405,14 @@ tint_progress = Color(0.9444444, 1, 0, 1)
 script = ExtResource("8_8jq05")
 Stamina_Bar = NodePath(".")
 
-[node name="ReferenceRect - Stamina_Border" type="ReferenceRect" parent="Control - Status/TextureProgressBar - Stamina_Bar" unique_id=922425010]
+[node name="ReferenceRect - Stamina_Border" type="ReferenceRect" parent="Control - PlayerStatus/Control - Status/TextureProgressBar - Stamina_Bar" unique_id=922425010]
 layout_mode = 0
 offset_right = 400.0
 offset_bottom = 8.0
 border_color = Color(1, 0.8671875, 0, 1)
 editor_only = false
 
-[node name="TextureRect - Vignette" type="TextureRect" parent="Control - Status" unique_id=1573125909]
+[node name="TextureRect - Vignette" type="TextureRect" parent="Control - PlayerStatus/Control - Status" unique_id=1573125909]
 layout_mode = 0
 offset_left = 12.0
 offset_top = 6.0
@@ -400,7 +421,7 @@ offset_bottom = 136.0
 texture = ExtResource("4_avq2p")
 expand_mode = 1
 
-[node name="ReferenceRect - HealthBorder 1" type="ReferenceRect" parent="Control - Status" unique_id=1937802299]
+[node name="ReferenceRect - HealthBorder 1" type="ReferenceRect" parent="Control - PlayerStatus/Control - Status" unique_id=1937802299]
 layout_mode = 0
 offset_left = 14.0
 offset_top = 8.0
@@ -409,7 +430,7 @@ offset_bottom = 134.0
 border_color = Color(0.28515625, 0.25169668, 0.12698364, 1)
 editor_only = false
 
-[node name="ReferenceRect - HealthBorder 2" type="ReferenceRect" parent="Control - Status" unique_id=466295199]
+[node name="ReferenceRect - HealthBorder 2" type="ReferenceRect" parent="Control - PlayerStatus/Control - Status" unique_id=466295199]
 layout_mode = 0
 offset_left = 11.0
 offset_top = 5.0
@@ -417,6 +438,22 @@ offset_right = 423.0
 offset_bottom = 137.0
 border_color = Color(0.28515625, 0.25169668, 0.12698364, 1)
 editor_only = false
+
+[node name="TextureRect - Damage_Red_Screen" type="TextureRect" parent="." unique_id=558457070]
+self_modulate = Color(0.28515625, 0, 0, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("17_jjqpn")
+script = ExtResource("18_dmgfl")
+Alpha_Limit_Normal = 1.0
+Alpha_Limit_Critical = 1.0
+Flash_Intensity_Normal = 1.0
+Flash_Intensity_Critical = 1.0
+Flash_Max_Alpha = 1.0
 
 [node name="ColorRect - Heart_Flare" type="ColorRect" parent="." unique_id=1408861775 node_paths=PackedStringArray("Health_Bar")]
 material = SubResource("ShaderMaterial_55fln")
@@ -427,7 +464,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("20_55fln")
-Health_Bar = NodePath("../Control - Status/Control - Health_Bar")
+Health_Bar = NodePath("../Control - PlayerStatus/Control - Status/Control - Health_Bar")
 Flare_Size = 0.002
 Flare_Multiplier = 0.5
 Follow_Speed = 60.0
@@ -444,14 +481,18 @@ mouse_filter = 2
 texture = ExtResource("3_8s88g")
 script = ExtResource("4_2be78")
 
-[node name="Control - Inventory_UI" parent="." unique_id=1074034316 instance=ExtResource("12_2ppih")]
-visible = false
-
 [node name="CanvasLayer - DialogueUI" parent="." unique_id=1201599085 instance=ExtResource("13_st3ur")]
 visible = false
 
 [node name="CanvasLayer - Player_Menu" parent="." unique_id=1995535612 instance=ExtResource("14_87th5")]
 unique_name_in_owner = true
+
+[node name="Control - Inventory_UI" parent="." unique_id=1074034316 instance=ExtResource("12_2ppih")]
 visible = false
 
-[editable path="Control - Status/Control - Health_Bar/Control - Heart_Monitor"]
+[node name="Panel" parent="Control - Inventory_UI" index="0" unique_id=1960820530]
+offset_top = 259.0
+offset_bottom = -227.0
+
+[editable path="Control - PlayerStatus/Control - Status/Control - Health_Bar/Control - Heart_Monitor"]
+[editable path="Control - Inventory_UI"]

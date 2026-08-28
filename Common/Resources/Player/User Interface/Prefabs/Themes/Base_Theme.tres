@@ -1,37 +1,27 @@
 [gd_resource type="Theme" format=3 uid="uid://b7k1imxvkgx1"]
 
 [ext_resource type="FontFile" uid="uid://bnnwxabllsohk" path="res://Common/Resources/Player/User Interface/Fonts/Springmarch/springmarch.roman.otf" id="1_87w6g"]
-[ext_resource type="Texture2D" uid="uid://b8ojmf6qyhlq0" path="res://Common/Resources/Player/User Interface/UI_Art/Button_Normal.png" id="1_hudjb"]
-[ext_resource type="Texture2D" uid="uid://dkkle61cheusy" path="res://Common/Resources/Player/User Interface/UI_Art/Panel2.png" id="1_mcrv8"]
-[ext_resource type="StyleBox" uid="uid://pj4u5nnckay4" path="res://Common/Resources/Player/User Interface/Prefabs/Themes/Base_Texture_Button_Hovered.tres" id="2_bkukl"]
+[ext_resource type="Texture2D" uid="uid://dsxvyrei3fuwb" path="res://Common/Resources/Player/User Interface/UI_Art/Panel5.png" id="2_76mei"]
+[ext_resource type="StyleBox" uid="uid://cm22pfm0axly" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Base_Inventory_Button_StyleBox1.tres" id="3_76mei"]
+[ext_resource type="StyleBox" uid="uid://v11gptuotb7j" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Panel_Texture_StyleBox1.tres" id="4_ffavn"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_02uik"]
-texture = ExtResource("1_hudjb")
-texture_margin_left = 10.0
-texture_margin_top = 10.0
-texture_margin_right = 10.0
-texture_margin_bottom = 10.0
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ffavn"]
+texture = ExtResource("2_76mei")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v5flr"]
-texture = ExtResource("1_mcrv8")
-texture_margin_left = 50.0
-texture_margin_top = 78.86732
-texture_margin_right = 50.0
-texture_margin_bottom = 126.4156
-axis_stretch_vertical = 1
-region_rect = Rect2(16, 219, 1882, 659)
-modulate_color = Color(0.91015625, 0.8736292, 0.73239136, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j0ldj"]
+texture = ExtResource("2_76mei")
 
 [resource]
 default_font = ExtResource("1_87w6g")
 default_font_size = 16
 Button/colors/font_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
-Button/constants/align_to_largest_stylebox = 0
+Button/constants/align_to_largest_stylebox = 1
 Button/constants/h_separation = 0
 Button/constants/icon_max_width = 0
 Button/constants/outline_size = 0
-Button/font_sizes/font_size = 55
+Button/font_sizes/font_size = 42
 Button/fonts/font = ExtResource("1_87w6g")
-Button/styles/hover = ExtResource("2_bkukl")
-Button/styles/normal = SubResource("StyleBoxTexture_02uik")
-Panel/styles/panel = SubResource("StyleBoxTexture_v5flr")
+Button/styles/hover = SubResource("StyleBoxTexture_ffavn")
+Button/styles/hover_pressed = SubResource("StyleBoxTexture_j0ldj")
+Button/styles/normal = ExtResource("3_76mei")
+Panel/styles/panel = ExtResource("4_ffavn")

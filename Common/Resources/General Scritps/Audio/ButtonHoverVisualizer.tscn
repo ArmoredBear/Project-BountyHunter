@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://clo68j07co51e"]
+
+[ext_resource type="Script" uid="uid://l0kw56g6utdc" path="res://Common/Resources/General Scritps/Audio/MenuButtonHoverVisualizer.cs" id="1_hover"]
+[ext_resource type="Script" uid="uid://0eftcoaidy4r" path="res://Common/Resources/General Scritps/Audio/LoopVisualizer.cs" id="2_loop"]
+
+[node name="ButtonHoverVisualizer" type="Node2D" unique_id=249375177 node_paths=PackedStringArray("Buttons", "Visualizer")]
+script = ExtResource("1_hover")
+Buttons = []
+Visualizer = NodePath("LoopVisualizer")
+
+[node name="LoopVisualizer" type="Node2D" parent="." unique_id=1682528500]
+script = ExtResource("2_loop")
+NumBars = 64
+LoopSpeed = 1.0
+MaxHeightRatio = 0.22
+VisualizerWidth = 328.0
+BarWidth = 4.0
+BarColor = Color(0.8980392, 0.8392157, 0.6117647, 0.5882353)
+SmoothSpeed = 30.0
+DecaySpeed = 30.0
+PointRatio = 1.0
+GlowEnabled = false
+GlowExpand = 12.0
+GlowColor = Color(0.09320182, 0.086104214, 0.06100855, 1)
+InnerGlowShrink = 1.0
+InnerGlowColor = Color(1, 0.9764706, 0.8784314, 0.50980395)
+InnerGlowHeightRatio = 0.3
+CenterLineColor = Color(0.91015625, 0.8736292, 0.73239136, 1)
+CenterGlowExpand = 3.0
+CenterGlowColor = Color(0.91015625, 0.8736292, 0.73239136, 1)
+CenterGap = 6.0
+FadeInSpeed = 10.0
+FadeOutSpeed = 10.0

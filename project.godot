@@ -32,6 +32,7 @@ Scene_Manager="*res://Common/MainScenes/Scene_Manager.tscn"
 SaveLoadControl="*res://Common/Resources/General Scritps/Save_Load_Control.cs"
 AudioManager="*res://Common/Resources/General Scritps/Audio/AudioManager.cs"
 Settings="*res://Common/Resources/General Scritps/Options/Settings.cs"
+TransitionManager="*res://Common/Resources/General Scritps/TransitionManager.tscn"
 
 [display]
 

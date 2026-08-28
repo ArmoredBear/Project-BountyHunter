@@ -76,7 +76,7 @@ shape = SubResource("RectangleShape2D_1vwxm")
 
 [node name="Camera2D" type="Camera2D" parent="Player_Body" unique_id=1718478064]
 texture_filter = 1
-zoom = Vector2(0.45, 0.45)
+zoom = Vector2(0.3, 0.3)
 limit_smoothed = true
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
@@ -207,5 +207,6 @@ script = ExtResource("17_ti6mo")
 [connection signal="animation_finished" from="Player_Body/Player_FSM/Player_Animation" to="Player_Body/Player_FSM/Attacking" method="On_Player_Animation_Finished"]
 
 [editable path="Player_UI"]
-[editable path="Player_UI/Control - Status/Control - Health_Bar/Control - Heart_Monitor"]
+[editable path="Player_UI/Control - PlayerStatus/Control - Status/Control - Health_Bar/Control - Heart_Monitor"]
+[editable path="Player_UI/Control - Inventory_UI"]
 [editable path="Player_UI/CanvasLayer - DialogueUI"]

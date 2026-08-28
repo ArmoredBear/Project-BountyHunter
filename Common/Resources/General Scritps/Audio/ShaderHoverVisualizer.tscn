@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://ct81xmytp48xf"]
+
+[ext_resource type="Script" uid="uid://d10dlblpncuob" path="res://Common/Resources/General Scritps/Audio/ShaderHoverController.cs" id="1_ctrl"]
+[ext_resource type="Script" uid="uid://dit2rxpe0v3uh" path="res://Common/Resources/General Scritps/Audio/ShaderLoopVisualizer.cs" id="2_vis"]
+
+[node name="ShaderHoverVisualizer" type="Node2D" node_paths=PackedStringArray("Buttons", "Visualizer")]
+script = ExtResource("1_ctrl")
+Buttons = []
+Visualizer = NodePath("ShaderLoopVisualizer")
+
+[node name="ShaderLoopVisualizer" type="ColorRect" parent="."]
+mouse_filter = 2
+offset_right = 328.0
+offset_bottom = 237.0
+script = ExtResource("2_vis")
+NumBars = 64
+VisualizerWidth = 328.0
+BarWidth = 4.0
+PointRatio = 1.0
+CenterGap = 6.0
+LoopSpeed = 1.0
+Amplitude = 1.0
+MaxHeightRatio = 0.22
+Seed = 7.0
+BarColor = Color(0.8980392, 0.8392157, 0.6117647, 0.5882353)
+GlowEnabled = false
+GlowExpand = 2.0
+GlowColor = Color(0.09, 0.086, 0.061, 1)
+InnerGlowShrink = 1.0
+InnerGlowHeightRatio = 0.3
+InnerGlowColor = Color(1, 0.976, 0.878, 0.51)
+CenterLineEnabled = false
+CenterLineWidth = 1.5
+CenterLineColor = Color(0.91, 0.874, 0.732, 1)
+FadeInSpeed = 10.0
+FadeOutSpeed = 10.0

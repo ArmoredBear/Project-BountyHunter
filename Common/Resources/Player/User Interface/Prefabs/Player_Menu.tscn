@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://cjxskbpx8621o"]
 
-[ext_resource type="Theme" uid="uid://b7k1imxvkgx1" path="res://Common/Resources/Player/User Interface/Prefabs/Themes/Base_Theme.tres" id="1_apck0"]
 [ext_resource type="Script" uid="uid://cdhwawfqs2bbs" path="res://Common/Resources/Player/User Interface/UI_Scripts/PlayerMenu.cs" id="1_f540y"]
-[ext_resource type="Texture2D" uid="uid://dk5mlrb04a3d" path="res://Common/Resources/Player/User Interface/UI_Art/Panel3.png" id="2_2m8kv"]
-[ext_resource type="StyleBox" uid="uid://v11gptuotb7j" path="res://Common/Resources/Player/User Interface/Prefabs/PanelTextureStyleBox.tres" id="3_of6so"]
+[ext_resource type="FontFile" uid="uid://bnnwxabllsohk" path="res://Common/Resources/Player/User Interface/Fonts/Springmarch/springmarch.roman.otf" id="3_l1k4q"]
+[ext_resource type="StyleBox" uid="uid://v11gptuotb7j" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Panel_Texture_StyleBox1.tres" id="3_of6so"]
+[ext_resource type="Theme" uid="uid://byfphwqv3j56s" path="res://Common/Resources/Player/User Interface/Prefabs/Themes/Base_MainMenu_Theme.tres" id="3_yruen"]
 
 [node name="Player_Menu" type="CanvasLayer" unique_id=925412078]
 script = ExtResource("1_f540y")
@@ -24,9 +24,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -20.0
-offset_top = -20.0
+offset_top = -429.0
 offset_right = 20.0
-offset_bottom = 20.0
+offset_bottom = -389.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -39,70 +39,111 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -808.5
-offset_top = -129.0
-offset_right = 808.5
-offset_bottom = 129.0
+offset_left = -1279.0
+offset_top = -143.0
+offset_right = 1280.0
+offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_apck0")
 theme_override_styles/panel = ExtResource("3_of6so")
 
-[node name="TextureRect" type="TextureRect" parent="Control/Panel" unique_id=2121627077]
-visible = false
-self_modulate = Color(0.23529412, 0.19607843, 0.1764706, 1)
+[node name="ColorRect" type="ColorRect" parent="Control/Panel" unique_id=829587942]
 layout_mode = 0
-offset_left = 502.0
-offset_top = 61.0
-offset_right = 2062.0
-offset_bottom = 187.0
-texture = ExtResource("2_2m8kv")
-expand_mode = 1
-stretch_mode = 6
+offset_left = 50.0
+offset_top = 62.0
+offset_right = 2517.0
+offset_bottom = 156.0
+color = Color(0, 0, 0, 0.70000005)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/Panel" unique_id=333665692]
-custom_minimum_size = Vector2(325, 50)
+[node name="BoxContainer" type="BoxContainer" parent="Control/Panel" unique_id=55123590]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 29.0
+offset_top = 42.0
+offset_bottom = -49.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 40
 alignment = 1
 
-[node name="Journal" type="Button" parent="Control/Panel/HBoxContainer" unique_id=1292588930]
+[node name="Journal" type="Button" parent="Control/Panel/BoxContainer" unique_id=1670061521]
+custom_minimum_size = Vector2(250, 60)
 layout_mode = 2
-size_flags_horizontal = 13
+size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = ExtResource("1_apck0")
-text = "Diário"
+theme = ExtResource("3_yruen")
+theme_override_colors/font_hover_color = Color(0.91015625, 0.8736292, 0.73239136, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.90234375, 0.7929634, 0.37002587, 1)
+theme_override_constants/outline_size = 1
+theme_override_constants/h_separation = 0
+theme_override_constants/align_to_largest_stylebox = 1
+theme_override_fonts/font = ExtResource("3_l1k4q")
+theme_override_font_sizes/font_size = 40
+text = "Journal
+"
 
-[node name="Equipment" type="Button" parent="Control/Panel/HBoxContainer" unique_id=1262744425]
+[node name="Inventory" type="Button" parent="Control/Panel/BoxContainer" unique_id=710461936]
+custom_minimum_size = Vector2(250, 60)
 layout_mode = 2
-size_flags_horizontal = 13
+size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = ExtResource("1_apck0")
-text = "Equipamento"
+theme = ExtResource("3_yruen")
+theme_override_colors/font_hover_color = Color(0.91015625, 0.8736292, 0.73239136, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.90234375, 0.7929634, 0.37002587, 1)
+theme_override_constants/outline_size = 1
+theme_override_constants/h_separation = 0
+theme_override_constants/align_to_largest_stylebox = 1
+theme_override_fonts/font = ExtResource("3_l1k4q")
+theme_override_font_sizes/font_size = 40
+text = "Inventory
+"
 
-[node name="Inventory" type="Button" parent="Control/Panel/HBoxContainer" unique_id=1271439644]
+[node name="Equipment" type="Button" parent="Control/Panel/BoxContainer" unique_id=606727250]
+custom_minimum_size = Vector2(250, 60)
 layout_mode = 2
-size_flags_horizontal = 13
+size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = ExtResource("1_apck0")
-text = "Inventário"
+theme = ExtResource("3_yruen")
+theme_override_colors/font_hover_color = Color(0.91015625, 0.8736292, 0.73239136, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.90234375, 0.7929634, 0.37002587, 1)
+theme_override_constants/outline_size = 1
+theme_override_constants/h_separation = 0
+theme_override_constants/align_to_largest_stylebox = 1
+theme_override_fonts/font = ExtResource("3_l1k4q")
+theme_override_font_sizes/font_size = 40
+text = "Equipment
+"
 
-[node name="Options" type="Button" parent="Control/Panel/HBoxContainer" unique_id=222150754]
+[node name="Settings" type="Button" parent="Control/Panel/BoxContainer" unique_id=76320644]
+custom_minimum_size = Vector2(250, 60)
 layout_mode = 2
-size_flags_horizontal = 13
+size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = ExtResource("1_apck0")
-text = "Opções"
+theme = ExtResource("3_yruen")
+theme_override_colors/font_hover_color = Color(0.91015625, 0.8736292, 0.73239136, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.90234375, 0.7929634, 0.37002587, 1)
+theme_override_constants/outline_size = 1
+theme_override_constants/h_separation = 0
+theme_override_constants/align_to_largest_stylebox = 1
+theme_override_fonts/font = ExtResource("3_l1k4q")
+theme_override_font_sizes/font_size = 40
+text = "Settings"
 
-[node name="Save_And_Quit" type="Button" parent="Control/Panel/HBoxContainer" unique_id=120216533]
+[node name="Save_And_Quit" type="Button" parent="Control/Panel/BoxContainer" unique_id=120216533]
+custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
-size_flags_horizontal = 13
+size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = ExtResource("1_apck0")
-text = "Salvar e Sair"
+theme = ExtResource("3_yruen")
+theme_override_colors/font_hover_color = Color(0.91015625, 0.8736292, 0.73239136, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.90234375, 0.7929634, 0.37002587, 1)
+theme_override_constants/outline_size = 1
+theme_override_constants/h_separation = 0
+theme_override_constants/align_to_largest_stylebox = 1
+theme_override_fonts/font = ExtResource("3_l1k4q")
+theme_override_font_sizes/font_size = 40
+text = "Save and Quit"
 
-[connection signal="pressed" from="Control/Panel/HBoxContainer/Save_And_Quit" to="." method="On_Save_And_Quit_Pressed"]
+[connection signal="pressed" from="Control/Panel/BoxContainer/Save_And_Quit" to="." method="On_Save_And_Quit_Pressed"]

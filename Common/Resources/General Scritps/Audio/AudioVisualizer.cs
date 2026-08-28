@@ -163,8 +163,8 @@ public partial class AudioVisualizer : Node2D
         // Get the size of the viewport (the game window).
         var viewportSize = GetViewportRect().Size;
 
-        // Calculate the center point of the screen.
-        Vector2 center = viewportSize * 0.5f;
+        // The drawing center is the node's local origin.
+        Vector2 center = Vector2.Zero;
 
         // Endpoints of the center line, stored so the glow can reuse them.
         Vector2 lineLeft = Vector2.Zero;

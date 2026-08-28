@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://b7x1o5b14fsu1"]
 
 [ext_resource type="Script" uid="uid://b1b2rcybnplf7" path="res://Common/Resources/General Scritps/MainMenu/MainMenu.cs" id="1_oroun"]
-[ext_resource type="Theme" uid="uid://byfphwqv3j56s" path="res://Common/Resources/Player/User Interface/Prefabs/Themes/Base_Main_Menu_Theme.tres" id="1_w55jq"]
-[ext_resource type="Script" uid="uid://vfe4rsig371w" path="res://Common/Resources/General Scritps/Continue.cs" id="2_6lkvc"]
+[ext_resource type="Theme" uid="uid://byfphwqv3j56s" path="res://Common/Resources/Player/User Interface/Prefabs/Themes/Base_MainMenu_Theme.tres" id="1_w55jq"]
+[ext_resource type="Script" uid="uid://be6slbooudl4w" path="res://Common/Resources/General Scritps/NewGame.cs" id="2_newgame"]
 [ext_resource type="Script" uid="uid://ben57gruc7cac" path="res://Common/Resources/Misc/Effects/WeatherChooser.cs" id="2_qr2lj"]
 [ext_resource type="Material" uid="uid://b6jkgq0ktik5a" path="res://Common/Resources/Player/User Interface/UI_Material_Test.tres" id="2_whdxq"]
 [ext_resource type="Shader" uid="uid://bg2shqbn8mqfe" path="res://Common/Resources/Shaders/LightningFlash.gdshader" id="2_xcj4t"]
@@ -20,10 +20,11 @@
 [ext_resource type="Script" uid="uid://bgqhbgpctpshg" path="res://Common/Resources/Credits/Credits.cs" id="10_kewiu"]
 [ext_resource type="Script" uid="uid://uoi20o56xn6o" path="res://Common/Resources/Misc/Effects/LightFlicker.cs" id="11_m5ukh"]
 [ext_resource type="Script" uid="uid://chwwd3b0p6ff3" path="res://Common/Resources/General Scritps/Options/OptionsButton.cs" id="13_0d3ci"]
+[ext_resource type="PackedScene" uid="uid://ct81xmytp48xf" path="res://Common/Resources/General Scritps/Audio/ShaderHoverVisualizer.tscn" id="13_5bm1l"]
 [ext_resource type="PackedScene" uid="uid://c5r00wyopsd2s" path="res://Common/Resources/General Scritps/Audio/AudioVisualizer.tscn" id="15_uo8uj"]
 [ext_resource type="Script" uid="uid://fvf2xxcud8o" path="res://Common/Resources/General Scritps/Options/OptionsMenu.cs" id="16_0raye"]
 [ext_resource type="Shader" uid="uid://c2plm0uv8bl6v" path="res://Common/Resources/Shaders/NoiseShader.gdshader" id="16_cvul1"]
-[ext_resource type="StyleBox" uid="uid://v11gptuotb7j" path="res://Common/Resources/Player/User Interface/Prefabs/PanelTextureStyleBox.tres" id="16_pt4oh"]
+[ext_resource type="StyleBox" uid="uid://v11gptuotb7j" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Panel_Texture_StyleBox1.tres" id="16_pt4oh"]
 [ext_resource type="AudioStream" uid="uid://cwtjhuq3vcuy3" path="res://Common/Resources/Sounds/UI_Hover.wav" id="16_qmasd"]
 [ext_resource type="Script" uid="uid://cbj7ml5q7yakc" path="res://Common/Resources/General Scritps/Audio/Sound Scripts/MenuUiSound.cs" id="17_csyh4"]
 [ext_resource type="FontFile" uid="uid://bnnwxabllsohk" path="res://Common/Resources/Player/User Interface/Fonts/Springmarch/springmarch.roman.otf" id="17_e0r6h"]
@@ -32,6 +33,7 @@
 [ext_resource type="Script" uid="uid://lo2ty3h2g2h" path="res://Common/Resources/General Scritps/Options/ControlsPage.cs" id="19_4smg1"]
 [ext_resource type="Script" uid="uid://cs5cjy2xn8bj1" path="res://Common/Resources/General Scritps/Options/LanguagePage.cs" id="22_xcj4t"]
 [ext_resource type="Shader" uid="uid://boumfhns0fnoe" path="res://Common/Resources/Shaders/Vignette.gdshader" id="26_4asu5"]
+[ext_resource type="StyleBox" uid="uid://bm45rl48x41lg" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Simple_Button_Texture_Stylebox3.tres" id="29_pt4oh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_obmtt"]
 shader = ExtResource("2_xcj4t")
@@ -141,14 +143,6 @@ fill_from = Vector2(0.5, 0.5)
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_m5ukh"]
-shader = ExtResource("26_4asu5")
-shader_parameter/vignette_color = Color(0, 0, 0, 1)
-shader_parameter/vignette_intensity = 1.0
-shader_parameter/vignette_radius = 0.650000030875
-shader_parameter/vignette_softness = 0.800000038
-shader_parameter/vignette_roundness = 0.70000003325
-
 [sub_resource type="LabelSettings" id="LabelSettings_0d3ci"]
 font = ExtResource("17_e0r6h")
 font_size = 30
@@ -184,6 +178,14 @@ font_size = 30
 font_color = Color(0, 0, 0, 1)
 outline_size = 2
 outline_color = Color(0.9098039, 0.8745098, 0.73333335, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m5ukh"]
+shader = ExtResource("26_4asu5")
+shader_parameter/vignette_color = Color(0, 0, 0, 1)
+shader_parameter/vignette_intensity = 1.0
+shader_parameter/vignette_radius = 0.650000030875
+shader_parameter/vignette_softness = 0.800000038
+shader_parameter/vignette_roundness = 0.70000003325
 
 [node name="Main_Menu" type="CanvasLayer" unique_id=856812317 node_paths=PackedStringArray("Menu_Panel")]
 script = ExtResource("1_oroun")
@@ -265,6 +267,19 @@ visibility_rect = Rect2(-1280, 0, 2560, 1080)
 local_coords = true
 process_material = ExtResource("8_qr2lj")
 
+[node name="ShaderHoverVisualizer2" parent="Control - Background Effects" unique_id=2002605468 node_paths=PackedStringArray("Buttons") instance=ExtResource("13_5bm1l")]
+position = Vector2(-1462, 0)
+Buttons = [NodePath("../../Control - Menu and Logic/Menu/NewGame"), NodePath("../../Control - Menu and Logic/Menu/Load_Game"), NodePath("../../Control - Menu and Logic/Menu/Options"), NodePath("../../Control - Menu and Logic/Menu/Credits"), NodePath("../../Control - Menu and Logic/Menu/Quit")]
+
+[node name="ShaderLoopVisualizer" parent="Control - Background Effects/ShaderHoverVisualizer2" index="0"]
+NumBars = 24
+VisualizerWidth = 320.0
+Amplitude = 0.4
+MaxHeightRatio = 0.4
+BarColor = Color(0.6039216, 0.56078434, 0.3764706, 1)
+GlowExpand = 0.1
+GlowColor = Color(0.09320182, 0.086104214, 0.06100855, 0)
+
 [node name="ColorRect - LogoBackground" type="ColorRect" parent="." unique_id=269267948]
 offset_top = 226.0
 offset_right = 2560.0
@@ -274,23 +289,17 @@ color = Color(0, 0, 0, 0.5882353)
 [node name="Control - LogoEffects" type="Control" parent="." unique_id=2084864707]
 layout_direction = 1
 layout_mode = 3
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -1.0
-offset_top = -80.0
-offset_right = 39.0
-offset_bottom = -40.0
-grow_horizontal = 0
-grow_vertical = 2
+anchors_preset = 0
+offset_left = 1875.0
+offset_top = 328.0
+offset_right = 1915.0
+offset_bottom = 368.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="PulseEffect" type="Node2D" parent="Control - LogoEffects" unique_id=798295690]
 material = SubResource("CanvasItemMaterial_m5ukh")
-position = Vector2(-1591, -137)
+position = Vector2(-9, -8)
 script = ExtResource("4_nthcj")
 PulseInterval = 1.0
 CircleCount = 5
@@ -305,7 +314,7 @@ KickDecay = 30.0
 
 [node name="AudioVisualizer" parent="Control - LogoEffects" unique_id=2011225160 instance=ExtResource("15_uo8uj")]
 material = SubResource("CanvasItemMaterial_4asu5")
-position = Vector2(-2867, -600)
+position = Vector2(-10, 65)
 BarColor = Color(0.8980392, 0.8392157, 0.6117647, 0.5882353)
 BarSpacing = 0.0
 DecaySpeed = 15.0
@@ -324,10 +333,10 @@ CenterGap = 30.0
 
 [node name="ReferenceRect" type="ReferenceRect" parent="Control - LogoEffects" unique_id=1716073428]
 layout_mode = 0
-offset_left = -2621.0
-offset_top = -85.0
-offset_right = 40.0
-offset_bottom = -35.0
+offset_left = -1895.0
+offset_top = 40.0
+offset_right = 766.0
+offset_bottom = 90.0
 border_color = Color(0.91015625, 0.8736292, 0.73239136, 1)
 border_width = 2.0
 editor_only = false
@@ -342,7 +351,7 @@ offset_bottom = 40.0
 layout_mode = 0
 offset_left = -73.0
 offset_top = 756.0
-offset_right = 1627.0
+offset_right = 2631.0
 offset_bottom = 977.0
 theme_override_styles/panel = ExtResource("16_pt4oh")
 
@@ -383,6 +392,15 @@ texture = ExtResource("6_0raye")
 expand_mode = 1
 stretch_mode = 1
 
+[node name="ReferenceRect" type="ReferenceRect" parent="Control - Decorations" unique_id=132032177]
+layout_mode = 0
+offset_left = -18.0
+offset_top = 860.0
+offset_right = 2486.0
+offset_bottom = 860.0
+border_color = Color(0.9098039, 0.8745098, 0.73333335, 1)
+editor_only = false
+
 [node name="Control - Logo" type="Control" parent="." unique_id=1645308336]
 layout_mode = 3
 anchors_preset = 0
@@ -393,15 +411,15 @@ offset_bottom = 40.0
 self_modulate = Color(0.9098039, 0.8745098, 0.73333335, 1)
 material = SubResource("CanvasItemMaterial_obmtt")
 layout_mode = 0
-offset_left = 172.0
+offset_left = 1069.0
 offset_top = -10.0
-offset_right = 1967.5
+offset_right = 2864.5
 offset_bottom = 611.0
 texture = ExtResource("3_uo8uj")
 expand_mode = 1
 
 [node name="PointLight2D - Logo Light" type="PointLight2D" parent="Control - Logo" unique_id=1357526719]
-position = Vector2(970, 320)
+position = Vector2(1864, 320)
 energy = 1.5
 range_layer_max = 10
 shadow_enabled = true
@@ -415,20 +433,38 @@ MinIntensity = 1.0
 MaxIntensity = 3.0
 IntensityCurve = SubResource("Curve_m5ukh")
 
-[node name="ColorRect - Vignette" type="ColorRect" parent="." unique_id=1071746335]
-material = SubResource("ShaderMaterial_m5ukh")
-clip_contents = true
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="Control - Menu and Logic" type="Control" parent="." unique_id=1151742208]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="ShaderHoverVisualizer" parent="Control - Menu and Logic" unique_id=990480037 node_paths=PackedStringArray("Buttons") instance=ExtResource("13_5bm1l")]
+position = Vector2(-1462, 0)
+Buttons = [NodePath("../Menu/NewGame"), NodePath("../Menu/Load_Game"), NodePath("../Menu/Options"), NodePath("../Menu/Credits"), NodePath("../Menu/Quit")]
+
+[node name="ShaderLoopVisualizer" parent="Control - Menu and Logic/ShaderHoverVisualizer" index="0"]
+NumBars = 320
+VisualizerWidth = 4750.0
+PointRatio = 1.5
+Amplitude = 0.21
+MaxHeightRatio = 0.21
+BarColor = Color(0.91015625, 0.8736292, 0.73239136, 1)
+GlowEnabled = true
+GlowExpand = 0.1
+GlowColor = Color(0.09320182, 0.086104214, 0.06100855, 0)
+CenterLineEnabled = true
+CenterLineWidth = 2.0
+
+[node name="ColorRect" type="ColorRect" parent="Control - Menu and Logic" unique_id=1621619517]
+layout_mode = 0
+offset_left = -24.0
+offset_top = 816.0
+offset_right = 2589.0
+offset_bottom = 911.0
+mouse_filter = 2
+mouse_behavior_recursive = 1
+color = Color(0, 0, 0, 0.5)
 
 [node name="Menu" type="BoxContainer" parent="Control - Menu and Logic" unique_id=355485373]
 custom_minimum_size = Vector2(200, 60)
@@ -438,10 +474,10 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 425.0
-offset_top = 810.0
-offset_right = 1465.0
-offset_bottom = 870.0
+offset_left = 964.0
+offset_top = 795.0
+offset_right = 2450.0
+offset_bottom = 888.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_stretch_ratio = 2.0
@@ -449,38 +485,37 @@ theme = ExtResource("1_w55jq")
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="Continue" type="Button" parent="Control - Menu and Logic/Menu" unique_id=1926283793]
+[node name="NewGame" type="Button" parent="Control - Menu and Logic/Menu" unique_id=1926283793]
 texture_filter = 1
-custom_minimum_size = Vector2(200, 60)
+custom_minimum_size = Vector2(250, 60)
 layout_direction = 2
 layout_mode = 2
-size_flags_vertical = 12
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_font_sizes/font_size = 30
 text = "Novo Jogo"
-text_overrun_behavior = 1
-autowrap_mode = 3
 icon_alignment = 1
-script = ExtResource("2_6lkvc")
+script = ExtResource("2_newgame")
 
 [node name="Load_Game" type="Button" parent="Control - Menu and Logic/Menu" unique_id=851437664]
 texture_filter = 1
-custom_minimum_size = Vector2(200, 60)
+custom_minimum_size = Vector2(250, 60)
 layout_direction = 2
 layout_mode = 2
-size_flags_vertical = 12
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_font_sizes/font_size = 30
 text = "Carregar"
-text_overrun_behavior = 1
-autowrap_mode = 3
 icon_alignment = 1
 script = ExtResource("9_l1guo")
 
 [node name="Options" type="Button" parent="Control - Menu and Logic/Menu" unique_id=662255086 node_paths=PackedStringArray("Options_Panel")]
 texture_filter = 1
-custom_minimum_size = Vector2(200, 60)
+custom_minimum_size = Vector2(250, 60)
 layout_direction = 2
 layout_mode = 2
-size_flags_vertical = 12
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_font_sizes/font_size = 30
 text = "Opções"
 icon_alignment = 1
@@ -489,28 +524,26 @@ Options_Panel = NodePath("../../OptionsPanel")
 
 [node name="Credits" type="Button" parent="Control - Menu and Logic/Menu" unique_id=244063159 node_paths=PackedStringArray("Credits_Panel")]
 texture_filter = 1
-custom_minimum_size = Vector2(200, 60)
+custom_minimum_size = Vector2(250, 60)
 layout_direction = 2
 layout_mode = 2
-size_flags_vertical = 12
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_font_sizes/font_size = 30
 text = "Créditos"
-text_overrun_behavior = 1
-autowrap_mode = 3
 icon_alignment = 1
 script = ExtResource("10_kewiu")
 Credits_Panel = NodePath("../../CreditsPanel")
 
 [node name="Quit" type="Button" parent="Control - Menu and Logic/Menu" unique_id=840708463]
 texture_filter = 1
-custom_minimum_size = Vector2(200, 60)
+custom_minimum_size = Vector2(250, 60)
 layout_direction = 2
 layout_mode = 2
-size_flags_vertical = 12
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_font_sizes/font_size = 30
 text = "Sair"
-text_overrun_behavior = 1
-autowrap_mode = 3
 icon_alignment = 1
 script = ExtResource("9_b0ek2")
 
@@ -523,8 +556,9 @@ custom_minimum_size = Vector2(150, 60)
 layout_direction = 1
 layout_mode = 1
 anchors_preset = -1
+anchor_left = -48.45
 anchor_top = -25.55
-anchor_right = 0.625
+anchor_right = -47.825
 anchor_bottom = -20.975
 offset_left = 1934.0
 offset_top = 1024.0
@@ -547,20 +581,21 @@ VsyncCheck = NodePath("Control - Content/Control - VideoPage/Box - VideoList/Box
 metadata/_edit_use_anchors_ = true
 
 [node name="Panel" type="Panel" parent="Control - Menu and Logic/OptionsPanel" unique_id=2144881494]
+show_behind_parent = true
 layout_mode = 0
-offset_left = -249.0
-offset_top = 610.0
-offset_right = 44.0
-offset_bottom = 1092.0
+offset_left = 546.0
+offset_top = 607.0
+offset_right = 972.0
+offset_bottom = 1089.0
 theme_override_styles/panel = ExtResource("16_pt4oh")
 
 [node name="TabBar" type="BoxContainer" parent="Control - Menu and Logic/OptionsPanel/Panel" unique_id=1280770059]
 custom_minimum_size = Vector2(150, 60)
 layout_mode = 0
-offset_left = 61.0
-offset_top = -7.0
-offset_right = 239.0
-offset_bottom = 470.0
+offset_left = 96.0
+offset_top = 59.0
+offset_right = 384.0
+offset_bottom = 413.0
 theme_override_constants/separation = 30
 alignment = 1
 vertical = true
@@ -724,8 +759,14 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme = ExtResource("1_w55jq")
+theme_override_colors/font_color = Color(0.91015625, 0.8736292, 0.73239136, 1)
+theme_override_colors/font_focus_color = Color(0.6039216, 0.56078434, 0.3764706, 1)
+theme_override_colors/font_hover_color = Color(0.6039216, 0.56078434, 0.3764706, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.91015625, 0.8736292, 0.73239136, 1)
+theme_override_constants/outline_size = 1
 theme_override_fonts/font = ExtResource("17_e0r6h")
 theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("29_pt4oh")
 theme_override_constants/arrow_margin = 20
 theme_override_constants/modulate_arrow = 1
 alignment = 1
@@ -745,8 +786,14 @@ horizontal_alignment = 1
 [node name="Option - WindowModeOption" type="OptionButton" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - VideoPage/Box - VideoList/Box - WindowModeRow" unique_id=890040674]
 layout_mode = 2
 theme = ExtResource("1_w55jq")
+theme_override_colors/font_color = Color(0.91015625, 0.8736292, 0.73239136, 1)
+theme_override_colors/font_focus_color = Color(0.6039216, 0.56078434, 0.3764706, 1)
+theme_override_colors/font_hover_color = Color(0.6039216, 0.56078434, 0.3764706, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.91015625, 0.8736292, 0.73239136, 1)
+theme_override_constants/outline_size = 1
 theme_override_fonts/font = ExtResource("17_e0r6h")
 theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("29_pt4oh")
 theme_override_constants/arrow_margin = 20
 theme_override_constants/modulate_arrow = 1
 alignment = 1
@@ -761,11 +808,15 @@ vertical = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.91015625, 0.8736292, 0.73239136, 1)
+theme_override_constants/outline_size = 1
 theme_override_font_sizes/font_size = 24
-text = "Vsync"
+theme_override_styles/normal = ExtResource("29_pt4oh")
+text = "Vsync "
 alignment = 1
 
 [node name="Control - ControlsPage" type="Control" parent="Control - Menu and Logic/OptionsPanel/Control - Content" unique_id=739790866 node_paths=PackedStringArray("KeyboardList", "GamepadList", "ResetButton")]
+visible = false
 anchors_preset = 0
 offset_left = 153.0
 offset_top = 134.0
@@ -821,10 +872,10 @@ vertical = true
 
 [node name="ResetButton" type="Button" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - ControlsPage" unique_id=1323727878]
 layout_mode = 0
-offset_left = 55.0
-offset_top = 807.0
-offset_right = 254.0
-offset_bottom = 851.0
+offset_left = 36.0
+offset_top = 808.0
+offset_right = 275.0
+offset_bottom = 852.0
 theme_override_font_sizes/font_size = 20
 text = "Restaurar Padrões"
 
@@ -854,6 +905,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 6.0
+offset_right = -11.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -868,16 +921,18 @@ horizontal_alignment = 1
 [node name="Option - LanguageOption" type="OptionButton" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - LanguagePage/Box - LanguageRow" unique_id=412122265]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.91015625, 0.8736292, 0.73239136, 1)
 theme_override_fonts/font = ExtResource("17_e0r6h")
 theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("29_pt4oh")
 alignment = 1
 
 [node name="CreditsPanel" type="Panel" parent="Control - Menu and Logic" unique_id=1643969186]
 visible = false
 layout_mode = 0
-offset_left = 1741.0
+offset_left = 166.0
 offset_top = -8.0
-offset_right = 2396.0
+offset_right = 821.0
 offset_bottom = 1082.0
 theme_override_styles/panel = ExtResource("16_pt4oh")
 
@@ -924,18 +979,31 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ColorRect - Vignette" type="ColorRect" parent="." unique_id=1071746335]
+material = SubResource("ShaderMaterial_m5ukh")
+clip_contents = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
 [node name="MenuUISound" type="AudioStreamPlayer" parent="." unique_id=917959346 node_paths=PackedStringArray("ContinueButton", "LoadGameButton", "OptionsButton", "CreditsButton", "QuitButton", "HoverSources")]
 stream = ExtResource("16_qmasd")
 script = ExtResource("17_csyh4")
-ContinueButton = NodePath("../Control - Menu and Logic/Menu/Continue")
+ContinueButton = NodePath("../Control - Menu and Logic/Menu/NewGame")
 LoadGameButton = NodePath("../Control - Menu and Logic/Menu/Load_Game")
 OptionsButton = NodePath("../Control - Menu and Logic/Menu/Options")
 CreditsButton = NodePath("../Control - Menu and Logic/Menu/Credits")
 QuitButton = NodePath("../Control - Menu and Logic/Menu/Quit")
 HoverSources = [NodePath("../Control - Menu and Logic/OptionsPanel")]
 
-[connection signal="pressed" from="Control - Menu and Logic/Menu/Continue" to="Control - Menu and Logic/Menu/Continue" method="OnButtonPressed"]
+[connection signal="pressed" from="Control - Menu and Logic/Menu/NewGame" to="Control - Menu and Logic/Menu/NewGame" method="OnButtonPressed"]
 [connection signal="pressed" from="Control - Menu and Logic/Menu/Load_Game" to="Control - Menu and Logic/Menu/Load_Game" method="OnButtonPressed"]
 [connection signal="pressed" from="Control - Menu and Logic/Menu/Options" to="Control - Menu and Logic/Menu/Options" method="OnButtonPressed"]
 [connection signal="pressed" from="Control - Menu and Logic/Menu/Credits" to="Control - Menu and Logic/Menu/Credits" method="OnButtonPressed"]
 [connection signal="pressed" from="Control - Menu and Logic/Menu/Quit" to="Control - Menu and Logic/Menu/Quit" method="On_Quit_Pressed"]
+
+[editable path="Control - Background Effects/ShaderHoverVisualizer2"]
+[editable path="Control - Menu and Logic/ShaderHoverVisualizer"]

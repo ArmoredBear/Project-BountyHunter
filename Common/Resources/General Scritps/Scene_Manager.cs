@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 /**-----------------------------------------------------------------------------------------------------------------------
 *!                                                   SCENE_MANAGER
@@ -122,7 +123,7 @@ public partial class Scene_Manager : Node
         GD.Print("Scene_Manager: NextSpawnName set to ", Player_Data_Autoload.Instance.NextSpawnName);
     }
 
-    public void Change_Scene(e_Game_Scenes scene)
+    public async void Change_Scene(e_Game_Scenes scene)
     {
         if (!Scenes_Dictionary.ContainsKey(scene))
         {
@@ -133,7 +134,11 @@ public partial class Scene_Manager : Node
         string path = Scenes_Dictionary[scene].path;
         GD.Print("Scene_Manager: Changing scene to ", path, " with spawn ", Player_Data_Autoload.Instance.NextSpawnName);
 
+        await TransitionManager.Instance.FadeToBlack();
+
         GetTree().ChangeSceneToFile(path);
+
+        await TransitionManager.Instance.FadeFromBlack();
     }
 
 

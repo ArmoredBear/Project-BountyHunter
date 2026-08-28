@@ -1,0 +1,13 @@
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://dsfca15g30uu2"]
+
+[ext_resource type="Texture2D" uid="uid://dk5mlrb04a3d" path="res://Common/Resources/Player/User Interface/UI_Art/Panel3.png" id="1_pjvby"]
+
+[resource]
+texture = ExtResource("1_pjvby")
+texture_margin_left = 400.68552
+texture_margin_top = 21.879639
+texture_margin_right = 376.7116
+texture_margin_bottom = 15.89966
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color(1.8247963, 1.7340242, 1.3567705, 1)

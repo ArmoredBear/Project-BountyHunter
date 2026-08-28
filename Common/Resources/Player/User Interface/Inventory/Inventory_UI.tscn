@@ -4,20 +4,14 @@
 [ext_resource type="Script" uid="uid://bel2st2a2rkii" path="res://Common/Resources/Player/User Interface/Inventory/InventoryUI.cs" id="2_t3kt5"]
 [ext_resource type="Script" uid="uid://i2ojtmnd3sia" path="res://_Debug/AdditemTemp.cs" id="3_ma5u2"]
 
-[node name="Inventory_UI" type="Control" unique_id=1218893087]
-layout_mode = 3
+[node name="Inventory_UI" type="CanvasLayer" unique_id=92277506]
+
+[node name="Panel" type="Panel" parent="." unique_id=1960820530]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Panel" type="Panel" parent="." unique_id=1960820530]
-layout_mode = 0
-offset_left = 257.0
-offset_top = 201.0
-offset_right = 1310.0
-offset_bottom = 1036.0
 theme = ExtResource("1_eugq4")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel" unique_id=1856208122]
@@ -32,6 +26,8 @@ vertical_scroll_mode = 3
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer" unique_id=479259894]
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("2_t3kt5")
 
 [node name="ADD_ITEM_TEMP" type="Button" parent="Panel" unique_id=65989303]

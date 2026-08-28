@@ -23,7 +23,7 @@ public partial class MenuUiSound : AudioStreamPlayer
     #region Variables
     //!---------------------------------------------------------------------------------------------------------
 
-    [Export] public Continue ContinueButton { get; set; }
+    [Export] public Button ContinueButton { get; set; }
     [Export] public LoadGame LoadGameButton { get; set; }
     [Export] public Button OptionsButton { get; set; }
     [Export] public Credits CreditsButton { get; set; }
