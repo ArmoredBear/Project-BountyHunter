@@ -1,0 +1,17 @@
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://ds7ueosgaeqqh"]
+
+[ext_resource type="Texture2D" uid="uid://ok4ufwg2hrpt" path="res://Common/Resources/Player/User Interface/UI_Art/ScrollHandle.png" id="1_k8w63"]
+
+[resource]
+texture = ExtResource("1_k8w63")
+texture_margin_left = 10.0
+texture_margin_top = 16.0
+texture_margin_right = 9.0
+texture_margin_bottom = 16.0
+expand_margin_left = 20.0
+expand_margin_top = 8.0
+expand_margin_right = 10.0
+expand_margin_bottom = 8.0
+axis_stretch_vertical = 2
+region_rect = Rect2(0, 0, 54, 150)
+modulate_color = Color(0.91015625, 0.8736292, 0.73239136, 1)

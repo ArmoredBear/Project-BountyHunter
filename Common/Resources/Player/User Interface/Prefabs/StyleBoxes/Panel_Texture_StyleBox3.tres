@@ -1,0 +1,12 @@
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://bfsxvntie4gim"]
+
+[ext_resource type="Texture2D" uid="uid://bs7kvqyjelvgs" path="res://Common/Resources/Player/User Interface/UI_Art/Panel6.png" id="1_unj5c"]
+
+[resource]
+texture = ExtResource("1_unj5c")
+texture_margin_left = 10.072098
+texture_margin_top = 10.072098
+texture_margin_right = 11.969611
+texture_margin_bottom = 11.969611
+region_rect = Rect2(0, 0, 959, 400)
+modulate_color = Color(0.91015625, 0.8736292, 0.73239136, 1)

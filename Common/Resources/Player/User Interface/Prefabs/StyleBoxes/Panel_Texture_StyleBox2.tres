@@ -5,9 +5,9 @@
 [resource]
 texture = ExtResource("1_pjvby")
 texture_margin_left = 400.68552
-texture_margin_top = 21.879639
+texture_margin_top = 69.07066
 texture_margin_right = 376.7116
-texture_margin_bottom = 15.89966
+texture_margin_bottom = 214.28807
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
-modulate_color = Color(1.8247963, 1.7340242, 1.3567705, 1)
+modulate_color = Color(1, 0.958882, 0.805388, 1)

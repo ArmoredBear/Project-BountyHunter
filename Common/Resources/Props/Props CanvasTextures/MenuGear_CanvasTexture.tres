@@ -1,0 +1,11 @@
+[gd_resource type="CanvasTexture" format=3 uid="uid://d2aiclfscral5"]
+
+[ext_resource type="Texture2D" uid="uid://ccqm64fdigtfh" path="res://Common/Resources/Props/PropsArt/Gear.png" id="1_6nc30"]
+[ext_resource type="Texture2D" uid="uid://dp0ltgrv6t4ko" path="res://Common/Resources/Props/PropsNormalMaps/Gear_n.png" id="2_t0yc5"]
+[ext_resource type="Texture2D" uid="uid://bvmepfvbjm3i0" path="res://Common/Resources/Props/PropsSpecularMaps/Gear_s.png" id="3_ef83b"]
+
+[resource]
+diffuse_texture = ExtResource("1_6nc30")
+normal_texture = ExtResource("2_t0yc5")
+specular_texture = ExtResource("3_ef83b")
+specular_shininess = 0.25

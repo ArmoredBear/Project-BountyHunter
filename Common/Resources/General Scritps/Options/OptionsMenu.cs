@@ -93,11 +93,12 @@ public partial class OptionsMenu : Panel
     /// </summary>
     private void ConnectTabs()
     {
+        int tabIndex = 0;
         for (int i = 0; i < TabBar.GetChildCount(); i++)
         {
             if (TabBar.GetChild(i) is Button tabButton)
             {
-                int index = i;
+                int index = tabIndex++;
                 tabButton.Pressed += () => ShowPage(index);
             }
         }

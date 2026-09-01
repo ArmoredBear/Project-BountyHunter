@@ -6,12 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://djwrjc53ra8dl" path="res://Common/Resources/Player/User Interface/UI_Art/CheckBoxMarked.png" id="4_7w0p6"]
 [ext_resource type="StyleBox" uid="uid://bmxgcx7nkmfmp" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Simple_Button_Texture_Stylebox4.tres" id="4_s5sf8"]
 [ext_resource type="Texture2D" uid="uid://dwsnrxbfamo0g" path="res://Common/Resources/Player/User Interface/UI_Art/CheckBox.png" id="5_4msfs"]
-[ext_resource type="Texture2D" uid="uid://b8ojmf6qyhlq0" path="res://Common/Resources/Player/User Interface/UI_Art/Button_Normal.png" id="6_7n84b"]
+[ext_resource type="Texture2D" uid="uid://dgphustmad17e" path="res://Common/Resources/Player/User Interface/UI_Art/Button_Hovered.png" id="7_7w0p6"]
 [ext_resource type="Texture2D" uid="uid://tsh80ghpevxw" path="res://Common/Resources/Player/User Interface/UI_Art/Grabber.png" id="7_gpelu"]
 [ext_resource type="Texture2D" uid="uid://hrwlbum28b5d" path="res://Common/Resources/Player/User Interface/UI_Art/Ticks.png" id="8_dykkl"]
-[ext_resource type="Texture2D" uid="uid://cc047x85l1yeb" path="res://Common/Resources/Player/User Interface/UI_Art/Panel.png" id="9_7stvr"]
+[ext_resource type="StyleBox" uid="uid://dsfca15g30uu2" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Panel_Texture_StyleBox2.tres" id="10_7w0p6"]
 [ext_resource type="Texture2D" uid="uid://1oy4435r15hv" path="res://Common/Resources/Player/User Interface/UI_Art/RoundCheckBoxMarked.png" id="10_vt3ba"]
 [ext_resource type="Texture2D" uid="uid://wbh6rkwvw414" path="res://Common/Resources/Player/User Interface/UI_Art/RoundCheckBox.png" id="11_dr0xq"]
+[ext_resource type="StyleBox" uid="uid://ds7ueosgaeqqh" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Scroll_Texture_Stylebox.tres" id="13_rbfx1"]
+[ext_resource type="Texture2D" uid="uid://bvy4x54vrfga0" path="res://Common/Resources/Player/User Interface/UI_Art/ScrollBar.png" id="14_7w0p6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rmhqk"]
 content_margin_left = 4.0
@@ -27,7 +29,8 @@ corner_detail = 5
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6n2sv"]
 content_margin_left = 7.0
-texture = ExtResource("6_7n84b")
+texture = ExtResource("7_7w0p6")
+modulate_color = Color(0.91015625, 0.8736292, 0.73239136, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gnppw"]
 bg_color = Color(1, 0.9764706, 0.8784314, 1)
@@ -54,11 +57,6 @@ shadow_size = 7
 color = Color(0.18039216, 0.17254902, 0.13725491, 1)
 thickness = 7
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mo5ne"]
-texture = ExtResource("9_7stvr")
-axis_stretch_horizontal = 2
-axis_stretch_vertical = 2
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6n2sv"]
 bg_color = Color(0, 0, 0, 1)
 border_width_left = 5
@@ -76,6 +74,14 @@ border_width_right = 5
 border_width_bottom = 5
 border_color = Color(0.9098039, 0.8745098, 0.73333335, 1)
 border_blend = true
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4msfs"]
+texture = ExtResource("14_7w0p6")
+texture_margin_top = 2.0
+texture_margin_bottom = 2.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color(0.91015625, 0.8736292, 0.73239136, 1)
 
 [resource]
 default_base_scale = 1.0
@@ -96,7 +102,7 @@ Button/colors/icon_normal_color = Color(1, 0.996078, 0.792157, 1)
 Button/colors/icon_pressed_color = Color(1, 0.996078, 0.792157, 1)
 Button/constants/align_to_largest_stylebox = 0
 Button/constants/h_separation = 16
-Button/constants/outline_size = 2
+Button/constants/outline_size = 1
 Button/font_sizes/font_size = 16
 Button/fonts/font = ExtResource("1_8g7pg")
 Button/styles/disabled = SubResource("StyleBoxFlat_rmhqk")
@@ -121,13 +127,14 @@ HSlider/icons/tick = ExtResource("8_dykkl")
 HSlider/styles/grabber_area = SubResource("StyleBoxFlat_gnppw")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_u15ly")
 HSlider/styles/slider = SubResource("StyleBoxLine_k6vih")
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
 OptionButton/constants/align_to_largest_stylebox = 1
 OptionButton/constants/arrow_margin = 20
 OptionButton/constants/h_separation = 16
 OptionButton/constants/modulate_arrow = 1
-Panel/styles/panel = SubResource("StyleBoxTexture_mo5ne")
-PopupMenu/colors/font_color = Color(0.9098039, 0.8745098, 0.73333335, 1)
-PopupMenu/colors/font_hover_color = Color(0.90234375, 0.7929634, 0.37002587, 1)
+Panel/styles/panel = ExtResource("10_7w0p6")
+PopupMenu/colors/font_color = Color(0.91015625, 0.8736292, 0.73239136, 1)
+PopupMenu/colors/font_hover_color = Color(0.6039216, 0.56078434, 0.3764706, 1)
 PopupMenu/constants/icon_max_width = 2
 PopupMenu/font_sizes/font_size = 24
 PopupMenu/fonts/font = ExtResource("1_8g7pg")
@@ -136,3 +143,7 @@ PopupMenu/icons/radio_unchecked = ExtResource("11_dr0xq")
 PopupMenu/icons/unchecked = ExtResource("5_4msfs")
 PopupMenu/styles/hover = SubResource("StyleBoxFlat_6n2sv")
 PopupMenu/styles/panel = SubResource("StyleBoxFlat_ygkj5")
+VScrollBar/styles/grabber = ExtResource("13_rbfx1")
+VScrollBar/styles/grabber_highlight = ExtResource("13_rbfx1")
+VScrollBar/styles/grabber_pressed = ExtResource("13_rbfx1")
+VScrollBar/styles/scroll = SubResource("StyleBoxTexture_4msfs")
