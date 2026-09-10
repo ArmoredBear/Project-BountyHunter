@@ -19,10 +19,14 @@ public partial class InventoryUI : Control
     #region Variables
     //!---------------------------------------------------------------------------------------------------------
 
+    [Export] public ItemType Item_Category;
+
     private NodePath _playerInventoryPath;
     private PlayerInventory _playerInventory;
+    private Messenger _messenger;
 
-    public Node _vbox;
+    private Control _scrollView;
+    private VScrollBar _vScrollBar;
 
     #endregion
     //!---------------------------------------------------------------------------------------------------------
@@ -34,14 +38,22 @@ public partial class InventoryUI : Control
     {
         _playerInventoryPath = "/root/Player/Inventory";
         _playerInventory = GetNode<PlayerInventory>(_playerInventoryPath);
+        _messenger = GetNodeOrNull<Messenger>("/root/Messenger");
 
-        _vbox = this;
+        _scrollView = GetParent<Control>();
+        _vScrollBar = _scrollView.GetNode<VScrollBar>("VScrollBar");
+
+        _vScrollBar.ValueChanged += OnScrollValueChanged;
+        _scrollView.Resized += UpdateScrollbar;
+        _scrollView.GuiInput += OnScrollViewGuiInput;
 
         _playerInventory.ItemAdded += OnInventoryChanged;
         _playerInventory.ItemRemoved += OnInventoryChanged;
         _playerInventory.InventoryUpdated += OnInventoryChanged;
 
         RefreshUI();
+
+        CallDeferred(nameof(UpdateScrollbar));
     }
 
     #endregion
@@ -50,8 +62,39 @@ public partial class InventoryUI : Control
     #region Signal Handlers
     //!---------------------------------------------------------------------------------------------------------
 
-    private void OnInventoryChanged(ItemInstance item) => RefreshUI();
-    private void OnInventoryChanged() => RefreshUI();
+    private void OnInventoryChanged(ItemInstance item)
+    {
+        RefreshUI();
+        UpdateScrollbar();
+    }
+
+    private void OnInventoryChanged()
+    {
+        RefreshUI();
+        UpdateScrollbar();
+    }
+
+    private void OnScrollValueChanged(double value)
+    {
+        Position = new Vector2(0, (float)-value);
+    }
+
+    private void OnScrollViewGuiInput(InputEvent @event)
+    {
+        if (@event is InputEventMouseButton mouseButton && mouseButton.Pressed)
+        {
+            if (mouseButton.ButtonIndex == MouseButton.WheelUp)
+            {
+                _vScrollBar.Value -= _vScrollBar.Step;
+                _scrollView.AcceptEvent();
+            }
+            else if (mouseButton.ButtonIndex == MouseButton.WheelDown)
+            {
+                _vScrollBar.Value += _vScrollBar.Step;
+                _scrollView.AcceptEvent();
+            }
+        }
+    }
 
     #endregion
     //!---------------------------------------------------------------------------------------------------------
@@ -61,24 +104,56 @@ public partial class InventoryUI : Control
 
     private void RefreshUI()
     {
-        // limpa botões antigos
-        foreach (Node child in _vbox.GetChildren())
-            child.QueueFree();
+        ClearExistingButtons();
 
-        // recria botões com base nos itens do inventário
-        foreach (var type in System.Enum.GetValues(typeof(ItemType)))
+        foreach (ItemInstance item in _playerInventory.GetItemsByType(Item_Category))
         {
-            foreach (var item in _playerInventory.GetItemsByType((ItemType)type))
+            Button button = new Button
             {
-                var btn = new Button
-                {
-                    Text = $"{item.Data.Name} x{item.Quantity}",
-                    CustomMinimumSize = new Vector2(300, 50)
-                };
+                CustomMinimumSize = new Vector2(0, 90),
+                Icon = item.Data?.Icon,
+                Text = $"{item.Data?.Name ?? "Unknown"} x{item.Quantity}"
+            };
+            button.SizeFlagsVertical = Control.SizeFlags.ShrinkCenter;
+            AddChild(button);
 
-                btn.Pressed += () => GD.Print($"Clicou em {item}");
-                _vbox.AddChild(btn);
+            if (Item_Category == ItemType.Consumable)
+            {
+                ItemInstance usedItem = item;
+                button.Pressed += () => Use_Item(usedItem);
             }
+        }
+    }
+
+    private void Use_Item(ItemInstance item)
+    {
+        if (_messenger != null)
+        {
+            _messenger.Use_Item(item);
+        }
+        _playerInventory.RemoveItem(item, 1);
+    }
+
+    private void ClearExistingButtons()
+    {
+        foreach (Node child in GetChildren())
+        {
+            child.QueueFree();
+        }
+    }
+
+    private void UpdateScrollbar()
+    {
+        float viewHeight = _scrollView.Size.Y;
+        float contentHeight = Size.Y;
+        float max = Mathf.Max(0, contentHeight - viewHeight);
+
+        _vScrollBar.MaxValue = max;
+        _vScrollBar.Page = viewHeight;
+
+        if (_vScrollBar.Value > max)
+        {
+            _vScrollBar.Value = max;
         }
     }
 

@@ -537,9 +537,7 @@ public partial class Phantom : CharacterBody2D
         if (_area.IsInGroup("player"))
         {
             GD.Print("Phantom hit the player!");
-            Player_Data_Autoload.Data.TakeDamage(10);
-            Player_Data_Autoload.Instance.Preserve_Damage(10);
-            Player_Data_Autoload.Instance.Update_Player_Health_UI(10);
+            Player_Data_Autoload.Instance.Apply_Damage(10);
 
             // Apply damage here
         }

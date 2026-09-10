@@ -26,7 +26,7 @@ public partial class Player_Armorbar_UI : TextureProgressBar
     // Damage flash state
     private float _armor_flash;
     private int _last_armor = -1;
-    private int _last_accumulated = -1;
+    private bool _subscribed;
     private const float Armor_Flash_Time = 0.25f;
 
     #endregion
@@ -40,11 +40,52 @@ public partial class Player_Armorbar_UI : TextureProgressBar
     {
         MaxValue = Player_Data_Autoload.Data.MAX_Armor;
         Value = Player_Data_Autoload.Data.CURRENT_Armor;
+        _last_armor = Player_Data_Autoload.Data.CURRENT_Armor;
     }
 
     public override void _Process(double delta)
     {
-        Update_Armor_Bar();
+        if (!_subscribed && GetNodeOrNull<Messenger>("/root/Messenger") is Messenger messenger)
+        {
+            messenger.Player_Armor_Changed_ += OnPlayerArmorChanged;
+            _subscribed = true;
+        }
+
+        _armor_flash = Mathf.Max(0f, _armor_flash - (float)delta / Armor_Flash_Time);
+
+        if (!(Material is ShaderMaterial mat))
+        {
+            return;
+        }
+
+        mat.SetShaderParameter("Flash", _armor_flash);
+
+        bool glint_on = Player_Data_Autoload.Data.Armored && _last_armor > 0;
+        mat.SetShaderParameter("Glint_Enabled", glint_on ? 1.0f : 0.0f);
+    }
+
+    /// <summary>
+    /// Refreshes the bar fill and arms the flash on every hit absorbed by
+    /// armor, or when a part breaks. Called from Messenger.Player_Armor_Changed.
+    /// </summary>
+    private void OnPlayerArmorChanged(double armor)
+    {
+        int new_armor = (int)armor;
+
+        bool armor_dropped = new_armor < _last_armor;
+        bool armor_absorbed_hit = Player_Data_Autoload.Data.Armored && new_armor >= _last_armor;
+
+        _last_armor = new_armor;
+
+        if (!Mathf.IsEqualApprox(Value, new_armor))
+        {
+            Value = new_armor;
+        }
+
+        if (armor_dropped || armor_absorbed_hit)
+        {
+            _armor_flash = 1f;
+        }
     }
 
     #endregion
@@ -53,54 +94,6 @@ public partial class Player_Armorbar_UI : TextureProgressBar
     //!---------------------------------------------------------------------------------------------------------
     #region Methods
     //!---------------------------------------------------------------------------------------------------------
-
-    /// <summary>
-    /// Mirrors the player's armor into the bar fill and plays a short flash
-    /// on EVERY hit absorbed by armor — including hits that only accumulate
-    /// toward the break threshold, and harder ones that break a part.
-    /// </summary>
-    public void Update_Armor_Bar()
-    {
-        int maxArmor = Player_Data_Autoload.Data.MAX_Armor;
-        int armor = Player_Data_Autoload.Data.CURRENT_Armor;
-        int accumulated = Player_Data_Autoload.Data.Accumulated_Armor_Damage;
-
-        if (MaxValue != maxArmor)
-        {
-            MaxValue = maxArmor;
-        }
-
-        if (!Mathf.IsEqualApprox(Value, armor))
-        {
-            Value = armor;
-        }
-
-        if (!(Material is ShaderMaterial mat))
-        {
-            return;
-        }
-
-        if (_last_armor < 0 || _last_accumulated < 0)
-        {
-            _last_armor = armor;
-            _last_accumulated = accumulated;
-        }
-        else if (armor < _last_armor || accumulated != _last_accumulated)
-        {
-            _armor_flash = 1f;
-        }
-
-        _last_armor = armor;
-        _last_accumulated = accumulated;
-
-        float delta = (float)GetProcessDeltaTime();
-        _armor_flash = Mathf.Max(0f, _armor_flash - delta / Armor_Flash_Time);
-
-        mat.SetShaderParameter("Flash", _armor_flash);
-
-        bool glint_on = Player_Data_Autoload.Data.Armored && armor > 0;
-        mat.SetShaderParameter("Glint_Enabled", glint_on ? 1.0f : 0.0f);
-    }
 
     #endregion
     //!---------------------------------------------------------------------------------------------------------

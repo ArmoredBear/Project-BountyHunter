@@ -38,7 +38,8 @@ namespace PlayerScript.PlayerInventory
 			{ ItemType.Consumable, new Godot.Collections.Array<ItemInstance>() },
 			{ ItemType.Weapon, new Godot.Collections.Array<ItemInstance>() },
 			{ ItemType.Armor, new Godot.Collections.Array<ItemInstance>() },
-			{ ItemType.Tool, new Godot.Collections.Array<ItemInstance>() }
+			{ ItemType.Tool, new Godot.Collections.Array<ItemInstance>() },
+			{ ItemType.Etc, new Godot.Collections.Array<ItemInstance>() }
 		};
 
 		private int _usedSlots = 0;

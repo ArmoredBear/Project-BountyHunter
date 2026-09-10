@@ -27,12 +27,8 @@ public partial class GameOverScreen : CanvasLayer
         // Reset position to initial forest position
         Player_Data_Autoload.Instance.LoadedPosition = new Vector2(21579, -3);
         Player_Data_Autoload.Instance.ShouldSetLoadedPosition = true;
-        // Update UI (if needed, but since scene changed, maybe not)
-        if (Player_Data_Autoload.Instance.Player_Healthbar != null)
-        {
-            Player_Data_Autoload.Instance.Player_Healthbar.Lines.Value = Player_Data_Autoload.Data.CURRENT_Health;
-            if (Player_Data_Autoload.Instance.Player_Healthbar.Lines_CatchUp != null) Player_Data_Autoload.Instance.Player_Healthbar.Lines_CatchUp.Value = Player_Data_Autoload.Data.CURRENT_Health;
-        }
+        // Broadcast the fresh stats so every UI subscriber resyncs
+        Player_Data_Autoload.Instance.Sync_Stats();
 
         // Wait 5 seconds, then change to main menu using SceneManager
         GetTree().CreateTimer(5.0f).Timeout += () =>

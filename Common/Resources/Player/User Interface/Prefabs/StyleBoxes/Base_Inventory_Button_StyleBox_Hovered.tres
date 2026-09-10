@@ -1,0 +1,8 @@
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://4nl4fuk6n8e"]
+
+[ext_resource type="Texture2D" uid="uid://dsxvyrei3fuwb" path="res://Common/Resources/Player/User Interface/UI_Art/Panel5.png" id="1_s67q4"]
+
+[resource]
+texture = ExtResource("1_s67q4")
+expand_margin_top = 10.0
+modulate_color = Color(0.91015625, 0.8736292, 0.73239136, 1)

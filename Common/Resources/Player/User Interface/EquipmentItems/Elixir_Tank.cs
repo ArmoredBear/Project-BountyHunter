@@ -204,7 +204,7 @@ public partial class Elixir_Tank : Item
 
     public void Heal()
     {
-        Player_Data_Autoload.Data.Restore_Health(Amount_to_Heal);
+        Player_Data_Autoload.Instance.Apply_Heal(Amount_to_Heal);
     }
 
     public void Upgrade_Tank_Healing()

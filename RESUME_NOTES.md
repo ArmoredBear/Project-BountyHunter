@@ -1,5 +1,75 @@
 # RESUME NOTES — Options Menu / Controls Tab
 
+---
+
+## CURRENT STATE (LAST UPDATE: 2026-09-09) — Inventory system
+
+> Work is GREEN: `dotnet build` = 0 errors, clean headless boot (only pre-existing
+> `invalid UID` warnings + "resources still in use at exit", both benign).
+
+### Inventory open/close UI wiring (DONE)
+- New `Inventory` input action in `project.godot` = keyboard **I** (physical_keycode 73).
+  Gamepad **Select** still opens the pause menu (unchanged `Menu` action).
+- `UI_Scripts/InventoryMenu.cs` (NEW, attached to `Inventory_UI.tscn` root CanvasLayer):
+  - Layer starts hidden; **I** toggles the inventory.
+  - `Toggle(bool close_player_menu_on_open)` / `Open()` / `Close()` visibility helpers.
+  - `Setup_Category_Tabs()`: maps the 5 tab buttons (Consumables/Weapons/Armor/Tools/Etc)
+    to the 5 category scroll lists via `Show_Tab(index)`; Consumables is default.
+- `UI_Scripts/PlayerMenu.cs` (CanvasLayer, `Player_Menu.tscn`):
+  - `_Ready` starts with menu hidden.
+  - **Esc / Select restore logic**: remember the last open overlay state
+    (`_resume_menu_visible` / `_resume_inventory_visible`). When everything is closed, the
+    next open reopens the previous overlay(s); when something is open, it captures state and
+    closes everything in ONE press. First-ever open shows the pause menu.
+  - Inventory button (`On_Inventory_Pressed` -> `InventoryMenu.Toggle(false)`) TOGGLES the
+    inventory WITHOUT closing the pause menu. Keyboard **I** (`Toggle(true)`) DOES close the menu.
+  - `Save & Quit` handler unchanged (Save -> MainMenu).
+
+### Items defined (NEW starter items, all `Common/Resources/Player/PlayerScripts/PlayerInventory/`)
+- `ItemData.cs` (template: ItemID, Name, Icon, Type, SlotPerItem, EffectID) — pre-existing.
+- `ItemType` enum EXTENDED to: `Consumable, Weapon, Armor, Tool, Etc` (Etc = 4 NEW).
+- Starter items granted on a NEW GAME (`Player_Data_Autoload.Reset()` ->
+  `Add_Starter_Items(inventory)`):
+  - `Pill.tres` (Consumable / type 0, EffectID "pill")
+  - `Sword.tres` (Weapon / type 1)
+  - `Plate.tres` (Armor / type 2)
+  - `Lantern.tres` (Tool / type 3)
+  - `UpgradeStone.tres` (Etc / type 4)
+- Inventory data flows: `PlayerInventory` (Node, autoload under `/root/Player/Inventory`)
+  stores by type; `Player_Data_Autoload` serializes into `Player_Data.Inventory` on save and
+  restores on load (now includes the Etc category).
+
+### Inventory list display (DONE)
+- `UI_Scripts/InventoryUI.cs` attached to the 4 (now 5) category `BoxContainer` lists in
+  `Inventory_UI.tscn`. Each list sets `Item_Category` (0..4) via an `[Export]`.
+- `RefreshUI()` clears old buttons and rebuilds them from
+  `PlayerInventory.GetItemsByType(Item_Category)` as `"Name xQty"` buttons (fixed size,
+  `SizeFlagsVertical = ShrinkCenter` — matches the original placeholder sizing; no stretch).
+- Auto-refreshes on `ItemAdded` / `ItemRemoved` / `InventoryUpdated`.
+- CONSUMABLE USE (DONE): in the Consumables list each button's `Pressed` ->
+  `Use_Item(item)` -> `Messenger.Use_Item(item)` (runs the EffectID) then
+  `_playerInventory.RemoveItem(item, 1)` -> UI auto-refreshes. Non-consumable lists stay inert.
+
+### Tabs in the scene
+- 5 tabs: Consumables, Weapons, Armor, Tools, **Tools (Button4)**, **Etc (Button5)**.
+- 5 category lists: `ScrollContainer - Inventory_List_Consumables / Weapons / Armors / Tools /
+  Etc`. The Etc list was ADDED; lists other than the default (Consumables) are `visible = false`.
+
+### Messenger cleanup (DONE) — `Common/Resources/General Scritps/Messenger.cs`
+- REMOVED: legacy quick-items path + hardcoded `/root/Main/Player/...` wiring,
+  per-frame `Items_Use_Emitter()` poller (and its null hazard), unused `Usable_Item_`
+  surface and the Item use short-circuit that bypassed effects.
+- KEPT (reserved-empty for future logic per user): `Fixed_Items*` members.
+- KEPT: `Initialize()` / `Signals_Setter()` (wires `Item_Use_ -> ItemEffects.Use`),
+  `Use_Item(ItemInstance)`, and the 4 stat-relay emit helpers
+  (`Emit_Player_Health/Stamina/Armor_Changed`, `Emit_Player_Took_Damage`).
+
+### ItemEffects (`ItemEffects.cs`, pre-existing)
+- Registry maps EffectID -> action: `heal_small`, `heal_large`, `pill`.
+- Pill = regen-over-time via `Player_Data_Autoload.Start_Pill_Regen(totalHeal)`.
+
+---
+
 Save this so work can be resumed later. Update this file as you go.
 
 Project root: `/mnt/STORAGE/GodotProjects/Project-BountyHunter`

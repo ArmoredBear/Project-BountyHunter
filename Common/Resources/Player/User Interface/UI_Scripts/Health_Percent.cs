@@ -19,8 +19,8 @@ public partial class Health_Percent : RichTextLabel
     //!---------------------------------------------------------------------------------------------------------
 
     private float _displayedPercent;
-    private float _targetPercent;
     private bool _isAnimating;
+    private bool _subscribed;
 
     #endregion
     //!---------------------------------------------------------------------------------------------------------
@@ -38,13 +38,22 @@ public partial class Health_Percent : RichTextLabel
 
     public override void _Process(double delta)
     {
-        _targetPercent = (int)Math.Round((double)Player_Data_Autoload.Data.CURRENT_Health / Player_Data_Autoload.Data.MAX_Health * 100);
+        if (!_subscribed && GetNodeOrNull<Messenger>("/root/Messenger") is Messenger messenger)
+        {
+            messenger.Player_Health_Changed_ += OnPlayerHealthChanged;
+            _subscribed = true;
+        }
+    }
 
-        if ((int)_displayedPercent != (int)_targetPercent || !_isAnimating)
+    private void OnPlayerHealthChanged(double health)
+    {
+        int targetPercent = (int)Math.Round((double)health / Player_Data_Autoload.Data.MAX_Health * 100);
+
+        if ((int)_displayedPercent != targetPercent || !_isAnimating)
         {
             _isAnimating = true;
             var tween = CreateTween();
-            tween.TweenProperty(this, "displayed_percent", _targetPercent, 0.5).SetTrans(Tween.TransitionType.Linear).SetEase(Tween.EaseType.InOut);
+            tween.TweenProperty(this, "displayed_percent", targetPercent, 0.5).SetTrans(Tween.TransitionType.Linear).SetEase(Tween.EaseType.InOut);
             tween.Finished += () => _isAnimating = false;
         }
 

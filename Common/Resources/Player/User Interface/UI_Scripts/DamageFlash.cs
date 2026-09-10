@@ -69,6 +69,7 @@ public partial class DamageFlash : TextureRect
 	private Tween _flash_tween;
 	private float _base_alpha = 0f;
 	private int _last_health = -1;
+	private bool _subscribed;
 
 	#endregion
 	//!---------------------------------------------------------------------------------------------------------
@@ -81,23 +82,22 @@ public partial class DamageFlash : TextureRect
 	{
 		// Start fully transparent — no red tint visible
 		Modulate = new Color(1, 1, 1, 0);
+		_last_health = Player_Data_Autoload.Data.CURRENT_Health;
 	}
 
 	public override void _Process(double delta)
 	{
-		int health = Player_Data_Autoload.Data.CURRENT_Health;
-
-		// Detect health decrease → trigger flash
-		if (_last_health >= 0 && health < _last_health)
+		if (!_subscribed && GetNodeOrNull<Messenger>("/root/Messenger") is Messenger messenger)
 		{
-			Flash();
+			messenger.Player_Health_Changed_ += OnPlayerHealthChanged;
+			messenger.Player_Took_Damage_ += OnPlayerTookDamage;
+			_subscribed = true;
 		}
-		_last_health = health;
 
 		// Calculate current health as a percentage (0.0 to 1.0)
-		float healthPercent = (float)health / Player_Data_Autoload.Data.MAX_Health;
+		float healthPercent = (float)_last_health / Player_Data_Autoload.Data.MAX_Health;
 
-		bool critical = IsHealthCritical();
+		bool critical = IsHealthCritical(_last_health);
 
 		float alpha_limit;
 		float alpha_multiplier;
@@ -128,6 +128,20 @@ public partial class DamageFlash : TextureRect
 		}
 	}
 
+	private void OnPlayerHealthChanged(double health)
+	{
+		_last_health = (int)health;
+	}
+
+	private void OnPlayerTookDamage(double damage, bool absorbedByArmor)
+	{
+		// Only flash red when the hit actually reached the health bar
+		if (!absorbedByArmor)
+		{
+			Flash();
+		}
+	}
+
 	#endregion
 	//!---------------------------------------------------------------------------------------------------------
 
@@ -136,11 +150,11 @@ public partial class DamageFlash : TextureRect
 	//!---------------------------------------------------------------------------------------------------------
 
 	/// <summary>
-	/// Returns true when the player's health is at or below the critical threshold percentage.
+	/// Returns true when the given health is at or below the critical threshold percentage.
 	/// </summary>
-	private bool IsHealthCritical()
+	private bool IsHealthCritical(int health)
 	{
-		return Player_Data_Autoload.Data.CURRENT_Health <= Player_Data_Autoload.Data.MAX_Health * Critical_Health_Threshold;
+		return health <= Player_Data_Autoload.Data.MAX_Health * Critical_Health_Threshold;
 	}
 
 	/// <summary>
@@ -155,7 +169,7 @@ public partial class DamageFlash : TextureRect
 			_flash_tween.Kill();
 		}
 
-		bool critical = IsHealthCritical();
+		bool critical = IsHealthCritical(_last_health);
 
 		float flash_intensity;
 		if (critical)

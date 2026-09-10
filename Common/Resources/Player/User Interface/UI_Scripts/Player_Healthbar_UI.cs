@@ -57,6 +57,7 @@ public partial class Player_Healthbar_UI : Control
 
     // Tremor on damage
     private int _last_health;
+    private bool _subscribed;
     private float _tremor_amount;
     private Control _heart_monitor;
     private Vector2 _heart_monitor_original_pos;
@@ -456,6 +457,12 @@ public partial class Player_Healthbar_UI : Control
 
     public override void _Process(double delta)
     {
+        if (!_subscribed && GetNodeOrNull<Messenger>("/root/Messenger") is Messenger messenger)
+        {
+            messenger.Player_Health_Changed_ += OnPlayerHealthChanged;
+            _subscribed = true;
+        }
+
         Update_CatchUp(delta);
         Change_Color();
         Draw_ECG_Line(delta);
@@ -507,6 +514,11 @@ public partial class Player_Healthbar_UI : Control
     public void Change_Health(double _damage)
     {
         Catch_Up_Change(Player_Data_Autoload.Data.CURRENT_Health, _damage);
+    }
+
+    private void OnPlayerHealthChanged(double health)
+    {
+        Catch_Up_Change(health, 0);
     }
 
     public void Catch_Up_Change(double value_to_change, double change_value)

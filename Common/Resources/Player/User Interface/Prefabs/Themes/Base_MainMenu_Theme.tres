@@ -3,8 +3,8 @@
 [ext_resource type="FontFile" uid="uid://bnnwxabllsohk" path="res://Common/Resources/Player/User Interface/Fonts/Springmarch/springmarch.roman.otf" id="1_8g7pg"]
 [ext_resource type="StyleBox" uid="uid://bn25qll74xn6f" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Base_MainMenu_Texture_Button_Hovered_Pressed.tres" id="2_8g7pg"]
 [ext_resource type="StyleBox" uid="uid://pj4u5nnckay4" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Base_MainMenu_Texture_Button_Hovered.tres" id="3_s5sf8"]
+[ext_resource type="StyleBox" uid="uid://ckmjymfvttt3o" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Base_MainMenu_Texture_Button_Normal.tres" id="4_4msfs"]
 [ext_resource type="Texture2D" uid="uid://djwrjc53ra8dl" path="res://Common/Resources/Player/User Interface/UI_Art/CheckBoxMarked.png" id="4_7w0p6"]
-[ext_resource type="StyleBox" uid="uid://bmxgcx7nkmfmp" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Simple_Button_Texture_Stylebox4.tres" id="4_s5sf8"]
 [ext_resource type="Texture2D" uid="uid://dwsnrxbfamo0g" path="res://Common/Resources/Player/User Interface/UI_Art/CheckBox.png" id="5_4msfs"]
 [ext_resource type="Texture2D" uid="uid://dgphustmad17e" path="res://Common/Resources/Player/User Interface/UI_Art/Button_Hovered.png" id="7_7w0p6"]
 [ext_resource type="Texture2D" uid="uid://tsh80ghpevxw" path="res://Common/Resources/Player/User Interface/UI_Art/Grabber.png" id="7_gpelu"]
@@ -109,7 +109,7 @@ Button/styles/disabled = SubResource("StyleBoxFlat_rmhqk")
 Button/styles/focus = ExtResource("2_8g7pg")
 Button/styles/hover = ExtResource("3_s5sf8")
 Button/styles/hover_pressed = ExtResource("2_8g7pg")
-Button/styles/normal = ExtResource("4_s5sf8")
+Button/styles/normal = ExtResource("4_4msfs")
 Button/styles/pressed = ExtResource("2_8g7pg")
 CheckBox/colors/checkbox_checked_color = Color(0.9098039, 0.8745098, 0.73333335, 1)
 CheckBox/colors/checkbox_unchecked_color = Color(0.9098039, 0.8745098, 0.73333335, 1)

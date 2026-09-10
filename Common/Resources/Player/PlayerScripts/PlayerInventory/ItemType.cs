@@ -20,7 +20,8 @@ namespace PlayerScript.PlayerInventory
 		Consumable,
 		Weapon,
 		Armor,
-		Tool
+		Tool,
+		Etc
 
 		#endregion
 		//!---------------------------------------------------------------------------------------------------------

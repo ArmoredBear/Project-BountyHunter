@@ -25,6 +25,7 @@ namespace PlayerScript.PlayerInventory
         [Export] public Texture2D Icon;
         [Export] public ItemType Type;
         [Export] public int SlotPerItem = 1;
+        [Export] public string EffectID;
 
         #endregion
         //!---------------------------------------------------------------------------------------------------------

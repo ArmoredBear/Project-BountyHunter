@@ -2,50 +2,656 @@
 
 [ext_resource type="Theme" uid="uid://b7k1imxvkgx1" path="res://Common/Resources/Player/User Interface/Prefabs/Themes/Base_Theme.tres" id="1_eugq4"]
 [ext_resource type="Script" uid="uid://bel2st2a2rkii" path="res://Common/Resources/Player/User Interface/Inventory/InventoryUI.cs" id="2_t3kt5"]
-[ext_resource type="Script" uid="uid://i2ojtmnd3sia" path="res://_Debug/AdditemTemp.cs" id="3_ma5u2"]
+[ext_resource type="StyleBox" uid="uid://ckmjymfvttt3o" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Base_MainMenu_Texture_Button_Normal.tres" id="3_7q5mr"]
+[ext_resource type="StyleBox" uid="uid://brg7t4a802mai" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Scroll_Area_Texture_Stylebox.tres" id="3_fx7dj"]
+[ext_resource type="StyleBox" uid="uid://ds7ueosgaeqqh" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Scroll_Texture_Stylebox.tres" id="3_j6tuj"]
+[ext_resource type="StyleBox" uid="uid://pj4u5nnckay4" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Base_MainMenu_Texture_Button_Hovered.tres" id="4_lgjl8"]
+[ext_resource type="StyleBox" uid="uid://bn25qll74xn6f" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Base_MainMenu_Texture_Button_Hovered_Pressed.tres" id="5_j6tuj"]
+[ext_resource type="Script" uid="uid://c4sw3dw6rhwpl" path="res://Common/Resources/Player/User Interface/UI_Scripts/InventoryMenu.cs" id="6_8qm1r"]
 
 [node name="Inventory_UI" type="CanvasLayer" unique_id=92277506]
+script = ExtResource("6_8qm1r")
 
 [node name="Panel" type="Panel" parent="." unique_id=1960820530]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 182.0
+offset_bottom = -214.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_eugq4")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel" unique_id=1856208122]
-layout_mode = 0
-offset_left = 142.0
-offset_top = 81.0
-offset_right = 546.0
-offset_bottom = 574.0
-horizontal_scroll_mode = 0
-vertical_scroll_mode = 3
+[node name="ScrollContainer - Inventory_List_Consumables" type="Control" parent="Panel" unique_id=337167277]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 0
+offset_left = 447.0
+offset_top = 90.0
+offset_right = 1474.0793
+offset_bottom = 593.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer" unique_id=479259894]
-custom_minimum_size = Vector2(400, 50)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[node name="BoxContainer - Invetory_List_Consumables" type="BoxContainer" parent="Panel/ScrollContainer - Inventory_List_Consumables" unique_id=1586305101]
+custom_minimum_size = Vector2(1000, 90)
+layout_mode = 0
+offset_right = 1000.0
+offset_bottom = 560.0
+alignment = 1
+vertical = true
 script = ExtResource("2_t3kt5")
 
-[node name="ADD_ITEM_TEMP" type="Button" parent="Panel" unique_id=65989303]
-texture_filter = 1
-layout_mode = 0
-offset_left = 750.0
-offset_top = 96.0
-offset_right = 950.0
-offset_bottom = 146.0
-size_flags_horizontal = 5
-size_flags_vertical = 6
-theme = ExtResource("1_eugq4")
-theme_override_font_sizes/font_size = 30
-text = "Add Item"
-text_overrun_behavior = 1
-autowrap_mode = 3
+[node name="Button" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=890296425]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
 icon_alignment = 1
-language = "en"
-script = ExtResource("3_ma5u2")
 
-[connection signal="pressed" from="Panel/ADD_ITEM_TEMP" to="Panel/ADD_ITEM_TEMP" method="OnButtonPressed"]
+[node name="Button2" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=1789834494]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button3" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=1878121221]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button4" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=1124821703]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button5" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=2031269035]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button6" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=440681674]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button7" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=683080807]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button8" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=1829898582]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button9" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=1640489857]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button10" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=1147053389]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button11" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=1548299952]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button12" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=1958002972]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button13" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=748005847]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button14" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=509605768]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button15" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=1072404788]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button16" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=597922518]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button17" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=1347449499]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button18" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=1056094611]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button19" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=1967143508]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="VScrollBar" type="VScrollBar" parent="Panel/ScrollContainer - Inventory_List_Consumables" unique_id=436846287]
+layout_mode = 0
+offset_left = 1013.0
+offset_top = 6.0
+offset_right = 1035.0
+offset_bottom = 503.0
+theme_override_styles/scroll = ExtResource("3_fx7dj")
+theme_override_styles/grabber = ExtResource("3_j6tuj")
+theme_override_styles/grabber_highlight = ExtResource("3_j6tuj")
+theme_override_styles/grabber_pressed = ExtResource("3_j6tuj")
+theme_override_constants/padding_left = 10
+max_value = 1000.0
+step = 10.0
+
+[node name="ScrollContainer - Inventory_List_Weapons" type="Control" parent="Panel" unique_id=337167278]
+visible = false
+clip_contents = true
+layout_mode = 1
+anchors_preset = 0
+offset_left = 447.0
+offset_top = 90.0
+offset_right = 1474.0793
+offset_bottom = 593.0
+
+[node name="BoxContainer - Inventory_List_Weapons" type="BoxContainer" parent="Panel/ScrollContainer - Inventory_List_Weapons" unique_id=1586305102]
+custom_minimum_size = Vector2(1000, 90)
+layout_mode = 0
+offset_right = 1000.0
+offset_bottom = 560.0
+alignment = 1
+vertical = true
+script = ExtResource("2_t3kt5")
+Item_Category = 1
+
+[node name="Button" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=890296426]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button2" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=1789834495]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button3" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=1878121222]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button4" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=1124821704]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button5" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=2031269036]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button6" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=440681675]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button7" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=2029687251]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button8" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=1397217111]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button9" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=1347526872]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button10" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=1073279546]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button11" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=1201936511]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button12" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=1031296419]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button13" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=1118026148]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button14" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=85439246]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button15" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=871084938]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button16" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=1015711845]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button17" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=239667230]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button18" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=541559511]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button19" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=1470283692]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="VScrollBar" type="VScrollBar" parent="Panel/ScrollContainer - Inventory_List_Weapons" unique_id=436846288]
+layout_mode = 0
+offset_left = 1013.0
+offset_top = 6.0
+offset_right = 1035.0
+offset_bottom = 503.0
+theme_override_styles/scroll = ExtResource("3_fx7dj")
+theme_override_styles/grabber = ExtResource("3_j6tuj")
+theme_override_styles/grabber_highlight = ExtResource("3_j6tuj")
+theme_override_styles/grabber_pressed = ExtResource("3_j6tuj")
+theme_override_constants/padding_left = 10
+max_value = 1000.0
+step = 10.0
+
+[node name="ScrollContainer - Inventory_List_Armors" type="Control" parent="Panel" unique_id=337167279]
+visible = false
+clip_contents = true
+layout_mode = 1
+anchors_preset = 0
+offset_left = 447.0
+offset_top = 90.0
+offset_right = 1474.0793
+offset_bottom = 593.0
+
+[node name="BoxContainer - Inventory_List_Armors" type="BoxContainer" parent="Panel/ScrollContainer - Inventory_List_Armors" unique_id=1586305103]
+custom_minimum_size = Vector2(1000, 90)
+layout_mode = 0
+offset_right = 1000.0
+offset_bottom = 560.0
+alignment = 1
+vertical = true
+script = ExtResource("2_t3kt5")
+Item_Category = 2
+
+[node name="Button" type="Button" parent="Panel/ScrollContainer - Inventory_List_Armors/BoxContainer - Inventory_List_Armors" unique_id=890296427]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button2" type="Button" parent="Panel/ScrollContainer - Inventory_List_Armors/BoxContainer - Inventory_List_Armors" unique_id=1789834496]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button3" type="Button" parent="Panel/ScrollContainer - Inventory_List_Armors/BoxContainer - Inventory_List_Armors" unique_id=1878121223]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button4" type="Button" parent="Panel/ScrollContainer - Inventory_List_Armors/BoxContainer - Inventory_List_Armors" unique_id=1124821705]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button5" type="Button" parent="Panel/ScrollContainer - Inventory_List_Armors/BoxContainer - Inventory_List_Armors" unique_id=2031269037]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button6" type="Button" parent="Panel/ScrollContainer - Inventory_List_Armors/BoxContainer - Inventory_List_Armors" unique_id=440681676]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="VScrollBar" type="VScrollBar" parent="Panel/ScrollContainer - Inventory_List_Armors" unique_id=436846289]
+layout_mode = 0
+offset_left = 1013.0
+offset_top = 6.0
+offset_right = 1035.0
+offset_bottom = 503.0
+theme_override_styles/scroll = ExtResource("3_fx7dj")
+theme_override_styles/grabber = ExtResource("3_j6tuj")
+theme_override_styles/grabber_highlight = ExtResource("3_j6tuj")
+theme_override_styles/grabber_pressed = ExtResource("3_j6tuj")
+theme_override_constants/padding_left = 10
+max_value = 1000.0
+step = 10.0
+
+[node name="ScrollContainer - Inventory_List_Tools" type="Control" parent="Panel" unique_id=337167280]
+visible = false
+clip_contents = true
+layout_mode = 1
+anchors_preset = 0
+offset_left = 447.0
+offset_top = 90.0
+offset_right = 1474.0793
+offset_bottom = 593.0
+
+[node name="BoxContainer - Inventory_List_Tools" type="BoxContainer" parent="Panel/ScrollContainer - Inventory_List_Tools" unique_id=1586305104]
+custom_minimum_size = Vector2(1000, 90)
+layout_mode = 0
+offset_right = 1000.0
+offset_bottom = 560.0
+alignment = 1
+vertical = true
+script = ExtResource("2_t3kt5")
+Item_Category = 3
+
+[node name="Button" type="Button" parent="Panel/ScrollContainer - Inventory_List_Tools/BoxContainer - Inventory_List_Tools" unique_id=890296428]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button2" type="Button" parent="Panel/ScrollContainer - Inventory_List_Tools/BoxContainer - Inventory_List_Tools" unique_id=1789834497]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button3" type="Button" parent="Panel/ScrollContainer - Inventory_List_Tools/BoxContainer - Inventory_List_Tools" unique_id=1878121224]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button4" type="Button" parent="Panel/ScrollContainer - Inventory_List_Tools/BoxContainer - Inventory_List_Tools" unique_id=1124821706]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button5" type="Button" parent="Panel/ScrollContainer - Inventory_List_Tools/BoxContainer - Inventory_List_Tools" unique_id=2031269038]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Button6" type="Button" parent="Panel/ScrollContainer - Inventory_List_Tools/BoxContainer - Inventory_List_Tools" unique_id=440681677]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="VScrollBar" type="VScrollBar" parent="Panel/ScrollContainer - Inventory_List_Tools" unique_id=436846290]
+layout_mode = 0
+offset_left = 1013.0
+offset_top = 6.0
+offset_right = 1035.0
+offset_bottom = 503.0
+theme_override_styles/scroll = ExtResource("3_fx7dj")
+theme_override_styles/grabber = ExtResource("3_j6tuj")
+theme_override_styles/grabber_highlight = ExtResource("3_j6tuj")
+theme_override_styles/grabber_pressed = ExtResource("3_j6tuj")
+theme_override_constants/padding_left = 10
+max_value = 1000.0
+step = 10.0
+
+[node name="ScrollContainer - Inventory_List_Etc" type="Control" parent="Panel" unique_id=337167281]
+visible = false
+clip_contents = true
+layout_mode = 1
+anchors_preset = 0
+offset_left = 447.0
+offset_top = 90.0
+offset_right = 1474.0793
+offset_bottom = 593.0
+
+[node name="BoxContainer - Inventory_List_Etc" type="BoxContainer" parent="Panel/ScrollContainer - Inventory_List_Etc" unique_id=1586305105]
+custom_minimum_size = Vector2(1000, 90)
+layout_mode = 0
+offset_right = 1000.0
+offset_bottom = 560.0
+alignment = 1
+vertical = true
+script = ExtResource("2_t3kt5")
+Item_Category = 4
+
+[node name="VScrollBar" type="VScrollBar" parent="Panel/ScrollContainer - Inventory_List_Etc" unique_id=436846291]
+layout_mode = 0
+offset_left = 1013.0
+offset_top = 6.0
+offset_right = 1035.0
+offset_bottom = 503.0
+theme_override_styles/scroll = ExtResource("3_fx7dj")
+theme_override_styles/grabber = ExtResource("3_j6tuj")
+theme_override_styles/grabber_highlight = ExtResource("3_j6tuj")
+theme_override_styles/grabber_pressed = ExtResource("3_j6tuj")
+theme_override_constants/padding_left = 10
+max_value = 1000.0
+step = 10.0
+
+[node name="BoxContainer - Inventory_Tabs" type="BoxContainer" parent="Panel" unique_id=993616724]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 105.0
+offset_top = 67.0
+offset_right = -2155.0
+offset_bottom = -77.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+vertical = true
+
+[node name="Button" type="Button" parent="Panel/BoxContainer - Inventory_Tabs" unique_id=1798271615]
+custom_minimum_size = Vector2(300, 75)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/normal = ExtResource("3_7q5mr")
+theme_override_styles/pressed = ExtResource("5_j6tuj")
+theme_override_styles/hover = ExtResource("4_lgjl8")
+theme_override_styles/hover_pressed = ExtResource("5_j6tuj")
+text = "Consumables"
+
+[node name="Button2" type="Button" parent="Panel/BoxContainer - Inventory_Tabs" unique_id=1423429136]
+custom_minimum_size = Vector2(300, 75)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/normal = ExtResource("3_7q5mr")
+theme_override_styles/pressed = ExtResource("5_j6tuj")
+theme_override_styles/hover = ExtResource("4_lgjl8")
+theme_override_styles/hover_pressed = ExtResource("5_j6tuj")
+text = "Weapons"
+
+[node name="Button3" type="Button" parent="Panel/BoxContainer - Inventory_Tabs" unique_id=1395420839]
+custom_minimum_size = Vector2(300, 75)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/normal = ExtResource("3_7q5mr")
+theme_override_styles/pressed = ExtResource("5_j6tuj")
+theme_override_styles/hover = ExtResource("4_lgjl8")
+theme_override_styles/hover_pressed = ExtResource("5_j6tuj")
+text = "Armor"
+
+[node name="Button4" type="Button" parent="Panel/BoxContainer - Inventory_Tabs" unique_id=2024017897]
+custom_minimum_size = Vector2(300, 75)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/normal = ExtResource("3_7q5mr")
+theme_override_styles/pressed = ExtResource("5_j6tuj")
+theme_override_styles/hover = ExtResource("4_lgjl8")
+theme_override_styles/hover_pressed = ExtResource("5_j6tuj")
+text = "Tools"
+
+[node name="Button5" type="Button" parent="Panel/BoxContainer - Inventory_Tabs" unique_id=17946948]
+custom_minimum_size = Vector2(300, 75)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/normal = ExtResource("3_7q5mr")
+theme_override_styles/pressed = ExtResource("5_j6tuj")
+theme_override_styles/hover = ExtResource("4_lgjl8")
+theme_override_styles/hover_pressed = ExtResource("5_j6tuj")
+text = "Etc"

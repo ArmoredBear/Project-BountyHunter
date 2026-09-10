@@ -21,6 +21,7 @@ public partial class Player_Staminabar_UI : TextureProgressBar
 	private TextureProgressBar _stamina_bar;
 	private int _stamina_regen;
 	private ShaderMaterial _shader_mat;
+	private bool _subscribed;
 
 	#endregion
 
@@ -68,28 +69,36 @@ public partial class Player_Staminabar_UI : TextureProgressBar
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		if (!_subscribed && GetNodeOrNull<Messenger>("/root/Messenger") is Messenger messenger)
+		{
+			messenger.Player_Stamina_Changed_ += OnPlayerStaminaChanged;
+			_subscribed = true;
+		}
+
 		if (Input.IsActionPressed("Game_Pad_Run") && Check_Running())
 		{
-			Player_Data_Autoload.Data.CURRENT_Stamina = Mathf.Max(0, Player_Data_Autoload.Data.CURRENT_Stamina - 1);
+			Player_Data_Autoload.Instance.Modify_Stamina(-1);
 		}
 
 		else if (Input.IsActionPressed("Keyboard_Run") && Check_Running())
 		{
-			Player_Data_Autoload.Data.CURRENT_Stamina = Mathf.Max(0, Player_Data_Autoload.Data.CURRENT_Stamina - 1);
+			Player_Data_Autoload.Instance.Modify_Stamina(-1);
 		}
 
 		else
 		{
-			Player_Data_Autoload.Data.CURRENT_Stamina = Mathf.Min(Player_Data_Autoload.Data.MAX_Stamina, Player_Data_Autoload.Data.CURRENT_Stamina + Stamina_Regen);
+			Player_Data_Autoload.Instance.Modify_Stamina(Stamina_Regen);
 		}
 
 		// Keep Value at max so TextureProgressBar does not clip fragments
 		Stamina_Bar.Value = Stamina_Bar.MaxValue;
+	}
 
-		// Drive shader segmented bars
+	private void OnPlayerStaminaChanged(double stamina)
+	{
 		if (_shader_mat != null)
 		{
-			float progress = (float)Player_Data_Autoload.Data.CURRENT_Stamina / (float)Player_Data_Autoload.Data.MAX_Stamina;
+			float progress = (float)stamina / (float)Player_Data_Autoload.Data.MAX_Stamina;
 			_shader_mat.SetShaderParameter("Progress", progress);
 		}
 	}

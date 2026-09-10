@@ -1,27 +1,25 @@
 [gd_resource type="Theme" format=3 uid="uid://b7k1imxvkgx1"]
 
 [ext_resource type="FontFile" uid="uid://bnnwxabllsohk" path="res://Common/Resources/Player/User Interface/Fonts/Springmarch/springmarch.roman.otf" id="1_87w6g"]
-[ext_resource type="Texture2D" uid="uid://dsxvyrei3fuwb" path="res://Common/Resources/Player/User Interface/UI_Art/Panel5.png" id="2_76mei"]
+[ext_resource type="StyleBox" uid="uid://4nl4fuk6n8e" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Base_Inventory_Button_StyleBox_Hovered.tres" id="2_76mei"]
 [ext_resource type="StyleBox" uid="uid://cm22pfm0axly" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Base_Inventory_Button_StyleBox1.tres" id="3_76mei"]
 [ext_resource type="StyleBox" uid="uid://v11gptuotb7j" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Panel_Texture_StyleBox1.tres" id="4_ffavn"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ffavn"]
-texture = ExtResource("2_76mei")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j0ldj"]
-texture = ExtResource("2_76mei")
 
 [resource]
 default_font = ExtResource("1_87w6g")
 default_font_size = 16
 Button/colors/font_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+Button/colors/font_hover_color = Color(0.91015625, 0.8736292, 0.73239136, 1)
+Button/colors/font_hover_pressed_color = Color(0.6039216, 0.56078434, 0.3764706, 1)
+Button/colors/font_pressed_color = Color(0.8980392, 0.8392157, 0.6117647, 1)
 Button/constants/align_to_largest_stylebox = 1
 Button/constants/h_separation = 0
 Button/constants/icon_max_width = 0
 Button/constants/outline_size = 0
-Button/font_sizes/font_size = 42
+Button/font_sizes/font_size = 26
 Button/fonts/font = ExtResource("1_87w6g")
-Button/styles/hover = SubResource("StyleBoxTexture_ffavn")
-Button/styles/hover_pressed = SubResource("StyleBoxTexture_j0ldj")
+Button/styles/hover = ExtResource("2_76mei")
+Button/styles/hover_pressed = ExtResource("2_76mei")
 Button/styles/normal = ExtResource("3_76mei")
+Button/styles/pressed = ExtResource("2_76mei")
 Panel/styles/panel = ExtResource("4_ffavn")

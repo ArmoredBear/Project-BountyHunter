@@ -7,8 +7,8 @@ using Godot;
 	**                                                   PURPOSE
 	*
 	**  1 - Blue/white vignette overlay that flashes when armor absorbs a hit.
-	**  2 - Detects damage by polling CURRENT_Armor and Accumulated_Armor_Damage each frame
-	**      (same pattern as Player_Armorbar_UI).
+	**  2 - Listens for Messenger.Player_Took_Damage and flashes when the hit
+	**      was fully absorbed by armor.
 	**  3 - No persistent tint or heartbeat — only the flash on hit.
 	*
 	*-----------------------------------------------------------------------------------------------------------------------**/
@@ -37,8 +37,7 @@ public partial class DamageArmorFlash : TextureRect
 
 	// Internal state
 	private Tween _flash_tween;
-	private int _last_armor = -1;
-	private int _last_accumulated = -1;
+	private bool _subscribed;
 
 	#endregion
 	//!---------------------------------------------------------------------------------------------------------
@@ -54,23 +53,19 @@ public partial class DamageArmorFlash : TextureRect
 
 	public override void _Process(double delta)
 	{
-		int armor = Player_Data_Autoload.Data.CURRENT_Armor;
-		int accumulated = Player_Data_Autoload.Data.Accumulated_Armor_Damage;
-
-		if (_last_armor < 0 || _last_accumulated < 0)
+		if (!_subscribed && GetNodeOrNull<Messenger>("/root/Messenger") is Messenger messenger)
 		{
-			_last_armor = armor;
-			_last_accumulated = accumulated;
-			return;
+			messenger.Player_Took_Damage_ += OnPlayerTookDamage;
+			_subscribed = true;
 		}
+	}
 
-		if (armor < _last_armor || accumulated != _last_accumulated)
+	private void OnPlayerTookDamage(double damage, bool absorbedByArmor)
+	{
+		if (absorbedByArmor)
 		{
 			Flash();
 		}
-
-		_last_armor = armor;
-		_last_accumulated = accumulated;
 	}
 
 	#endregion

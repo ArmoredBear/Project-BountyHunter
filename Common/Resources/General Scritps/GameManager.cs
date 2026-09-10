@@ -44,7 +44,12 @@ public partial class GameManager : Node
         }
         
         GD.Print("Game Manager loaded...");
-        
+
+        var messenger = GetNodeOrNull<Messenger>("/root/Messenger");
+        if (messenger != null)
+        {
+            messenger.Initialize();
+        }
     }
 
     #endregion

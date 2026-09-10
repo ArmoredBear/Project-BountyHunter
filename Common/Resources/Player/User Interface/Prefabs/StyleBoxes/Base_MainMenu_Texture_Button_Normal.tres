@@ -1,6 +1,7 @@
 [gd_resource type="StyleBoxTexture" format=3 uid="uid://ckmjymfvttt3o"]
 
-[ext_resource type="Texture2D" uid="uid://b8ojmf6qyhlq0" path="res://Common/Resources/Player/User Interface/UI_Art/Button_Normal.png" id="1_hmhan"]
+[ext_resource type="Texture2D" uid="uid://didguujwk27xl" path="res://Common/Resources/Player/User Interface/UI_Art/Button_Normal_2.png" id="1_g68sv"]
 
 [resource]
-texture = ExtResource("1_hmhan")
+texture = ExtResource("1_g68sv")
+modulate_color = Color(0.91015625, 0.8736292, 0.73239136, 1)

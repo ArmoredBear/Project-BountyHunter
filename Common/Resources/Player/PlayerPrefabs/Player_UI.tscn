@@ -486,13 +486,9 @@ visible = false
 
 [node name="CanvasLayer - Player_Menu" parent="." unique_id=1995535612 instance=ExtResource("14_87th5")]
 unique_name_in_owner = true
+process_mode = 3
 
-[node name="Control - Inventory_UI" parent="." unique_id=1074034316 instance=ExtResource("12_2ppih")]
+[node name="Inventory_UI" parent="." unique_id=92277506 instance=ExtResource("12_2ppih")]
 visible = false
 
-[node name="Panel" parent="Control - Inventory_UI" index="0" unique_id=1960820530]
-offset_top = 259.0
-offset_bottom = -227.0
-
 [editable path="Control - PlayerStatus/Control - Status/Control - Health_Bar/Control - Heart_Monitor"]
-[editable path="Control - Inventory_UI"]

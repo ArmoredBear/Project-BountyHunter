@@ -19,8 +19,8 @@ public partial class Armor_Percent : RichTextLabel
     //!---------------------------------------------------------------------------------------------------------
 
     private float _displayedPercent;
-    private float _targetPercent;
     private bool _isAnimating;
+    private bool _subscribed;
 
     #endregion
     //!---------------------------------------------------------------------------------------------------------
@@ -37,13 +37,22 @@ public partial class Armor_Percent : RichTextLabel
 
     public override void _Process(double delta)
     {
-        _targetPercent = (int)Math.Round((double)Player_Data_Autoload.Data.CURRENT_Armor / Player_Data_Autoload.Data.MAX_Armor * 100);
+        if (!_subscribed && GetNodeOrNull<Messenger>("/root/Messenger") is Messenger messenger)
+        {
+            messenger.Player_Armor_Changed_ += OnPlayerArmorChanged;
+            _subscribed = true;
+        }
+    }
 
-        if ((int)_displayedPercent != (int)_targetPercent || !_isAnimating)
+    private void OnPlayerArmorChanged(double armor)
+    {
+        float newTarget = (float)Math.Round((double)armor / Player_Data_Autoload.Data.MAX_Armor * 100);
+
+        if ((int)_displayedPercent != (int)newTarget || !_isAnimating)
         {
             _isAnimating = true;
             var tween = CreateTween();
-            tween.TweenProperty(this, "displayed_percent", _targetPercent, 0.5).SetTrans(Tween.TransitionType.Linear).SetEase(Tween.EaseType.InOut);
+            tween.TweenProperty(this, "displayed_percent", newTarget, 0.5).SetTrans(Tween.TransitionType.Linear).SetEase(Tween.EaseType.InOut);
             tween.Finished += () => _isAnimating = false;
         }
     }

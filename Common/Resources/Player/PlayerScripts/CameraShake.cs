@@ -7,10 +7,9 @@ using Godot;
 	**                                                   PURPOSE
 	*
 	**  1 - Shakes the camera when the player takes damage (health or armor).
-	**  2 - Detects health hits by polling CURRENT_Health each frame.
-	**  3 - Detects armor hits by polling Accumulated_Armor_Damage (every absorbed hit,
-	**      not just segment breaks).
-	**  4 - Intensity scales with damage amount relative to max health.
+	**  2 - Listens for Messenger.Player_Took_Damage.
+	**  3 - Intensity scales with damage amount relative to max health; absorbed
+	**      armor hits use a fixed multiplier so even small hits register.
 	*
 	*-----------------------------------------------------------------------------------------------------------------------**/
 public partial class CameraShake : Camera2D
@@ -38,8 +37,7 @@ public partial class CameraShake : Camera2D
 
 	// Internal state
 	private float _shake_amount;
-	private int _last_health = -1;
-	private int _last_accumulated = -1;
+	private bool _subscribed;
 
 	#endregion
 	//!---------------------------------------------------------------------------------------------------------
@@ -50,32 +48,15 @@ public partial class CameraShake : Camera2D
 
 	public override void _Ready()
 	{
-		_last_health = Player_Data_Autoload.Data.CURRENT_Health;
-		_last_accumulated = Player_Data_Autoload.Data.Accumulated_Armor_Damage;
 	}
 
 	public override void _Process(double delta)
 	{
-		int health = Player_Data_Autoload.Data.CURRENT_Health;
-		int accumulated = Player_Data_Autoload.Data.Accumulated_Armor_Damage;
-
-		// Detect health decrease → direct hit
-		if (_last_health >= 0 && health < _last_health)
+		if (!_subscribed && GetNodeOrNull<Messenger>("/root/Messenger") is Messenger messenger)
 		{
-			int damage = _last_health - health;
-			float ratio = (float)damage / Player_Data_Autoload.Data.MAX_Health;
-			_shake_amount = Mathf.Max(_shake_amount, Max_Intensity * ratio);
+			messenger.Player_Took_Damage_ += OnPlayerTookDamage;
+			_subscribed = true;
 		}
-
-		// Detect any armor damage accumulation → absorbed hit
-		if (_last_accumulated >= 0 && accumulated != _last_accumulated)
-		{
-			// Use a fixed intensity for absorbed hits so even small hits shake
-			_shake_amount = Mathf.Max(_shake_amount, Max_Intensity * Armor_Hit_Scale);
-		}
-
-		_last_health = health;
-		_last_accumulated = accumulated;
 
 		// Decay
 		if (_shake_amount > 0.01f)
@@ -98,6 +79,20 @@ public partial class CameraShake : Camera2D
 		else
 		{
 			Offset = Vector2.Zero;
+		}
+	}
+
+	private void OnPlayerTookDamage(double damage, bool absorbedByArmor)
+	{
+		if (absorbedByArmor)
+		{
+			// Fixed-intensity shake for absorbed hits so even small hits register
+			_shake_amount = Mathf.Max(_shake_amount, Max_Intensity * Armor_Hit_Scale);
+		}
+		else
+		{
+			float ratio = (float)damage / Player_Data_Autoload.Data.MAX_Health;
+			_shake_amount = Mathf.Max(_shake_amount, Max_Intensity * ratio);
 		}
 	}
 

@@ -8,4 +8,5 @@ content_margin_top = 25.0
 content_margin_right = 35.0
 content_margin_bottom = 30.0
 texture = ExtResource("1_qyn85")
+expand_margin_top = 10.0
 modulate_color = Color(0.91015625, 0.8736292, 0.73239136, 1)

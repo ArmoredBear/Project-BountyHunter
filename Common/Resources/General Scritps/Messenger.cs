@@ -1,6 +1,5 @@
 using Godot;
-using System;
-using System.Collections.Generic;
+using PlayerScript.PlayerInventory;
 
 /**-----------------------------------------------------------------------------------------------------------------------
 *!                                                   MESSENGER CLASS
@@ -9,11 +8,9 @@ using System.Collections.Generic;
 /**-----------------------------------------------------------------------------------------------------------------------
 	**                                                   PURPOSE
 	*  
-	**  1 - This class is a singleton, it inherits Node but it does not need to be on scene EDITOR,
-	** 	that is why is called AUTOLOAD, when the scene starts the object is created automaticaly with this script
-	** 	functions and properties before any other object.
-	**  2 - This is a Messenger, it will hold the main PLAYER CUSTOM SIGNALS for handling game events and connections
-	**  to objects in the scene.
+	**  1 - Autoload singleton that acts as the game's central signal hub (UI, inventory, item effects, stats).
+	**  2 - Connects and emits signals only - it never contains game logic.
+	**  3 - GameManager wires this hub up at startup (GameManager._Ready -> Initialize).
 	*
 *-----------------------------------------------------------------------------------------------------------------------**/
 
@@ -23,13 +20,10 @@ public partial class Messenger : Node
 	#region Variables
 	//!---------------------------------------------------------------------------------------------------------
 
-	private Node _quick_items_array_parent_node;
+	// Fixed items are reserved for a future logic; kept empty for now.
 	private Node _fixed_items_array_parent_node;
-	private string _quick_items_array_parent_path;
 	private string _fixed_items_array_parent_path;
-	private string[] _quick_items_array_path;
 	private string[] _fixed_items_array_paths;
-	private Item[] _quick_items;
 	private Item[] _fixed_items;
 
 	#endregion
@@ -37,19 +31,6 @@ public partial class Messenger : Node
 	//!---------------------------------------------------------------------------------------------------------
 	#region Properties
 	//!---------------------------------------------------------------------------------------------------------
-
-	[Export] public Node Quick_Items_Array_Parent_Node
-	{
-		get
-		{
-			return _quick_items_array_parent_node;
-		}
-
-		set
-		{
-			_quick_items_array_parent_node = value;
-		}
-	}
 
 	[Export] public Node Fixed_Items_Array_Parent_Node
 	{
@@ -61,19 +42,6 @@ public partial class Messenger : Node
 		set
 		{
 			_fixed_items_array_parent_node = value;
-		}
-	}
-	
-	[Export] public string Quick_Items_Array_Parent_Path
-	{
-		get
-		{
-			return _quick_items_array_parent_path;
-		}
-
-		set
-		{
-			_quick_items_array_parent_path = value;
 		}
 	}
 
@@ -89,20 +57,6 @@ public partial class Messenger : Node
 			_fixed_items_array_parent_path = value;
 		}
 	}
-	
-	public string[] Quick_Items_Array_Path
-	{
-		get
-		{
-			return _quick_items_array_path;
-		}
-
-		set
-		{
-			_quick_items_array_path = value;
-		}
-
-	}
 
 	public string[] Fixed_Items_Array_Paths
 	{
@@ -116,20 +70,7 @@ public partial class Messenger : Node
 			_fixed_items_array_paths = value;
 		}
 	}
-	
-	public Item[] Quick_Items
-	{
-		get
-		{
-			return _quick_items;
-		}
 
-		set
-		{
-			_quick_items = value;
-		}
-	}
-	
 	public Item[] Fixed_Items
 	{
 		get
@@ -142,100 +83,87 @@ public partial class Messenger : Node
 			_fixed_items = value;
 		}
 	}
-	
+
 	#endregion
 
 	//!---------------------------------------------------------------------------------------------------------
 	#region Signals
 	//!---------------------------------------------------------------------------------------------------------
+
 	/**------------------------------------------------------------------------
-	 **                          Usable Items Signals
+	 **                          Item Use Signals
 	 *------------------------------------------------------------------------**/
 
-	
 	[Signal]
-	public delegate void Usable_Item_EventHandler(bool _usable);
+	public delegate void Item_Use_EventHandler(ItemInstance item);
+
+	/**------------------------------------------------------------------------
+	 **                          Player Stats Signals
+	 *------------------------------------------------------------------------**/
+
+	[Signal]
+	public delegate void Player_Health_Changed_EventHandler(double health);
+
+	[Signal]
+	public delegate void Player_Stamina_Changed_EventHandler(double stamina);
+
+	[Signal]
+	public delegate void Player_Armor_Changed_EventHandler(double armor);
+
+	[Signal]
+	public delegate void Player_Took_Damage_EventHandler(double damage, bool absorbedByArmor);
 
 	/**------------------------------------------------------------------------
 	 **                         Item Pickup Signals
 	 *------------------------------------------------------------------------**/
-	
+
 	[Signal]
-	public delegate void Pickup_ItemEventHandler();
-	
-	
+	public delegate void Pickup_Item_EventHandler();
 
-	#endregion
-
-	//!---------------------------------------------------------------------------------------------------------
-	#region Initialization and Processes
-	//!---------------------------------------------------------------------------------------------------------
-
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-		if(GetTree().CurrentScene.Name == "Main")
-		{
-			Quick_Items_Array_Parent_Path = "/root/Main/Player/Player_Items/Quick_Items/";
-			Fixed_Items_Array_Parent_Path = "/root/Main/Player/Player_Items/Fixed_Items/";
-
-			Quick_Items_Array_Parent_Node = GetNode(Quick_Items_Array_Parent_Path);
-			Fixed_Items_Array_Parent_Node = GetNode(Fixed_Items_Array_Parent_Path);
-
-			Quick_Items_Array_Path = new string[1]
-			{
-				Quick_Items_Array_Parent_Path + "Usable_Item"
-			};
-
-			Quick_Items = new Item[1]
-			{
-				GetNode<Item>(Quick_Items_Array_Path[0])
-			};
-
-			Signals_Setter();
-		}
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-		Items_Use_Emitter();
-	}
-
-	
 	#endregion
 
 	//!---------------------------------------------------------------------------------------------------------
 	#region Methods and Interfaces
 	//!---------------------------------------------------------------------------------------------------------
 
+	public void Initialize()
+	{
+		Signals_Setter();
+	}
+
 	public void Signals_Setter()
 	{
 		/**------------------------------------------------------------------------------------------------
 		 **               This connects the signals to the proper method using references
 		 *------------------------------------------------------------------------------------------------**/
-		
-		Usable_Item_ += Quick_Items[0].Use;
 
+		Item_Use_ += ItemEffects.Use;
 	}
 
-	/**------------------------------------------------------------------------------------------------
-		 *!               Temporary use of emitters to use some items for testing...
-	*------------------------------------------------------------------------------------------------**/
-
-	public void Items_Use_Emitter()
+	public void Use_Item(ItemInstance item)
 	{
-		if(Input.IsActionJustReleased("Game_Pad_UseItem"))
-		{
-			EmitSignal(SignalName.Usable_Item_, Quick_Items[0].Usable);
-		}
-
-		if(Input.IsActionJustReleased("Keyboard_UseItem"))
-		{
-			EmitSignal(SignalName.Usable_Item_, Quick_Items[0].Usable);
-		}
+		ItemEffects.Use(item);
 	}
 
+	public void Emit_Player_Health_Changed(double health)
+	{
+		EmitSignal(SignalName.Player_Health_Changed_, health);
+	}
+
+	public void Emit_Player_Stamina_Changed(double stamina)
+	{
+		EmitSignal(SignalName.Player_Stamina_Changed_, stamina);
+	}
+
+	public void Emit_Player_Armor_Changed(double armor)
+	{
+		EmitSignal(SignalName.Player_Armor_Changed_, armor);
+	}
+
+	public void Emit_Player_Took_Damage(double damage, bool absorbedByArmor)
+	{
+		EmitSignal(SignalName.Player_Took_Damage_, damage, absorbedByArmor);
+	}
 
 	#endregion
 }
