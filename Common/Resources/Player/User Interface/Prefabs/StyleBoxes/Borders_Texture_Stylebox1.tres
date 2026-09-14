@@ -1,0 +1,13 @@
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://do1ec702n6fj"]
+
+[ext_resource type="Texture2D" uid="uid://dcexl6thglxhv" path="res://Common/Resources/Player/User Interface/UI_Art/Borders1.png" id="1_7utkp"]
+
+[resource]
+texture = ExtResource("1_7utkp")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color(0.90982777, 0.87455684, 0.73337764, 1)

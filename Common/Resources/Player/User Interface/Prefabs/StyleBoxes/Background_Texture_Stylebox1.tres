@@ -1,0 +1,13 @@
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://83f0rrl355bd"]
+
+[ext_resource type="Texture2D" uid="uid://b0b0ekjyggu41" path="res://Common/Resources/Player/User Interface/UI_Art/Background1.png" id="1_6qfbo"]
+
+[resource]
+texture = ExtResource("1_6qfbo")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 18.0
+texture_margin_bottom = 34.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color(0.91015625, 0.8736292, 0.73239136, 1)

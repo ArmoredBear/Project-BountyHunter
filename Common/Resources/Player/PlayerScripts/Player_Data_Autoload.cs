@@ -487,38 +487,62 @@ public partial class Player_Data_Autoload : Node
 		Sync_Stats();
 	}
 
-	private void Add_Starter_Items(PlayerInventory inventory)
-	{
-		ItemData pillData = ResourceLoader.Load<ItemData>("res://Common/Resources/Player/PlayerScripts/PlayerInventory/Pill.tres");
-		if (pillData != null)
+		private void Add_Starter_Items(PlayerInventory inventory)
 		{
-			inventory.AddItem(new ItemInstance { Data = pillData, Quantity = 1 });
-		}
+			ItemData pillData = ResourceLoader.Load<ItemData>("res://Common/Resources/Player/PlayerScripts/PlayerInventory/Pill.tres");
+			if (pillData != null)
+			{
+				inventory.AddItem(new ItemInstance { Data = pillData, Quantity = 1 });
+			}
 
-		ItemData swordData = ResourceLoader.Load<ItemData>("res://Common/Resources/Player/PlayerScripts/PlayerInventory/Sword.tres");
-		if (swordData != null)
-		{
-			inventory.AddItem(new ItemInstance { Data = swordData, Quantity = 1 });
-		}
+			ItemData swordData = ResourceLoader.Load<ItemData>("res://Common/Resources/Player/PlayerScripts/PlayerInventory/Sword.tres");
+			if (swordData != null)
+			{
+				inventory.AddItem(new ItemInstance { Data = swordData, Quantity = 1 });
+			}
 
-		ItemData plateData = ResourceLoader.Load<ItemData>("res://Common/Resources/Player/PlayerScripts/PlayerInventory/Plate.tres");
-		if (plateData != null)
-		{
-			inventory.AddItem(new ItemInstance { Data = plateData, Quantity = 1 });
-		}
+			ItemData plateData = ResourceLoader.Load<ItemData>("res://Common/Resources/Player/PlayerScripts/PlayerInventory/Plate.tres");
+			if (plateData != null)
+			{
+				inventory.AddItem(new ItemInstance { Data = plateData, Quantity = 1 });
+			}
 
-		ItemData lanternData = ResourceLoader.Load<ItemData>("res://Common/Resources/Player/PlayerScripts/PlayerInventory/Lantern.tres");
-		if (lanternData != null)
-		{
-			inventory.AddItem(new ItemInstance { Data = lanternData, Quantity = 1 });
-		}
+			ItemData lanternData = ResourceLoader.Load<ItemData>("res://Common/Resources/Player/PlayerScripts/PlayerInventory/Lantern.tres");
+			if (lanternData != null)
+			{
+				inventory.AddItem(new ItemInstance { Data = lanternData, Quantity = 1 });
+			}
 
-		ItemData upgradeStoneData = ResourceLoader.Load<ItemData>("res://Common/Resources/Player/PlayerScripts/PlayerInventory/UpgradeStone.tres");
-		if (upgradeStoneData != null)
-		{
-			inventory.AddItem(new ItemInstance { Data = upgradeStoneData, Quantity = 1 });
+			ItemData upgradeStoneData = ResourceLoader.Load<ItemData>("res://Common/Resources/Player/PlayerScripts/PlayerInventory/UpgradeStone.tres");
+			if (upgradeStoneData != null)
+			{
+				inventory.AddItem(new ItemInstance { Data = upgradeStoneData, Quantity = 1 });
+			}
+
+			ItemData axeData = ResourceLoader.Load<ItemData>("res://Common/Resources/Player/PlayerScripts/PlayerInventory/Axe.tres");
+			if (axeData != null)
+			{
+				inventory.AddItem(new ItemInstance { Data = axeData, Quantity = 1 });
+			}
+
+			ItemData spearData = ResourceLoader.Load<ItemData>("res://Common/Resources/Player/PlayerScripts/PlayerInventory/Spear.tres");
+			if (spearData != null)
+			{
+				inventory.AddItem(new ItemInstance { Data = spearData, Quantity = 1 });
+			}
+
+			ItemData daggerData = ResourceLoader.Load<ItemData>("res://Common/Resources/Player/PlayerScripts/PlayerInventory/Dagger.tres");
+			if (daggerData != null)
+			{
+				inventory.AddItem(new ItemInstance { Data = daggerData, Quantity = 1 });
+			}
+
+			ItemData greatswordData = ResourceLoader.Load<ItemData>("res://Common/Resources/Player/PlayerScripts/PlayerInventory/GreatSword.tres");
+			if (greatswordData != null)
+			{
+				inventory.AddItem(new ItemInstance { Data = greatswordData, Quantity = 1 });
+			}
 		}
-	}
 
 	#endregion
 }

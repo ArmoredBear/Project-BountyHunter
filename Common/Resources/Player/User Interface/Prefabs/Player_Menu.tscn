@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cdhwawfqs2bbs" path="res://Common/Resources/Player/User Interface/UI_Scripts/PlayerMenu.cs" id="1_f540y"]
 [ext_resource type="FontFile" uid="uid://bnnwxabllsohk" path="res://Common/Resources/Player/User Interface/Fonts/Springmarch/springmarch.roman.otf" id="3_l1k4q"]
 [ext_resource type="StyleBox" uid="uid://v11gptuotb7j" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Panel_Texture_StyleBox1.tres" id="3_of6so"]
+[ext_resource type="StyleBox" uid="uid://do1ec702n6fj" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Borders_Texture_Stylebox1.tres" id="3_v6j67"]
 [ext_resource type="Theme" uid="uid://byfphwqv3j56s" path="res://Common/Resources/Player/User Interface/Prefabs/Themes/Base_MainMenu_Theme.tres" id="3_yruen"]
 
 [node name="Player_Menu" type="CanvasLayer" unique_id=925412078]
@@ -43,10 +44,18 @@ anchor_bottom = 0.5
 offset_left = -1279.0
 offset_top = -143.0
 offset_right = 1280.0
-offset_bottom = 80.0
+offset_bottom = 96.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("3_of6so")
+
+[node name="Panel - Borders" type="Panel" parent="Control/Panel" unique_id=2141331210]
+layout_mode = 0
+offset_left = 63.0
+offset_top = 66.0
+offset_right = 2495.0
+offset_bottom = 168.20723
+theme_override_styles/panel = ExtResource("3_v6j67")
 
 [node name="ColorRect" type="ColorRect" parent="Control/Panel" unique_id=829587942]
 layout_mode = 0
@@ -147,5 +156,5 @@ theme_override_fonts/font = ExtResource("3_l1k4q")
 theme_override_font_sizes/font_size = 40
 text = "Save and Quit"
 
-[connection signal="pressed" from="Control/Panel/BoxContainer/Save_And_Quit" to="." method="On_Save_And_Quit_Pressed"]
 [connection signal="pressed" from="Control/Panel/BoxContainer/Inventory" to="." method="On_Inventory_Pressed"]
+[connection signal="pressed" from="Control/Panel/BoxContainer/Save_And_Quit" to="." method="On_Save_And_Quit_Pressed"]

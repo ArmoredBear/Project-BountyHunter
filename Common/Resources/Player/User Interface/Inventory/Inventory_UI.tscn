@@ -3,14 +3,27 @@
 [ext_resource type="Theme" uid="uid://b7k1imxvkgx1" path="res://Common/Resources/Player/User Interface/Prefabs/Themes/Base_Theme.tres" id="1_eugq4"]
 [ext_resource type="Script" uid="uid://bel2st2a2rkii" path="res://Common/Resources/Player/User Interface/Inventory/InventoryUI.cs" id="2_t3kt5"]
 [ext_resource type="StyleBox" uid="uid://ckmjymfvttt3o" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Base_MainMenu_Texture_Button_Normal.tres" id="3_7q5mr"]
+[ext_resource type="StyleBox" uid="uid://83f0rrl355bd" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Background_Texture_Stylebox1.tres" id="3_dm856"]
 [ext_resource type="StyleBox" uid="uid://brg7t4a802mai" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Scroll_Area_Texture_Stylebox.tres" id="3_fx7dj"]
 [ext_resource type="StyleBox" uid="uid://ds7ueosgaeqqh" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Scroll_Texture_Stylebox.tres" id="3_j6tuj"]
+[ext_resource type="Texture2D" uid="uid://bptugyhcr3sdh" path="res://Common/Resources/Player/User Interface/UI_Art/Chain.png" id="3_oanrl"]
+[ext_resource type="StyleBox" uid="uid://do1ec702n6fj" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Borders_Texture_Stylebox1.tres" id="4_hf1i7"]
 [ext_resource type="StyleBox" uid="uid://pj4u5nnckay4" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Base_MainMenu_Texture_Button_Hovered.tres" id="4_lgjl8"]
 [ext_resource type="StyleBox" uid="uid://bn25qll74xn6f" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Base_MainMenu_Texture_Button_Hovered_Pressed.tres" id="5_j6tuj"]
 [ext_resource type="Script" uid="uid://c4sw3dw6rhwpl" path="res://Common/Resources/Player/User Interface/UI_Scripts/InventoryMenu.cs" id="6_8qm1r"]
+[ext_resource type="Texture2D" uid="uid://th83tbdqaxsw" path="res://Common/Resources/Player/User Interface/UI_Art/Decoration_2.png" id="6_gqfng"]
+[ext_resource type="Texture2D" uid="uid://de2b4do4w5adt" path="res://Common/Resources/Player/User Interface/UI_Art/Decoration_3.png" id="7_cu1uu"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hf1i7"]
+texture = ExtResource("3_oanrl")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(488, 0, 2082, 350)
+modulate_color = Color(0.6328125, 0.5331808, 0.4734017, 1)
 
 [node name="Inventory_UI" type="CanvasLayer" unique_id=92277506]
 script = ExtResource("6_8qm1r")
+metadata/_edit_vertical_guides_ = [447.0, 538.0]
 
 [node name="Panel" type="Panel" parent="." unique_id=1960820530]
 anchors_preset = 15
@@ -22,19 +35,116 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_eugq4")
 
+[node name="Control - Decorations - 1" type="Control" parent="Panel" unique_id=333242091]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel - Background" type="Panel" parent="Panel/Control - Decorations - 1" unique_id=716646813]
+layout_mode = 0
+offset_left = 441.0
+offset_top = 75.0
+offset_right = 1628.0
+offset_bottom = 607.0
+theme_override_styles/panel = ExtResource("3_dm856")
+
+[node name="ReferenceRect" type="ReferenceRect" parent="Panel/Control - Decorations - 1" unique_id=1941131624]
+layout_mode = 0
+offset_left = 558.0
+offset_top = 67.0
+offset_right = 558.0
+offset_bottom = 613.0
+border_color = Color(0.91015625, 0.8736292, 0.73239136, 1)
+editor_only = false
+
+[node name="ReferenceRect2" type="ReferenceRect" parent="Panel/Control - Decorations - 1" unique_id=431367062]
+layout_mode = 0
+offset_left = 660.0
+offset_top = 67.0
+offset_right = 699.0
+offset_bottom = 613.0
+border_color = Color(0.91015625, 0.8736292, 0.73239136, 1)
+editor_only = false
+
+[node name="ReferenceRect3" type="ReferenceRect" parent="Panel/Control - Decorations - 1" unique_id=2142656138]
+layout_mode = 0
+offset_left = 676.0
+offset_top = 67.0
+offset_right = 683.0
+offset_bottom = 613.0
+border_color = Color(0.91015625, 0.8736292, 0.73239136, 1)
+editor_only = false
+
+[node name="Panel - Borders" type="Panel" parent="Panel/Control - Decorations - 1" unique_id=1137597578]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 65.0
+offset_right = 2496.0
+offset_bottom = 615.0
+theme_override_styles/panel = ExtResource("4_hf1i7")
+
+[node name="Panel - Borders2" type="Panel" parent="Panel/Control - Decorations - 1" unique_id=1432339314]
+layout_mode = 0
+offset_left = 438.0
+offset_top = 65.0
+offset_right = 1560.0
+offset_bottom = 615.0
+theme_override_styles/panel = ExtResource("4_hf1i7")
+
+[node name="Panel - Borders3" type="Panel" parent="Panel/Control - Decorations - 1" unique_id=277836641]
+layout_mode = 0
+offset_left = 529.0
+offset_top = 65.0
+offset_right = 1628.0
+offset_bottom = 615.0
+theme_override_styles/panel = ExtResource("4_hf1i7")
+
+[node name="Panel - Chain" type="Panel" parent="Panel/Control - Decorations - 1" unique_id=852998310]
+layout_mode = 0
+offset_left = 607.0
+offset_top = 96.0
+offset_right = 5560.992
+offset_bottom = 414.29315
+rotation = 1.5707964
+scale = Vector2(0.1, 0.1)
+theme_override_styles/panel = SubResource("StyleBoxTexture_hf1i7")
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Control - Decorations - 1" unique_id=2070023414]
+self_modulate = Color(0.91015625, 0.8736292, 0.73239136, 1)
+layout_mode = 0
+offset_left = 66.0
+offset_top = 74.0
+offset_right = 439.0
+offset_bottom = 124.0
+texture = ExtResource("6_gqfng")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/Control - Decorations - 1" unique_id=325884967]
+self_modulate = Color(0.91015625, 0.8736292, 0.73239136, 1)
+layout_mode = 0
+offset_left = 68.0
+offset_top = 553.0
+offset_right = 441.0
+offset_bottom = 603.0
+texture = ExtResource("6_gqfng")
+expand_mode = 3
+stretch_mode = 5
+flip_v = true
+
 [node name="ScrollContainer - Inventory_List_Consumables" type="Control" parent="Panel" unique_id=337167277]
 clip_contents = true
 layout_mode = 1
 anchors_preset = 0
-offset_left = 447.0
-offset_top = 90.0
-offset_right = 1474.0793
-offset_bottom = 593.0
+offset_left = 538.0
+offset_top = 137.0
+offset_right = 1719.0
+offset_bottom = 543.0
 
 [node name="BoxContainer - Invetory_List_Consumables" type="BoxContainer" parent="Panel/ScrollContainer - Inventory_List_Consumables" unique_id=1586305101]
 custom_minimum_size = Vector2(1000, 90)
 layout_mode = 0
-offset_right = 1000.0
+offset_right = 1001.0
 offset_bottom = 560.0
 alignment = 1
 vertical = true
@@ -48,179 +158,38 @@ text = "Text Test"
 autowrap_trim_flags = 0
 icon_alignment = 1
 
-[node name="Button2" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=1789834494]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button3" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=1878121221]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button4" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=1124821703]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button5" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=2031269035]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button6" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=440681674]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button7" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=683080807]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button8" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=1829898582]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button9" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=1640489857]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button10" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=1147053389]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button11" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=1548299952]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button12" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=1958002972]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button13" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=748005847]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button14" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=509605768]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button15" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=1072404788]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button16" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=597922518]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button17" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=1347449499]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button18" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=1056094611]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button19" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=1967143508]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
 [node name="VScrollBar" type="VScrollBar" parent="Panel/ScrollContainer - Inventory_List_Consumables" unique_id=436846287]
 layout_mode = 0
-offset_left = 1013.0
-offset_top = 6.0
-offset_right = 1035.0
-offset_bottom = 503.0
+offset_left = 1043.0
+offset_right = 1065.0
+offset_bottom = 497.0
 theme_override_styles/scroll = ExtResource("3_fx7dj")
 theme_override_styles/grabber = ExtResource("3_j6tuj")
 theme_override_styles/grabber_highlight = ExtResource("3_j6tuj")
 theme_override_styles/grabber_pressed = ExtResource("3_j6tuj")
 theme_override_constants/padding_left = 10
+min_value = 1.0
 max_value = 1000.0
 step = 10.0
+page = 1.0
+value = 1.0
+allow_greater = true
 
 [node name="ScrollContainer - Inventory_List_Weapons" type="Control" parent="Panel" unique_id=337167278]
-visible = false
 clip_contents = true
 layout_mode = 1
 anchors_preset = 0
-offset_left = 447.0
-offset_top = 90.0
-offset_right = 1474.0793
-offset_bottom = 593.0
+offset_left = 538.0
+offset_top = 137.0
+offset_right = 1719.0
+offset_bottom = 544.0
 
 [node name="BoxContainer - Inventory_List_Weapons" type="BoxContainer" parent="Panel/ScrollContainer - Inventory_List_Weapons" unique_id=1586305102]
 custom_minimum_size = Vector2(1000, 90)
 layout_mode = 0
 offset_right = 1000.0
 offset_bottom = 560.0
+theme_override_constants/separation = 25
 alignment = 1
 vertical = true
 script = ExtResource("2_t3kt5")
@@ -234,173 +203,31 @@ text = "Text Test"
 autowrap_trim_flags = 0
 icon_alignment = 1
 
-[node name="Button2" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=1789834495]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button3" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=1878121222]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button4" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=1124821704]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button5" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=2031269036]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button6" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=440681675]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button7" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=2029687251]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button8" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=1397217111]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button9" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=1347526872]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button10" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=1073279546]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button11" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=1201936511]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button12" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=1031296419]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button13" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=1118026148]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button14" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=85439246]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button15" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=871084938]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button16" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=1015711845]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button17" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=239667230]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button18" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=541559511]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button19" type="Button" parent="Panel/ScrollContainer - Inventory_List_Weapons/BoxContainer - Inventory_List_Weapons" unique_id=1470283692]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
 [node name="VScrollBar" type="VScrollBar" parent="Panel/ScrollContainer - Inventory_List_Weapons" unique_id=436846288]
 layout_mode = 0
-offset_left = 1013.0
-offset_top = 6.0
-offset_right = 1035.0
-offset_bottom = 503.0
+offset_left = 1043.0
+offset_right = 1065.0
+offset_bottom = 497.0
 theme_override_styles/scroll = ExtResource("3_fx7dj")
 theme_override_styles/grabber = ExtResource("3_j6tuj")
 theme_override_styles/grabber_highlight = ExtResource("3_j6tuj")
 theme_override_styles/grabber_pressed = ExtResource("3_j6tuj")
 theme_override_constants/padding_left = 10
+min_value = 1.0
 max_value = 1000.0
 step = 10.0
+page = 1.0
+value = 1.0
+allow_greater = true
 
 [node name="ScrollContainer - Inventory_List_Armors" type="Control" parent="Panel" unique_id=337167279]
-visible = false
 clip_contents = true
 layout_mode = 1
 anchors_preset = 0
-offset_left = 447.0
-offset_top = 90.0
-offset_right = 1474.0793
-offset_bottom = 593.0
+offset_left = 538.0
+offset_top = 137.0
+offset_right = 1719.0
+offset_bottom = 544.0
 
 [node name="BoxContainer - Inventory_List_Armors" type="BoxContainer" parent="Panel/ScrollContainer - Inventory_List_Armors" unique_id=1586305103]
 custom_minimum_size = Vector2(1000, 90)
@@ -420,69 +247,31 @@ text = "Text Test"
 autowrap_trim_flags = 0
 icon_alignment = 1
 
-[node name="Button2" type="Button" parent="Panel/ScrollContainer - Inventory_List_Armors/BoxContainer - Inventory_List_Armors" unique_id=1789834496]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button3" type="Button" parent="Panel/ScrollContainer - Inventory_List_Armors/BoxContainer - Inventory_List_Armors" unique_id=1878121223]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button4" type="Button" parent="Panel/ScrollContainer - Inventory_List_Armors/BoxContainer - Inventory_List_Armors" unique_id=1124821705]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button5" type="Button" parent="Panel/ScrollContainer - Inventory_List_Armors/BoxContainer - Inventory_List_Armors" unique_id=2031269037]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button6" type="Button" parent="Panel/ScrollContainer - Inventory_List_Armors/BoxContainer - Inventory_List_Armors" unique_id=440681676]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
 [node name="VScrollBar" type="VScrollBar" parent="Panel/ScrollContainer - Inventory_List_Armors" unique_id=436846289]
 layout_mode = 0
-offset_left = 1013.0
-offset_top = 6.0
-offset_right = 1035.0
-offset_bottom = 503.0
+offset_left = 1043.0
+offset_right = 1065.0
+offset_bottom = 497.0
 theme_override_styles/scroll = ExtResource("3_fx7dj")
 theme_override_styles/grabber = ExtResource("3_j6tuj")
 theme_override_styles/grabber_highlight = ExtResource("3_j6tuj")
 theme_override_styles/grabber_pressed = ExtResource("3_j6tuj")
 theme_override_constants/padding_left = 10
+min_value = 1.0
 max_value = 1000.0
 step = 10.0
+page = 1.0
+value = 1.0
+allow_greater = true
 
 [node name="ScrollContainer - Inventory_List_Tools" type="Control" parent="Panel" unique_id=337167280]
-visible = false
 clip_contents = true
 layout_mode = 1
 anchors_preset = 0
-offset_left = 447.0
-offset_top = 90.0
-offset_right = 1474.0793
-offset_bottom = 593.0
+offset_left = 538.0
+offset_top = 137.0
+offset_right = 1719.0
+offset_bottom = 543.0
 
 [node name="BoxContainer - Inventory_List_Tools" type="BoxContainer" parent="Panel/ScrollContainer - Inventory_List_Tools" unique_id=1586305104]
 custom_minimum_size = Vector2(1000, 90)
@@ -502,93 +291,66 @@ text = "Text Test"
 autowrap_trim_flags = 0
 icon_alignment = 1
 
-[node name="Button2" type="Button" parent="Panel/ScrollContainer - Inventory_List_Tools/BoxContainer - Inventory_List_Tools" unique_id=1789834497]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button3" type="Button" parent="Panel/ScrollContainer - Inventory_List_Tools/BoxContainer - Inventory_List_Tools" unique_id=1878121224]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button4" type="Button" parent="Panel/ScrollContainer - Inventory_List_Tools/BoxContainer - Inventory_List_Tools" unique_id=1124821706]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button5" type="Button" parent="Panel/ScrollContainer - Inventory_List_Tools/BoxContainer - Inventory_List_Tools" unique_id=2031269038]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
-[node name="Button6" type="Button" parent="Panel/ScrollContainer - Inventory_List_Tools/BoxContainer - Inventory_List_Tools" unique_id=440681677]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Text Test"
-autowrap_trim_flags = 0
-icon_alignment = 1
-
 [node name="VScrollBar" type="VScrollBar" parent="Panel/ScrollContainer - Inventory_List_Tools" unique_id=436846290]
 layout_mode = 0
-offset_left = 1013.0
-offset_top = 6.0
-offset_right = 1035.0
-offset_bottom = 503.0
+offset_left = 1043.0
+offset_right = 1065.0
+offset_bottom = 497.0
 theme_override_styles/scroll = ExtResource("3_fx7dj")
 theme_override_styles/grabber = ExtResource("3_j6tuj")
 theme_override_styles/grabber_highlight = ExtResource("3_j6tuj")
 theme_override_styles/grabber_pressed = ExtResource("3_j6tuj")
 theme_override_constants/padding_left = 10
+min_value = 1.0
 max_value = 1000.0
 step = 10.0
+page = 1.0
+value = 1.0
+allow_greater = true
 
 [node name="ScrollContainer - Inventory_List_Etc" type="Control" parent="Panel" unique_id=337167281]
-visible = false
 clip_contents = true
 layout_mode = 1
 anchors_preset = 0
-offset_left = 447.0
-offset_top = 90.0
-offset_right = 1474.0793
-offset_bottom = 593.0
+offset_left = 538.0
+offset_top = 137.0
+offset_right = 1719.0
+offset_bottom = 543.0
 
 [node name="BoxContainer - Inventory_List_Etc" type="BoxContainer" parent="Panel/ScrollContainer - Inventory_List_Etc" unique_id=1586305105]
 custom_minimum_size = Vector2(1000, 90)
 layout_mode = 0
-offset_right = 1000.0
+offset_right = 1001.0
 offset_bottom = 560.0
 alignment = 1
 vertical = true
 script = ExtResource("2_t3kt5")
 Item_Category = 4
 
+[node name="Button" type="Button" parent="Panel/ScrollContainer - Inventory_List_Etc/BoxContainer - Inventory_List_Etc" unique_id=440204799]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Text Test"
+autowrap_trim_flags = 0
+icon_alignment = 1
+
 [node name="VScrollBar" type="VScrollBar" parent="Panel/ScrollContainer - Inventory_List_Etc" unique_id=436846291]
 layout_mode = 0
-offset_left = 1013.0
-offset_top = 6.0
-offset_right = 1035.0
-offset_bottom = 503.0
+offset_left = 1043.0
+offset_right = 1065.0
+offset_bottom = 497.0
 theme_override_styles/scroll = ExtResource("3_fx7dj")
 theme_override_styles/grabber = ExtResource("3_j6tuj")
 theme_override_styles/grabber_highlight = ExtResource("3_j6tuj")
 theme_override_styles/grabber_pressed = ExtResource("3_j6tuj")
 theme_override_constants/padding_left = 10
+min_value = 1.0
 max_value = 1000.0
 step = 10.0
+page = 1.0
+value = 1.0
+allow_greater = true
 
 [node name="BoxContainer - Inventory_Tabs" type="BoxContainer" parent="Panel" unique_id=993616724]
 custom_minimum_size = Vector2(200, 50)
@@ -655,3 +417,27 @@ theme_override_styles/pressed = ExtResource("5_j6tuj")
 theme_override_styles/hover = ExtResource("4_lgjl8")
 theme_override_styles/hover_pressed = ExtResource("5_j6tuj")
 text = "Etc"
+
+[node name="Control - Decoration - 2" type="Control" parent="Panel" unique_id=1802311361]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect3" type="TextureRect" parent="Panel/Control - Decoration - 2" unique_id=963839954]
+self_modulate = Color(0.91015625, 0.8736292, 0.73239136, 1)
+layout_mode = 0
+offset_left = 438.0
+offset_top = 65.0
+offset_right = 1561.0
+offset_bottom = 137.0
+texture = ExtResource("7_cu1uu")
+
+[node name="TextureRect4" type="TextureRect" parent="Panel/Control - Decoration - 2" unique_id=983562141]
+self_modulate = Color(0.91015625, 0.8736292, 0.73239136, 1)
+layout_mode = 0
+offset_left = 438.0
+offset_top = 543.0
+offset_right = 1561.0
+offset_bottom = 615.0
+texture = ExtResource("7_cu1uu")
+flip_v = true
