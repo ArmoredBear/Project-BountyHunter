@@ -5,6 +5,9 @@
 [ext_resource type="StyleBox" uid="uid://v11gptuotb7j" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Panel_Texture_StyleBox1.tres" id="3_of6so"]
 [ext_resource type="StyleBox" uid="uid://do1ec702n6fj" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Borders_Texture_Stylebox1.tres" id="3_v6j67"]
 [ext_resource type="Theme" uid="uid://byfphwqv3j56s" path="res://Common/Resources/Player/User Interface/Prefabs/Themes/Base_MainMenu_Theme.tres" id="3_yruen"]
+[ext_resource type="StyleBox" uid="uid://ckmjymfvttt3o" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Base_MainMenu_Texture_Button_Normal.tres" id="6_601sf"]
+[ext_resource type="StyleBox" uid="uid://pj4u5nnckay4" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Base_MainMenu_Texture_Button_Hovered.tres" id="7_qxygt"]
+[ext_resource type="StyleBox" uid="uid://bn25qll74xn6f" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Base_MainMenu_Texture_Button_Hovered_Pressed.tres" id="8_44ffb"]
 
 [node name="Player_Menu" type="CanvasLayer" unique_id=925412078]
 script = ExtResource("1_f540y")
@@ -84,13 +87,18 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("3_yruen")
+theme_override_colors/font_pressed_color = Color(0.6039216, 0.56078434, 0.3764706, 1)
 theme_override_colors/font_hover_color = Color(0.91015625, 0.8736292, 0.73239136, 1)
-theme_override_colors/font_hover_pressed_color = Color(0.90234375, 0.7929634, 0.37002587, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.6039216, 0.56078434, 0.3764706, 1)
 theme_override_constants/outline_size = 1
 theme_override_constants/h_separation = 0
 theme_override_constants/align_to_largest_stylebox = 1
 theme_override_fonts/font = ExtResource("3_l1k4q")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("6_601sf")
+theme_override_styles/pressed = ExtResource("7_qxygt")
+theme_override_styles/hover = ExtResource("8_44ffb")
+theme_override_styles/hover_pressed = ExtResource("8_44ffb")
 text = "Journal
 "
 
@@ -100,13 +108,18 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("3_yruen")
+theme_override_colors/font_pressed_color = Color(0.6039216, 0.56078434, 0.3764706, 1)
 theme_override_colors/font_hover_color = Color(0.91015625, 0.8736292, 0.73239136, 1)
-theme_override_colors/font_hover_pressed_color = Color(0.90234375, 0.7929634, 0.37002587, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.6039216, 0.56078434, 0.3764706, 1)
 theme_override_constants/outline_size = 1
 theme_override_constants/h_separation = 0
 theme_override_constants/align_to_largest_stylebox = 1
 theme_override_fonts/font = ExtResource("3_l1k4q")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("6_601sf")
+theme_override_styles/pressed = ExtResource("7_qxygt")
+theme_override_styles/hover = ExtResource("8_44ffb")
+theme_override_styles/hover_pressed = ExtResource("8_44ffb")
 text = "Inventory
 "
 
@@ -116,13 +129,18 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("3_yruen")
+theme_override_colors/font_pressed_color = Color(0.6039216, 0.56078434, 0.3764706, 1)
 theme_override_colors/font_hover_color = Color(0.91015625, 0.8736292, 0.73239136, 1)
-theme_override_colors/font_hover_pressed_color = Color(0.90234375, 0.7929634, 0.37002587, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.6039216, 0.56078434, 0.3764706, 1)
 theme_override_constants/outline_size = 1
 theme_override_constants/h_separation = 0
 theme_override_constants/align_to_largest_stylebox = 1
 theme_override_fonts/font = ExtResource("3_l1k4q")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("6_601sf")
+theme_override_styles/pressed = ExtResource("7_qxygt")
+theme_override_styles/hover = ExtResource("8_44ffb")
+theme_override_styles/hover_pressed = ExtResource("8_44ffb")
 text = "Equipment
 "
 
@@ -132,13 +150,18 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("3_yruen")
+theme_override_colors/font_pressed_color = Color(0.6039216, 0.56078434, 0.3764706, 1)
 theme_override_colors/font_hover_color = Color(0.91015625, 0.8736292, 0.73239136, 1)
-theme_override_colors/font_hover_pressed_color = Color(0.90234375, 0.7929634, 0.37002587, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.6039216, 0.56078434, 0.3764706, 1)
 theme_override_constants/outline_size = 1
 theme_override_constants/h_separation = 0
 theme_override_constants/align_to_largest_stylebox = 1
 theme_override_fonts/font = ExtResource("3_l1k4q")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("6_601sf")
+theme_override_styles/pressed = ExtResource("7_qxygt")
+theme_override_styles/hover = ExtResource("8_44ffb")
+theme_override_styles/hover_pressed = ExtResource("8_44ffb")
 text = "Settings"
 
 [node name="Save_And_Quit" type="Button" parent="Control/Panel/BoxContainer" unique_id=120216533]
@@ -147,13 +170,18 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("3_yruen")
+theme_override_colors/font_pressed_color = Color(0.6039216, 0.56078434, 0.3764706, 1)
 theme_override_colors/font_hover_color = Color(0.91015625, 0.8736292, 0.73239136, 1)
-theme_override_colors/font_hover_pressed_color = Color(0.90234375, 0.7929634, 0.37002587, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.6039216, 0.56078434, 0.3764706, 1)
 theme_override_constants/outline_size = 1
 theme_override_constants/h_separation = 0
 theme_override_constants/align_to_largest_stylebox = 1
 theme_override_fonts/font = ExtResource("3_l1k4q")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("6_601sf")
+theme_override_styles/pressed = ExtResource("7_qxygt")
+theme_override_styles/hover = ExtResource("8_44ffb")
+theme_override_styles/hover_pressed = ExtResource("8_44ffb")
 text = "Save and Quit"
 
 [connection signal="pressed" from="Control/Panel/BoxContainer/Inventory" to="." method="On_Inventory_Pressed"]
