@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cstb8svv5da71" path="res://Common/Resources/Player/PlayerPrefabs/QuickItems_List.tscn" id="1_v8mnl"]
 [ext_resource type="Script" uid="uid://dy10gqs0lmnw0" path="res://Common/Resources/Player/PlayerScripts/Player.cs" id="2_gnjcu"]
 [ext_resource type="Script" uid="uid://bflfe8ughjr1n" path="res://Common/Resources/Player/PlayerScripts/Player_Damage.cs" id="2_qgaeo"]
-[ext_resource type="Script" uid="uid://de3qbv4qx4tox" path="res://Common/Resources/Player/PlayerScripts/CameraShake.cs" id="3_damwb"]
+[ext_resource type="Script" uid="uid://de3qbv4qx4tox" path="res://Common/Resources/Player/PlayerScripts/CameraControl.cs" id="3_damwb"]
 [ext_resource type="SpriteFrames" uid="uid://cn2pxpvys21bk" path="res://Common/Resources/Player/PlayerPrefabs/PlayerAnimationSprites.tres" id="3_pf8kc"]
 [ext_resource type="Script" uid="uid://bg313y4mcjcol" path="res://Common/Resources/Player/PlayerScripts/Player_FSM.cs" id="4_1x6g7"]
 [ext_resource type="Shader" uid="uid://daduoont25u0w" path="res://Common/Resources/Shaders/PlayerShader.tres" id="4_w7j57"]
@@ -76,12 +76,12 @@ shape = SubResource("RectangleShape2D_1vwxm")
 
 [node name="Camera2D" type="Camera2D" parent="Player_Body" unique_id=1718478064]
 texture_filter = 1
-zoom = Vector2(0.3, 0.3)
-limit_smoothed = true
-position_smoothing_enabled = true
-rotation_smoothing_enabled = true
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
+zoom = Vector2(0.25, 0.25)
+limit_smoothed = false
+position_smoothing_enabled = false
+rotation_smoothing_enabled = false
+drag_horizontal_enabled = false
+drag_vertical_enabled = false
 editor_draw_limits = true
 editor_draw_drag_margin = true
 script = ExtResource("3_damwb")

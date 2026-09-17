@@ -27,6 +27,8 @@ public partial class InventoryUI : Control
 
     private Control _scrollView;
     private VScrollBar _vScrollBar;
+    private float _realMax;
+    private bool _isSyncingBar;
 
     #endregion
     //!---------------------------------------------------------------------------------------------------------
@@ -76,7 +78,12 @@ public partial class InventoryUI : Control
 
     private void OnScrollValueChanged(double value)
     {
-        Position = new Vector2(0, (float)-value);
+        if (_isSyncingBar)
+        {
+            return;
+        }
+
+        Position = new Vector2(0, -BarToReal((float)value));
     }
 
     private void OnScrollViewGuiInput(InputEvent @event)
@@ -85,12 +92,12 @@ public partial class InventoryUI : Control
         {
             if (mouseButton.ButtonIndex == MouseButton.WheelUp)
             {
-                _vScrollBar.Value -= _vScrollBar.Step;
+                ScrollBy(-(float)_vScrollBar.Step);
                 _scrollView.AcceptEvent();
             }
             else if (mouseButton.ButtonIndex == MouseButton.WheelDown)
             {
-                _vScrollBar.Value += _vScrollBar.Step;
+                ScrollBy((float)_vScrollBar.Step);
                 _scrollView.AcceptEvent();
             }
         }
@@ -146,15 +153,48 @@ public partial class InventoryUI : Control
     {
         float viewHeight = _scrollView.Size.Y;
         float contentHeight = Size.Y;
-        float max = Mathf.Max(0, contentHeight - viewHeight);
+        _realMax = Mathf.Max(0, contentHeight - viewHeight);
 
-        _vScrollBar.MaxValue = max;
-        _vScrollBar.Page = viewHeight;
-
-        if (_vScrollBar.Value > max)
+        if (Position.Y < -_realMax)
         {
-            _vScrollBar.Value = max;
+            Position = new Vector2(0, -_realMax);
         }
+
+        SyncBarToPosition();
+    }
+
+    private float BarToReal(float value)
+    {
+        float range = (float)_vScrollBar.MaxValue - (float)_vScrollBar.MinValue;
+        float t = range > 0 ? (value - (float)_vScrollBar.MinValue) / range : 0f;
+        return Mathf.Clamp(t, 0f, 1f) * _realMax;
+    }
+
+    private void ScrollBy(float offset)
+    {
+        float target = -Position.Y + offset;
+        target = Mathf.Clamp(target, 0f, _realMax);
+        _isSyncingBar = true;
+
+        Position = new Vector2(0, -target);
+
+        float range = (float)_vScrollBar.MaxValue - (float)_vScrollBar.MinValue;
+        float t = _realMax > 0 ? target / _realMax : 0f;
+        _vScrollBar.Value = (float)_vScrollBar.MinValue + t * range;
+
+        _isSyncingBar = false;
+    }
+
+    private void SyncBarToPosition()
+    {
+        float value = -Position.Y;
+        float range = (float)_vScrollBar.MaxValue - (float)_vScrollBar.MinValue;
+        float t = _realMax > 0 ? value / _realMax : 0f;
+        _isSyncingBar = true;
+
+        _vScrollBar.Value = (float)_vScrollBar.MinValue + t * range;
+
+        _isSyncingBar = false;
     }
 
     #endregion

@@ -56,11 +56,11 @@ public partial class InventoryMenu : CanvasLayer
 
         _tabButtons = new Button[]
         {
-            GetNode<Button>("Panel/BoxContainer - Inventory_Tabs/Button"),
-            GetNode<Button>("Panel/BoxContainer - Inventory_Tabs/Button2"),
-            GetNode<Button>("Panel/BoxContainer - Inventory_Tabs/Button3"),
-            GetNode<Button>("Panel/BoxContainer - Inventory_Tabs/Button4"),
-            GetNode<Button>("Panel/BoxContainer - Inventory_Tabs/Button5")
+            GetNode<Button>("Panel/BoxContainer - Inventory_Tabs/Button - Consumables"),
+            GetNode<Button>("Panel/BoxContainer - Inventory_Tabs/Button - Weapons"),
+            GetNode<Button>("Panel/BoxContainer - Inventory_Tabs/Button - Armor"),
+            GetNode<Button>("Panel/BoxContainer - Inventory_Tabs/Button - Tools"),
+            GetNode<Button>("Panel/BoxContainer - Inventory_Tabs/Button - Etc")
         };
 
         for (int i = 0; i < _tabButtons.Length; i++)

@@ -1,7 +1,7 @@
 using Godot;
 
 /**-----------------------------------------------------------------------------------------------------------------------
-*!                                                   CAMERA SHAKE
+*!                                                  CAMERA CONTROL
 *-----------------------------------------------------------------------------------------------------------------------**/
 /**-----------------------------------------------------------------------------------------------------------------------
 	**                                                   PURPOSE
@@ -12,7 +12,7 @@ using Godot;
 	**      armor hits use a fixed multiplier so even small hits register.
 	*
 	*-----------------------------------------------------------------------------------------------------------------------**/
-public partial class CameraShake : Camera2D
+public partial class CameraControl : Camera2D
 {
 	//!---------------------------------------------------------------------------------------------------------
 	#region Variables
@@ -21,6 +21,11 @@ public partial class CameraShake : Camera2D
 	/// <summary>Master multiplier applied to all shake amounts. Tweak this to scale intensity globally.</summary>
 	[Export(PropertyHint.Range, "0.0,10.0,0.1")]
 	public float Intensity_Multiplier = 1.0f;
+
+	/// <summary>How quickly the camera catches up to the player. Higher = snappier, lower = floatier.</summary>
+	[ExportGroup("Smoothing")]
+	[Export(PropertyHint.Range, "0.5,30.0,0.5")]
+	public float Smoothing_Speed = 5.0f;
 
 	/// <summary>Peak shake intensity when the player takes a full-health hit (100% of MAX_Health).</summary>
 	[ExportGroup("Shake")]
@@ -38,6 +43,7 @@ public partial class CameraShake : Camera2D
 	// Internal state
 	private float _shake_amount;
 	private bool _subscribed;
+	private Vector2 _smoothed_center;
 
 	#endregion
 	//!---------------------------------------------------------------------------------------------------------
@@ -48,6 +54,8 @@ public partial class CameraShake : Camera2D
 
 	public override void _Ready()
 	{
+		// Start on the player so the camera does not slide in on spawn.
+		_smoothed_center = GlobalPosition;
 	}
 
 	public override void _Process(double delta)
@@ -80,6 +88,21 @@ public partial class CameraShake : Camera2D
 		{
 			Offset = Vector2.Zero;
 		}
+
+		// Smoothly follow the player (catch-up), then snap the smoothed centre to
+		// the pixel grid so world-space art lines up with screen pixels. We do the
+		// smoothing ourselves instead of using Camera2D's built-in smoothing,
+		// because that moves the camera by sub-pixel amounts between frames, which
+		// makes the world-space grass shimmer. Snapping after the damp keeps the
+		// catch-up feel while every rendered frame still lands on the pixel grid.
+		float dt = (float)delta;
+		Vector2 target = GetParentOrNull<Node2D>()?.GlobalPosition ?? _smoothed_center;
+		_smoothed_center = new Vector2(
+			MathUtils.Damp(_smoothed_center.X, target.X, Smoothing_Speed, dt),
+			MathUtils.Damp(_smoothed_center.Y, target.Y, Smoothing_Speed, dt));
+
+		float pixel_world_size = 1.0f / Zoom.X;
+		GlobalPosition = (_smoothed_center / pixel_world_size).Round() * pixel_world_size;
 	}
 
 	private void OnPlayerTookDamage(double damage, bool absorbedByArmor)

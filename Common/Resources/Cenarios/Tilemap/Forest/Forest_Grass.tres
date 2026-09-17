@@ -1,7 +1,7 @@
 [gd_resource type="TileSet" format=3 uid="uid://5qupvmr4kfvq"]
 
 [ext_resource type="Material" uid="uid://blu2dg4w51jy2" path="res://Common/Resources/Cenarios/CenarioMaterials/Forest/Grass_01_Material.tres" id="1_xw365"]
-[ext_resource type="Texture2D" uid="uid://c23ar3pdmb640" path="res://Common/Resources/Cenarios/CenarioArt/Environment/Forest/Grass01.png" id="2_2ojn5"]
+[ext_resource type="Texture2D" uid="uid://biyji4twheqoi" path="res://Common/Resources/Cenarios/CenarioCanvasTextures/Grass_01_CanvasTexture.tres" id="2_4c0q8"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_53pml"]
 friction = 0.0
@@ -13,7 +13,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -64, 64, -64, 64, 
 agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gve6u"]
-texture = ExtResource("2_2ojn5")
+texture = ExtResource("2_4c0q8")
 texture_region_size = Vector2i(128, 128)
 1:1/0 = 0
 1:1/0/material = ExtResource("1_xw365")

@@ -134,7 +134,7 @@ public partial class Player_Data_Autoload : Node
 		Data.CURRENT_Armor = 100;
 		Data.Armored = true;
 		Player_Healthbar = GetNode<Player_Healthbar_UI>("/root/Player/Player_UI/Control - PlayerStatus/Control - Status/Control - Health_Bar");
-		Player_Armorbar = GetNode<Player_Armorbar_UI>("/root/Player/Player_UI/Control - PlayerStatus/Control - Status/Control - Health_Bar/TextureProgressBar - Armor_Bar");
+		Player_Armorbar = GetNode<Player_Armorbar_UI>("/root/Player/Player_UI/Control - PlayerStatus/Control - Status/Control - Armor_Bar/TextureProgressBar - Armor_Bar");
 		_messenger = GetNodeOrNull<Messenger>("/root/Messenger");
 
 	}

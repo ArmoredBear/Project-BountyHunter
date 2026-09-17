@@ -1,8 +1,31 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://blu2dg4w51jy2"]
 
-[ext_resource type="Shader" uid="uid://c3hlrawnaxxeu" path="res://Common/Resources/Shaders/CenarioForest_Shader.tres" id="1_0rs3p"]
-[ext_resource type="Texture2D" uid="uid://di3qdllv0gdne" path="res://Common/Resources/Cenarios/CenarioNormalMaps/Grass01_n.png" id="2_wv5ym"]
+[ext_resource type="Shader" uid="uid://bjk847lw4k6g0" path="res://Common/Resources/Shaders/GrassProcedural_PixelCrisp.gdshader" id="1_grassproc"]
 
 [resource]
-shader = ExtResource("1_0rs3p")
-shader_parameter/Normal_Map = ExtResource("2_wv5ym")
+shader = ExtResource("1_grassproc")
+shader_parameter/soil_color = Color(0.071, 0.208, 0.11, 1)
+shader_parameter/moss_color = Color(0.125, 0.298, 0.153, 1)
+shader_parameter/grass_color = Color(0.035, 0.416, 0.188, 1)
+shader_parameter/blade_color = Color(0.165, 0.518, 0.239, 1)
+shader_parameter/tip_color = Color(0.302, 0.583, 0.278, 1)
+shader_parameter/pixel_size = 4.0
+shader_parameter/grass_scale = 1.8
+shader_parameter/patch_scale = 24.0
+shader_parameter/tuft_scale = 38.0
+shader_parameter/color_dither = 0.02
+shader_parameter/blade_density = 0.5
+shader_parameter/blade_streak_x = 0.21
+shader_parameter/blade_streak_y = 0.06
+shader_parameter/tuft_strength = 0.65
+shader_parameter/bare_scale = 110.0
+shader_parameter/bare_amount = 0.45
+shader_parameter/bare_softness = 0.12
+shader_parameter/bare_soil_mix = 0.5
+shader_parameter/density_scale = 70.0
+shader_parameter/density_min = 0.35
+shader_parameter/macro_scale = 520.0
+shader_parameter/macro_strength = 0.18
+shader_parameter/normal_strength = 0.3
+shader_parameter/specular_strength = 0.15
+shader_parameter/shininess = 24.0

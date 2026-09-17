@@ -13,6 +13,20 @@
 [ext_resource type="Script" uid="uid://c4sw3dw6rhwpl" path="res://Common/Resources/Player/User Interface/UI_Scripts/InventoryMenu.cs" id="6_8qm1r"]
 [ext_resource type="Texture2D" uid="uid://th83tbdqaxsw" path="res://Common/Resources/Player/User Interface/UI_Art/Decoration_2.png" id="6_gqfng"]
 [ext_resource type="Texture2D" uid="uid://de2b4do4w5adt" path="res://Common/Resources/Player/User Interface/UI_Art/Decoration_3.png" id="7_cu1uu"]
+[ext_resource type="Script" uid="uid://c6a1nch02dwj5" path="res://Common/Resources/Player/User Interface/Inventory/ChainShaderController.cs" id="8_chain"]
+[ext_resource type="Texture2D" uid="uid://racw8pk1nsrt" path="res://Common/Resources/Player/User Interface/UI_Art/ScrollBorder1.png" id="9_7n66y"]
+[ext_resource type="Shader" uid="uid://c6a1nch02dwj6" path="res://Common/Resources/Shaders/ChainShader.gdshader" id="9_chain"]
+[ext_resource type="Texture2D" uid="uid://dwrtsgeshspmf" path="res://Common/Resources/Player/User Interface/UI_Art/ScrollBorder2.png" id="17_enx1u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_chain"]
+shader = ExtResource("9_chain")
+shader_parameter/Chain_Texture = ExtResource("3_oanrl")
+shader_parameter/Region_Offset = Vector2(488, 0)
+shader_parameter/Region_Size = Vector2(2082, 350)
+shader_parameter/Texture_Size = Vector2(2917, 350)
+shader_parameter/Chain_Tint = Color(0.6328125, 0.5331808, 0.4734017, 1)
+shader_parameter/Scroll_Pos = 0.0
+shader_parameter/Scroll_Distance = 0.9
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hf1i7"]
 texture = ExtResource("3_oanrl")
@@ -56,7 +70,7 @@ offset_bottom = 613.0
 border_color = Color(0.91015625, 0.8736292, 0.73239136, 1)
 editor_only = false
 
-[node name="ReferenceRect2 - Decoration_2" type="ReferenceRect" parent="Panel/Control - Decorations - 1" unique_id=431367062]
+[node name="ReferenceRect - Decoration_2" type="ReferenceRect" parent="Panel/Control - Decorations - 1" unique_id=431367062]
 layout_mode = 0
 offset_left = 660.0
 offset_top = 67.0
@@ -70,6 +84,24 @@ layout_mode = 0
 offset_left = 676.0
 offset_top = 67.0
 offset_right = 683.0
+offset_bottom = 613.0
+border_color = Color(0.91015625, 0.8736292, 0.73239136, 1)
+editor_only = false
+
+[node name="ReferenceRect - Decoration_4" type="ReferenceRect" parent="Panel/Control - Decorations - 1" unique_id=1345337722]
+layout_mode = 0
+offset_left = 1408.0
+offset_top = 67.0
+offset_right = 1447.0
+offset_bottom = 613.0
+border_color = Color(0.91015625, 0.8736292, 0.73239136, 1)
+editor_only = false
+
+[node name="ReferenceRect - Decoration_5" type="ReferenceRect" parent="Panel/Control - Decorations - 1" unique_id=2089294619]
+layout_mode = 0
+offset_left = 1424.0
+offset_top = 67.0
+offset_right = 1431.0
 offset_bottom = 613.0
 border_color = Color(0.91015625, 0.8736292, 0.73239136, 1)
 editor_only = false
@@ -99,6 +131,7 @@ offset_bottom = 615.0
 theme_override_styles/panel = ExtResource("4_hf1i7")
 
 [node name="Panel - Chain" type="Panel" parent="Panel/Control - Decorations - 1" unique_id=852998310]
+material = SubResource("ShaderMaterial_chain")
 layout_mode = 0
 offset_left = 607.0
 offset_top = 96.0
@@ -107,6 +140,7 @@ offset_bottom = 414.29315
 rotation = 1.5707964
 scale = Vector2(0.1, 0.1)
 theme_override_styles/panel = SubResource("StyleBoxTexture_hf1i7")
+script = ExtResource("8_chain")
 
 [node name="TextureRect - Decoration_1" type="TextureRect" parent="Panel/Control - Decorations - 1" unique_id=2070023414]
 self_modulate = Color(0.91015625, 0.8736292, 0.73239136, 1)
@@ -140,7 +174,7 @@ offset_top = 137.0
 offset_right = 1719.0
 offset_bottom = 543.0
 
-[node name="BoxContainer - Invetory_List_Consumables" type="BoxContainer" parent="Panel/ScrollContainer - Inventory_List_Consumables" unique_id=1586305101]
+[node name="BoxContainer - Inventory_List_Consumables" type="BoxContainer" parent="Panel/ScrollContainer - Inventory_List_Consumables" unique_id=1586305101]
 custom_minimum_size = Vector2(1000, 90)
 layout_mode = 0
 offset_right = 1001.0
@@ -149,7 +183,7 @@ alignment = 1
 vertical = true
 script = ExtResource("2_t3kt5")
 
-[node name="Button" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Invetory_List_Consumables" unique_id=890296425]
+[node name="Button" type="Button" parent="Panel/ScrollContainer - Inventory_List_Consumables/BoxContainer - Inventory_List_Consumables" unique_id=890296425]
 custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 size_flags_vertical = 4
@@ -159,10 +193,10 @@ icon_alignment = 1
 
 [node name="VScrollBar" type="VScrollBar" parent="Panel/ScrollContainer - Inventory_List_Consumables" unique_id=436846287]
 layout_mode = 0
-offset_left = 1043.0
-offset_top = 4.0
-offset_right = 1065.0
-offset_bottom = 398.0
+offset_left = 1036.0
+offset_top = 19.0
+offset_right = 1058.0
+offset_bottom = 380.0
 theme_override_styles/scroll = ExtResource("3_fx7dj")
 theme_override_styles/grabber = ExtResource("3_j6tuj")
 theme_override_styles/grabber_highlight = ExtResource("3_j6tuj")
@@ -182,7 +216,7 @@ anchors_preset = 0
 offset_left = 538.0
 offset_top = 137.0
 offset_right = 1719.0
-offset_bottom = 544.0
+offset_bottom = 543.0
 
 [node name="BoxContainer - Inventory_List_Weapons" type="BoxContainer" parent="Panel/ScrollContainer - Inventory_List_Weapons" unique_id=1586305102]
 custom_minimum_size = Vector2(1000, 90)
@@ -205,10 +239,10 @@ icon_alignment = 1
 
 [node name="VScrollBar" type="VScrollBar" parent="Panel/ScrollContainer - Inventory_List_Weapons" unique_id=436846288]
 layout_mode = 0
-offset_left = 1043.0
-offset_top = 4.0
-offset_right = 1065.0
-offset_bottom = 398.0
+offset_left = 1036.0
+offset_top = 19.0
+offset_right = 1058.0
+offset_bottom = 380.0
 theme_override_styles/scroll = ExtResource("3_fx7dj")
 theme_override_styles/grabber = ExtResource("3_j6tuj")
 theme_override_styles/grabber_highlight = ExtResource("3_j6tuj")
@@ -228,7 +262,7 @@ anchors_preset = 0
 offset_left = 538.0
 offset_top = 137.0
 offset_right = 1719.0
-offset_bottom = 544.0
+offset_bottom = 543.0
 
 [node name="BoxContainer - Inventory_List_Armors" type="BoxContainer" parent="Panel/ScrollContainer - Inventory_List_Armors" unique_id=1586305103]
 custom_minimum_size = Vector2(1000, 90)
@@ -250,10 +284,10 @@ icon_alignment = 1
 
 [node name="VScrollBar" type="VScrollBar" parent="Panel/ScrollContainer - Inventory_List_Armors" unique_id=436846289]
 layout_mode = 0
-offset_left = 1043.0
-offset_top = 4.0
-offset_right = 1065.0
-offset_bottom = 398.0
+offset_left = 1036.0
+offset_top = 19.0
+offset_right = 1058.0
+offset_bottom = 380.0
 theme_override_styles/scroll = ExtResource("3_fx7dj")
 theme_override_styles/grabber = ExtResource("3_j6tuj")
 theme_override_styles/grabber_highlight = ExtResource("3_j6tuj")
@@ -295,10 +329,10 @@ icon_alignment = 1
 
 [node name="VScrollBar" type="VScrollBar" parent="Panel/ScrollContainer - Inventory_List_Tools" unique_id=436846290]
 layout_mode = 0
-offset_left = 1043.0
-offset_top = 4.0
-offset_right = 1065.0
-offset_bottom = 398.0
+offset_left = 1036.0
+offset_top = 19.0
+offset_right = 1058.0
+offset_bottom = 380.0
 theme_override_styles/scroll = ExtResource("3_fx7dj")
 theme_override_styles/grabber = ExtResource("3_j6tuj")
 theme_override_styles/grabber_highlight = ExtResource("3_j6tuj")
@@ -340,9 +374,10 @@ icon_alignment = 1
 
 [node name="VScrollBar" type="VScrollBar" parent="Panel/ScrollContainer - Inventory_List_Etc" unique_id=436846291]
 layout_mode = 0
-offset_left = 1043.0
-offset_right = 1065.0
-offset_bottom = 497.0
+offset_left = 1036.0
+offset_top = 19.0
+offset_right = 1058.0
+offset_bottom = 380.0
 theme_override_styles/scroll = ExtResource("3_fx7dj")
 theme_override_styles/grabber = ExtResource("3_j6tuj")
 theme_override_styles/grabber_highlight = ExtResource("3_j6tuj")
@@ -430,6 +465,47 @@ text = "Etc"
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="TextureRect - Scrollbar Top - Back" type="TextureRect" parent="Panel/Control - Decoration - 2" unique_id=211958626]
+self_modulate = Color(0.91015625, 0.8736292, 0.73239136, 1)
+layout_mode = 0
+offset_left = 1555.0
+offset_top = 67.0
+offset_right = 1616.0
+offset_bottom = 188.0
+texture = ExtResource("9_7n66y")
+expand_mode = 1
+
+[node name="TextureRect - ScrollBar Top - Front" type="TextureRect" parent="Panel/Control - Decoration - 2" unique_id=239879833]
+self_modulate = Color(0.91015625, 0.8736292, 0.73239136, 1)
+layout_mode = 0
+offset_left = 1563.0
+offset_top = 156.0
+offset_right = 1608.0
+offset_bottom = 188.0
+texture = ExtResource("17_enx1u")
+expand_mode = 1
+
+[node name="TextureRect - Scrollbar Bottom - Back" type="TextureRect" parent="Panel/Control - Decoration - 2" unique_id=2128720025]
+self_modulate = Color(0.91015625, 0.8736292, 0.73239136, 1)
+layout_mode = 0
+offset_left = 1555.0
+offset_top = 491.0
+offset_right = 1616.0
+offset_bottom = 613.0
+texture = ExtResource("9_7n66y")
+expand_mode = 1
+flip_v = true
+
+[node name="TextureRect - ScrollBar Bottom - Front" type="TextureRect" parent="Panel/Control - Decoration - 2" unique_id=664281281]
+self_modulate = Color(0.91015625, 0.8736292, 0.73239136, 1)
+layout_mode = 0
+offset_left = 1563.0
+offset_top = 491.0
+offset_right = 1608.0
+offset_bottom = 523.0
+texture = ExtResource("17_enx1u")
+expand_mode = 1
 
 [node name="TextureRect - Decoration _1" type="TextureRect" parent="Panel/Control - Decoration - 2" unique_id=963839954]
 self_modulate = Color(0.91015625, 0.8736292, 0.73239136, 1)

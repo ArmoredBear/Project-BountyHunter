@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6hpl7qx4se50"
-path="res://.godot/imported/Grass02.png-82888397bd9e64981fa72343c0b2b07f.ctex"
+uid="uid://dwrtsgeshspmf"
+path="res://.godot/imported/ScrollBorder2.png-d38416f4b974da8ee85ea0a8225cd881.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Common/Resources/Cenarios/CenarioArt/Environment/Forest/Grass02.png"
-dest_files=["res://.godot/imported/Grass02.png-82888397bd9e64981fa72343c0b2b07f.ctex"]
+source_file="res://Common/Resources/Player/User Interface/UI_Art/ScrollBorder2.png"
+dest_files=["res://.godot/imported/ScrollBorder2.png-d38416f4b974da8ee85ea0a8225cd881.ctex"]
 
 [params]
 

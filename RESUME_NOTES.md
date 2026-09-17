@@ -2,6 +2,68 @@
 
 ---
 
+## CURRENT STATE (LAST UPDATE: 2026-09-16) — Procedural grass shader + camera
+
+> Work is GREEN: grass shader imports clean (headless check: `loaded=true`, 25 uniforms),
+> `dotnet build` = 0 errors (only the 2 pre-existing warnings listed below).
+
+### Session (2026-09-16) — grass look, bare patches, variety, camera
+Grass is rendered by a shader while keeping Godot's TileMapLayer system. Active files:
+`Common/Resources/Shaders/GrassProcedural_PixelCrisp.gdshader` (uid://bjk847lw4k6g0) and its
+shared material `Common/Resources/Cenarios/CenarioMaterials/Forest/Grass_01_Material.tres`
+(uid://blu2dg4w51jy2), applied **per-tile** inside `Forest_Grass.tres`
+(`<coord>/0/material = ...`; the tile_set has no top-level material).
+- REMOVED animation (wind). Deleted the `wind_*` uniforms and all `TIME`/`sway` usage.
+  Root cause of the "horizontal block seams" was the `fract(px.y * 0.03 * gs)` sway bands
+  in the blade streak / tuft / height math. With `sway = 0` the seams vanished. Fully static now.
+- LIT variant: `fragment()` writes `NORMAL` derived from a procedural blade height field
+  (`grass_height()`, central differences `h0/hx/hy`); custom `light()` = Lambert + Blinn
+  specular. Reacts to Light2D; engine shadows still apply around `light()`.
+- Tuned lighting: `normal_strength` `0.8 -> 0.5 -> 0.3`, `specular_strength` `0.3 -> 0.15`
+  (`shininess` stays 24).
+- NEW `clearings` group (random bare patches): `bare_scale=110`, `bare_amount=0.45`,
+  `bare_softness=0.12`, `bare_soil_mix=0.5`. An fbm field carves irregular regions with no
+  blades; the normal is flattened and soil color fills them.
+- NEW `variety` group: `density_scale=70`, `density_min=0.35` (spatial density field thins
+  grass gradually), `macro_scale=520`, `macro_strength=0.18` (very large-scale warm/cool
+  brightness+hue tint so the field is not a flat green carpet). Soil tint and normal flatten
+  now key off `coverage = bare_mask * density` (not just bare).
+- Pixel-crisp scheme: all noise is world-space and sampled at `floor(world_pos / pixel_size)`
+  with `pixel_size = 4.0 = 1/zoom(0.25)`. If camera zoom changes, `pixel_size` must equal 1/zoom.
+  IMPORTANT: the material stores explicit `shader_parameter/*` overrides, so a shader default
+  change alone does nothing — update BOTH the shader and the material.
+
+### Camera: `CameraShake` renamed to `CameraControl`
+- `Common/Resources/Player/PlayerScripts/CameraControl.cs` (was `CameraShake.cs`), class renamed
+  to `CameraControl : Camera2D`. Kept the same uid (uid://de3qbv4qx4tox) by renaming the `.uid`
+  file too; `Player.tscn:6` script path updated.
+- The original "smooth catch-up" was NOT code — it was Godot's built-in Camera2D smoothing set
+  in `Player.tscn` (original: zoom 0.3, `limit_smoothed` / `position_smoothing_enabled` /
+  `rotation_smoothing_enabled` / `drag_horizontal_enabled` / `drag_vertical_enabled` all true).
+  It was disabled because sub-pixel camera motion makes the pixel-crisp grass shimmer.
+- Reimplemented as pixel-snapped CUSTOM smoothing in `CameraControl.cs`: new export
+  `Smoothing_Speed = 5.0`; `_Process` damps `_smoothed_center` toward the parent (player) with
+  `MathUtils.Damp`, then snaps `GlobalPosition` to `1/Zoom.X = 4`. Built-in smoothing stays OFF.
+  Zoom stays 0.25 (drives grass `pixel_size`). Shake `Offset` still applies on top.
+
+### Verification used this session
+- Headless check: `Godot_v4.6.2-stable_mono_linux.x86_64 --headless --path . --script /tmp/check_grass.gd`
+  prints `SHADER ... loaded=true uniforms=25`, `MATERIAL_LOADED=true`, `PIXEL_SIZE=4.0`,
+  `TILESET_LOADED=true`.
+- `dotnet build "Project Bounty Hunter.csproj"`.
+- WORKFLOW NOTE: the assistant cannot view images (no image input) and there is no GPU display
+  here, so look tuning is done from the user's verbal feedback + numeric/structural checks.
+  Pure-Python shader previews (numpy NOT available) live at `/tmp/grass_preview.py` and
+  `/tmp/blade_proto.py`.
+
+### Pre-existing unrelated (NOT touched)
+- NRE at `Player.cs:134` on boot.
+- "Dialogue UI Null! Trying to reference it..." warning.
+- Build warnings: `CS0169` `Player_Data_Autoload.cs(28,24)`,
+  `CA2014` `Player_Healthbar_UI.cs(766,39)`.
+
+---
+
 ## CURRENT STATE (LAST UPDATE: 2026-09-09) — Inventory system
 
 > Work is GREEN: `dotnet build` = 0 errors, clean headless boot (only pre-existing

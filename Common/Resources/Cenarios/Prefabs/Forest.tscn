@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://cuqjspfoch1k5" path="res://Common/Resources/Sounds/wind01.wav" id="11_1m4i4"]
 
 [sub_resource type="Gradient" id="Gradient_ur80d"]
+offsets = PackedFloat32Array(0, 0.6773547)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_unk71"]
@@ -331,7 +332,7 @@ animation = &"Break"
 frame = 5
 
 [node name="PointLight2D" type="PointLight2D" parent="Props/Checkpoint" unique_id=1689494832]
-position = Vector2(6.5999804, 11.999998)
+position = Vector2(-1.9000206, 32)
 scale = Vector2(25, 25)
 color = Color(0.73046875, 0.37526044, 0, 1)
 energy = 7.0
