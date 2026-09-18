@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8ty63evfhx0a"
-path="res://.godot/imported/Grass03.png-ae7938fb85971d490b6550e81bb15792.ctex"
+uid="uid://chfij7nvxbyui"
+path="res://.godot/imported/Grass03_s.png-4f829a3c0c3f891a8f4a9af88332cd82.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Common/Resources/Cenarios/CenarioArt/Environment/Forest/Grass03.png"
-dest_files=["res://.godot/imported/Grass03.png-ae7938fb85971d490b6550e81bb15792.ctex"]
+source_file="res://Common/Resources/Cenarios/CenarioSpecularMaps/Grass03_s.png"
+dest_files=["res://.godot/imported/Grass03_s.png-4f829a3c0c3f891a8f4a9af88332cd82.ctex"]
 
 [params]
 
