@@ -2,6 +2,50 @@
 
 ---
 
+## SESSION RULES (CURRENT — read first)
+1. **Read files before planning/editing** — read the relevant code/scene/shader files immediately before thinking about a change.
+2. **Ask permission before every edit** — state what will be done and get the OK first.
+3. **Ask questions for decisions & methods** — do NOT decide alone on approach; the user picks the method (they find the real problems).
+4. **One thing at a time** — do not overdo or overthink; make the smallest change that addresses the reported issue.
+5. **Build & check after every edit batch** — run `dotnet build` (0 errors) and headless resource checks before finishing.
+6. **Research online before thinking of a solution** — when proposing a fix, look up the relevant technique/docs first.
+
+---
+
+## CURRENT STATE (LAST UPDATE: 2026-09-18) — Grass tuft layer FIXED (Sprite2D texture mask was the root cause)
+
+> Work is GREEN: shader + material + scene load headless (`ALL_CHECKS_OK`), `dotnet build` = 0 errors.
+
+### Session (2026-09-18) — the "giant grass with tiny grass" bug
+- Reported symptom on the `Grass_Sprite_1` tuft overlay in `Forest.tscn`: the scatter looked like a tiled mosaic /
+  "a giant grass made of tiny grass", and tuning shader parameters never fixed it.
+- **ROOT CAUSE (user's discovery):** a `Sprite2D`'s own `texture` acts as an **alpha mask** over a canvas shader's
+  `COLOR` output. `Grass_Sprite_1` had `Grass02.png` (40x21 white silhouette with a transparent background) as its
+  sprite texture, so the shader's output was only visible through the tiny opaque "blade" pixels — the procedural
+  grass WAS generating across the whole area but showed only through tuft-shaped windows.
+- **FIX:** created `Common/Resources/Cenarios/CenarioArt/Environment/Forest/GrassBlank.png` — a fully opaque white
+  40x21 texture, same size as `Grass02.png` so the sprite quad (and thus the generated world area) is unchanged.
+  `Grass_Sprite_1.texture` now points at `GrassBlank.png` (ext_resource `14_blnk`); `self_modulate` cleared to white.
+- **Material `Grass_Repeat_Material.tres`** (uid://bmhae5w3l2a6) is back on `GrassRepeat.gdshader`
+  (uid://cix2o5mre4lah) with `grass_texture = Grass02.png` (the tuft image is now shader-side only):
+  `spacing=4.0`, `jitter=1.0`, `size_variation=0.6`, `flip_chance=0.5`, `clump_scale=800.0`, `clump_strength=0.7`,
+  `color_mix=0.7`, `tuft_world_size=(200,105)`. (A brief experiment pointing the material at
+  `GrassProcedural_PixelCrisp.gdshader` was tried and reverted — the scatter logic is what the user kept.)
+- **`GrassRepeat.gdshader` behavior (current):** world-locked (`world_pos = MODEL_MATRIX * VERTEX`, mirrors
+  `Cenario_Rain_Shader.gdshader`). Each cell spawns **0-3 overlapping copies** — copy count comes from a
+  low-frequency clumping field (`fbm2`), per-copy random scale/placement/mirror/shading — sampled through a **3x3
+  neighborhood search** so copies that drift across cell borders still render. No `skip_chance` param anymore
+  (unevenness comes from variable copy counts). Tuft size is clamped so a copy never exceeds its cell.
+- **LEARNING for future shader work:** for a fully-shader-drawn Sprite2D, use a blank **opaque** white texture as
+  the sprite texture (or sample `TEXTURE`/`UV` inside the shader) — otherwise the sprite's own alpha cuts the output.
+- Verification: `/tmp/opencode/check_grassrepeat.gd` headless (`SHADER/MATERIAL/SCENE/BLANK ... ALL_CHECKS_OK`);
+  `dotnet build` 0 errors.
+
+### Pre-existing unrelated (NOT touched)
+- NRE at `Player.cs:134` on boot (known, benign to shader work).
+
+---
+
 ## CURRENT STATE (LAST UPDATE: 2026-09-16) — Procedural grass shader + camera
 
 > Work is GREEN: grass shader imports clean (headless check: `loaded=true`, 25 uniforms),
@@ -53,8 +97,8 @@ shared material `Common/Resources/Cenarios/CenarioMaterials/Forest/Grass_01_Mate
 - `dotnet build "Project Bounty Hunter.csproj"`.
 - WORKFLOW NOTE: the assistant cannot view images (no image input) and there is no GPU display
   here, so look tuning is done from the user's verbal feedback + numeric/structural checks.
-  Pure-Python shader previews (numpy NOT available) live at `/tmp/grass_preview.py` and
-  `/tmp/blade_proto.py`.
+  Shader math previews (numpy via venv at `/tmp/opencode/pregenv/`) live at
+  `/tmp/opencode/grass_preview.py` (writes PNG renders of the scatter/clump logic).
 
 ### Pre-existing unrelated (NOT touched)
 - NRE at `Player.cs:134` on boot.

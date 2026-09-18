@@ -1,0 +1,22 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bmhae5w3l2a6"]
+
+[ext_resource type="Shader" uid="uid://cix2o5mre4lah" path="res://Common/Resources/Shaders/GrassRepeat.gdshader" id="1_grassrepeat"]
+[ext_resource type="Texture2D" uid="uid://djpj72suk5wgq" path="res://Common/Resources/Cenarios/CenarioArt/Environment/Forest/Grass02.png" id="2_grasstex"]
+
+[resource]
+shader = ExtResource("1_grassrepeat")
+shader_parameter/grass_texture = ExtResource("2_grasstex")
+shader_parameter/tuft_world_size = Vector2(50, 26)
+shader_parameter/grass_color_a = Color(0.18702698, 0.40234375, 0.24758482, 1)
+shader_parameter/grass_color_b = Color(0.17614746, 0.43359375, 0.21953729, 1)
+shader_parameter/grass_color_c = Color(0.42728972, 0.64453125, 0.26435852, 1)
+shader_parameter/color_variation = 1.0
+shader_parameter/spacing = 8.0000003325
+shader_parameter/jitter = 1.0
+shader_parameter/size_variation = 0.50000002375
+shader_parameter/flip_chance = 0.5
+shader_parameter/clump_scale = 800.0
+shader_parameter/clump_strength = 0.7
+shader_parameter/normal_strength = 0.150000007125
+shader_parameter/specular_strength = 0.150000007125
+shader_parameter/shininess = 24.0
