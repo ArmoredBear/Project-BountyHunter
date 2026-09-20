@@ -11,18 +11,17 @@ shader_type canvas_item;
 // grass overlaps and no grid, spacing or tile reconstruction is visible.
 // ``clump_strength`` 0.0 flattens the field to a uniform density.
 //
-// LIT VARIANT. The sprite's texture is a CanvasTexture whose diffuse is an
-// opaque white placeholder (so the sprite texture can never mask the shader
-// output) and whose normal/specular maps are given per-tuft. That map is read
-// at the TUFT UV through the engine built-ins NORMAL_TEXTURE and
-// SPECULAR_SHININESS_TEXTURE, so a custom light() can shade every tuft while
-// the meadow keeps reacting to Light2D like GrassProcedural_PixelCrisp.
+// LIT VARIANT. Each grass type carries its own white-silhouette diffuse and
+// its own normal/specular map, read at the TUFT UV from explicit samplers, so
+// a custom light() can shade every tuft while the meadow keeps reacting to
+// Light2D like GrassProcedural_PixelCrisp.
 //
-// GRASS VARIETY. A second tuft type can be blended into the meadow: each copy
-// rolls ``grass_b_chance`` to pick type B (grass_texture_b + its own normal/
-// specular samplers + tuft_world_size_b) or type A (the first set). Mixing the
-// two types with separate scenes would double the per-pixel fragment work; a
-// few extra cached texture fetches in one pass stay nearly free instead.
+// GRASS VARIETY. Extra tuft types can be blended into the meadow: each copy
+// rolls a weighted pick over type B (grass_texture_b + its own normal/specular
+// samplers + tuft_world_size_b), type C (the grass_texture_c set) and type A
+// (the grass_texture_a set), all with the same layout of parameters. Mixing
+// types with separate scenes would multiply the per-pixel fragment work; a few
+// extra cached texture fetches in one pass stay nearly free instead.
 //
 // WIND & SWAY. Adapted from the CC0 shader "2D Pixel perfect wind & sway
 // effect" (godotshaders.com, kaeylos). Each tuft copy shifts its sample UV
@@ -31,27 +30,39 @@ shader_type canvas_item;
 // the tuft and normalized by the tuft's texel width so both grass kinds and
 // all copy scales sway by a comparable on-screen amount. Pure UV distortion:
 // no vertex deformation, so the world-space scatter/cells stay untouched.
+// The final horizontal offset is snapped to whole screen pixels (via fwidth
+// of the world position), so the blades step in discrete pixel jumps — a
+// pixel-perfect look instead of sub-pixel shimmer.
 // ``sway_mode`` selects between per-tuft random sway (each tuft moves on its
 // own, seeded by its copy hash) and a travelling gust that sweeps a wave band
 // across the meadow using each tuft's world position as the phase.
 
-uniform sampler2D grass_texture : repeat_enable, filter_nearest;
-
-// World-space size of one type-A grass tuft tile (40x21 texels at the draw scale).
-uniform vec2 tuft_world_size = vec2(200.0, 105.0);
-
 group_uniforms grass_variety;
+uniform sampler2D grass_texture_a : repeat_enable, filter_nearest;
+uniform sampler2D grass_normal_a : repeat_enable, filter_nearest;
+uniform sampler2D grass_specular_a : repeat_enable, filter_nearest;
 uniform sampler2D grass_texture_b : repeat_enable, filter_nearest;
 uniform sampler2D grass_normal_b : repeat_enable, filter_nearest;
 uniform sampler2D grass_specular_b : repeat_enable, filter_nearest;
-// World-space size of one type-B tuft tile (its own texel aspect ratio).
+uniform sampler2D grass_texture_c : repeat_enable, filter_nearest;
+uniform sampler2D grass_normal_c : repeat_enable, filter_nearest;
+uniform sampler2D grass_specular_c : repeat_enable, filter_nearest;
+// World-space sizes of each tuft tile (their own texel aspect ratios).
+uniform vec2 tuft_world_size_a = vec2(200.0, 105.0);
 uniform vec2 tuft_world_size_b = vec2(22.0, 88.0);
-// Share of tufts that are type B instead of type A (0.0 = all type A).
+uniform vec2 tuft_world_size_c = vec2(47.0, 47.0);
+// Share of tufts of each type (the three chances are normalized, so they
+// only compete against each other and always add up to every spawned tuft
+// being one of the three types). Each type carries its own diffuse, normal
+// and specular samplers.
+uniform float grass_a_chance : hint_range(0.0, 1.0) = 1.0;
 uniform float grass_b_chance : hint_range(0.0, 1.0) = 0.5;
+uniform float grass_c_chance : hint_range(0.0, 1.0) = 0.0;
 // Texel dimensions of each tuft texture: drive the wind UV quantization and
-// the normalization that keeps the sway amount equal across the two kinds.
-uniform vec2 tuft_texels = vec2(40.0, 21.0);
+// the normalization that keeps the sway amount equal across the grass kinds.
+uniform vec2 tuft_texels_a = vec2(40.0, 21.0);
 uniform vec2 tuft_texels_b = vec2(18.0, 71.0);
+uniform vec2 tuft_texels_c = vec2(38.0, 38.0);
 
 group_uniforms grass_colors;
 uniform vec4 grass_color_a : source_color = vec4(0.05, 0.30, 0.12, 1.0);
@@ -71,7 +82,7 @@ group_uniforms clumping;
 uniform float clump_scale : hint_range(64.0, 4096.0) = 800.0;
 uniform float clump_strength : hint_range(0.0, 1.0) = 0.7;
 // Multiplier for the number of tufts each cell spawns (1.0 = current look).
-uniform float density : hint_range(0.0, 4.0) = 1.0;
+uniform float density : hint_range(0.0, 12.0) = 1.0;
 // Probability a cell is left bare (spawns no tufts), carving gaps between patches.
 uniform float empty_chance : hint_range(0.0, 0.95) = 0.0;
 
@@ -99,6 +110,32 @@ uniform float sway_height_start : hint_range(0.0, 1.0) = 0.0;
 // and how fast the gust sweeps across the field (TIME factor).
 uniform float wave_scale : hint_range(0.001, 0.5) = 0.02;
 uniform float wave_speed : hint_range(0.0, 4.0) = 0.8;
+
+group_uniforms depth_split;
+// 0 = off (this layer draws the whole meadow every frame).
+// 1 = back layer: only tufts rooted above the split line (behind the player).
+// 2 = front layer: only tufts rooted at or below the split line (in front).
+uniform int depth_split_mode : hint_range(0, 2) = 0;
+// World-space Y separating back from front grass (usually the player's feet).
+uniform float depth_split_y = 0.0;
+
+// Border detection. The meadow is a hand-drawn Polygon2D, and every grass
+// copy must stay fully inside it: a tuft whose front/right edge crosses the
+// polygon outline would be hard-sliced by the sprite's clip. So the C#
+// splitter uploads the polygon outline as a world-space point list, the
+// shader computes the tuft-to-edge distance, and any copy landing within
+// ``border_radius`` of (or past) the outline is skipped entirely — nothing
+// is ever drawn in the rim, so nothing ever gets cut.
+//
+// ``polygon_point_count`` is 0 when the shape hasn't been drawn yet, which
+// disables the border check completely (grass renders everywhere as before).
+uniform int polygon_point_count = 0;
+// The drawn outline, in world space, decimated to at most 64 vertices by the
+// C# splitter so the per-fragment edge tests stay bounded.
+uniform vec2 polygon_points[64];
+// Width of the empty rim along the outline (world units). Larger = a wider
+// uncovered band so no blade sits close enough to the edge to be clipped.
+uniform float border_radius : hint_range(0.0, 200.0) = 32.0;
 
 varying vec2 world_pos;
 varying float spec_amount;
@@ -140,6 +177,52 @@ float wind_noise(vec2 p) {
             dot(wind_random(i + vec2(1.0, 1.0)), f - vec2(1.0, 1.0)), blur.x), blur.y) + 0.5;
 }
 
+bool point_in_polygon(vec2 p) {
+    // Classic even-odd ray cast over the decimated outline. Works for
+    // concave (and self-intersection-free) hand-drawn shapes.
+    if (polygon_point_count < 3) return true;
+    bool inside = false;
+    for (int i = 0, j = polygon_point_count - 1; i < polygon_point_count; j = i++) {
+        vec2 a = polygon_points[i];
+        vec2 b = polygon_points[j];
+        bool crosses = (b.y > p.y) != (a.y > p.y);
+        if (crosses && p.x < (a.x - b.x) * (p.y - b.y) / (a.y - b.y) + b.x) {
+            inside = !inside;
+        }
+    }
+    return inside;
+}
+
+// Squared distance from p to the segment ab.
+float dist2_segment(vec2 p, vec2 a, vec2 b) {
+    vec2 ab = b - a;
+    vec2 ap = p - a;
+    float t = dot(ap, ab) / max(dot(ab, ab), 1e-6);
+    t = clamp(t, 0.0, 1.0);
+    vec2 q = a + ab * t;
+    vec2 d = p - q;
+    return dot(d, d);
+}
+
+// Squared distance from p to the nearest outline edge.
+float dist2_to_outline(vec2 p) {
+    float best = 1e18;
+    for (int i = 0; i < polygon_point_count; i++) {
+        vec2 a = polygon_points[i];
+        vec2 b = polygon_points[(i + 1) % polygon_point_count];
+        best = min(best, dist2_segment(p, a, b));
+    }
+    return best;
+}
+
+// Squared distance from p to the axis-aligned rectangle whose bottom-right
+// corner is origin + size (the tuft's full footprint).
+float dist2_to_rect(vec2 p, vec2 origin, vec2 size) {
+    vec2 q = clamp(p, origin, origin + size);
+    vec2 d = p - q;
+    return dot(d, d);
+}
+
 void vertex()
 {
     world_pos = (MODEL_MATRIX * vec4(VERTEX.xy, 0.0, 1.0)).xy;
@@ -152,7 +235,7 @@ void fragment()
     // the grass; it must be multiplied back into the final output.
     vec4 sprite_color = COLOR;
 
-    vec2 cell_size = tuft_world_size * spacing;
+    vec2 cell_size = tuft_world_size_a * spacing;
     vec2 cell = floor(world_pos / cell_size);
 
     // Search the 3x3 window of cells around this fragment: any of them may
@@ -162,6 +245,12 @@ void fragment()
     for (int dy = -1; dy <= 1; dy++) {
         for (int dx = -1; dx <= 1; dx++) {
             vec2 cc = cell + vec2(float(dx), float(dy));
+            // Depth split fast path: skip whole cells that lie entirely on
+            // the other layer's side of the split line (tuft origins always
+            // stay inside their own cell), so each layer only does the clump
+            // and copy math for cells that can belong to it.
+            if (depth_split_mode == 1 && cc.y * cell_size.y >= depth_split_y) continue;
+            if (depth_split_mode == 2 && (cc.y + 1.0) * cell_size.y < depth_split_y) continue;
 
             // Clumping field at this cell's centre, sampled per cell so
             // neighbouring fragments agree. Drives how many tufts the cell
@@ -184,10 +273,22 @@ void fragment()
                 // Per-copy seed: every tuft of every cell is independent.
                 vec2 sk = cc * 17.31 + vec2(float(k) * 7.17, 3.1);
 
-                // Per-copy type: random roll picks type B or type A, and the
-                // chosen type brings its own size, diffuse, normal and specular.
-                bool kind_b = hash21(sk + vec2(5.9, 13.1)) < grass_b_chance;
-                vec2 base_size = kind_b ? tuft_world_size_b : tuft_world_size;
+                // Per-copy type: a weighted roll picks type A / B / C by normalizing the
+                // three chance uniforms, and the chosen type brings its own
+                // size, diffuse, normal and specular.
+                float type_roll = hash21(sk + vec2(5.9, 13.1));
+                int kind;
+                float chance_total = max(0.0001, grass_a_chance + grass_b_chance + grass_c_chance);
+                float a_share = grass_a_chance / chance_total;
+                float b_share = a_share + grass_b_chance / chance_total;
+                if (type_roll < a_share) {
+                    kind = 0;
+                } else if (type_roll < b_share) {
+                    kind = 1;
+                } else {
+                    kind = 2;
+                }
+                vec2 base_size = kind == 1 ? tuft_world_size_b : (kind == 2 ? tuft_world_size_c : tuft_world_size_a);
 
                 // Random per-copy size. Capped so a scaled tuft never grows
                 // larger than its cell, which keeps the 3x3 window enough to
@@ -206,11 +307,66 @@ void fragment()
                 vec2 place = vec2(0.5) + (vec2(rx, ry) - 0.5) * jitter;
                 vec2 origin = cc * cell_size + cell_size * place;
 
+                // Authoritative depth cull for cells straddling the split: a
+                // tuft sits behind the player when rooted above the line, in
+                // front when rooted at/below it. Each tuft is owned by exactly
+                // one layer, so the halves never duplicate or pop as the line
+                // follows the player.
+                if (depth_split_mode == 1 && origin.y >= depth_split_y) continue;
+                if (depth_split_mode == 2 && origin.y < depth_split_y) continue;
+
+                // Cheap footprint test first: most pixels on the meadow lie
+                // between tufts, and the border math below is the expensive
+                // part (O(64) loops over the outline). Only fragments that
+                // actually fall inside a copy's footprint pay for it — a
+                // rejected border tuft is treated exactly like a missing one,
+                // so moving this test earlier changes nothing visually.
                 vec2 in_tuft = world_pos - origin;
                 bool inside = in_tuft.x >= 0.0 && in_tuft.y >= 0.0 &&
                               in_tuft.x < tuft_size.x && in_tuft.y < tuft_size.y;
                 if (!inside) {
                     continue;
+                }
+
+                // Border rejection ("outline rim"). The tuft only draws when
+                // its whole footprint (all four corners) stays strictly inside
+                // the drawn polygon, every corner sits at least
+                // ``border_radius`` away from every outline edge, AND every
+                // outline vertex keeps at least ``border_radius`` clearance
+                // from the full footprint rectangle. Together those two tests
+                // give the exact minimum distance between the tuft's
+                // height-and-width box and the outline: a long tuft whose edge
+                // midline slides past an outline vertex would otherwise still
+                // be hard-sliced mid-tuft even though its corners are far. The
+                // result is an empty rim of bare ground just inside the
+                // shape's edge, so grass never pokes past the drawn meadow.
+                // Border math is skipped entirely while the shape hasn't been
+                // drawn (polygon_point_count == 0).
+                if (polygon_point_count >= 3) {
+                    vec2 c0 = origin;
+                    vec2 c1 = origin + vec2(tuft_size.x, 0.0);
+                    vec2 c2 = origin + vec2(0.0, tuft_size.y);
+                    vec2 c3 = origin + tuft_size;
+                    bool fully_inside = point_in_polygon(c0) && point_in_polygon(c1) &&
+                                        point_in_polygon(c2) && point_in_polygon(c3);
+                    if (!fully_inside) {
+                        continue;
+                    }
+                    float r2 = border_radius * border_radius;
+                    if (dist2_to_outline(c0) < r2 || dist2_to_outline(c1) < r2 ||
+                        dist2_to_outline(c2) < r2 || dist2_to_outline(c3) < r2) {
+                        continue;
+                    }
+                    bool vertex_near_footprint = false;
+                    for (int i = 0; i < polygon_point_count; i++) {
+                        if (dist2_to_rect(polygon_points[i], origin, tuft_size) < r2) {
+                            vertex_near_footprint = true;
+                            break;
+                        }
+                    }
+                    if (vertex_near_footprint) {
+                        continue;
+                    }
                 }
 
                 vec2 uv = in_tuft / tuft_size;
@@ -228,7 +384,7 @@ void fragment()
                 // sway_mode 1 (wave): the phase is driven by the tuft's world
                 // position and time, so a gust band travels across the meadow
                 // and each tuft leans as the band passes over it.
-                vec2 texel_count = kind_b ? tuft_texels_b : tuft_texels;
+                vec2 texel_count = kind == 1 ? tuft_texels_b : (kind == 2 ? tuft_texels_c : tuft_texels_a);
                 vec2 puv = floor(uv * texel_count) / texel_count;
                 float copy_hash = hash21(sk + vec2(8.1, 2.7));
                 float phase;
@@ -243,6 +399,13 @@ void fragment()
                 float wind_n = wind_noise(puv * wind_scale + wind_drift) * 2.0 - 1.0;
                 float sway_row = max(0.0, 1.0 - puv.y - sway_height_start) * sin(TIME * sway_speed + phase);
                 float sway_uv = (sway_row * sway_strength + wind_n * step(puv.y, 1.0 - wind_height_start) * wind_strength) / texel_count.x;
+                // Pixel-perfect: snap the horizontal shift to whole screen
+                // pixels (fwidth gives the world-space size of a pixel at the
+                // current zoom), so each texel row steps in discrete pixel
+                // jumps instead of drifting sub-pixel and shimmering.
+                float pixel_w = fwidth(world_pos).x;
+                float sway_world = round(sway_uv * tuft_size.x / pixel_w) * pixel_w;
+                sway_uv = sway_world / tuft_size.x;
                 // Clamped so the swayed sample never wraps/bleeds over the
                 // tuft borders (samplers use repeat, which would copy blades).
                 vec2 uvw = clamp(uv + vec2(sway_uv, 0.0), 0.0, 1.0);
@@ -257,26 +420,30 @@ void fragment()
                     uv_tx.x = 1.0 - uvw.x;
                 }
 
-                // Diffuse + lighting maps for the chosen type. Type A reads
-                // the sprite's CanvasTexture through the engine built-ins
-                // NORMAL_TEXTURE / SPECULAR_SHININESS_TEXTURE; type B reads
-                // its own samplers. The normal is decoded with the engine's
-                // own 2D conversion (Y down), sampled per-tuft so each tuft
-                // lights from its own map.
+                // Diffuse + lighting maps for the chosen type. Each type carries its own
+                // samplers; the normal is decoded with the engine's own 2D
+                // conversion (Y down), sampled per-tuft so each tuft lights
+                // from its own map.
                 vec4 tex;
                 vec3 nrm;
-                if (kind_b) {
+                if (kind == 2) {
+                    tex = texture(grass_texture_c, uv_tx);
+                    vec4 ntex = texture(grass_normal_c, uvw);
+                    nrm.xy = ntex.xy * vec2(2.0, -2.0) - vec2(1.0, -1.0);
+                    nrm.z = sqrt(max(0.001, 1.0 - dot(nrm.xy, nrm.xy)));
+                    spec_amount = texture(grass_specular_c, uvw).r;
+                } else if (kind == 1) {
                     tex = texture(grass_texture_b, uv_tx);
                     vec4 ntex = texture(grass_normal_b, uvw);
                     nrm.xy = ntex.xy * vec2(2.0, -2.0) - vec2(1.0, -1.0);
                     nrm.z = sqrt(max(0.001, 1.0 - dot(nrm.xy, nrm.xy)));
                     spec_amount = texture(grass_specular_b, uvw).r;
                 } else {
-                    tex = texture(grass_texture, uv_tx);
-                    vec4 ntex = texture(NORMAL_TEXTURE, uvw);
+                    tex = texture(grass_texture_a, uv_tx);
+                    vec4 ntex = texture(grass_normal_a, uvw);
                     nrm.xy = ntex.xy * vec2(2.0, -2.0) - vec2(1.0, -1.0);
                     nrm.z = sqrt(max(0.001, 1.0 - dot(nrm.xy, nrm.xy)));
-                    spec_amount = texture(SPECULAR_SHININESS_TEXTURE, uvw).r;
+                    spec_amount = texture(grass_specular_a, uvw).r;
                 }
                 if (tex.a <= 0.001) {
                     continue;

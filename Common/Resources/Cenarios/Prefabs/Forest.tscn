@@ -11,7 +11,7 @@
 [ext_resource type="SpriteFrames" uid="uid://1fmvng3xnr6x" path="res://Common/Resources/Props/PropsSpriteFrames/CheckPointSpriteFrames.tres" id="8_ur80d"]
 [ext_resource type="Material" uid="uid://bmhae5w3l2a6" path="res://Common/Resources/Cenarios/CenarioMaterials/Forest/Grass_Repeat_Material.tres" id="9_grassmat"]
 [ext_resource type="AudioStream" uid="uid://cuqjspfoch1k5" path="res://Common/Resources/Sounds/wind01.wav" id="11_1m4i4"]
-[ext_resource type="Texture2D" uid="uid://bssam5k7tqkel" path="res://Common/Resources/Cenarios/CenarioCanvasTextures/Grass_Tufts_CanvasTexture.tres" id="14_grassct"]
+[ext_resource type="Script" uid="uid://deis3u4ai7ja5" path="res://Common/Resources/Misc/Effects/GrassDepthSplitter.cs" id="15_gdepth"]
 
 [sub_resource type="Gradient" id="Gradient_ur80d"]
 offsets = PackedFloat32Array(0, 0.6773547)
@@ -276,11 +276,41 @@ navigation_enabled = false
 
 [node name="Grass_Sprites" type="Node2D" parent="Ground/Grass" unique_id=1328630293]
 
-[node name="Grass_Sprite_1" type="Sprite2D" parent="Ground/Grass/Grass_Sprites" unique_id=1246605551]
+[node name="Grass_1" type="Node2D" parent="Ground/Grass/Grass_Sprites" unique_id=2050587029]
+
+[node name="Grass_Depth_Splitter" type="Node" parent="Ground/Grass/Grass_Sprites/Grass_1" unique_id=-1495967294]
+script = ExtResource("15_gdepth")
+BackLayerPath = NodePath("../Grass_Sprite_1")
+FrontLayerPath = NodePath("../Grass_Sprite_1/Grass_Sprite_2")
+
+[node name="Grass_Sprite_1" type="Polygon2D" parent="Ground/Grass/Grass_Sprites/Grass_1" unique_id=1246605551]
 material = ExtResource("9_grassmat")
-position = Vector2(6445.002, 3183.0007)
-scale = Vector2(1603.0999, 915.71436)
-texture = ExtResource("14_grassct")
+position = Vector2(7148.8213, 3181.5632)
+scale = Vector2(1754.813, 914.5258)
+polygon = PackedVector2Array(-18.660578, -10.442092, 17.811115, -10.4650545, 17.80428, -3.49751, 17.818525, -1.1072004, 16.138004, -1.1257892, 13.065882, -2.1558313, 9.86725, -3.487669, 8.957752, -3.9862878, 6.980333, -3.9195867, 6.2017336, -3.8024964, 6.2160807, -3.2510145, 5.1874485, -3.3154452, 3.7826705, -3.2761316, 2.9274526, -2.7159133, 2.5556726, -3.4716074, 1.5216317, -3.4001918, 1.2708926, -2.7845724, 1.0910101, -1.9219974, -1.6698909, -1.209985, -13.069668, -3.6823053)
+
+[node name="Grass_Sprite_2" type="Polygon2D" parent="Ground/Grass/Grass_Sprites/Grass_1/Grass_Sprite_1" unique_id=580652853]
+material = ExtResource("9_grassmat")
+scale = Vector2(1, 0.99999994)
+polygon = PackedVector2Array(-18.660578, -10.442092, 17.811115, -10.4650545, 17.80428, -3.49751, 17.818525, -1.1072004, 16.138004, -1.1257892, 13.065882, -2.1558313, 9.86725, -3.487669, 8.957752, -3.9862878, 6.980333, -3.9195867, 6.2017336, -3.8024964, 6.2160807, -3.2510145, 5.1874485, -3.3154452, 3.7826705, -3.2761316, 2.9274526, -2.7159133, 2.5556726, -3.4716074, 1.5216317, -3.4001918, 1.2708926, -2.7845724, 1.0910101, -1.9219974, -1.6698909, -1.209985, -13.069668, -3.6823053)
+
+[node name="Grass_2" type="Node2D" parent="Ground/Grass/Grass_Sprites" unique_id=1557901340]
+
+[node name="Grass_Depth_Splitter" type="Node" parent="Ground/Grass/Grass_Sprites/Grass_2" unique_id=1839521836]
+script = ExtResource("15_gdepth")
+BackLayerPath = NodePath("../Grass_Sprite_3")
+FrontLayerPath = NodePath("../Grass_Sprite_3/Grass_Sprite_4")
+
+[node name="Grass_Sprite_3" type="Polygon2D" parent="Ground/Grass/Grass_Sprites/Grass_2" unique_id=1546603042]
+material = ExtResource("9_grassmat")
+position = Vector2(7149.0005, 13841)
+scale = Vector2(1754.813, 914.5258)
+polygon = PackedVector2Array(-17.853186, -7.3371353, -14.25964, -9.939577, -6.896462, -9.128227, -2.5273352, -9.77009, 0.67870474, -9.196022, 4.3953404, -10.58144, 9.486481, -10.141868, 13.60544, -9.655277, 17.811115, -10.4650545, 17.818525, -1.1072004, -1.6263845, -1.1448555, -18.675495, -1.1601639)
+
+[node name="Grass_Sprite_4" type="Polygon2D" parent="Ground/Grass/Grass_Sprites/Grass_2/Grass_Sprite_3" unique_id=1664971971]
+material = ExtResource("9_grassmat")
+scale = Vector2(1, 0.99999994)
+polygon = PackedVector2Array(-17.853186, -7.3371353, -14.25964, -9.939577, -6.896462, -9.128227, -2.5273352, -9.77009, 0.67870474, -9.196022, 4.3953404, -10.58144, 9.486481, -10.141868, 13.60544, -9.655277, 17.811115, -10.4650545, 17.818525, -1.1072004, -1.6263845, -1.1448555, -18.675495, -1.1601639)
 
 [node name="Ground_Road_TileMapLayer" type="TileMapLayer" parent="Ground" unique_id=1520310380]
 tile_set = ExtResource("1_2xox5")
@@ -389,7 +419,7 @@ max_distance = 100000.0
 bus = &"SFX"
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1665013977]
-color = Color(0.037353516, 0.037353516, 0.0625, 1)
+color = Color(0.26171875, 0.26171875, 0.26171875, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=369306316]
 environment = SubResource("Environment_4lmtj")

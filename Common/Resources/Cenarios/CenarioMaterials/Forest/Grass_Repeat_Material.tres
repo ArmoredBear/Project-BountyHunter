@@ -1,38 +1,52 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://bmhae5w3l2a6"]
 
 [ext_resource type="Shader" uid="uid://cix2o5mre4lah" path="res://Common/Resources/Shaders/GrassRepeat.gdshader" id="1_grassrepeat"]
-[ext_resource type="Texture2D" uid="uid://djpj72suk5wgq" path="res://Common/Resources/Cenarios/CenarioArt/Environment/Forest/Grass02.png" id="2_grasstex"]
+[ext_resource type="Texture2D" uid="uid://ds8mtq1a2huy6" path="res://Common/Resources/Cenarios/CenarioNormalMaps/Grass02_n.png" id="2b_grasstexan"]
+[ext_resource type="Texture2D" uid="uid://ydtpn3coct4n" path="res://Common/Resources/Cenarios/CenarioSpecularMaps/Grass02_s.png" id="2c_grasstexas"]
+[ext_resource type="Texture2D" uid="uid://djpj72suk5wgq" path="res://Common/Resources/Cenarios/CenarioArt/Environment/Forest/Grass02.png" id="2_grasstexa"]
+[ext_resource type="Texture2D" uid="uid://c63016t5f7j66" path="res://Common/Resources/Cenarios/CenarioNormalMaps/Grass04_n.png" id="3_5xaep"]
 [ext_resource type="Texture2D" uid="uid://c8ty63evfhx0a" path="res://Common/Resources/Cenarios/CenarioArt/Environment/Forest/Grass03.png" id="3_grasstexb"]
 [ext_resource type="Texture2D" uid="uid://ccttfhbq7enu7" path="res://Common/Resources/Cenarios/CenarioNormalMaps/Grass03_n.png" id="4_grasstexbn"]
+[ext_resource type="Texture2D" uid="uid://q64oih5ltbm8" path="res://Common/Resources/Cenarios/CenarioSpecularMaps/Grass04_s.png" id="5_e6uxv"]
 [ext_resource type="Texture2D" uid="uid://chfij7nvxbyui" path="res://Common/Resources/Cenarios/CenarioSpecularMaps/Grass03_s.png" id="5_grasstexbs"]
+[ext_resource type="Texture2D" uid="uid://eixuwaxrb7vl" path="res://Common/Resources/Cenarios/CenarioArt/Environment/Forest/Grass04.png" id="8_1b7g4"]
 
 [resource]
 shader = ExtResource("1_grassrepeat")
-shader_parameter/grass_texture = ExtResource("2_grasstex")
-shader_parameter/tuft_world_size = Vector2(50, 26)
+shader_parameter/grass_texture_a = ExtResource("2_grasstexa")
+shader_parameter/grass_normal_a = ExtResource("2b_grasstexan")
+shader_parameter/grass_specular_a = ExtResource("2c_grasstexas")
 shader_parameter/grass_texture_b = ExtResource("3_grasstexb")
 shader_parameter/grass_normal_b = ExtResource("4_grasstexbn")
 shader_parameter/grass_specular_b = ExtResource("5_grasstexbs")
+shader_parameter/grass_texture_c = ExtResource("8_1b7g4")
+shader_parameter/grass_normal_c = ExtResource("3_5xaep")
+shader_parameter/grass_specular_c = ExtResource("5_e6uxv")
+shader_parameter/tuft_world_size_a = Vector2(50, 26)
 shader_parameter/tuft_world_size_b = Vector2(22, 88)
+shader_parameter/tuft_world_size_c = Vector2(47, 47)
+shader_parameter/grass_a_chance = 0.50000002375
 shader_parameter/grass_b_chance = 0.5
-shader_parameter/tuft_texels = Vector2(40, 21)
+shader_parameter/grass_c_chance = 0.50000002375
+shader_parameter/tuft_texels_a = Vector2(40, 21)
 shader_parameter/tuft_texels_b = Vector2(18, 71)
-shader_parameter/grass_color_a = Color(0.18702698, 0.40234375, 0.24758482, 1)
-shader_parameter/grass_color_b = Color(0.17614746, 0.43359375, 0.21953729, 1)
+shader_parameter/tuft_texels_c = Vector2(38, 38)
+shader_parameter/grass_color_a = Color(0.06756592, 0.48046875, 0.17976771, 1)
+shader_parameter/grass_color_b = Color(0.25390625, 0.5, 0.29296878, 1)
 shader_parameter/grass_color_c = Color(0.42728972, 0.64453125, 0.26435852, 1)
 shader_parameter/color_variation = 1.0
 shader_parameter/spacing = 7.000000285
 shader_parameter/jitter = 0.70000003325
-shader_parameter/size_variation = 0.50000002375
+shader_parameter/size_variation = 1.0
 shader_parameter/flip_chance = 0.5
 shader_parameter/clump_scale = 800.0
 shader_parameter/clump_strength = 0.7
-shader_parameter/density = 4.0
+shader_parameter/density = 10.000000475
 shader_parameter/empty_chance = 0.400000019
 shader_parameter/normal_strength = 0.150000007125
 shader_parameter/specular_strength = 0.150000007125
 shader_parameter/shininess = 24.0
-shader_parameter/wind_strength = 1.0
+shader_parameter/wind_strength = 1.0000000475
 shader_parameter/wind_scale = 10.0
 shader_parameter/wind_speed = 0.1
 shader_parameter/wind_height_start = 0.0
@@ -42,3 +56,5 @@ shader_parameter/sway_speed = 4.0
 shader_parameter/sway_height_start = 0.0
 shader_parameter/wave_scale = 0.14000000665
 shader_parameter/wave_speed = 0.8
+shader_parameter/depth_split_mode = 0
+shader_parameter/depth_split_y = 0.0

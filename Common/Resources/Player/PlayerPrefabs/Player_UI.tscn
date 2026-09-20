@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dyqqyru3wuflp" path="res://Common/Resources/Player/User Interface/UI_Art/Damage_Armor_Screen.png" id="3_8s88g"]
 [ext_resource type="Texture2D" uid="uid://dl8x3gdfx7ffe" path="res://Common/Resources/Player/User Interface/UI_Art/Healthbar_Background.png" id="3_aoo3p"]
 [ext_resource type="Shader" uid="uid://bgry4vid31342" path="res://Common/Resources/Shaders/Healthlines_Shader.tres" id="3_hcd7x"]
+[ext_resource type="Texture2D" uid="uid://c8875x47f5jiu" path="res://Common/Resources/Player/User Interface/UI_Art/Target.png" id="3_n33t6"]
 [ext_resource type="Script" uid="uid://bod52tlw7uw2n" path="res://Common/Resources/Player/User Interface/UI_Scripts/DamageArmorFlash.cs" id="4_2be78"]
 [ext_resource type="Texture2D" uid="uid://dsi8vnmxm1kh4" path="res://Common/Resources/Player/User Interface/UI_Art/Health_Lines.png" id="4_7hy6p"]
 [ext_resource type="Texture2D" uid="uid://csuln21ai4cjl" path="res://Common/Resources/Player/User Interface/UI_Art/Vignette.png" id="4_avq2p"]
@@ -29,6 +30,8 @@
 [ext_resource type="Script" uid="uid://dm1wopy16ixjv" path="res://Common/Resources/Player/User Interface/UI_Scripts/Player_Armorbar_UI.cs" id="18_f24em"]
 [ext_resource type="Script" uid="uid://5sbu7y1k8qjg" path="res://Common/Resources/Player/User Interface/UI_Scripts/Heart_Flare.cs" id="20_55fln"]
 [ext_resource type="Material" uid="uid://dvovuci63be3t" path="res://Common/Resources/Shaders/Staminabar_Bars_Material.tres" id="21_bars_mat"]
+[ext_resource type="PackedScene" uid="uid://dnojyx3ovp4b0" path="res://Common/Resources/Player/PlayerPrefabs/Bullets/Bullet.tscn" id="22_bltsc"]
+[ext_resource type="Script" uid="uid://bllxi3kj7r6ww" path="res://Common/Resources/Player/User Interface/UI_Scripts/AimSystem.cs" id="23_aim"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8s88g"]
 texture = ExtResource("3_1k77a")
@@ -61,6 +64,28 @@ shader_parameter/Flare_Size = 0.02
 
 [node name="CanvasLayer - Player_UI" type="CanvasLayer" unique_id=1934308656]
 follow_viewport_scale = 2.0
+
+[node name="Control - Target_System" type="Control" parent="." unique_id=932334960]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1280.0
+offset_top = 540.0
+offset_right = 1320.0
+offset_bottom = 580.0
+mouse_filter = 2
+script = ExtResource("23_aim")
+Bullet_Scene = ExtResource("22_bltsc")
+
+[node name="TextureRect - Target" type="TextureRect" parent="Control - Target_System" unique_id=521282424]
+self_modulate = Color(0.91015625, 0.8736292, 0.73239136, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_n33t6")
 
 [node name="Control - PlayerStatus" type="Control" parent="." unique_id=359875487]
 layout_mode = 3

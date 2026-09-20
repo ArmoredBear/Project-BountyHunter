@@ -156,7 +156,7 @@ shadow_filter = 1
 shadow_filter_smooth = 5.5
 shadow_item_cull_mask = 3
 texture = ExtResource("9_5xv4b")
-texture_scale = 4.0
+texture_scale = 6.0
 height = 30.0
 
 [node name="SpotLight2D_w_Shadows" type="PointLight2D" parent="Player_Body" unique_id=88837110]
@@ -188,6 +188,9 @@ script = ExtResource("16_wseaa")
 
 [node name="Navigation_Collider_Detector" type="CollisionShape2D" parent="Player_Body/NavigationChunkDetector" unique_id=1319378981]
 shape = SubResource("CircleShape2D_srvgw")
+
+[node name="Target_Shoot_Point" type="Node2D" parent="Player_Body" unique_id=1146525949]
+position = Vector2(0, -260)
 
 [node name="Player_UI" parent="." unique_id=1462367415 instance=ExtResource("9_xt5uy")]
 unique_name_in_owner = true

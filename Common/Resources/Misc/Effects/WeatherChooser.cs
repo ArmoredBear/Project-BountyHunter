@@ -22,8 +22,8 @@ public partial class WeatherChooser : Control
     [ExportCategory("Weather")]
     [Export] public ColorRect RainRect;
 
-    // GpuParticles2D node rendering the snowfall.
-    [Export] public GpuParticles2D SnowParticles;
+    // Fullscreen ColorRect carrying the snow shader.
+    [Export] public ColorRect SnowRect;
 
     #endregion
     //!---------------------------------------------------------------------------------------------------------
@@ -42,8 +42,8 @@ public partial class WeatherChooser : Control
         if (RainRect != null)
             RainRect.Visible = showRain;
 
-        if (SnowParticles != null)
-            SnowParticles.Visible = showSnow;
+        if (SnowRect != null)
+            SnowRect.Visible = showSnow;
     }
 
     #endregion

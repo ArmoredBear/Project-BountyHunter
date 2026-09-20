@@ -13,7 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://bgth7utmp6cmt" path="res://Common/Resources/Player/User Interface/UI_Art/Decoration_1.png" id="6_0raye"]
 [ext_resource type="Shader" uid="uid://bailx8twy6k85" path="res://Common/Resources/Shaders/PassingMist.gdshader" id="6_e543h"]
 [ext_resource type="Material" uid="uid://dcb22ixxk4on5" path="res://Common/Resources/Misc/Effects/Other/OtherMaterials/CloudsMaterial.tres" id="6_pt4oh"]
-[ext_resource type="Material" uid="uid://bh41v4gvbpqc" path="res://Common/Resources/Misc/Effects/Other/OtherMaterials/SnowParticleMaterial.tres" id="8_qr2lj"]
 [ext_resource type="Script" uid="uid://bew5eemlw0u7u" path="res://Common/Resources/Player/User Interface/UI_Scripts/Quit.cs" id="9_b0ek2"]
 [ext_resource type="Script" uid="uid://c47djscgjx4l4" path="res://Common/Resources/General Scritps/LoadGame.cs" id="9_l1guo"]
 [ext_resource type="Script" uid="uid://bgqhbgpctpshg" path="res://Common/Resources/Credits/Credits.cs" id="10_kewiu"]
@@ -28,8 +27,6 @@
 [ext_resource type="Texture2D" uid="uid://d2aiclfscral5" path="res://Common/Resources/Props/Props CanvasTextures/MenuGear_CanvasTexture.tres" id="16_w5isc"]
 [ext_resource type="Script" uid="uid://cbj7ml5q7yakc" path="res://Common/Resources/General Scritps/Audio/Sound Scripts/MenuUiSound.cs" id="17_csyh4"]
 [ext_resource type="FontFile" uid="uid://bnnwxabllsohk" path="res://Common/Resources/Player/User Interface/Fonts/Springmarch/springmarch.roman.otf" id="17_e0r6h"]
-[ext_resource type="Material" path="res://Common/Resources/Misc/Effects/Other/OtherMaterials/SnowFlakeCanvasMaterial.tres" id="18_canvas"]
-[ext_resource type="Texture2D" uid="uid://bb7yww6kfb0gp" path="res://Common/Resources/Misc/Effects/Other/OtherTextures/flakes_atlas.png" id="18_flakes"]
 [ext_resource type="Script" uid="uid://lo2ty3h2g2h" path="res://Common/Resources/General Scritps/Options/ControlsPage.cs" id="19_4smg1"]
 [ext_resource type="Texture2D" uid="uid://bptugyhcr3sdh" path="res://Common/Resources/Player/User Interface/UI_Art/Chain.png" id="19_fypy1"]
 [ext_resource type="Script" uid="uid://cs5cjy2xn8bj1" path="res://Common/Resources/General Scritps/Options/LanguagePage.cs" id="22_xcj4t"]
@@ -37,6 +34,7 @@
 [ext_resource type="StyleBox" uid="uid://dsfca15g30uu2" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Panel_Texture_StyleBox2.tres" id="26_rh3ee"]
 [ext_resource type="StyleBox" uid="uid://bfsxvntie4gim" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Panel_Texture_StyleBox3.tres" id="28_5bm1l"]
 [ext_resource type="StyleBox" uid="uid://bm45rl48x41lg" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Simple_Button_Texture_Stylebox3.tres" id="29_pt4oh"]
+[ext_resource type="Material" uid="uid://dyt7uqm7nas8t" path="res://Common/Resources/Misc/Effects/Other/OtherMaterials/SnowfallMaterial.tres" id="38_snow"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_obmtt"]
 shader = ExtResource("2_xcj4t")
@@ -375,7 +373,7 @@ offset_right = 4351.0
 offset_bottom = 2886.0
 color = Color(0, 0, 0, 1)
 
-[node name="Control - Background Effects" type="Control" parent="." unique_id=1653232414 node_paths=PackedStringArray("RainRect", "SnowParticles")]
+[node name="Control - Background Effects" type="Control" parent="." unique_id=1653232414 node_paths=PackedStringArray("RainRect", "SnowRect")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -384,7 +382,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_qr2lj")
 RainRect = NodePath("ColorRect - Rain")
-SnowParticles = NodePath("GPUParticles2D - Snow")
+SnowRect = NodePath("ColorRect - Snow")
 
 [node name="ColorRect - LightningFlash" type="ColorRect" parent="Control - Background Effects" unique_id=295951374]
 material = SubResource("ShaderMaterial_obmtt")
@@ -404,11 +402,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="ColorRect - Snow" type="ColorRect" parent="Control - Background Effects" unique_id=1591132907]
+material = ExtResource("38_snow")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Node2D - LightningEffect" type="Node2D" parent="Control - Background Effects" unique_id=19446547 node_paths=PackedStringArray("FlashRect", "FlashParticleNodes")]
 script = ExtResource("3_obmtt")
 FlashRect = NodePath("../ColorRect - LightningFlash")
-FlashExtraMaterials = Array[ShaderMaterial]([ExtResource("3_wtra2"), ExtResource("6_pt4oh")])
-FlashParticleNodes = [NodePath("../GPUParticles2D - Snow")]
+FlashExtraMaterials = Array[ShaderMaterial]([ExtResource("3_wtra2"), ExtResource("6_pt4oh"), ExtResource("38_snow")])
+FlashParticleNodes = []
 BoltCount = 8
 BoltGlowWidth = 5.0
 BoltGlowAlpha = 1.0
@@ -428,20 +435,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("NoiseTexture2D_fypy1")
-
-[node name="GPUParticles2D - Snow" type="GPUParticles2D" parent="Control - Background Effects" unique_id=1115426997]
-material = ExtResource("18_canvas")
-position = Vector2(1280, 0)
-amount = 8000
-texture = ExtResource("18_flakes")
-lifetime = 18.0
-preprocess = 18.0
-speed_scale = 0.7
-randomness = 1.0
-fixed_fps = 90
-visibility_rect = Rect2(-1280, 0, 2560, 1080)
-local_coords = true
-process_material = ExtResource("8_qr2lj")
 
 [node name="ColorRect - LogoBackground" type="ColorRect" parent="." unique_id=269267948]
 offset_top = 226.0
