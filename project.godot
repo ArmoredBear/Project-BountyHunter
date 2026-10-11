@@ -21,6 +21,7 @@ boot_splash/minimum_display_time=5000
 [audio]
 
 buses/default_bus_layout="uid://cgm37sncx5b87"
+general/2d_panning_strength=2.0
 
 [autoload]
 
@@ -31,8 +32,10 @@ Game_Manager="*res://Common/Resources/General Scritps/GameManager.cs"
 Scene_Manager="*res://Common/MainScenes/Scene_Manager.tscn"
 SaveLoadControl="*res://Common/Resources/General Scritps/Save_Load_Control.cs"
 AudioManager="*res://Common/Resources/General Scritps/Audio/AudioManager.cs"
+SfxManager="*res://Common/Resources/General Scritps/Audio/SfxManager.cs"
 Settings="*res://Common/Resources/General Scritps/Options/Settings.cs"
 TransitionManager="*res://Common/Resources/General Scritps/TransitionManager.tscn"
+PerfMonitor="*res://Common/Resources/_Debug/PerfMonitor.gd"
 
 [display]
 

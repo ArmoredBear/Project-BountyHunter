@@ -14,6 +14,11 @@ using Godot;
 	**  grass material locked to the matching depth_split_mode; every frame
 	**  the split line follows the player's feet, so tufts cross layers as
 	**  the player walks past them.
+	**  3 - Culls an entire meadow (both layers) on the CPU when its world
+	**  bounds fall outside the camera's view, so off-screen grass never
+	**  pays for the heavy per-pixel scatter shader. The meadows are huge
+	**  polygons whose AABBs defeat the renderer's own item culling, so this
+	**  check must be done in script.
 	*
 *-----------------------------------------------------------------------------------------------------------------------**/
 
@@ -40,11 +45,19 @@ public partial class GrassDepthSplitter : Node
     // strip instead of hard-sliced tufts on the outline.
     [Export(PropertyHint.Range, "0,200")] public float BorderRadius = 32.0f;
 
+    [ExportCategory("Visibility Culling")]
+    [Export] public bool Cull_When_Offscreen = true;
+    [Export(PropertyHint.Range, "0,2000,50")] public float Cull_Margin = 400.0f;
+
     private Polygon2D _backLayer;
     private Polygon2D _frontLayer;
     private ShaderMaterial _backMaterial;
     private ShaderMaterial _frontMaterial;
     private CharacterBody2D _playerBody;
+    private Camera2D _worldCamera;
+    private Rect2 _meadowWorldRect;
+    private bool _meadowMeasured;
+    private bool _meadowHidden;
 
     #endregion
     //!-------------------------------------------------------------------------------------------------------------------
@@ -92,14 +105,116 @@ public partial class GrassDepthSplitter : Node
                 _playerBody = playerRoot.GetNodeOrNull<CharacterBody2D>("Player_Body");
         }
 
+        _worldCamera = GetNodeOrNull<Camera2D>("/root/Player/Player_Body/Camera2D");
+        if (_worldCamera == null)
+        {
+            Node playerRoot = GetNodeOrNull("/root/Player");
+            if (playerRoot != null)
+                _worldCamera = playerRoot.GetNodeOrNull<Camera2D>("Player_Body/Camera2D");
+        }
+
         UploadOutline();
 
+        UpdateVisibility();
         UpdateSplitLine();
     }
 
     public override void _Process(double delta)
     {
-        UpdateSplitLine();
+        UpdateVisibility();
+
+        if (!_meadowHidden)
+        {
+            UpdateSplitLine();
+        }
+    }
+
+    #endregion
+    //!-------------------------------------------------------------------------------------------------------------------
+
+    //!-------------------------------------------------------------------------------------------------------------------
+    #region Visibility Culling
+    //!-------------------------------------------------------------------------------------------------------------------
+
+    /// <summary>
+    /// Hides this meadow's layers whenever its world bounds stop intersecting
+    /// the camera's visible world rect. The meadow rect is measured lazily on
+    /// the first frame so the instanced scene's hierarchy is fully settled.
+    /// </summary>
+    private void UpdateVisibility()
+    {
+        if (!Cull_When_Offscreen || _backLayer == null || _worldCamera == null)
+        {
+            _meadowHidden = false;
+            ApplyMeadowVisibility();
+            return;
+        }
+
+        if (!_meadowMeasured)
+        {
+            _meadowWorldRect = ComputeMeadowWorldRect(_backLayer);
+            _meadowMeasured = true;
+        }
+
+        Vector2 zoom = _worldCamera.Zoom;
+        if (zoom.X <= 0.0001f || zoom.Y <= 0.0001f)
+        {
+            return;
+        }
+
+        Rect2 viewport_rect = _worldCamera.GetViewportRect();
+        Vector2 world_view_size = viewport_rect.Size / zoom;
+        Vector2 world_view_center = _worldCamera.GetScreenCenterPosition();
+        Rect2 world_view_rect = new Rect2(world_view_center - world_view_size * 0.5f, world_view_size);
+
+        _meadowHidden = !_meadowWorldRect.Grow(Cull_Margin).Intersects(world_view_rect);
+        ApplyMeadowVisibility();
+    }
+
+    /// <summary>
+    /// Mirrors the current hidden state onto both grass layers.
+    /// </summary>
+    private void ApplyMeadowVisibility()
+    {
+        if (_backLayer != null && _backLayer.Visible == _meadowHidden)
+        {
+            _backLayer.Visible = !_meadowHidden;
+        }
+        if (_frontLayer != null && _frontLayer.Visible == _meadowHidden)
+        {
+            _frontLayer.Visible = !_meadowHidden;
+        }
+    }
+
+    /// <summary>
+    /// Measures the meadow's world-space bounds from the back layer's polygon
+    /// (the front layer shares the same outline and lives inside it).
+    /// </summary>
+    private Rect2 ComputeMeadowWorldRect(Polygon2D back)
+    {
+        Vector2[] polygon = back.Polygon;
+        if (polygon == null || polygon.Length == 0)
+        {
+            return new Rect2(back.GlobalPosition, Vector2.One);
+        }
+
+        Transform2D xf = back.GlobalTransform;
+        Vector2 first = xf * polygon[0];
+        float min_x = first.X;
+        float max_x = first.X;
+        float min_y = first.Y;
+        float max_y = first.Y;
+
+        for (int i = 1; i < polygon.Length; i++)
+        {
+            Vector2 p = xf * polygon[i];
+            min_x = Mathf.Min(min_x, p.X);
+            max_x = Mathf.Max(max_x, p.X);
+            min_y = Mathf.Min(min_y, p.Y);
+            max_y = Mathf.Max(max_y, p.Y);
+        }
+
+        return new Rect2(min_x, min_y, max_x - min_x, max_y - min_y);
     }
 
     #endregion

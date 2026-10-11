@@ -9,7 +9,7 @@ using System;
 	**                                                   PURPOSE
 	*  
 	**  1 - Autoloaded singleton that persists the player's settings to a ConfigFile in user://settings.cfg and applies them to the engine.
-	**  2 - Manages audio volumes (Master / Music / SFX), video options (resolution, window mode, VSync) and the game language (pt/en).
+	**  2 - Manages audio volumes (Master / Music / SFX / UI / Ambience), video options (resolution, window mode, VSync) and the game language (pt/en).
 	*
 *-----------------------------------------------------------------------------------------------------------------------**/
 
@@ -37,6 +37,8 @@ public partial class Settings : Node
     private float _masterVolume = 1f;
     private float _musicVolume = 1f;
     private float _sfxVolume = 1f;
+    private float _uiVolume = 1f;
+    private float _ambienceVolume = 1f;
 
     // Video settings.
     private Vector2I _resolution;
@@ -58,6 +60,8 @@ public partial class Settings : Node
     public float MasterVolume => _masterVolume;
     public float MusicVolume => _musicVolume;
     public float SfxVolume => _sfxVolume;
+    public float UiVolume => _uiVolume;
+    public float AmbienceVolume => _ambienceVolume;
 
     public Vector2I Resolution => _resolution;
     public int WindowModeIndex => _windowMode;
@@ -97,6 +101,8 @@ public partial class Settings : Node
             _masterVolume = (float)_config.GetValue(SectionAudio, "master_volume", 1f);
             _musicVolume = (float)_config.GetValue(SectionAudio, "music_volume", 1f);
             _sfxVolume = (float)_config.GetValue(SectionAudio, "sfx_volume", 1f);
+            _uiVolume = (float)_config.GetValue(SectionAudio, "ui_volume", 1f);
+            _ambienceVolume = (float)_config.GetValue(SectionAudio, "ambience_volume", 1f);
 
             _resolution = (Vector2I)_config.GetValue(SectionVideo, "resolution", DisplayServer.WindowGetSize());
             _windowMode = (int)_config.GetValue(SectionVideo, "window_mode", 0);
@@ -145,6 +151,22 @@ public partial class Settings : Node
         EmitSignal(SignalName.SettingsChanged);
     }
 
+    public void SetUiVolume(float value)
+    {
+        _uiVolume = Mathf.Clamp(value, 0f, 1f);
+        ApplyAudioVolumes();
+        SaveSettings();
+        EmitSignal(SignalName.SettingsChanged);
+    }
+
+    public void SetAmbienceVolume(float value)
+    {
+        _ambienceVolume = Mathf.Clamp(value, 0f, 1f);
+        ApplyAudioVolumes();
+        SaveSettings();
+        EmitSignal(SignalName.SettingsChanged);
+    }
+
     /// <summary>
     /// Applies the current volume levels to the audio buses.
     /// Buses that don't exist (index -1) are silently skipped.
@@ -154,6 +176,8 @@ public partial class Settings : Node
         SetBusVolume("Master", _masterVolume);
         SetBusVolume("Music", _musicVolume);
         SetBusVolume("SFX", _sfxVolume);
+        SetBusVolume("UI", _uiVolume);
+        SetBusVolume("Ambience", _ambienceVolume);
     }
 
     private static void SetBusVolume(string busName, float volume)
@@ -465,6 +489,8 @@ public partial class Settings : Node
         _config.SetValue(SectionAudio, "master_volume", _masterVolume);
         _config.SetValue(SectionAudio, "music_volume", _musicVolume);
         _config.SetValue(SectionAudio, "sfx_volume", _sfxVolume);
+        _config.SetValue(SectionAudio, "ui_volume", _uiVolume);
+        _config.SetValue(SectionAudio, "ambience_volume", _ambienceVolume);
 
         _config.SetValue(SectionVideo, "resolution", _resolution);
         _config.SetValue(SectionVideo, "window_mode", _windowMode);

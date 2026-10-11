@@ -91,6 +91,14 @@ uniform float normal_strength : hint_range(0.0, 4.0) = 1.0;
 uniform float specular_strength : hint_range(0.0, 2.0) = 0.3;
 uniform float shininess : hint_range(1.0, 128.0) = 24.0;
 
+group_uniforms base_occlusion;
+// Strength of the ambient darkening in the roots of the blades (0 = off).
+uniform float base_occlusion : hint_range(0.0, 1.0) = 0.0;
+// How far up a blade the root shadow reaches, as a fraction of the blade's
+// height measured from its root. 0.05 hugs the roots, 0.5 shades the lower
+// half of every blade.
+uniform float base_occlusion_height : hint_range(0.01, 1.0) = 0.2;
+
 group_uniforms wind;
 uniform float wind_strength : hint_range(0.0, 2.0) = 1.0;
 uniform float wind_scale : hint_range(0.0, 64.0) = 10.0;
@@ -466,6 +474,19 @@ void fragment()
                     grad = mix(grass_color_a.rgb, grass_color_b.rgb, b * 2.0);
                 } else {
                     grad = mix(grass_color_b.rgb, grass_color_c.rgb, (b - 0.5) * 2.0);
+                }
+
+                // Root occlusion: a blade shades its own base, so the bottom of
+                // the tuft sits in shadow while the tips stay lit. The tuft's own
+                // UV is the height along the blade for free: uv.y is 0 at the tip
+                // and 1 at the root (the direction the sway and wind gradients
+                // already read it in), and neither the horizontal sway offset nor
+                // the mirror flip touches Y, so it can be read straight off `uv`.
+                // Reuses the same two uniforms as the tile grass, so the meadow
+                // and the carpet can be matched with the same numbers.
+                if (base_occlusion > 0.0) {
+                    float along = 1.0 - smoothstep(1.0 - base_occlusion_height, 1.0, uv.y);
+                    grad *= 1.0 - base_occlusion * along;
                 }
 
                 // The texture is pure white, so the blade is tinted directly

@@ -9,7 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://c8875x47f5jiu" path="res://Common/Resources/Player/User Interface/UI_Art/Target.png" id="3_n33t6"]
 [ext_resource type="Script" uid="uid://bod52tlw7uw2n" path="res://Common/Resources/Player/User Interface/UI_Scripts/DamageArmorFlash.cs" id="4_2be78"]
 [ext_resource type="Texture2D" uid="uid://dsi8vnmxm1kh4" path="res://Common/Resources/Player/User Interface/UI_Art/Health_Lines.png" id="4_7hy6p"]
+[ext_resource type="Texture2D" uid="uid://g82845e4otd2" path="res://Common/Resources/Player/User Interface/UI_Art/TargetBackGround.png" id="4_21ak7"]
 [ext_resource type="Texture2D" uid="uid://csuln21ai4cjl" path="res://Common/Resources/Player/User Interface/UI_Art/Vignette.png" id="4_avq2p"]
+[ext_resource type="Texture2D" uid="uid://1knoiw4xlgsj" path="res://Common/Resources/Player/PlayerArt/Lighting/Lantern_LightMap.png" id="4_p7od2"]
+[ext_resource type="Texture2D" uid="uid://bg6hyx45ub0k8" path="res://Common/Resources/Player/User Interface/UI_Art/TargetBackGround2.png" id="5_hhynm"]
+[ext_resource type="Texture2D" uid="uid://covdoiibi7y25" path="res://Common/Resources/Player/User Interface/UI_Art/TargetGear.png" id="5_hpxes"]
 [ext_resource type="FontFile" uid="uid://bnnwxabllsohk" path="res://Common/Resources/Player/User Interface/Fonts/Springmarch/springmarch.roman.otf" id="7_xceuv"]
 [ext_resource type="Script" uid="uid://bh2w4mkx0024f" path="res://Common/Resources/Player/User Interface/UI_Scripts/Player_Staminabar_UI.cs" id="8_8jq05"]
 [ext_resource type="Script" uid="uid://cwidyxrfc27sl" path="res://Common/Resources/Player/User Interface/UI_Scripts/Health_Percent.cs" id="8_egc6g"]
@@ -32,6 +36,11 @@
 [ext_resource type="Material" uid="uid://dvovuci63be3t" path="res://Common/Resources/Shaders/Staminabar_Bars_Material.tres" id="21_bars_mat"]
 [ext_resource type="PackedScene" uid="uid://dnojyx3ovp4b0" path="res://Common/Resources/Player/PlayerPrefabs/Bullets/Bullet.tscn" id="22_bltsc"]
 [ext_resource type="Script" uid="uid://bllxi3kj7r6ww" path="res://Common/Resources/Player/User Interface/UI_Scripts/AimSystem.cs" id="23_aim"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hpxes"]
+texture = ExtResource("5_hhynm")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8s88g"]
 texture = ExtResource("3_1k77a")
@@ -70,22 +79,129 @@ layout_mode = 3
 anchors_preset = 0
 offset_left = 1280.0
 offset_top = 540.0
-offset_right = 1320.0
-offset_bottom = 580.0
+offset_right = 1280.0
+offset_bottom = 540.0
 mouse_filter = 2
 script = ExtResource("23_aim")
 Bullet_Scene = ExtResource("22_bltsc")
+Aim_Sensitivity = 2.0
 
-[node name="TextureRect - Target" type="TextureRect" parent="Control - Target_System" unique_id=521282424]
+[node name="TextureRect - Target_Background" type="TextureRect" parent="Control - Target_System" unique_id=521282424]
 self_modulate = Color(0.91015625, 0.8736292, 0.73239136, 1)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -128.0
+offset_right = 128.0
+offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+texture = ExtResource("4_21ak7")
+
+[node name="TextureRect - Target" type="TextureRect" parent="Control - Target_System/TextureRect - Target_Background" unique_id=1258760823]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("3_n33t6")
+
+[node name="TextureRect - Gear" type="TextureRect" parent="Control - Target_System/TextureRect - Target_Background/TextureRect - Target" unique_id=1837591254]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -133.0
+offset_top = -133.0
+offset_right = 133.0
+offset_bottom = 133.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("5_hpxes")
+expand_mode = 1
+
+[node name="Panel - Target_BG_East" type="Panel" parent="Control - Target_System/TextureRect - Target_Background/TextureRect - Target" unique_id=1098565032]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 200.0
+offset_top = -11.0
+offset_right = 8200.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_hpxes")
+
+[node name="Panel - Target_BG_West" type="Panel" parent="Control - Target_System/TextureRect - Target_Background/TextureRect - Target" unique_id=1931286350]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8200.0
+offset_top = -11.0
+offset_right = -200.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_hpxes")
+
+[node name="Panel - Target_BG_South" type="Panel" parent="Control - Target_System/TextureRect - Target_Background/TextureRect - Target" unique_id=1929658383]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -11.0
+offset_top = 200.0
+offset_right = 11.0
+offset_bottom = 8200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_hpxes")
+
+[node name="Panel - Target_BG_North" type="Panel" parent="Control - Target_System/TextureRect - Target_Background/TextureRect - Target" unique_id=1525477556]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -11.0
+offset_top = -8200.0
+offset_right = 11.0
+offset_bottom = -200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_hpxes")
+
+[node name="SpotLight2D_w_Shadows" type="PointLight2D" parent="Control - Target_System" unique_id=1684799921]
+light_mask = 3
+visibility_layer = 3
+scale = Vector2(0.5, 0.5)
+color = Color(0.946045, 1, 0.46875, 1)
+energy = 8.0
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 1.0
+texture = ExtResource("4_p7od2")
+height = 60.0
 
 [node name="Control - PlayerStatus" type="Control" parent="." unique_id=359875487]
 layout_mode = 3

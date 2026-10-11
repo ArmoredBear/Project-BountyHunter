@@ -35,6 +35,10 @@ public partial class Bullet : Area2D
 	[Export]
 	public float Speed = 2500f;
 
+	/// <summary>Multiplier applied to Speed for easy tuning (1.0 = default feel).</summary>
+	[Export(PropertyHint.Range, "0.5,5.0,0.1")]
+	public float Speed_Multiplier = 1.0f;
+
 	/// <summary>Seconds before the bullet despawns on its own if it never hits anything.</summary>
 	[Export]
 	public float Lifetime = 3.0f;
@@ -65,7 +69,7 @@ public partial class Bullet : Area2D
 			return;
 		}
 
-		GlobalPosition += _direction * Speed * step;
+		GlobalPosition += _direction * Speed * Speed_Multiplier * step;
 	}
 
 	#endregion

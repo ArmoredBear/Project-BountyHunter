@@ -24,6 +24,8 @@ public partial class OptionsMenu : Panel
     [Export] public HSlider MasterSlider;
     [Export] public HSlider MusicSlider;
     [Export] public HSlider SfxSlider;
+    [Export] public HSlider UiSlider;
+    [Export] public HSlider AmbienceSlider;
 
     [Export] public OptionButton ResolutionOption;
     [Export] public OptionButton WindowModeOption;
@@ -57,6 +59,8 @@ public partial class OptionsMenu : Panel
         MasterSlider.ValueChanged += OnMasterChanged;
         MusicSlider.ValueChanged += OnMusicChanged;
         SfxSlider.ValueChanged += OnSfxChanged;
+        UiSlider.ValueChanged += OnUiChanged;
+        AmbienceSlider.ValueChanged += OnAmbienceChanged;
 
         ResolutionOption.ItemSelected += OnResolutionSelected;
         WindowModeOption.ItemSelected += OnWindowModeSelected;
@@ -142,6 +146,18 @@ public partial class OptionsMenu : Panel
         Settings.Instance.SetSfxVolume(NormalizeSliderValue(SfxSlider, value));
     }
 
+    private void OnUiChanged(double value)
+    {
+        if (_syncing) return;
+        Settings.Instance.SetUiVolume(NormalizeSliderValue(UiSlider, value));
+    }
+
+    private void OnAmbienceChanged(double value)
+    {
+        if (_syncing) return;
+        Settings.Instance.SetAmbienceVolume(NormalizeSliderValue(AmbienceSlider, value));
+    }
+
     #endregion
     //!---------------------------------------------------------------------------------------------------------
 
@@ -204,6 +220,8 @@ public partial class OptionsMenu : Panel
         MasterSlider.Value = DenormalizeSliderValue(MasterSlider, Settings.Instance.MasterVolume);
         MusicSlider.Value = DenormalizeSliderValue(MusicSlider, Settings.Instance.MusicVolume);
         SfxSlider.Value = DenormalizeSliderValue(SfxSlider, Settings.Instance.SfxVolume);
+        UiSlider.Value = DenormalizeSliderValue(UiSlider, Settings.Instance.UiVolume);
+        AmbienceSlider.Value = DenormalizeSliderValue(AmbienceSlider, Settings.Instance.AmbienceVolume);
 
         int resIndex = System.Array.IndexOf(_resolutions, Settings.Instance.Resolution);
         if (resIndex >= 0)

@@ -46,11 +46,21 @@ uniform float density_scale : hint_range(16.0, 512.0) = 70.0;
 uniform float density_min : hint_range(0.0, 1.0) = 0.35;
 uniform float macro_scale : hint_range(128.0, 2048.0) = 520.0;
 uniform float macro_strength : hint_range(0.0, 1.0) = 0.18;
+uniform float regional_scale : hint_range(150.0, 2000.0) = 600.0;
+uniform float regional_strength : hint_range(0.0, 1.0) = 0.4;
 
 group_uniforms lighting;
 uniform float normal_strength : hint_range(-4.0, 4.0) = 0.3;
 uniform float specular_strength : hint_range(0.0, 2.0) = 0.15;
 uniform float shininess : hint_range(1.0, 128.0) = 24.0;
+
+group_uniforms base_occlusion;
+// Strength of the ambient darkening in the roots of the blades (0 = off).
+uniform float base_occlusion : hint_range(0.0, 1.0) = 0.0;
+// How far up a blade the root shadow reaches, as a fraction of the streak's
+// rise from the density threshold to the tip. 0.05 hugs the roots, 0.5 shades
+// the lower half of every blade.
+uniform float base_occlusion_height : hint_range(0.01, 1.0) = 0.2;
 
 float hash21(vec2 p) {
     p = fract(p * vec2(123.34, 456.21));
@@ -108,7 +118,13 @@ void fragment() {
     float density_field = fbm2(px * gs / density_scale + 29.7);
     float density = mix(density_min, 1.0, smoothstep(0.2, 0.8, density_field));
 
-    float coverage = bare_mask * density;
+float coverage = bare_mask * density;
+
+    // Very wide regional field: whole areas of the map grow thicker or sparser
+    // grass instead of the whole field being uniformly dense everywhere.
+    float regional = fbm2(px * gs / regional_scale + 113.0);
+    coverage *= mix(1.0 - regional_strength, 1.0, smoothstep(0.2, 0.8, regional));
+
     blade *= coverage;
 
     float height = vnoise(vec2(px.x * 0.06 * gs, px.y * 0.06 * gs));
@@ -124,7 +140,15 @@ void fragment() {
     col.r *= 1.0 + macro * macro_strength * 0.25;
     col.b *= 1.0 - macro * macro_strength * 0.35;
 
-    col = mix(col, soil_color.rgb, (1.0 - coverage) * bare_soil_mix);
+    // Empty ground is mottled, not flat: a fine moss noise varies the soil tone
+    // so bare zones pick up texture instead of a single dull colour.
+    float ground_detail = mix(0.3, 1.0, fbm2(px * gs / patch_scale + 41.7));
+    col = mix(col, soil_color.rgb * ground_detail, (1.0 - coverage) * bare_soil_mix);
+
+    // Scattered stubble keeps empty patches reading as grass ground: a faint
+    // second blade pass only in the bare zones, so they are not clean dirt.
+    float stubble = smoothstep(0.6, 0.9, vnoise(px * gs * 0.1 + 7.7));
+    col = mix(col, blade_color.rgb, stubble * (1.0 - coverage) * 0.3);
 
     // Procedural normal from the blade height field. Written in canvas space
     // (Y down); negative gradient tilts each blade so it catches the light.
@@ -134,6 +158,29 @@ void fragment() {
     float hy = grass_height(px + vec2(0.0, 1.0));
     vec2 grad = vec2(-(hx - h0), -(hy - h0)) * normal_strength * coverage;
     NORMAL = normalize(vec3(grad, 1.0));
+
+    // Root occlusion. A blade shades its own base, so the bottom of every
+    // blade run sits in shadow while the tips stay lit. The blade field was
+    // already sampled above for the normal, and it is the same noise the blade
+    // mask uses, so this costs no extra fetches.
+    //
+    // Which end of a run a pixel sits on falls out of the field's vertical
+    // slope: where the streak RISES with Y (hy > h0) we are on the lower flank,
+    // which is the blade's root; where it falls we are on the upper flank, the
+    // tip. The rise is normalized into noise space (divided by the field's own
+    // Y frequency) so the test is independent of grass_scale and the streak
+    // constants, and so the same value works at any zoom.
+    if (base_occlusion > 0.0 && blade > 0.0) {
+        // 0 at the density threshold (the root), 1 at the top of the run.
+        float blade_floor = 1.0 - blade_density;
+        float rise = clamp((h0 - blade_floor) / max(1.0 - blade_floor, 0.0001), 0.0, 1.0);
+        // Fades the shadow out over the configured fraction of the blade.
+        float along = 1.0 - smoothstep(0.0, base_occlusion_height, rise);
+        // Slope in noise-space units, so the ramp does not depend on zoom.
+        float slope = (hy - h0) / max(blade_streak_y * gs, 0.0001);
+        float at_root = smoothstep(0.0, 0.35, slope);
+        col *= 1.0 - base_occlusion * along * at_root * blade;
+    }
 
     blade_mask = blade;
     COLOR = vec4(col, 1.0);

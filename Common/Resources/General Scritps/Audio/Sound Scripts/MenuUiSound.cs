@@ -8,7 +8,8 @@ using System;
 /**-----------------------------------------------------------------------------------------------------------------------
 	**                                                   PURPOSE
 	*  
-	**  1 - Plays the menu UI hover/click sound, routed through the "SFX" bus.
+	**  1 - Plays the menu UI hover/click sound through the SfxManager pool,
+	**      routed through the "UI" bus.
 	**  2 - Connects the top-level menu buttons and every Button found inside
 	**	the HoverSources containers (e.g. the Options panel controls).
 	**
@@ -17,7 +18,7 @@ using System;
 	*
 *-----------------------------------------------------------------------------------------------------------------------**/
 
-public partial class MenuUiSound : AudioStreamPlayer
+public partial class MenuUiSound : Node
 {
     //!---------------------------------------------------------------------------------------------------------
     #region Variables
@@ -43,10 +44,6 @@ public partial class MenuUiSound : AudioStreamPlayer
     public override void _Ready()
     {
         base._Ready();
-
-        // Route menu sounds through the "SFX" bus so they can be volume
-        // controlled independently of music.
-        Bus = "SFX";
 
         // Connect the buttons' signals to play the sound
         if (ContinueButton != null)
@@ -118,14 +115,18 @@ public partial class MenuUiSound : AudioStreamPlayer
     }
 
     /// <summary>
-    /// Plays the hover/click stream if it is not already playing.
+    /// Plays the menu hover/click sound through the pooled UI voice. The pool
+    /// allows a short overlap, so fast repeated clicks are never dropped.
     /// </summary>
     private void PlaySound()
     {
-        if (IsInsideTree() && Playing == false)
-        {
-            Play();
-        }
+        if (IsInsideTree() == false)
+            return;
+
+        if (SfxManager.Instance == null)
+            return;
+
+        SfxManager.Instance.Play("ui_hover");
     }
 
     #endregion

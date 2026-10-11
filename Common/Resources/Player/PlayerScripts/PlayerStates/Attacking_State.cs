@@ -110,10 +110,9 @@ public partial class Attacking_State : Player_State
         // Play sword swoosh sound only if not in MainMenu
         if (GetTree().CurrentScene.Name != "Main_Menu")
         {
-            AudioStreamPlayer2D swordPlayer = GetNode<AudioStreamPlayer2D>("Sword_Swoosh");
-            if (swordPlayer != null)
+            if (SfxManager.Instance != null && Player.Instance != null)
             {
-                swordPlayer.Play();
+                SfxManager.Instance.Play("sword_swoosh", Player.Instance.GlobalPosition);
             }
         }
     }

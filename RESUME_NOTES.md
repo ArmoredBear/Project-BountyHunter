@@ -9,6 +9,10 @@
 4. **One thing at a time** — do not overdo or overthink; make the smallest change that addresses the reported issue.
 5. **Build & check after every edit batch** — run `dotnet build` (0 errors) and headless resource checks before finishing.
 6. **Research online before thinking of a solution** — when proposing a fix, look up the relevant technique/docs first.
+7. **NEVER TOUCH GITHUB. EVER.** — never `git push`, never `git commit`, never `git pull`, never open or
+   close PRs/issues, never use `gh`, and never run any other command that talks to GitHub. Local `git status`
+   / `git diff` / `git log` read-only inspection is fine. All work stays local and uncommitted unless the
+   user explicitly asks otherwise in the moment.
 
 ---
 
@@ -18,6 +22,8 @@
    Remember: summary must go ABOVE `[ExportGroup]`, not between `[ExportGroup]` and `[Export]`.
 3. **No ternary operators** — use simple if/else blocks instead. Ternaries (`? :`) are hard to
    read, especially for someone learning the codebase.
+4. **NEVER TOUCH GITHUB. EVER.** — no `git push`, `git commit`, `git pull`, `gh`, PRs or issues.
+   Local read-only git inspection is fine; everything stays local and uncommitted.
 
 ---
 

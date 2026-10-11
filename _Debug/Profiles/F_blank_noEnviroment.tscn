@@ -1,0 +1,586 @@
+[gd_scene format=4 uid="uid://cblanknogenviroment01"]
+
+[ext_resource type="Script" uid="uid://dp4pv3hol8xr0" path="res://_Debug/SpawnRouter.cs" id="1_2b86l"]
+[ext_resource type="TileSet" uid="uid://5qupvmr4kfvq" path="res://Common/Resources/Cenarios/Tilemap/Forest/Forest_Grass.tres" id="1_2xox5"]
+[ext_resource type="PackedScene" uid="uid://bxf5llvkkgbn5" path="res://Common/Resources/Props/Prefabs/Door.tscn" id="3_g35fp"]
+[ext_resource type="PackedScene" uid="uid://tyb2ogvaxl2d" path="res://Common/Resources/Props/Prefabs/god_rays.tscn" id="4_gkkjg"]
+[ext_resource type="SpriteFrames" uid="uid://jvmpcuj34tlu" path="res://Common/Resources/Props/PropsSpriteFrames/FlowersSpriteFrames.tres" id="5_sxnjw"]
+[ext_resource type="PackedScene" uid="uid://ccwqnm8c8jwux" path="res://Common/Resources/Enemys/Normal/Prefabs/Phantom.tscn" id="6_l5y17"]
+[ext_resource type="Script" uid="uid://b1keyqikiplpn" path="res://Common/Resources/Props/PropsScripts/FlowerPatch_RandomStart.cs" id="6_pp1n8"]
+[ext_resource type="Shader" uid="uid://cg1hgd8c8s8en" path="res://Common/Resources/Shaders/Cenario_Rain_Shader.gdshader" id="7_vxry2"]
+[ext_resource type="SpriteFrames" uid="uid://1fmvng3xnr6x" path="res://Common/Resources/Props/PropsSpriteFrames/CheckPointSpriteFrames.tres" id="8_ur80d"]
+[ext_resource type="Material" uid="uid://bmhae5w3l2a6" path="res://Common/Resources/Cenarios/CenarioMaterials/Forest/Grass_Repeat_Material.tres" id="9_grassmat"]
+[ext_resource type="AudioStream" uid="uid://cuqjspfoch1k5" path="res://Common/Resources/Sounds/wind01.wav" id="11_1m4i4"]
+[ext_resource type="Script" uid="uid://deis3u4ai7ja5" path="res://Common/Resources/Misc/Effects/GrassDepthSplitter.cs" id="15_gdepth"]
+
+[sub_resource type="Gradient" id="Gradient_ur80d"]
+offsets = PackedFloat32Array(0, 0.6773547)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_unk71"]
+gradient = SubResource("Gradient_ur80d")
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.51282054, 0.4957265)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ur80d"]
+shader = ExtResource("7_vxry2")
+shader_parameter/rain_color = Color(1, 1, 1, 1)
+shader_parameter/brightness = 0.10000000149012
+shader_parameter/speed = 1.20000005630148
+shader_parameter/wind = 0.15
+shader_parameter/reference_width = 2560.0
+shader_parameter/reference_height = 1080.0
+shader_parameter/near_density = 500.0
+shader_parameter/near_compression = 0.2
+shader_parameter/near_trail = 50.0
+shader_parameter/near_opacity = 0.30000001425
+shader_parameter/far_density = 200.0
+shader_parameter/far_compression = 0.25
+shader_parameter/far_trail = 30.0
+shader_parameter/far_opacity = 0.2000000095
+shader_parameter/far_speed_scale = 0.7
+shader_parameter/flash_strength = 0.0
+shader_parameter/flash_glow = 1.5
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_unk71"]
+
+[sub_resource type="Environment" id="Environment_4lmtj"]
+background_mode = 3
+background_color = Color(1, 1, 1, 1)
+tonemap_mode = 3
+glow_enabled = true
+glow_levels/7 = 2.0
+glow_normalized = true
+glow_strength = 1.2
+glow_mix = 0.1
+glow_bloom = 1.0
+glow_blend_mode = 4
+adjustment_enabled = true
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_k4tin"]
+dof_blur_near_enabled = true
+
+[sub_resource type="Compositor" id="Compositor_lorug"]
+
+[node name="Forest" type="Node2D" unique_id=1699615197]
+script = ExtResource("1_2b86l")
+
+[node name="Doors" type="Node2D" parent="." unique_id=1246684691]
+
+[node name="Forest_East_Spawn" type="Marker2D" parent="Doors" unique_id=2109863448]
+position = Vector2(21579, -3)
+
+[node name="Forest_East_Door" parent="Doors" unique_id=278532398 instance=ExtResource("3_g35fp")]
+position = Vector2(22021, -7)
+Destination_Scene_Tag = 30
+Destination_Spawn_Tag = "Tunnel_West_Spawn"
+
+[node name="GodRays" parent="Doors" unique_id=2075133741 instance=ExtResource("4_gkkjg")]
+offset_left = 21476.0
+offset_top = -2143.0
+offset_right = 22721.0
+offset_bottom = 384.0
+
+[node name="Ground" type="Node2D" parent="." unique_id=1639784168]
+
+[node name="Ground_Background_TileMapLayer" type="TileMapLayer" parent="Ground" unique_id=1832709073]
+enabled = false
+occlusion_enabled = false
+collision_enabled = false
+navigation_enabled = false
+
+[node name="Grass" type="Node2D" parent="Ground" unique_id=2003562410]
+
+[node name="Grass_Tiles" type="Node2D" parent="Ground/Grass" unique_id=1285501265]
+
+[node name="Ground_Grass_01_TileMapLayer_01" type="TileMapLayer" parent="Ground/Grass/Grass_Tiles" unique_id=655837128]
+tile_map_data = PackedByteArray("")
+tile_set = ExtResource("1_2xox5")
+rendering_quadrant_size = 128
+navigation_enabled = false
+
+[node name="Ground_Grass_01_TileMapLayer_02" type="TileMapLayer" parent="Ground/Grass/Grass_Tiles" unique_id=1509883223]
+tile_map_data = PackedByteArray("")
+tile_set = ExtResource("1_2xox5")
+rendering_quadrant_size = 128
+navigation_enabled = false
+
+[node name="Ground_Grass_01_TileMapLayer_03" type="TileMapLayer" parent="Ground/Grass/Grass_Tiles" unique_id=1609439346]
+tile_map_data = PackedByteArray("")
+tile_set = ExtResource("1_2xox5")
+rendering_quadrant_size = 128
+navigation_enabled = false
+
+[node name="Ground_Grass_01_TileMapLayer_04" type="TileMapLayer" parent="Ground/Grass/Grass_Tiles" unique_id=920523478]
+tile_map_data = PackedByteArray("")
+tile_set = ExtResource("1_2xox5")
+rendering_quadrant_size = 128
+navigation_enabled = false
+
+[node name="Ground_Grass_01_TileMapLayer_05" type="TileMapLayer" parent="Ground/Grass/Grass_Tiles" unique_id=1673618805]
+tile_map_data = PackedByteArray("")
+tile_set = ExtResource("1_2xox5")
+rendering_quadrant_size = 128
+navigation_enabled = false
+
+[node name="Ground_Grass_01_TileMapLayer_06" type="TileMapLayer" parent="Ground/Grass/Grass_Tiles" unique_id=1164439583]
+tile_map_data = PackedByteArray("")
+tile_set = ExtResource("1_2xox5")
+rendering_quadrant_size = 128
+navigation_enabled = false
+
+[node name="Ground_Grass_01_TileMapLayer_07" type="TileMapLayer" parent="Ground/Grass/Grass_Tiles" unique_id=1179731871]
+tile_map_data = PackedByteArray("")
+tile_set = ExtResource("1_2xox5")
+rendering_quadrant_size = 128
+navigation_enabled = false
+
+[node name="Ground_Grass_01_TileMapLayer_08" type="TileMapLayer" parent="Ground/Grass/Grass_Tiles" unique_id=1267372288]
+tile_map_data = PackedByteArray("")
+tile_set = ExtResource("1_2xox5")
+rendering_quadrant_size = 128
+navigation_enabled = false
+
+[node name="Ground_Grass_01_TileMapLayer_09" type="TileMapLayer" parent="Ground/Grass/Grass_Tiles" unique_id=802474775]
+tile_map_data = PackedByteArray("")
+tile_set = ExtResource("1_2xox5")
+rendering_quadrant_size = 128
+navigation_enabled = false
+
+[node name="Ground_Grass_01_TileMapLayer_10" type="TileMapLayer" parent="Ground/Grass/Grass_Tiles" unique_id=1971349753]
+tile_map_data = PackedByteArray("")
+tile_set = ExtResource("1_2xox5")
+rendering_quadrant_size = 128
+navigation_enabled = false
+
+[node name="Ground_Grass_01_TileMapLayer_11" type="TileMapLayer" parent="Ground/Grass/Grass_Tiles" unique_id=111711521]
+tile_map_data = PackedByteArray("")
+tile_set = ExtResource("1_2xox5")
+rendering_quadrant_size = 128
+navigation_enabled = false
+
+[node name="Ground_Grass_01_TileMapLayer_12" type="TileMapLayer" parent="Ground/Grass/Grass_Tiles" unique_id=1473842097]
+tile_map_data = PackedByteArray("")
+tile_set = ExtResource("1_2xox5")
+rendering_quadrant_size = 128
+navigation_enabled = false
+
+[node name="Ground_Grass_01_TileMapLayer_13" type="TileMapLayer" parent="Ground/Grass/Grass_Tiles" unique_id=688227163]
+tile_map_data = PackedByteArray("")
+tile_set = ExtResource("1_2xox5")
+rendering_quadrant_size = 128
+navigation_enabled = false
+
+[node name="Ground_Grass_01_TileMapLayer_14" type="TileMapLayer" parent="Ground/Grass/Grass_Tiles" unique_id=976007855]
+tile_map_data = PackedByteArray("")
+tile_set = ExtResource("1_2xox5")
+rendering_quadrant_size = 128
+navigation_enabled = false
+
+[node name="Ground_Grass_01_TileMapLayer_15" type="TileMapLayer" parent="Ground/Grass/Grass_Tiles" unique_id=1209905524]
+tile_map_data = PackedByteArray("")
+tile_set = ExtResource("1_2xox5")
+rendering_quadrant_size = 128
+navigation_enabled = false
+
+[node name="Ground_Grass_01_TileMapLayer_16" type="TileMapLayer" parent="Ground/Grass/Grass_Tiles" unique_id=1824019688]
+tile_map_data = PackedByteArray("")
+tile_set = ExtResource("1_2xox5")
+rendering_quadrant_size = 128
+navigation_enabled = false
+
+[node name="Ground_Grass_01_TileMapLayer_17" type="TileMapLayer" parent="Ground/Grass/Grass_Tiles" unique_id=2045485029]
+tile_map_data = PackedByteArray("")
+tile_set = ExtResource("1_2xox5")
+rendering_quadrant_size = 128
+navigation_enabled = false
+
+[node name="Ground_Grass_01_TileMapLayer_18" type="TileMapLayer" parent="Ground/Grass/Grass_Tiles" unique_id=271948489]
+tile_map_data = PackedByteArray("")
+tile_set = ExtResource("1_2xox5")
+rendering_quadrant_size = 128
+navigation_enabled = false
+
+[node name="Ground_Grass_01_TileMapLayer_19" type="TileMapLayer" parent="Ground/Grass/Grass_Tiles" unique_id=321431901]
+tile_map_data = PackedByteArray("")
+tile_set = ExtResource("1_2xox5")
+rendering_quadrant_size = 128
+navigation_enabled = false
+
+[node name="Ground_Grass_01_TileMapLayer_20" type="TileMapLayer" parent="Ground/Grass/Grass_Tiles" unique_id=1776761440]
+tile_map_data = PackedByteArray("")
+tile_set = ExtResource("1_2xox5")
+rendering_quadrant_size = 128
+navigation_enabled = false
+
+[node name="Ground_Grass_01_TileMapLayer_21" type="TileMapLayer" parent="Ground/Grass/Grass_Tiles" unique_id=1258230288]
+tile_map_data = PackedByteArray("")
+tile_set = ExtResource("1_2xox5")
+rendering_quadrant_size = 128
+navigation_enabled = false
+
+[node name="Ground_Grass_01_TileMapLayer_22" type="TileMapLayer" parent="Ground/Grass/Grass_Tiles" unique_id=2136476805]
+tile_map_data = PackedByteArray("")
+tile_set = ExtResource("1_2xox5")
+rendering_quadrant_size = 128
+navigation_enabled = false
+
+[node name="Ground_Grass_01_TileMapLayer_23" type="TileMapLayer" parent="Ground/Grass/Grass_Tiles" unique_id=106496942]
+tile_map_data = PackedByteArray("")
+tile_set = ExtResource("1_2xox5")
+rendering_quadrant_size = 128
+navigation_enabled = false
+
+[node name="Ground_Grass_01_TileMapLayer_24" type="TileMapLayer" parent="Ground/Grass/Grass_Tiles" unique_id=2028277259]
+tile_map_data = PackedByteArray("")
+tile_set = ExtResource("1_2xox5")
+rendering_quadrant_size = 128
+navigation_enabled = false
+
+[node name="Ground_Grass_01_TileMapLayer_25" type="TileMapLayer" parent="Ground/Grass/Grass_Tiles" unique_id=1707233165]
+tile_map_data = PackedByteArray("")
+tile_set = ExtResource("1_2xox5")
+rendering_quadrant_size = 128
+navigation_enabled = false
+
+[node name="Ground_Grass_01_TileMapLayer_26" type="TileMapLayer" parent="Ground/Grass/Grass_Tiles" unique_id=579646014]
+tile_map_data = PackedByteArray("")
+tile_set = ExtResource("1_2xox5")
+rendering_quadrant_size = 128
+navigation_enabled = false
+
+[node name="Ground_Grass_01_TileMapLayer_27" type="TileMapLayer" parent="Ground/Grass/Grass_Tiles" unique_id=1277501353]
+tile_map_data = PackedByteArray("")
+tile_set = ExtResource("1_2xox5")
+rendering_quadrant_size = 128
+navigation_enabled = false
+
+[node name="Ground_Grass_01_TileMapLayer_28" type="TileMapLayer" parent="Ground/Grass/Grass_Tiles" unique_id=1727137402]
+tile_map_data = PackedByteArray("")
+tile_set = ExtResource("1_2xox5")
+rendering_quadrant_size = 128
+navigation_enabled = false
+
+[node name="Ground_Grass_01_TileMapLayer_29" type="TileMapLayer" parent="Ground/Grass/Grass_Tiles" unique_id=1514575876]
+tile_map_data = PackedByteArray("")
+tile_set = ExtResource("1_2xox5")
+rendering_quadrant_size = 128
+navigation_enabled = false
+
+[node name="Ground_Grass_01_TileMapLayer_30" type="TileMapLayer" parent="Ground/Grass/Grass_Tiles" unique_id=712899993]
+tile_map_data = PackedByteArray("")
+tile_set = ExtResource("1_2xox5")
+rendering_quadrant_size = 128
+navigation_enabled = false
+
+[node name="Grass_Sprites" type="Node2D" parent="Ground/Grass" unique_id=1328630293]
+
+[node name="Grass_1" type="Node2D" parent="Ground/Grass/Grass_Sprites" unique_id=2050587029]
+
+[node name="Grass_Depth_Splitter" type="Node" parent="Ground/Grass/Grass_Sprites/Grass_1" unique_id=-1495967294]
+script = ExtResource("15_gdepth")
+BackLayerPath = NodePath("../Grass_Sprite_1")
+FrontLayerPath = NodePath("../Grass_Sprite_1/Grass_Sprite_2")
+
+[node name="Grass_Sprite_1" type="Polygon2D" parent="Ground/Grass/Grass_Sprites/Grass_1" unique_id=1246605551]
+material = ExtResource("9_grassmat")
+position = Vector2(7148.8213, 3181.5632)
+scale = Vector2(1754.813, 914.5258)
+polygon = PackedVector2Array(-18.660578, -10.442092, 17.811115, -10.4650545, 17.80428, -3.49751, 17.818525, -1.1072004, 16.138004, -1.1257892, 13.065882, -2.1558313, 9.86725, -3.487669, 8.957752, -3.9862878, 6.980333, -3.9195867, 6.2017336, -3.8024964, 6.2160807, -3.2510145, 5.1874485, -3.3154452, 3.7826705, -3.2761316, 2.9274526, -2.7159133, 2.5556726, -3.4716074, 1.5216317, -3.4001918, 1.2708926, -2.7845724, 1.0910101, -1.9219974, -1.6698909, -1.209985, -13.069668, -3.6823053)
+
+[node name="Grass_Sprite_2" type="Polygon2D" parent="Ground/Grass/Grass_Sprites/Grass_1/Grass_Sprite_1" unique_id=580652853]
+material = ExtResource("9_grassmat")
+scale = Vector2(1, 0.99999994)
+polygon = PackedVector2Array(-18.660578, -10.442092, 17.811115, -10.4650545, 17.80428, -3.49751, 17.818525, -1.1072004, 16.138004, -1.1257892, 13.065882, -2.1558313, 9.86725, -3.487669, 8.957752, -3.9862878, 6.980333, -3.9195867, 6.2017336, -3.8024964, 6.2160807, -3.2510145, 5.1874485, -3.3154452, 3.7826705, -3.2761316, 2.9274526, -2.7159133, 2.5556726, -3.4716074, 1.5216317, -3.4001918, 1.2708926, -2.7845724, 1.0910101, -1.9219974, -1.6698909, -1.209985, -13.069668, -3.6823053)
+
+[node name="Grass_2" type="Node2D" parent="Ground/Grass/Grass_Sprites" unique_id=1557901340]
+
+[node name="Grass_Depth_Splitter" type="Node" parent="Ground/Grass/Grass_Sprites/Grass_2" unique_id=1839521836]
+script = ExtResource("15_gdepth")
+BackLayerPath = NodePath("../Grass_Sprite_3")
+FrontLayerPath = NodePath("../Grass_Sprite_3/Grass_Sprite_4")
+
+[node name="Grass_Sprite_3" type="Polygon2D" parent="Ground/Grass/Grass_Sprites/Grass_2" unique_id=1546603042]
+material = ExtResource("9_grassmat")
+position = Vector2(7149.0005, 13841)
+scale = Vector2(1754.813, 914.5258)
+polygon = PackedVector2Array(-17.853186, -7.3371353, -14.25964, -9.939577, -6.896462, -9.128227, -2.5273352, -9.77009, 0.67870474, -9.196022, 4.3953404, -10.58144, 9.486481, -10.141868, 13.60544, -9.655277, 17.811115, -10.4650545, 17.818525, -1.1072004, -1.6263845, -1.1448555, -18.675495, -1.1601639)
+
+[node name="Grass_Sprite_4" type="Polygon2D" parent="Ground/Grass/Grass_Sprites/Grass_2/Grass_Sprite_3" unique_id=1664971971]
+material = ExtResource("9_grassmat")
+scale = Vector2(1, 0.99999994)
+polygon = PackedVector2Array(-17.853186, -7.3371353, -14.25964, -9.939577, -6.896462, -9.128227, -2.5273352, -9.77009, 0.67870474, -9.196022, 4.3953404, -10.58144, 9.486481, -10.141868, 13.60544, -9.655277, 17.811115, -10.4650545, 17.818525, -1.1072004, -1.6263845, -1.1448555, -18.675495, -1.1601639)
+
+[node name="Ground_Road_TileMapLayer" type="TileMapLayer" parent="Ground" unique_id=1520310380]
+tile_set = ExtResource("1_2xox5")
+
+[node name="Walls" type="Node2D" parent="." unique_id=1981089346]
+
+[node name="Wall_Rocks_TileMapLayer" type="TileMapLayer" parent="Walls" unique_id=1803153922]
+navigation_enabled = false
+
+[node name="Enviroment" type="Node2D" parent="." unique_id=991325242] visible=false
+
+[node name="Flowers" type="Node2D" parent="Enviroment" unique_id=1253433668]
+
+[node name="FlowerPatch_1" type="AnimatedSprite2D" parent="Enviroment/Flowers" unique_id=321775670]
+self_modulate = Color(1.353256, 1.353256, 1.353256, 1)
+position = Vector2(20696, -578)
+scale = Vector2(10, 10)
+sprite_frames = ExtResource("5_sxnjw")
+animation = &"WindFlower"
+autoplay = "WindFlower"
+frame_progress = 0.54161114
+script = ExtResource("6_pp1n8")
+
+[node name="FlowerPatch_2" type="AnimatedSprite2D" parent="Enviroment/Flowers" unique_id=913415710]
+self_modulate = Color(1.353256, 1.353256, 1.353256, 1)
+position = Vector2(19523, -565)
+scale = Vector2(10, 10)
+sprite_frames = ExtResource("5_sxnjw")
+animation = &"WindFlower"
+autoplay = "WindFlower"
+frame_progress = 0.005680744
+script = ExtResource("6_pp1n8")
+
+[node name="FlowerPatch_3" type="AnimatedSprite2D" parent="Enviroment/Flowers" unique_id=1379931285]
+self_modulate = Color(1.353256, 1.353256, 1.353256, 1)
+position = Vector2(18333.002, -551)
+scale = Vector2(10, 10)
+sprite_frames = ExtResource("5_sxnjw")
+animation = &"WindFlower"
+autoplay = "WindFlower"
+frame_progress = 0.005680744
+script = ExtResource("6_pp1n8")
+
+[node name="FlowerPatch_4" type="AnimatedSprite2D" parent="Enviroment/Flowers" unique_id=792207972]
+self_modulate = Color(1.353256, 1.353256, 1.353256, 1)
+position = Vector2(17138, -551.00006)
+scale = Vector2(10, 10)
+sprite_frames = ExtResource("5_sxnjw")
+animation = &"WindFlower"
+autoplay = "WindFlower"
+frame_progress = 0.005680744
+script = ExtResource("6_pp1n8")
+
+[node name="Props" type="Node2D" parent="." unique_id=1265288200]
+
+[node name="Checkpoint" type="AnimatedSprite2D" parent="Props" unique_id=1272953980]
+position = Vector2(10018, 267)
+scale = Vector2(10, 10)
+sprite_frames = ExtResource("8_ur80d")
+animation = &"Break"
+frame = 5
+
+[node name="PointLight2D" type="PointLight2D" parent="Props/Checkpoint" unique_id=1689494832]
+position = Vector2(-1.9000206, 32)
+scale = Vector2(25, 25)
+color = Color(0.73046875, 0.37526044, 0, 1)
+energy = 7.0
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_unk71")
+texture_scale = 0.2
+height = 57.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Props/Checkpoint" unique_id=1650220369]
+
+[node name="Enemys" type="Node2D" parent="." unique_id=1246177362]
+
+[node name="Phantom" parent="Enemys" unique_id=800493648 instance=ExtResource("6_l5y17")]
+position = Vector2(100, 2323)
+
+[node name="Phantom2" parent="Enemys" unique_id=1928153650 instance=ExtResource("6_l5y17")]
+position = Vector2(-4376, 1853)
+
+[node name="Phantom3" parent="Enemys" unique_id=1160991310 instance=ExtResource("6_l5y17")]
+position = Vector2(-6129, -3421)
+
+[node name="Phantom4" parent="Enemys" unique_id=421478575 instance=ExtResource("6_l5y17")]
+position = Vector2(-19391, 1069)
+
+[node name="Rain" type="Node2D" parent="." unique_id=1104477802]
+
+[node name="Rain_Tile_01" type="Sprite2D" parent="Rain" unique_id=1700000001]
+material = SubResource("ShaderMaterial_ur80d")
+position = Vector2(-22471, -3651.5)
+scale = Vector2(8000, 8000)
+texture = SubResource("CanvasTexture_unk71")
+
+[node name="Rain_Tile_02" type="Sprite2D" parent="Rain" unique_id=1700000002]
+material = SubResource("ShaderMaterial_ur80d")
+position = Vector2(-14471, -3651.5)
+scale = Vector2(8000, 8000)
+texture = SubResource("CanvasTexture_unk71")
+
+[node name="Rain_Tile_03" type="Sprite2D" parent="Rain" unique_id=1700000003]
+material = SubResource("ShaderMaterial_ur80d")
+position = Vector2(-6471, -3651.5)
+scale = Vector2(8000, 8000)
+texture = SubResource("CanvasTexture_unk71")
+
+[node name="Rain_Tile_04" type="Sprite2D" parent="Rain" unique_id=1700000004]
+material = SubResource("ShaderMaterial_ur80d")
+position = Vector2(1529, -3651.5)
+scale = Vector2(8000, 8000)
+texture = SubResource("CanvasTexture_unk71")
+
+[node name="Rain_Tile_05" type="Sprite2D" parent="Rain" unique_id=1700000005]
+material = SubResource("ShaderMaterial_ur80d")
+position = Vector2(9529, -3651.5)
+scale = Vector2(8000, 8000)
+texture = SubResource("CanvasTexture_unk71")
+
+[node name="Rain_Tile_06" type="Sprite2D" parent="Rain" unique_id=1700000006]
+material = SubResource("ShaderMaterial_ur80d")
+position = Vector2(17529, -3651.5)
+scale = Vector2(8000, 8000)
+texture = SubResource("CanvasTexture_unk71")
+
+[node name="Rain_Tile_07" type="Sprite2D" parent="Rain" unique_id=1700000007]
+material = SubResource("ShaderMaterial_ur80d")
+position = Vector2(25529, -3651.5)
+scale = Vector2(8000, 8000)
+texture = SubResource("CanvasTexture_unk71")
+
+[node name="Rain_Tile_08" type="Sprite2D" parent="Rain" unique_id=1700000008]
+material = SubResource("ShaderMaterial_ur80d")
+position = Vector2(33529, -3651.5)
+scale = Vector2(8000, 8000)
+texture = SubResource("CanvasTexture_unk71")
+
+[node name="Rain_Tile_09" type="Sprite2D" parent="Rain" unique_id=1700000009]
+material = SubResource("ShaderMaterial_ur80d")
+position = Vector2(41529, -3651.5)
+scale = Vector2(8000, 8000)
+texture = SubResource("CanvasTexture_unk71")
+
+[node name="Rain_Tile_10" type="Sprite2D" parent="Rain" unique_id=1700000010]
+material = SubResource("ShaderMaterial_ur80d")
+position = Vector2(-22471, 4348.5)
+scale = Vector2(8000, 8000)
+texture = SubResource("CanvasTexture_unk71")
+
+[node name="Rain_Tile_11" type="Sprite2D" parent="Rain" unique_id=1700000011]
+material = SubResource("ShaderMaterial_ur80d")
+position = Vector2(-14471, 4348.5)
+scale = Vector2(8000, 8000)
+texture = SubResource("CanvasTexture_unk71")
+
+[node name="Rain_Tile_12" type="Sprite2D" parent="Rain" unique_id=1700000012]
+material = SubResource("ShaderMaterial_ur80d")
+position = Vector2(-6471, 4348.5)
+scale = Vector2(8000, 8000)
+texture = SubResource("CanvasTexture_unk71")
+
+[node name="Rain_Tile_13" type="Sprite2D" parent="Rain" unique_id=1700000013]
+material = SubResource("ShaderMaterial_ur80d")
+position = Vector2(1529, 4348.5)
+scale = Vector2(8000, 8000)
+texture = SubResource("CanvasTexture_unk71")
+
+[node name="Rain_Tile_14" type="Sprite2D" parent="Rain" unique_id=1700000014]
+material = SubResource("ShaderMaterial_ur80d")
+position = Vector2(9529, 4348.5)
+scale = Vector2(8000, 8000)
+texture = SubResource("CanvasTexture_unk71")
+
+[node name="Rain_Tile_15" type="Sprite2D" parent="Rain" unique_id=1700000015]
+material = SubResource("ShaderMaterial_ur80d")
+position = Vector2(17529, 4348.5)
+scale = Vector2(8000, 8000)
+texture = SubResource("CanvasTexture_unk71")
+
+[node name="Rain_Tile_16" type="Sprite2D" parent="Rain" unique_id=1700000016]
+material = SubResource("ShaderMaterial_ur80d")
+position = Vector2(25529, 4348.5)
+scale = Vector2(8000, 8000)
+texture = SubResource("CanvasTexture_unk71")
+
+[node name="Rain_Tile_17" type="Sprite2D" parent="Rain" unique_id=1700000017]
+material = SubResource("ShaderMaterial_ur80d")
+position = Vector2(33529, 4348.5)
+scale = Vector2(8000, 8000)
+texture = SubResource("CanvasTexture_unk71")
+
+[node name="Rain_Tile_18" type="Sprite2D" parent="Rain" unique_id=1700000018]
+material = SubResource("ShaderMaterial_ur80d")
+position = Vector2(41529, 4348.5)
+scale = Vector2(8000, 8000)
+texture = SubResource("CanvasTexture_unk71")
+
+[node name="Rain_Tile_19" type="Sprite2D" parent="Rain" unique_id=1700000019]
+material = SubResource("ShaderMaterial_ur80d")
+position = Vector2(-22471, 12348.5)
+scale = Vector2(8000, 8000)
+texture = SubResource("CanvasTexture_unk71")
+
+[node name="Rain_Tile_20" type="Sprite2D" parent="Rain" unique_id=1700000020]
+material = SubResource("ShaderMaterial_ur80d")
+position = Vector2(-14471, 12348.5)
+scale = Vector2(8000, 8000)
+texture = SubResource("CanvasTexture_unk71")
+
+[node name="Rain_Tile_21" type="Sprite2D" parent="Rain" unique_id=1700000021]
+material = SubResource("ShaderMaterial_ur80d")
+position = Vector2(-6471, 12348.5)
+scale = Vector2(8000, 8000)
+texture = SubResource("CanvasTexture_unk71")
+
+[node name="Rain_Tile_22" type="Sprite2D" parent="Rain" unique_id=1700000022]
+material = SubResource("ShaderMaterial_ur80d")
+position = Vector2(1529, 12348.5)
+scale = Vector2(8000, 8000)
+texture = SubResource("CanvasTexture_unk71")
+
+[node name="Rain_Tile_23" type="Sprite2D" parent="Rain" unique_id=1700000023]
+material = SubResource("ShaderMaterial_ur80d")
+position = Vector2(9529, 12348.5)
+scale = Vector2(8000, 8000)
+texture = SubResource("CanvasTexture_unk71")
+
+[node name="Rain_Tile_24" type="Sprite2D" parent="Rain" unique_id=1700000024]
+material = SubResource("ShaderMaterial_ur80d")
+position = Vector2(17529, 12348.5)
+scale = Vector2(8000, 8000)
+texture = SubResource("CanvasTexture_unk71")
+
+[node name="Rain_Tile_25" type="Sprite2D" parent="Rain" unique_id=1700000025]
+material = SubResource("ShaderMaterial_ur80d")
+position = Vector2(25529, 12348.5)
+scale = Vector2(8000, 8000)
+texture = SubResource("CanvasTexture_unk71")
+
+[node name="Rain_Tile_26" type="Sprite2D" parent="Rain" unique_id=1700000026]
+material = SubResource("ShaderMaterial_ur80d")
+position = Vector2(33529, 12348.5)
+scale = Vector2(8000, 8000)
+texture = SubResource("CanvasTexture_unk71")
+
+[node name="Rain_Tile_27" type="Sprite2D" parent="Rain" unique_id=1700000027]
+material = SubResource("ShaderMaterial_ur80d")
+position = Vector2(41529, 12348.5)
+scale = Vector2(8000, 8000)
+texture = SubResource("CanvasTexture_unk71")
+
+[node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=987950199]
+autoplay = true
+max_distance = 100000.0
+bus = &"Music"
+
+[node name="Wind" type="AudioStreamPlayer2D" parent="." unique_id=598832609]
+stream = ExtResource("11_1m4i4")
+autoplay = true
+max_distance = 100000.0
+bus = &"SFX"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1665013977]
+color = Color(0.296875, 0.296875, 0.296875, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=369306316]
+environment = SubResource("Environment_4lmtj")
+camera_attributes = SubResource("CameraAttributesPractical_k4tin")
+compositor = SubResource("Compositor_lorug")
+
+[editable path="Doors/Forest_East_Door"]
+[editable path="Doors/GodRays"]

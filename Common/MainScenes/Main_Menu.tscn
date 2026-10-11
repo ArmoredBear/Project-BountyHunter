@@ -23,7 +23,6 @@
 [ext_resource type="Script" uid="uid://fvf2xxcud8o" path="res://Common/Resources/General Scritps/Options/OptionsMenu.cs" id="16_0raye"]
 [ext_resource type="Shader" uid="uid://c2plm0uv8bl6v" path="res://Common/Resources/Shaders/NoiseShader.gdshader" id="16_cvul1"]
 [ext_resource type="StyleBox" uid="uid://v11gptuotb7j" path="res://Common/Resources/Player/User Interface/Prefabs/StyleBoxes/Panel_Texture_StyleBox1.tres" id="16_pt4oh"]
-[ext_resource type="AudioStream" uid="uid://cwtjhuq3vcuy3" path="res://Common/Resources/Sounds/UI_Hover.wav" id="16_qmasd"]
 [ext_resource type="Texture2D" uid="uid://d2aiclfscral5" path="res://Common/Resources/Props/Props CanvasTextures/MenuGear_CanvasTexture.tres" id="16_w5isc"]
 [ext_resource type="Script" uid="uid://cbj7ml5q7yakc" path="res://Common/Resources/General Scritps/Audio/Sound Scripts/MenuUiSound.cs" id="17_csyh4"]
 [ext_resource type="FontFile" uid="uid://bnnwxabllsohk" path="res://Common/Resources/Player/User Interface/Fonts/Springmarch/springmarch.roman.otf" id="17_e0r6h"]
@@ -250,8 +249,6 @@ _data = {
 &"RESET": SubResource("Animation_g7tu8")
 }
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_obmtt"]
-
 [sub_resource type="Gradient" id="Gradient_4asu5"]
 offsets = PackedFloat32Array(0, 0.91803277)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
@@ -264,6 +261,8 @@ fill_from = Vector2(0.5, 0.5)
 [sub_resource type="Curve" id="Curve_m5ukh"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_obmtt"]
 
 [sub_resource type="Animation" id="Animation_7c1jm"]
 length = 0.001
@@ -436,7 +435,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("NoiseTexture2D_fypy1")
 
-[node name="ColorRect - LogoBackground" type="ColorRect" parent="." unique_id=269267948]
+[node name="ColorRect - LogoBackground -1" type="ColorRect" parent="." unique_id=269267948]
 offset_top = 226.0
 offset_right = 2560.0
 offset_bottom = 578.0
@@ -496,6 +495,14 @@ offset_bottom = 90.0
 border_color = Color(0.91015625, 0.8736292, 0.73239136, 1)
 border_width = 2.0
 editor_only = false
+
+[node name="ColorRect - LogoBackground -2" type="ColorRect" parent="Control - LogoEffects" unique_id=1708558031]
+layout_mode = 0
+offset_left = -727.0
+offset_top = -102.0
+offset_right = 685.0
+offset_bottom = 250.0
+color = Color(0, 0, 0, 0.70000005)
 
 [node name="Control - Decorations" type="Control" parent="." unique_id=1558294461]
 layout_mode = 3
@@ -633,6 +640,21 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="PointLight2D - Logo Shadow" type="PointLight2D" parent="Control - Logo" unique_id=850568374]
+position = Vector2(1864, 320)
+blend_mode = 1
+range_layer_max = 10
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+shadow_filter = 2
+texture = SubResource("GradientTexture2D_m5ukh")
+offset = Vector2(1, 1)
+texture_scale = 20.0
+height = 1024.0
+script = ExtResource("11_m5ukh")
+MinIntensity = 1.0
+IntensityCurve = SubResource("Curve_m5ukh")
+
 [node name="TextureRect - Logo" type="TextureRect" parent="Control - Logo" unique_id=1280866507]
 self_modulate = Color(0.9098039, 0.8745098, 0.73333335, 1)
 material = SubResource("CanvasItemMaterial_obmtt")
@@ -645,6 +667,7 @@ texture = ExtResource("3_uo8uj")
 expand_mode = 1
 
 [node name="PointLight2D - Logo Light" type="PointLight2D" parent="Control - Logo" unique_id=1357526719]
+z_index = 1
 position = Vector2(1864, 320)
 energy = 1.5
 range_layer_max = 10
@@ -654,9 +677,9 @@ shadow_filter = 2
 texture = SubResource("GradientTexture2D_m5ukh")
 offset = Vector2(1, 1)
 texture_scale = 30.0
+height = 50.0
 script = ExtResource("11_m5ukh")
 MinIntensity = 1.0
-MaxIntensity = 3.0
 IntensityCurve = SubResource("Curve_m5ukh")
 
 [node name="Control - Menu and Logic" type="Control" parent="." unique_id=1151742208]
@@ -777,7 +800,7 @@ text = "Sair"
 icon_alignment = 1
 script = ExtResource("9_b0ek2")
 
-[node name="OptionsPanel" type="Panel" parent="Control - Menu and Logic" unique_id=412942293 node_paths=PackedStringArray("TabBar", "Content", "MasterSlider", "MusicSlider", "SfxSlider", "ResolutionOption", "WindowModeOption", "VsyncCheck")]
+[node name="OptionsPanel" type="Panel" parent="Control - Menu and Logic" unique_id=412942293 node_paths=PackedStringArray("TabBar", "Content", "MasterSlider", "MusicSlider", "SfxSlider", "UiSlider", "AmbienceSlider", "ResolutionOption", "WindowModeOption", "VsyncCheck")]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(150, 60)
@@ -804,6 +827,8 @@ Content = NodePath("Control - Content")
 MasterSlider = NodePath("Control - Content/Control - AudioPage/Box - AudioList/Box - MasterRow/Slider - Master")
 MusicSlider = NodePath("Control - Content/Control - AudioPage/Box - AudioList/Box - MusicRow/Slider - Music")
 SfxSlider = NodePath("Control - Content/Control - AudioPage/Box - AudioList/Box - SFXRow/Slider - SFX")
+UiSlider = NodePath("Control - Content/Control - AudioPage/Box - AudioList/Box - UIRow/Slider - UI")
+AmbienceSlider = NodePath("Control - Content/Control - AudioPage/Box - AudioList/Box - AmbienceRow/Slider - Ambience")
 ResolutionOption = NodePath("Control - Content/Control - VideoPage/Box - VideoList/Box - ResolutionRow/Option - ResolutionOption")
 WindowModeOption = NodePath("Control - Content/Control - VideoPage/Box - VideoList/Box - WindowModeRow/Option - WindowModeOption")
 VsyncCheck = NodePath("Control - Content/Control - VideoPage/Box - VideoList/Box - VsyncRow/VsyncCheck")
@@ -988,6 +1013,52 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Slider - SFX" type="HSlider" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - AudioPage/Box - AudioList/Box - SFXRow" unique_id=848842811]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+value = 0.5
+tick_count = 10
+ticks_on_borders = true
+ticks_position = 2
+
+[node name="Box - UIRow" type="BoxContainer" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - AudioPage/Box - AudioList"]
+layout_mode = 2
+alignment = 1
+vertical = true
+
+[node name="Label - UI" type="Label" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - AudioPage/Box - AudioList/Box - UIRow"]
+layout_mode = 2
+text = "Interface"
+label_settings = SubResource("LabelSettings_0d3ci")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slider - UI" type="HSlider" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - AudioPage/Box - AudioList/Box - UIRow"]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+value = 0.5
+tick_count = 10
+ticks_on_borders = true
+ticks_position = 2
+
+[node name="Box - AmbienceRow" type="BoxContainer" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - AudioPage/Box - AudioList"]
+layout_mode = 2
+alignment = 1
+vertical = true
+
+[node name="Label - Ambience" type="Label" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - AudioPage/Box - AudioList/Box - AmbienceRow"]
+layout_mode = 2
+text = "Ambiente"
+label_settings = SubResource("LabelSettings_0d3ci")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slider - Ambience" type="HSlider" parent="Control - Menu and Logic/OptionsPanel/Control - Content/Control - AudioPage/Box - AudioList/Box - AmbienceRow"]
 custom_minimum_size = Vector2(120, 30)
 layout_mode = 2
 size_flags_vertical = 4
@@ -1275,8 +1346,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="MenuUISound" type="AudioStreamPlayer" parent="." unique_id=917959346 node_paths=PackedStringArray("ContinueButton", "LoadGameButton", "OptionsButton", "CreditsButton", "QuitButton", "HoverSources")]
-stream = ExtResource("16_qmasd")
+[node name="MenuUISound" type="Node" parent="." unique_id=917959346 node_paths=PackedStringArray("ContinueButton", "LoadGameButton", "OptionsButton", "CreditsButton", "QuitButton", "HoverSources")]
 script = ExtResource("17_csyh4")
 ContinueButton = NodePath("../Control - Menu and Logic/Menu/NewGame")
 LoadGameButton = NodePath("../Control - Menu and Logic/Menu/Load_Game")

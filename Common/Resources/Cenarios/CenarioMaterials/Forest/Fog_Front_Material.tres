@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bmhakntvx7yto"]
+
+[ext_resource type="Shader" uid="uid://c7fqshfjvakwg" path="res://Common/Resources/Shaders/Cenario_Fog.gdshader" id="1_fog"]
+
+[resource]
+shader = ExtResource("1_fog")
+shader_parameter/cam_pos = Vector2(0, 0)
+shader_parameter/cam_zoom = 0.25
+shader_parameter/viewport_size = Vector2(2560, 1080)
+shader_parameter/fog_color = Color(1, 1, 1, 1)
+shader_parameter/max_density = 0.035
+shader_parameter/clear_radius = 4200.0001995
+shader_parameter/ramp_distance = 2000.0
+shader_parameter/near_base = 0.0
+shader_parameter/wind_dir = Vector2(-0.35, 0.15)
+shader_parameter/noise_scale = 0.008
+shader_parameter/drift_speed = 22.0
+shader_parameter/billow_scale = 0.002
+shader_parameter/billow_speed = 8.0
+shader_parameter/swell_scale = 0.001
+shader_parameter/swell_speed = 1.8

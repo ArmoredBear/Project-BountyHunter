@@ -27,6 +27,8 @@ public partial class AimSystem : Control
 	private Vector2 _current_target_world;
 	private Camera2D _world_camera;
 	private Node2D _target_shoot_point;
+	private ulong _last_stick_input_time;
+	private const ulong Stick_Idle_Fallback_Timeout = 1500;
 
 	#endregion
 	//!---------------------------------------------------------------------------------------------------------
@@ -48,6 +50,15 @@ public partial class AimSystem : Control
 		}
 	}
 
+	/// <summary>Current world-space aim point the reticle sits on (used to aim lights and projectiles).</summary>
+	public Vector2 Current_Target_World
+	{
+		get
+		{
+			return _current_target_world;
+		}
+	}
+
 	/// <summary>The bullet scene spawned each time the player fires.</summary>
 	[Export]
 	public PackedScene Bullet_Scene;
@@ -59,6 +70,10 @@ public partial class AimSystem : Control
 	/// <summary>How fast the target cursor moves (world units per second) when driven by the right stick.</summary>
 	[Export]
 	public float Aim_Speed = 2600f;
+
+	/// <summary>Multiplier applied to Aim_Speed to tune stick sensitivity.</summary>
+	[Export(PropertyHint.Range, "0.1,3.0,0.05")]
+	public float Aim_Sensitivity = 1.0f;
 
 	/// <summary>Max distance in world units the right-stick cursor may travel from the player.</summary>
 	[Export]
@@ -144,11 +159,17 @@ public partial class AimSystem : Control
 		if (stick_input.LengthSquared() > 0.001f)
 		{
 			_input_is_gamepad = true;
+			_last_stick_input_time = Time.GetTicksMsec();
+		}
+
+		if (_input_is_gamepad && (Time.GetTicksMsec() - _last_stick_input_time) > Stick_Idle_Fallback_Timeout)
+		{
+			_input_is_gamepad = false;
 		}
 
 		if (_input_is_gamepad)
 		{
-			_current_target_world += stick_input * Aim_Speed * delta;
+			_current_target_world += stick_input * Aim_Speed * Aim_Sensitivity * delta;
 			_current_target_world = Clamp_Target_To_Range(_current_target_world);
 		}
 

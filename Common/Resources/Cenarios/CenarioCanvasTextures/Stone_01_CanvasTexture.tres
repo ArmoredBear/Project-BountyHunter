@@ -1,0 +1,11 @@
+[gd_resource type="CanvasTexture" format=3 uid="uid://c1o0hpdv7d8as"]
+
+[ext_resource type="Texture2D" uid="uid://dqugcocnvguii" path="res://Common/Resources/Cenarios/CenarioArt/Environment/Forest/Stone01.png" id="1_1tm2h"]
+[ext_resource type="Texture2D" uid="uid://uylfst3l154w" path="res://Common/Resources/Cenarios/CenarioNormalMaps/Stone01_n.png" id="2_wkjwc"]
+[ext_resource type="Texture2D" uid="uid://cq08duq7tij02" path="res://Common/Resources/Cenarios/CenarioSpecularMaps/Stone01_s.png" id="3_5k7ty"]
+
+[resource]
+diffuse_texture = ExtResource("1_1tm2h")
+normal_texture = ExtResource("2_wkjwc")
+specular_texture = ExtResource("3_5k7ty")
+specular_color = Color(0.59375, 0.59375, 0.59375, 1)

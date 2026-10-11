@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://Common/Resources/Shaders/Cenario_Fog.gdshader" id="1_fog"]
+
+[resource]
+shader = ExtResource("1_fog")
+shader_parameter/fog_color = Color(0.2, 0.2, 0.2, 0.2)
+shader_parameter/max_density = 0.07
+shader_parameter/clear_radius = 3300.0
+shader_parameter/ramp_distance = 2600.0
+shader_parameter/near_base = 0.0
+shader_parameter/wind_dir = Vector2(-0.25, 0.1)
+shader_parameter/noise_scale = 0.006
+shader_parameter/drift_speed = 12.0
+shader_parameter/billow_scale = 0.0015
+shader_parameter/billow_speed = 4.0
+shader_parameter/swell_scale = 0.0008
+shader_parameter/swell_speed = 1.2

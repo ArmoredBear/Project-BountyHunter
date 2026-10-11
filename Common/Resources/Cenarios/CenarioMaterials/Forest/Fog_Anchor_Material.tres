@@ -1,0 +1,20 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://rx6lptjuepfk"]
+
+[ext_resource type="Shader" uid="uid://buwuro3ye2loj" path="res://Common/Resources/Shaders/Cenario_SceneFog.gdshader" id="1_sfog"]
+
+[resource]
+shader = ExtResource("1_sfog")
+shader_parameter/fog_color = Color(0.828125, 0.828125, 0.828125, 1)
+shader_parameter/max_density = 0.350000016625
+shader_parameter/near_base = 0.10000000475
+shader_parameter/clump_scale = 0.0016
+shader_parameter/clump_speed = 1.5
+shader_parameter/clump_threshold = 0.5
+shader_parameter/clump_soft = 0.2
+shader_parameter/wind_dir = Vector2(-1, 0)
+shader_parameter/wind_speed = 220.0
+shader_parameter/noise_scale = 0.002000000095
+shader_parameter/drift_speed = 12.0
+shader_parameter/warp_strength = 2000.0
+shader_parameter/warp_scale = 0.0030000001425
+shader_parameter/light_reaction = 0.6000000285

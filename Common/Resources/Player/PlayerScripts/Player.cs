@@ -131,6 +131,15 @@ public partial class Player : CharacterBody2D
 
 		Player_State_P = Player_States.Idle;
 
+		// Make this the active pair of "ears" for 2D audio, so positioned
+		// sound effects pan relative to the player instead of the screen.
+		AudioListener2D listener = GetNodeOrNull<AudioListener2D>("AudioListener2D");
+
+		if (listener != null)
+		{
+			listener.MakeCurrent();
+		}
+
 		if (GetTree().CurrentScene.Name == "MainMenu")
 		{
 			this.Visible = false;

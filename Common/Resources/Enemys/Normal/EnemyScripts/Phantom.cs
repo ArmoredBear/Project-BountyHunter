@@ -37,10 +37,10 @@ public partial class Phantom : CharacterBody2D
     [Export] public NavigationAgent2D Agent;
     [Export] public Area2D DetectionArea;
     [Export] public Area2D AttackArea;
+    [Export] public Area2D BreathArea;
     [Export] public Area2D AttackHitbox;
     [Export] public CollisionShape2D AttackHitboxShape;
     [Export] public AnimationPlayer HitFlash_Animation;
-    [Export] public AudioStreamPlayer2D HitSound;
     [Export] public PackedScene SpiritBloodScene;
     [Export] public PackedScene SpiritBloodSplatScene;
 
@@ -64,6 +64,13 @@ public partial class Phantom : CharacterBody2D
 
     private double _attackCooldown = 0;
     private bool _isAttacking = false;
+
+    // ÁUDIO: o suspiro contínuo que serve para testar o áudio direcional.
+    private static readonly StringName BreathSfxId = "ghost_breath";
+
+    // ÁUDIO: verdadeiro enquanto o jogador está dentro do BreathArea, que é
+    // maior que a tela. Fora dele o suspiro fica parado para não waste voices.
+    private bool _breathPlaying = false;
 
     #endregion
     //!---------------------------------------------------------------------------------------------------------
@@ -91,6 +98,14 @@ public partial class Phantom : CharacterBody2D
         {
             DetectionArea.BodyEntered += OnDetectionAreaBodyEntered;
             DetectionArea.BodyExited += OnDetectionAreaBodyExited;
+        }
+
+        // ÁUDIO: a área do suspiro é independente da área de perseguição, para
+        // que mexer no tamanho de uma não mude o comportamento da outra.
+        if (BreathArea != null)
+        {
+            BreathArea.BodyEntered += OnBreathAreaBodyEntered;
+            BreathArea.BodyExited += OnBreathAreaBodyExited;
         }
 
         // 3. Estado Inicial
@@ -158,6 +173,33 @@ public partial class Phantom : CharacterBody2D
 
         MoveAndSlide();
 
+    }
+
+    /// <summary>
+    /// Moves the looping breath while the player is close enough to hear it.
+    /// The sound is started and stopped by the BreathArea signals, so this only
+    /// runs while it is already playing and keeps its position and the above
+    /// or below cue up to date as this enemy moves.
+    /// </summary>
+    public override void _Process(double delta)
+    {
+        if (_breathPlaying == false)
+            return;
+
+        if (SfxManager.Instance == null || !GodotObject.IsInstanceValid(SfxManager.Instance))
+            return;
+
+        // PlayLoop is safe to call every frame: it only starts a sound that is
+        // not running yet for this enemy, and otherwise just moves it. Passing
+        // "this" gives every Phantom its own speaker, so several Phantoms do not
+        // overwrite each other's position.
+        SfxManager.Instance.PlayLoop(this, BreathSfxId, GlobalPosition);
+    }
+
+    public override void _ExitTree()
+    {
+        // Without this, a freed enemy would leave its breath looping forever.
+        StopBreath();
     }
 
     #endregion
@@ -501,6 +543,30 @@ public partial class Phantom : CharacterBody2D
         }
     }
 
+    /// <summary>
+    /// ÁUDIO: o jogador entrou na área maior que a tela, então o suspiro
+    /// pode começar a tocar.
+    /// </summary>
+    public void OnBreathAreaBodyEntered(Node2D body)
+    {
+        if (body is CharacterBody2D player && player.IsInGroup("player"))
+        {
+            StartBreath();
+        }
+    }
+
+    /// <summary>
+    /// ÁUDIO: o jogador saiu da área, então o suspiro é parado para não
+    /// continuar tocando à distância.
+    /// </summary>
+    public void OnBreathAreaBodyExited(Node2D body)
+    {
+        if (body is CharacterBody2D player && player.IsInGroup("player"))
+        {
+            StopBreath();
+        }
+    }
+
     public void OnDetectionAreaBodyExited(Node2D body)
     {
         if (body == _player)
@@ -527,7 +593,10 @@ public partial class Phantom : CharacterBody2D
             {
                 GD.Print("Inimigo toma " + 20 + " de dano");
             }
-            HitSound?.Play();
+            if (SfxManager.Instance != null)
+            {
+                SfxManager.Instance.Play("sword_impact", GlobalPosition);
+            }
         }
 
     }
@@ -577,6 +646,36 @@ public partial class Phantom : CharacterBody2D
 
             splat.Emitting = true;
         }
+    }
+
+    /// <summary>
+    /// ÁUDIO: começa o suspiro contínuo deste inimigo. É seguro chamar mesmo
+    /// se ele já estiver tocando, porque o gerenciador só move o som existente.
+    /// </summary>
+    private void StartBreath()
+    {
+        if (_breathPlaying == true)
+            return;
+
+        if (SfxManager.Instance == null || !GodotObject.IsInstanceValid(SfxManager.Instance))
+            return;
+
+        _breathPlaying = true;
+        SfxManager.Instance.PlayLoop(this, BreathSfxId, GlobalPosition);
+    }
+
+    /// <summary>
+    /// ÁUDIO: para o suspiro contínuo deste inimigo e libera a voz que ele
+    /// estava usando.
+    /// </summary>
+    private void StopBreath()
+    {
+        _breathPlaying = false;
+
+        if (SfxManager.Instance == null || !GodotObject.IsInstanceValid(SfxManager.Instance))
+            return;
+
+        SfxManager.Instance.StopLoop(this);
     }
 
     #endregion
