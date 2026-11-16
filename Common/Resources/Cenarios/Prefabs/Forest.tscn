@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://bxf5llvkkgbn5" path="res://Common/Resources/Props/Prefabs/Door.tscn" id="3_g35fp"]
 [ext_resource type="PackedScene" uid="uid://tyb2ogvaxl2d" path="res://Common/Resources/Props/Prefabs/god_rays.tscn" id="4_gkkjg"]
 [ext_resource type="SpriteFrames" uid="uid://jvmpcuj34tlu" path="res://Common/Resources/Props/PropsSpriteFrames/FlowersSpriteFrames.tres" id="5_sxnjw"]
-[ext_resource type="PackedScene" uid="uid://ccwqnm8c8jwux" path="res://Common/Resources/Enemys/Normal/Prefabs/Phantom.tscn" id="6_l5y17"]
 [ext_resource type="Script" uid="uid://b1keyqikiplpn" path="res://Common/Resources/Props/PropsScripts/FlowerPatch_RandomStart.cs" id="6_pp1n8"]
 [ext_resource type="Script" uid="uid://cxl0k55r86sm3" path="res://Common/Resources/Misc/Effects/StonePlacer.cs" id="7_khwrm"]
 [ext_resource type="Shader" uid="uid://cg1hgd8c8s8en" path="res://Common/Resources/Shaders/Cenario_Rain_Shader.gdshader" id="7_vxry2"]
@@ -22,6 +21,7 @@
 [ext_resource type="Material" uid="uid://rx6lptjuepfk" path="res://Common/Resources/Cenarios/CenarioMaterials/Forest/Fog_Anchor_Material.tres" id="19_foga"]
 [ext_resource type="Shader" uid="uid://bgn5c7b0lvkmn" path="res://Common/Resources/Shaders/Cenario_RainGround_Shader.gdshader" id="20_rgsd"]
 [ext_resource type="Script" uid="uid://cujglww7ec0ie" path="res://Common/Resources/Misc/Effects/CenarioLightningEffect.cs" id="23_cle"]
+[ext_resource type="Shader" uid="uid://dcj545ei5llyf" path="res://Common/Resources/Shaders/Snowfall_World.gdshader" id="2400000002"]
 
 [sub_resource type="Gradient" id="Gradient_ur80d"]
 offsets = PackedFloat32Array(0, 0.6773547)
@@ -58,7 +58,7 @@ shader_parameter/flash_glow = 1.5
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rgsd"]
 shader = ExtResource("20_rgsd")
 shader_parameter/splash_color = Color(1, 1, 1, 1)
-shader_parameter/opacity = 0.01200000057
+shader_parameter/opacity = 0.0090000004275
 shader_parameter/cell_size = 300.0
 shader_parameter/splash_speed = 1.6
 shader_parameter/ring_size = 55.0000021375
@@ -70,6 +70,20 @@ shader_parameter/droplet_size = 10.00000038
 shader_parameter/wind_drift = 0.10000005224999996
 shader_parameter/flash_strength = 0.0
 shader_parameter/flash_glow = 1.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_snfall"]
+shader = ExtResource("2400000002")
+shader_parameter/spread = 0.4
+shader_parameter/size = 0.4
+shader_parameter/snow_color = Color(1, 1, 1, 1)
+shader_parameter/snow_transparency = 0.2
+shader_parameter/intensity = 1.0
+shader_parameter/speed = 1.0
+shader_parameter/wind = 0.0
+shader_parameter/num_of_layers = 12
+shader_parameter/world_scale = 10240.0
+shader_parameter/flash_strength = 0.0
+shader_parameter/flash_glow = 2.0
 
 [sub_resource type="Environment" id="Environment_4lmtj"]
 background_mode = 3
@@ -120,6 +134,7 @@ fill_to = Vector2(1, 0.5)
 
 [node name="Forest" type="Node2D" unique_id=1699615197]
 script = ExtResource("1_2b86l")
+Default_Spawn_Tag = "Forest_East_Spawn"
 
 [node name="Doors" type="Node2D" parent="." unique_id=1246684691]
 
@@ -6140,6 +6155,7 @@ flip_h = true
 
 [node name="StonePlacer" type="Node2D" parent="Ground/Rocks" unique_id=1466189362]
 script = ExtResource("7_khwrm")
+BoundsRootPath = NodePath("")
 TargetContainerPath = NodePath("../SmallRocks")
 StoneA_Texture = ExtResource("8_t2dd8")
 StoneB_Texture = ExtResource("9_mexv1")
@@ -6224,19 +6240,8 @@ height = 57.0
 
 [node name="Enemys" type="Node2D" parent="." unique_id=1246177362]
 
-[node name="Phantom" parent="Enemys" unique_id=800493648 instance=ExtResource("6_l5y17")]
-position = Vector2(100, 2323)
-
-[node name="Phantom2" parent="Enemys" unique_id=1928153650 instance=ExtResource("6_l5y17")]
-position = Vector2(-4376, 1853)
-
-[node name="Phantom3" parent="Enemys" unique_id=1160991310 instance=ExtResource("6_l5y17")]
-position = Vector2(-6129, -3421)
-
-[node name="Phantom4" parent="Enemys" unique_id=421478575 instance=ExtResource("6_l5y17")]
-position = Vector2(-19391, 1069)
-
 [node name="Rain" type="Node2D" parent="." unique_id=1104477802]
+visible = false
 
 [node name="Rain_Tile_01" type="Sprite2D" parent="Rain" unique_id=1700000001]
 material = SubResource("ShaderMaterial_ur80d")
@@ -6401,6 +6406,7 @@ scale = Vector2(8000, 8000)
 texture = SubResource("CanvasTexture_unk71")
 
 [node name="Rain_Ground" type="Polygon2D" parent="." unique_id=2000000001]
+visible = false
 z_index = 1
 material = SubResource("ShaderMaterial_rgsd")
 position = Vector2(0, 4366)
@@ -6416,8 +6422,17 @@ stream = ExtResource("11_1m4i4")
 autoplay = true
 bus = &"Ambience"
 
+[node name="Snow" type="Node2D" parent="." unique_id=2000000002]
+
+[node name="Snow_Fall" type="Sprite2D" parent="Snow" unique_id=2000000005]
+z_index = 50
+material = SubResource("ShaderMaterial_snfall")
+position = Vector2(6764.4995, 6276.9985)
+scale = Vector2(66471, 27855.996)
+texture = SubResource("CanvasTexture_unk71")
+
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1665013977]
-color = Color(0.296875, 0.296875, 0.296875, 1)
+color = Color(0.2421875, 0.2421875, 0.2421875, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=369306316]
 environment = SubResource("Environment_4lmtj")
@@ -6443,29 +6458,32 @@ z_index = 7
 
 [node name="Anchored_Fog" type="Polygon2D" parent="Fog_Anchor" unique_id=1503000007]
 material = ExtResource("19_foga")
-position = Vector2(635, 3256)
-polygon = PackedVector2Array(-32000, -14000, 51000, -14000, 51332, 16849, 8467, 16899, -32357, 16949)
+position = Vector2(635, 5188.5073)
+scale = Vector2(1, 0.8287505)
+polygon = PackedVector2Array(-32000, -14000, 9703.23, -13999.998, 51000, -14000, 51332, 16849, 8467, 16899, -32357, 16949)
 
 [node name="FogDriver" type="Node2D" parent="." unique_id=1503000005]
 script = ExtResource("18_fogd")
 
 [node name="Node2D - CenarioLightningEffect" type="Node2D" parent="." unique_id=2100000003 node_paths=PackedStringArray("ImpactLight", "FlashParticleNodes")]
+visible = false
 light_mask = 0
 z_index = 101
 material = SubResource("CanvasItemMaterial_lfx")
 script = ExtResource("23_cle")
-MinInterval = 2.0
+MinInterval = 5.0
 MaxInterval = 10.0
 FlashDuration = 2.0
 WorldFlashRadius = 4000.0
 WorldFlashTexture = SubResource("GradientTexture2D_lfgl")
 WorldFlashIntensity = 1.0
 ImpactLight = NodePath("PointLight2D - StrikeLight")
-FlashExtraMaterials = Array[ShaderMaterial]([SubResource("ShaderMaterial_ur80d"), SubResource("ShaderMaterial_rgsd")])
+FlashExtraMaterials = Array[ShaderMaterial]([SubResource("ShaderMaterial_ur80d"), SubResource("ShaderMaterial_rgsd"), SubResource("ShaderMaterial_snfall")])
 FlashParticleNodes = []
 ParticleFlashGlow = 3.0
 
 [node name="PointLight2D - StrikeLight" type="PointLight2D" parent="Node2D - CenarioLightningEffect" unique_id=1757764303]
+visible = false
 color = Color(0.8, 0.88, 1, 1)
 energy = 16.0
 texture = SubResource("GradientTexture2D_lflt")

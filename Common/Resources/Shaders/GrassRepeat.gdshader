@@ -63,6 +63,10 @@ uniform float grass_c_chance : hint_range(0.0, 1.0) = 0.0;
 uniform vec2 tuft_texels_a = vec2(40.0, 21.0);
 uniform vec2 tuft_texels_b = vec2(18.0, 71.0);
 uniform vec2 tuft_texels_c = vec2(38.0, 38.0);
+// Global multiplier on every tuft's world size (not the covering quad): the
+// whole meadow pattern — tuft sizes, cell grid and spacing relationship —
+// scales together, so behaviour, size variation and the search window stay intact.
+uniform float grass_scale : hint_range(0.25, 4.0) = 1.0;
 
 group_uniforms grass_colors;
 uniform vec4 grass_color_a : source_color = vec4(0.05, 0.30, 0.12, 1.0);
@@ -98,6 +102,21 @@ uniform float base_occlusion : hint_range(0.0, 1.0) = 0.0;
 // height measured from its root. 0.05 hugs the roots, 0.5 shades the lower
 // half of every blade.
 uniform float base_occlusion_height : hint_range(0.01, 1.0) = 0.2;
+
+group_uniforms snow;
+uniform vec4 snow_color : source_color = vec4(0.937, 0.957, 0.984, 1.0);
+// Fraction of a tuft's height (measured from the tip down) that the snow cap
+// covers once snow_amount reaches 1.0. The cap starts thin and thickens as the
+// global snow_amount ramps up.
+uniform float snow_cap_height : hint_range(0.0, 0.6) = 0.14;
+// Vertical softness of the cap's lower edge, as a fraction of the tuft height.
+uniform float snow_cap_feather : hint_range(0.0, 0.5) = 0.12;
+// Scale of the per-tuft noise that breaks up the cap edge (world-UV units, so
+// the patches stay in place on the tuft). 0 disables the noise.
+uniform float snow_noise_scale : hint_range(0.0, 256.0) = 32.0;
+// How strongly the noise carves into the cap edge (0 = smooth straight cap,
+// 1 = fully patchy edge).
+uniform float snow_noise_strength : hint_range(0.0, 1.0) = 0.45;
 
 group_uniforms wind;
 uniform float wind_strength : hint_range(0.0, 2.0) = 1.0;
@@ -147,6 +166,11 @@ uniform float border_radius : hint_range(0.0, 200.0) = 32.0;
 
 varying vec2 world_pos;
 varying float spec_amount;
+// Pre-snow blade tone. The snow cap whitens the tuft's albedo (COLOR), but
+// light() must keep shading the original green tone, or the near-white snow
+// albedo multiplied by the scene's high-energy lights would blow past the HDR
+// glow threshold and bloom.
+varying vec3 lit_albedo;
 
 float hash21(vec2 p) {
     p = fract(p * vec2(123.34, 456.21));
@@ -243,7 +267,11 @@ void fragment()
     // the grass; it must be multiplied back into the final output.
     vec4 sprite_color = COLOR;
 
-    vec2 cell_size = tuft_world_size_a * spacing;
+    // Defined default for pixels with no tuft: light() runs for every
+    // fragment, and transparent gaps must contribute no light.
+    lit_albedo = vec3(0.0);
+
+    vec2 cell_size = tuft_world_size_a * spacing * grass_scale;
     vec2 cell = floor(world_pos / cell_size);
 
     // Search the 3x3 window of cells around this fragment: any of them may
@@ -296,7 +324,7 @@ void fragment()
                 } else {
                     kind = 2;
                 }
-                vec2 base_size = kind == 1 ? tuft_world_size_b : (kind == 2 ? tuft_world_size_c : tuft_world_size_a);
+                vec2 base_size = (kind == 1 ? tuft_world_size_b : (kind == 2 ? tuft_world_size_c : tuft_world_size_a)) * grass_scale;
 
                 // Random per-copy size. Capped so a scaled tuft never grows
                 // larger than its cell, which keeps the 3x3 window enough to
@@ -491,6 +519,10 @@ void fragment()
 
                 // The texture is pure white, so the blade is tinted directly
                 // with its gram tone (multiplying by it would just wash out).
+                // Serialize the pre-snow tone for light() before the cap below
+                // whitens the tuft.
+                lit_albedo = grad;
+
                 COLOR = sprite_color * vec4(grad, tex.a);
                 drawn = true;
                 break;
@@ -515,7 +547,7 @@ void light() {
     vec3 l = normalize(LIGHT_DIRECTION);
     float ndotl = max(dot(n, l), 0.0);
 
-    vec3 diffuse = LIGHT_COLOR.rgb * COLOR.rgb * LIGHT_ENERGY * ndotl;
+    vec3 diffuse = LIGHT_COLOR.rgb * lit_albedo * LIGHT_ENERGY * ndotl;
 
     vec3 half_vec = normalize(l + vec3(0.0, 0.0, 1.0));
     float ndoth = max(dot(n, half_vec), 0.0);

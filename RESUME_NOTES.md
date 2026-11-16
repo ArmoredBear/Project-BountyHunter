@@ -66,4 +66,57 @@ the tooltip.
 
 ---
 
+## C# Vision (image viewing — plugin)
+
+Lets the agent see images (art, sprites, screenshots) even though `big-pickle` is a
+text-only model. Works via an MCP server that analyzes the image externally and returns
+text.
+
+### Setup (already done)
+1. `opencode-vision` (Python package) installed in `~/.config/opencode/vision-venv`.
+2. MCP server `vision` registered in `~/.config/opencode/opencode.json` using **Ollama**:
+   - `VISION_PROVIDER=ollama`
+   - `OLLAMA_BASE_URL=http://localhost:11434`
+   - `OLLAMA_MODEL=moondream` (local, free, NO API key — Google API could not be created).
+3. Ollama installed via Homebrew, runs in background and auto-starts at login
+   (`~/.config/autostart/ollama.desktop`). If not running: `ollama serve`.
+4. Model pulled: `ollama pull moondream` (~1.7 GB, CPU-only, no GPU needed).
+
+### Tools
+- `vision_describe(image_path, prompt?)` — describe an image (colors, layout, style)
+- `vision_ocr(image_path)` — extract text (moondream is weak at this)
+- `vision_analyze(image_path)` — metadata + description + OCR
+
+### Usage notes
+- Pass the **absolute path** as `image_path`. Example: `vision_describe("res://... tree.png")`
+  → actually use the full filesystem path, e.g.
+  `/mnt/STORAGE/GodotProjects/Project-BountyHunter/...png`.
+- After changing MCP config, **quit and restart opencode** — config only loads at startup.
+- moondream is fast/decent on art but weak on text. To upgrade descriptions, swap
+  `OLLAMA_MODEL` in `opencode.json` (e.g. `qwen2.5vl:3b` or `llava`) and `ollama pull <model>`.
+- Tool descriptions may include unreliable details (hallucinated shapes/text) — take them
+  as a rough read, not ground truth, especially for color/palette work.
+
+---
+
 Project root: `/mnt/STORAGE/GodotProjects/Project-BountyHunter`
+
+---
+
+## CURRENT WORK: Snow system simplified to falling snow only (2026-10-13)
+
+**Status: rolling back the snow-accumulation system at user request; keeping only the falling snow.**
+
+- User removed all non-falling snow from `Forest.tscn` themselves (SnowController node, SnowMoundController,
+  mounds polygon + material, frozen-overlay material, baker node are gone; only `Snow` > `Snow_Fall` sprite
+  with `ShaderMaterial_snfall` + `Snowfall_World.gdshader` remains).
+- Deleted the whole snow system so it can't be resurrected accidentally:
+  shaders `Snow_Ground_Mounds.gdshader`, `Snow_Mound.gdshader`, `Snow_Overlay.gdshader`,
+  `Frozen_Ground_Overlay.gdshader` (all + `.uid`); scripts `SnowMoundController.cs`, `SnowMoundWorldBaker.cs`
+  (the bake system), `SnowController.cs` (all + `.uid`); removed `snow_amount` from `project.godot`
+  `[shader_globals]`.
+- KEPT (falling snow): `Snowfall_World.gdshader` + `.uid` (Forest `Snow_Fall`), `Snowfall.gdshader` + `.uid`
+  and `SnowfallMaterial.tres` (used by `Main_Menu.tscn`).
+- The CPU-bake work from 2026-10-12 is void — do not attempt to restore it unless the user asks.
+- Next when user returns: verify build/headless are clean; optionally resume the snow-fall tuning that existed
+  before the accumulation system (SnowController ramped flake density via the `intensity` uniform).

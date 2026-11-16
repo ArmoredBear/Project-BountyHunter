@@ -182,6 +182,7 @@ float coverage = bare_mask * density;
         col *= 1.0 - base_occlusion * along * at_root * blade;
     }
 
+
     blade_mask = blade;
     COLOR = vec4(col, 1.0);
 }

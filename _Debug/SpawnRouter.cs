@@ -15,6 +15,17 @@ using System;
 public partial class SpawnRouter : Node
 {
     //!---------------------------------------------------------------------------------------------------------
+    #region Properties
+    //!---------------------------------------------------------------------------------------------------------
+
+    /// <summary>Spawn marker used when no valid destination tag is stored in Player_Data_Autoload.</summary>
+    [ExportGroup("Spawning")]
+    [Export] public string Default_Spawn_Tag = "";
+
+    #endregion
+    //!---------------------------------------------------------------------------------------------------------
+
+    //!---------------------------------------------------------------------------------------------------------
     #region Initialization and Processes
     //!---------------------------------------------------------------------------------------------------------
 
@@ -23,6 +34,12 @@ public partial class SpawnRouter : Node
         // Scene is fully instanced here — safe to place the player
         var currentScene = GetTree().CurrentScene;
         GD.Print("SpawnRouter active in scene: ", currentScene.Name);
+
+        if (Player_Data_Autoload.Instance != null && Player_Data_Autoload.Instance.Try_Apply_Loaded_Position())
+        {
+            GD.Print("SpawnRouter: using loaded position instead of a spawn marker.");
+            return;
+        }
 
         var doors = currentScene.GetNodeOrNull<Node>("Doors");
         if (doors == null)
@@ -36,18 +53,11 @@ public partial class SpawnRouter : Node
         {
             tag = Player_Data_Autoload.Instance.NextSpawnName;
         }
-        if (string.IsNullOrEmpty(tag))
-        {
-            GD.PrintErr("NextSpawnName is empty — did a Door set it?");
-            return;
-        }
 
-        var spawn = doors.GetNodeOrNull<Node2D>(tag);
+        Node2D spawn = Resolve_Spawn(doors, tag);
         if (spawn == null)
         {
-            GD.PrintErr($"Spawn '{tag}' not found under Doors. Listing children:");
-            foreach (Node child in doors.GetChildren())
-                GD.Print("Doors child: ", child.Name);
+            GD.PushError("SpawnRouter: no spawn markers found under Doors.");
             return;
         }
 
@@ -57,8 +67,50 @@ public partial class SpawnRouter : Node
             return;
         }
 
-        Player.Instance.GlobalPosition = spawn.GlobalPosition;
-        GD.Print($"Player placed at {spawn.GlobalPosition} via Doors/{tag}");
+        Player.Instance.Teleport_To(spawn.GlobalPosition);
+        GD.Print($"Player placed at {spawn.GlobalPosition} via Doors/{spawn.Name}");
+    }
+
+    private Node2D Resolve_Spawn(Node doors, string requestedTag)
+    {
+        if (!string.IsNullOrEmpty(requestedTag))
+        {
+            Node2D requestedSpawn = doors.GetNodeOrNull<Node2D>(requestedTag);
+            if (requestedSpawn != null)
+            {
+                return requestedSpawn;
+            }
+
+            if (requestedTag != "Spawn_Default")
+            {
+                GD.PushWarning($"SpawnRouter: spawn '{requestedTag}' not found under Doors. Using the default spawn.");
+                foreach (Node child in doors.GetChildren())
+                {
+                    GD.Print("Doors child: ", child.Name);
+                }
+            }
+        }
+
+        if (!string.IsNullOrEmpty(Default_Spawn_Tag))
+        {
+            Node2D defaultSpawn = doors.GetNodeOrNull<Node2D>(Default_Spawn_Tag);
+            if (defaultSpawn != null)
+            {
+                return defaultSpawn;
+            }
+
+            GD.PushWarning($"SpawnRouter: default spawn '{Default_Spawn_Tag}' not found under Doors. Using the first Marker2D.");
+        }
+
+        foreach (Node child in doors.GetChildren())
+        {
+            if (child is Marker2D marker)
+            {
+                return marker;
+            }
+        }
+
+        return null;
     }
 
     #endregion

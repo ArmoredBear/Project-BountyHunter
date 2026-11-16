@@ -210,20 +210,9 @@ public partial class Player_Data_Autoload : Node
 			}
 		}
 
-		// Also set position immediately if player exists
+		// Position is applied by the destination scene after it is ready.
 		GD.Print("Loaded position: " + Data.Position);
 		GD.Print("Loaded scene: " + Path.GetFileNameWithoutExtension(Data.CurrentScene));
-		var playerBody = GetNodeOrNull<CharacterBody2D>("/root/Player/Player_Body");
-		if (playerBody != null)
-		{
-			GD.Print("Player body found, current GlobalPosition: " + playerBody.GlobalPosition + ", setting to: " + Data.Position);
-			playerBody.GlobalPosition = Data.Position;
-			GD.Print("After set, GlobalPosition: " + playerBody.GlobalPosition);
-		}
-		else
-		{
-			GD.Print("Player body not found at /root/Player/Player_Body");
-		}
 
 		// Scene verification
 		string currentScenePath = GetTree().CurrentScene.SceneFilePath;
@@ -235,7 +224,28 @@ public partial class Player_Data_Autoload : Node
 		else
 		{
 			GD.Print("Scene verification passed. Current scene matches saved scene: " + currentScenePath);
+			Try_Apply_Loaded_Position();
 		}
+	}
+
+	public bool Try_Apply_Loaded_Position()
+	{
+		if (!ShouldSetLoadedPosition)
+		{
+			return false;
+		}
+
+		Player player = Player.Instance;
+		if (player == null)
+		{
+			GD.PrintErr("Player.Instance is null — cannot apply loaded position.");
+			return false;
+		}
+
+		player.Teleport_To(LoadedPosition);
+		ShouldSetLoadedPosition = false;
+		GD.Print("Applied loaded position: " + LoadedPosition);
+		return true;
 	}
 
 	public void Update_Data_To_Save()

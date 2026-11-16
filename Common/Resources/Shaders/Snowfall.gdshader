@@ -9,11 +9,15 @@ uniform float spread : hint_range(0.0, 1.5) = 0.5;
 uniform float size : hint_range(0.01, 5.0) = 0.5;
 uniform vec4 snow_color : source_color = vec4(1.0);
 uniform float snow_transparency : hint_range(-0.5, 1.0) = 0.2;
+// Global fade for the whole snowfall (0 = off, 1 = full strength). The snow
+// controller ramps this in/out together with the ground accumulation so the
+// flake density follows the weather instead of cutting on and off.
+uniform float intensity : hint_range(0.0, 1.0) = 1.0;
 
 group_uniforms snow_movement;
 uniform float speed : hint_range(0.0, 10.0) = 0.5;
 uniform float wind : hint_range(-2.0, 2.0) = 0.0;
-uniform int num_of_layers = 40;
+uniform int num_of_layers = 16;
 
 group_uniforms lightning;
 uniform float flash_strength : hint_range(0.0, 1.0) = 0.0;
@@ -62,11 +66,16 @@ void fragment() {
 	vec3 snow_accumulation = vec3(0.0);
 
 	// Accumulate every depth layer.
-	for (int i = 0; i < num_of_layers; i++) {
-		snow_accumulation += generate_snowflake(UV, float(i), TIME, wind);
+	int layer_count = num_of_layers;
+	if (layer_count < 0)
+		layer_count = 0;
+	if (layer_count > 64)
+		layer_count = 64;
+	for (int i = 0; i < layer_count; i++) {
+		snow_accumulation += generate_snowflake(SCREEN_UV, float(i), TIME, wind);
 	}
 
-	float snow_intensity = clamp(length(snow_accumulation), 0.0, 1.0);
+	float snow_intensity = clamp(length(snow_accumulation), 0.0, 1.0) * clamp(intensity, 0.0, 1.0);
 	vec4 base_color = vec4(0.0); // Transparent: only the snow is drawn.
 
 	// Transparency applied to the snow color.

@@ -21,6 +21,7 @@ dof_blur_near_enabled = true
 
 [node name="Clearing" type="Node2D" unique_id=723898572]
 script = ExtResource("1_p5mhh")
+Default_Spawn_Tag = "Clearing_East_Spawn"
 
 [node name="Doors" type="Node2D" parent="." unique_id=1890417491]
 

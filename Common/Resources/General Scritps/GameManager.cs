@@ -21,6 +21,9 @@ public partial class GameManager : Node
 
     public static GameManager Instance;
 
+    /// <summary>When true the snow system starts accumulating snow across the current level.</summary>
+    public bool IsSnowing = true;
+
     #endregion
     //!---------------------------------------------------------------------------------------------------------
 

@@ -123,12 +123,6 @@ public partial class Player : CharacterBody2D
 			GD.PrintErr("ERROR!! Instance of Player already exist!!");
 		}
 
-		if (Player_Data_Autoload.Instance.ShouldSetLoadedPosition)
-		{
-			this.GlobalPosition = Player_Data_Autoload.Instance.LoadedPosition;
-			Player_Data_Autoload.Instance.ShouldSetLoadedPosition = false;
-		}
-
 		Player_State_P = Player_States.Idle;
 
 		// Make this the active pair of "ears" for 2D audio, so positioned
@@ -209,6 +203,18 @@ public partial class Player : CharacterBody2D
 	public void Setup_Player_Position(Vector2 _position)
 	{
 		this.GlobalPosition = _position;
+	}
+
+	public void Teleport_To(Vector2 position)
+	{
+		GlobalPosition = position;
+		Velocity = Vector2.Zero;
+
+		CameraControl camera = GetNodeOrNull<CameraControl>("Camera2D");
+		if (camera != null)
+		{
+			camera.Snap_To_Target();
+		}
 	}
 
 	#endregion

@@ -136,9 +136,40 @@ public partial class Scene_Manager : Node
 
         await TransitionManager.Instance.FadeToBlack();
 
-        GetTree().ChangeSceneToFile(path);
+        Error changeError = GetTree().ChangeSceneToFile(path);
+        if (changeError != Error.Ok)
+        {
+            GD.PrintErr("Scene_Manager: failed to change scene to ", path, ". Error: ", changeError);
+            await TransitionManager.Instance.FadeFromBlack();
+            return;
+        }
 
+        await Wait_For_Scene(path);
         await TransitionManager.Instance.FadeFromBlack();
+    }
+
+    private async Task Wait_For_Scene(string path)
+    {
+        int safetyFrames = 300;
+        while (safetyFrames > 0)
+        {
+            SceneTree tree = GetTree();
+            if (tree.CurrentScene != null && tree.CurrentScene.SceneFilePath == path)
+            {
+                break;
+            }
+
+            safetyFrames--;
+            await ToSignal(tree, SceneTree.SignalName.ProcessFrame);
+        }
+
+        if (safetyFrames <= 0)
+        {
+            GD.PrintErr("Scene_Manager: timed out waiting for scene to load: ", path);
+            return;
+        }
+
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
     }
 
 

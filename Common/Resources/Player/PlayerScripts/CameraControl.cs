@@ -55,7 +55,7 @@ public partial class CameraControl : Camera2D
 	public override void _Ready()
 	{
 		// Start on the player so the camera does not slide in on spawn.
-		_smoothed_center = GlobalPosition;
+		Snap_To_Target();
 	}
 
 	public override void _Process(double delta)
@@ -125,6 +125,23 @@ public partial class CameraControl : Camera2D
 	//!---------------------------------------------------------------------------------------------------------
 	#region Methods
 	//!---------------------------------------------------------------------------------------------------------
+
+	public void Snap_To_Target()
+	{
+		Node2D parent = GetParentOrNull<Node2D>();
+		Vector2 target = GlobalPosition;
+		if (parent != null)
+		{
+			target = parent.GlobalPosition;
+		}
+
+		_shake_amount = 0f;
+		Offset = Vector2.Zero;
+		_smoothed_center = target;
+
+		float pixel_world_size = 1.0f / Zoom.X;
+		GlobalPosition = (_smoothed_center / pixel_world_size).Round() * pixel_world_size;
+	}
 
 	private static float RandomSignedFloat()
 	{

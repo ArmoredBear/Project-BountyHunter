@@ -55,9 +55,21 @@ public partial class Boss : CharacterBody2D
 	private State _currentState = State.Patrol;
 	private int _currentPatrolPointIndex = 0;
 
+	private const float RepathDistance = 32f;
+	private const float RepathInterval = 0.2f;
+	private const double NearDecisionInterval = 1.0 / 15.0;
+	private const double FarDecisionInterval = 1.0 / 5.0;
+
+	private Vector2 _lastRequestedTarget;
+	private bool _hasRequestedTarget = false;
+	private double _repathTimer = 0.0;
+	private double _decisionTimer = 0.0;
+	private bool _isPlayerInAttackRange = false;
+	private bool _isFarFromPlayer = false;
+
 	// LÓGICA FUZZY (Entradas)
 	private float _distanceToPlayer = float.MaxValue;
-	private readonly Dictionary<State, float> _statePriorities = new Dictionary<State, float>();
+	private float _maxRelevantDistance = 600f;
 
 	private double _attackCooldown = 0;
 	private bool _isAttacking = false;
@@ -82,12 +94,19 @@ public partial class Boss : CharacterBody2D
 
 		// 2. Conexão de Signals (Só se _stats estiver OK)
 		_stats.HealthChanged += OnHealthChanged;
+		CacheDetectionRadius();
 
 		// Conexão de Signals em áreas (apenas se as áreas estiverem conectadas)
 		if (DetectionArea != null)
 		{
 			DetectionArea.BodyEntered += OnDetectionAreaBodyEntered;
 			DetectionArea.BodyExited += OnDetectionAreaBodyExited;
+		}
+
+		if (AttackArea != null)
+		{
+			AttackArea.BodyEntered += OnAttackAreaBodyEntered;
+			AttackArea.BodyExited += OnAttackAreaBodyExited;
 		}
 
 		if (AttackHitbox != null)
@@ -97,12 +116,10 @@ public partial class Boss : CharacterBody2D
 
 		// 3. Estado Inicial
 		_currentState = State.Patrol;
+		_decisionTimer = GD.Randf() * NearDecisionInterval;
 
 		// Tenta iniciar a animação (apenas se a referência foi preenchida)
-		if (Animation_Sprite != null)
-		{
-			Animation_Sprite.Play("Boss_Idle");
-		}
+		PlaySpriteAnimation("Boss_Idle");
 
 		// 4. CORREÇÃO NAVMESH: Garante que o setup de navegação aconteça após o primeiro frame de física.
 		Callable.From(ActorSetup).CallDeferred();
@@ -122,6 +139,7 @@ public partial class Boss : CharacterBody2D
 
 		// O estado de patrulha pode ser iniciado agora.
 		ChangeState(State.Patrol);
+		_repathTimer = GD.Randf() * RepathInterval;
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -129,16 +147,43 @@ public partial class Boss : CharacterBody2D
 		// Garante que a IA não tente rodar se o setup falhou criticamente
 		if (_stats == null) return;
 
-		// 1. Atualiza Entradas Fuzzy
-		UpdateFuzzyInputs();
-
-		// 2. Tomada de Decisão (Fuzzy Logic)
-		State nextState = DetermineNextStateFuzzy();
-
-		// 3. Transição de Estado
-		if (nextState != _currentState)
+		if (_repathTimer > 0.0)
 		{
-			ChangeState(nextState);
+			_repathTimer -= delta;
+		}
+
+		if (_decisionTimer > 0.0)
+		{
+			_decisionTimer -= delta;
+		}
+		else
+		{
+			// 1. Atualiza Entradas Fuzzy
+			UpdateFuzzyInputs();
+
+			bool isFar = _distanceToPlayer > _maxRelevantDistance;
+			if (isFar != _isFarFromPlayer)
+			{
+				_isFarFromPlayer = isFar;
+			}
+
+			if (_isFarFromPlayer)
+			{
+				_decisionTimer = FarDecisionInterval;
+			}
+			else
+			{
+				_decisionTimer = NearDecisionInterval;
+			}
+
+			// 2. Tomada de Decisão (Fuzzy Logic)
+			State nextState = DetermineNextStateFuzzy();
+
+			// 3. Transição de Estado
+			if (nextState != _currentState)
+			{
+				ChangeState(nextState);
+			}
 		}
 
 		// 4. Execução do Estado Atual
@@ -194,33 +239,26 @@ public partial class Boss : CharacterBody2D
 		return 1.0f - (healthFraction / 0.3f);
 	}
 
+	private void CacheDetectionRadius()
+	{
+		if (DetectionArea == null) return;
+
+		CollisionShape2D collisionShape = DetectionArea.GetNodeOrNull<CollisionShape2D>("CollisionShape2D");
+
+		if (collisionShape == null || collisionShape.Shape == null) return;
+
+		_maxRelevantDistance = collisionShape.Shape.GetRect().Size.X * DetectionArea.Scale.X;
+	}
+
 	private float GetNearDistanceMembership()
 	{
 		// SEGURANÇA: Se a área de detecção não estiver conectada
 		if (DetectionArea == null) return 0.0f;
 
-		float maxRelevantDistance = 600f;
-
-		try
-		{
-			// O cálculo da geometria depende de um CollisionShape2D filho EXATO
-			var collisionShape = DetectionArea.GetNode<CollisionShape2D>("CollisionShape2D");
-			if (collisionShape != null && collisionShape.Shape != null)
-			{
-				// ATENÇÃO: Se o Shape for um RectangleShape2D, GetRect().Size.X funciona; para círculos, use Radius.
-				// Usando GetRect().Size.X como proxy para o raio/tamanho da área.
-				maxRelevantDistance = collisionShape.Shape.GetRect().Size.X * DetectionArea.Scale.X;
-			}
-		}
-		catch (Exception)
-		{
-			// Falha silenciosa: usa o fallback
-		}
-
 		if (_distanceToPlayer <= AttackRange) return 1.0f;
-		if (_distanceToPlayer >= maxRelevantDistance) return 0.0f;
+		if (_distanceToPlayer >= _maxRelevantDistance) return 0.0f;
 
-		return 1.0f - ((_distanceToPlayer - AttackRange) / (maxRelevantDistance - AttackRange));
+		return 1.0f - ((_distanceToPlayer - AttackRange) / (_maxRelevantDistance - AttackRange));
 	}
 
 	private State DetermineNextStateFuzzy()
@@ -245,61 +283,58 @@ public partial class Boss : CharacterBody2D
 		// --- INFERENCE RULES (Calculate State Priorities) ---
 
 		// Flee Priority: Higher when health is low. Uses a constant weight (1.5f).
-		_statePriorities[State.Flee] = lowHealth * 1.5f;
+		float fleePriority = lowHealth * 1.5f;
 
 		// Attack Priority: Min(Near, Not Low Health). Requires an existing target in the area.
+		float attackPriority = 0f;
 		float attackInference = Mathf.Min(nearDistance, 1.0f - lowHealth);
 
-		// REPLACED TERNARY:
-		if (AttackArea != null && AttackArea.HasOverlappingBodies())
+		if (_isPlayerInAttackRange)
 		{
-			_statePriorities[State.Attack] = attackInference;
-		}
-		else
-		{
-			_statePriorities[State.Attack] = 0f;
+			attackPriority = attackInference;
 		}
 
 		// Chase Priority: Min(Not Near, Not Low Health). Requires the player to be present.
+		float chasePriority = 0f;
 
-		// REPLACED TERNARY:
 		if (_player != null)
 		{
-			_statePriorities[State.Chase] = Mathf.Min(1.0f - nearDistance, 1.0f - lowHealth);
-		}
-		else
-		{
-			_statePriorities[State.Chase] = 0f;
+			chasePriority = Mathf.Min(1.0f - nearDistance, 1.0f - lowHealth);
 		}
 
 		// Patrol Priority: High if no player is present OR if the Chase priority is negligible.
+		float patrolPriority = 0.0f;
 
-		// REPLACED TERNARY:
-		if (_player == null || _statePriorities[State.Chase] < 0.1f)
+		if (_player == null || chasePriority < 0.1f)
 		{
-			_statePriorities[State.Patrol] = 1.0f;
-		}
-		else
-		{
-			_statePriorities[State.Patrol] = 0.0f;
+			patrolPriority = 1.0f;
 		}
 
 		// --- DEFUZZIFICATION (Select State with Highest Priority) ---
 		State bestState = State.Patrol;
-		float maxPriority = 0f;
+		float maxPriority = patrolPriority;
 
-		foreach (var entry in _statePriorities)
+		if (fleePriority > maxPriority)
 		{
-			if (entry.Value > maxPriority)
-			{
-				maxPriority = entry.Value;
-				bestState = entry.Key;
-			}
+			maxPriority = fleePriority;
+			bestState = State.Flee;
+		}
+
+		if (attackPriority > maxPriority)
+		{
+			maxPriority = attackPriority;
+			bestState = State.Attack;
+		}
+
+		if (chasePriority > maxPriority)
+		{
+			maxPriority = chasePriority;
+			bestState = State.Chase;
 		}
 
 		// Hard Coded Override/Exception: Force Flee if health is critically low,
 		// even if another state had a slightly higher calculated priority.
-		if (_stats.CurrentHealth <= FleeThreshold && maxPriority < _statePriorities[State.Flee])
+		if (_stats.CurrentHealth <= FleeThreshold && maxPriority < fleePriority)
 		{
 			return State.Flee;
 		}
@@ -320,6 +355,8 @@ public partial class Boss : CharacterBody2D
 	{
 		GD.Print("SCRIPT - BOSS - : Transition: " + _currentState + " -> " + newState);
 		_currentState = newState;
+		_hasRequestedTarget = false;
+		_repathTimer = 0.0;
 
 		if (newState == State.Attack)
 		{
@@ -335,28 +372,26 @@ public partial class Boss : CharacterBody2D
 		}
 		else if (newState == State.Chase)
 		{
-			if (Animation_Sprite != null)
-			{
-				Animation_Sprite.Play("Boss_Pursuit");
-			}
+			PlaySpriteAnimation("Boss_Pursuit");
 		}
 		else if (newState == State.Patrol)
 		{
-			if (Animation_Sprite != null)
-			{
-				Animation_Sprite.Play("Boss_Pursuit");
-			}
+			PlaySpriteAnimation("Boss_Pursuit");
 		}
 		else if (newState == State.Flee)
 		{
-			if (Animation_Sprite != null)
-			{
-				Animation_Sprite.Play("Boss_Pursuit");
-			}
+			PlaySpriteAnimation("Boss_Pursuit");
 		}
 	}
 
+	private void PlaySpriteAnimation(StringName animationName)
+	{
+		if (Animation_Sprite == null) return;
 
+		if (Animation_Sprite.Animation == animationName && Animation_Sprite.IsPlaying()) return;
+
+		Animation_Sprite.Play(animationName);
+	}
 
 	private void MoveToTarget(Vector2 targetPosition, float speedMultiplier = 1.0f)
 	{
@@ -367,7 +402,17 @@ public partial class Boss : CharacterBody2D
 			return;
 		}
 
-		Agent.TargetPosition = targetPosition;
+		bool targetMoved = !_hasRequestedTarget ||
+			_lastRequestedTarget.DistanceSquaredTo(targetPosition) > RepathDistance * RepathDistance;
+		bool targetDrifted = _hasRequestedTarget && _lastRequestedTarget != targetPosition;
+
+		if (targetMoved || (_repathTimer <= 0.0 && targetDrifted))
+		{
+			_lastRequestedTarget = targetPosition;
+			_hasRequestedTarget = true;
+			_repathTimer = RepathInterval;
+			Agent.TargetPosition = targetPosition;
+		}
 
 		if (Agent.IsNavigationFinished())
 		{
@@ -389,7 +434,7 @@ public partial class Boss : CharacterBody2D
 		if (PatrolPoints == null || PatrolPoints.Length == 0)
 		{
 			Velocity = Vector2.Zero;
-			if (Animation_Sprite != null) Animation_Sprite.Play("Boss_Idle");
+			PlaySpriteAnimation("Boss_Idle");
 			return;
 		}
 
@@ -399,10 +444,11 @@ public partial class Boss : CharacterBody2D
 		{
 			_currentPatrolPointIndex = (_currentPatrolPointIndex + 1) % PatrolPoints.Length;
 			targetPosition = PatrolPoints[_currentPatrolPointIndex].GlobalPosition;
+			_hasRequestedTarget = false;
 		}
 
 		MoveToTarget(targetPosition, 0.5f);
-		if (Animation_Sprite != null) Animation_Sprite.Play("Boss_Pursuit");
+		PlaySpriteAnimation("Boss_Pursuit");
 	}
 
 	private void HandleChase()
@@ -415,14 +461,14 @@ public partial class Boss : CharacterBody2D
 		}
 
 		MoveToTarget(_player.GlobalPosition, 1.2f);
-		if (Animation_Sprite != null) Animation_Sprite.Play("Boss_Pursuit");
+		PlaySpriteAnimation("Boss_Pursuit");
 	}
 
 	private void HandleAttack(double delta)
 	{
 		_attackCooldown -= delta;
 
-		if (_attackCooldown <= 0 && _isAttacking == false)
+		if (_attackCooldown <= 0 && _isAttacking == false && _isPlayerInAttackRange)
 		{
 			_isAttacking = true;
 			Velocity = Vector2.Zero;
@@ -448,7 +494,7 @@ public partial class Boss : CharacterBody2D
 		Vector2 safeTarget = GlobalPosition + fleeDirection * 500f;
 
 		MoveToTarget(safeTarget, 1.5f);
-		if (Animation_Sprite != null) Animation_Sprite.Play("Boss_Pursuit");
+		PlaySpriteAnimation("Boss_Pursuit");
 
 		if (_distanceToPlayer > 600 || (_stats != null && _stats.CurrentHealth > FleeThreshold * 1.5f))
 		{
@@ -477,6 +523,7 @@ public partial class Boss : CharacterBody2D
 	public void EndAttack()
 	{
 		_isAttacking = false;
+		_decisionTimer = 0.0;
 		GD.Print("EndAttack called");
 		//DisableHitbox(); // safety reset
 	}
@@ -500,6 +547,8 @@ public partial class Boss : CharacterBody2D
 		if (body is CharacterBody2D player && player.IsInGroup("player"))
 		{
 			_player = player;
+			_decisionTimer = 0.0;
+			_repathTimer = 0.0;
 		}
 	}
 
@@ -508,6 +557,23 @@ public partial class Boss : CharacterBody2D
 		if (body == _player)
 		{
 			_player = null;
+			_decisionTimer = 0.0;
+		}
+	}
+
+	private void OnAttackAreaBodyEntered(Node2D body)
+	{
+		if (body is CharacterBody2D player && player.IsInGroup("player"))
+		{
+			_isPlayerInAttackRange = true;
+		}
+	}
+
+	private void OnAttackAreaBodyExited(Node2D body)
+	{
+		if (body is CharacterBody2D player && player.IsInGroup("player"))
+		{
+			_isPlayerInAttackRange = false;
 		}
 	}
 
